@@ -1,228 +1,622 @@
 "use client"
 
 import Image from "next/image"
-import { useCallback, useEffect, useMemo, useState } from "react"
-import initSqlJs, { type Database, type QueryExecResult } from "sql.js"
+import {
+  type RefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { ChevronLeft, ChevronRight, DatabaseIcon, Search, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-
-type EntityType = "all" | "character" | "dragon" | "house"
-type Entity = {
-  entity_key: string
-  id: string
-  type: Exclude<EntityType, "all">
-  name: string
-  description: string | null
-  status: string | null
-  verification: string | null
-  local_path: string
-  uncertain: number
-}
-type Detail = Entity & {
-  raw_json: string
-  aliases: string | null
-  appearances: string | null
-  relationships: string | null
-  sources: string | null
-}
+import type {
+  EntityDetail,
+  EntitySummary,
+  WikiDetailResponse,
+  WikiEntityFilter,
+  WikiEntityType,
+  WikiListResponse,
+} from "@/lib/wiki-types"
 
 const PAGE_SIZE = 24
-const typeLabels: Record<EntityType, string> = {
+const typeLabels: Record<WikiEntityFilter, string> = {
   all: "Everything",
   character: "Characters",
   dragon: "Dragons",
   house: "Houses",
 }
 
-function rows<T>(result: QueryExecResult[]): T[] {
-  const first = result[0]
-  if (!first) return []
-  return first.values.map((values) =>
-    Object.fromEntries(first.columns.map((column, index) => [column, values[index]])),
-  ) as T[]
+const factNames = new Set([
+  "gender",
+  "culture",
+  "born",
+  "died",
+  "status",
+  "color",
+  "region",
+  "words",
+  "seat",
+  "seats",
+  "verification",
+])
+
+function readable(value: string) {
+  return value.replaceAll("_", " ").replaceAll("-", " ")
+}
+
+function displayFact(value: unknown) {
+  if (typeof value === "string" || typeof value === "number") return String(value)
+  if (Array.isArray(value)) return value.map(String).join(" · ")
+  return null
+}
+
+function getErrorMessage(payload: unknown, fallback: string) {
+  if (
+    payload &&
+    typeof payload === "object" &&
+    "error" in payload &&
+    payload.error &&
+    typeof payload.error === "object" &&
+    "message" in payload.error &&
+    typeof payload.error.message === "string"
+  ) {
+    return payload.error.message
+  }
+  return fallback
+}
+
+async function fetchJson<T>(url: string, signal: AbortSignal) {
+  const response = await fetch(url, { signal })
+  const payload: unknown = await response.json().catch(() => null)
+  if (!response.ok) {
+    throw new Error(getErrorMessage(payload, `The archive request failed (${response.status}).`))
+  }
+  return payload as T
+}
+
+function fallbackImage(type: WikiEntityType) {
+  return `/images/fallback-${type}.svg`
+}
+
+function ArchiveImage({
+  entity,
+  sizes,
+}: {
+  entity: EntitySummary
+  sizes: string
+}) {
+  const [failedSrc, setFailedSrc] = useState<string | null>(null)
+  const fallback = fallbackImage(entity.type)
+  const src = failedSrc === entity.image.src ? fallback : entity.image.src
+
+  return (
+    <Image
+      src={src}
+      alt={entity.name}
+      fill
+      sizes={sizes}
+      unoptimized
+      onError={() => {
+        if (src !== fallback) setFailedSrc(entity.image.src)
+      }}
+    />
+  )
 }
 
 export function WikiExplorer() {
-  const [database, setDatabase] = useState<Database | null>(null)
-  const [loadError, setLoadError] = useState<string | null>(null)
   const [query, setQuery] = useState("")
-  const [type, setType] = useState<EntityType>("all")
-  const [page, setPage] = useState(0)
-  const [selectedKey, setSelectedKey] = useState<string | null>(null)
+  const [settledQuery, setSettledQuery] = useState("")
+  const [type, setType] = useState<WikiEntityFilter>("all")
+  const [page, setPage] = useState(1)
+  const [listRetry, setListRetry] = useState(0)
+  const [listState, setListState] = useState<{
+    key: string
+    data: WikiListResponse | null
+    error: string | null
+  }>({ key: "", data: null, error: null })
+  const [selected, setSelected] = useState<EntitySummary | null>(null)
+  const [detailRetry, setDetailRetry] = useState(0)
+  const [detailState, setDetailState] = useState<{
+    key: string
+    data: EntityDetail | null
+    error: string | null
+  }>({ key: "", data: null, error: null })
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
+
+  const listUrl = useMemo(() => {
+    const params = new URLSearchParams({ page: String(page), pageSize: String(PAGE_SIZE) })
+    if (type !== "all") params.set("type", type)
+    if (settledQuery) params.set("q", settledQuery)
+    return `/api/wiki/entities?${params}`
+  }, [page, settledQuery, type])
+  const listRequestKey = `${listUrl}#${listRetry}`
+  const detailUrl = selected
+    ? `/api/wiki/entities/${encodeURIComponent(selected.type)}/${encodeURIComponent(selected.id)}`
+    : null
+  const detailRequestKey = selected ? `${selected.entityKey}#${detailRetry}` : ""
 
   useEffect(() => {
-    let active = true
-    async function load() {
-      try {
-        const SQL = await initSqlJs({ locateFile: () => "/sql-wasm.wasm" })
-        const databaseUrl = process.env.NEXT_PUBLIC_DATABASE_URL || "/asiof.sqlite"
-        const response = await fetch(databaseUrl)
-        if (!response.ok) throw new Error(`Database request failed (${response.status})`)
-        const bytes = new Uint8Array(await response.arrayBuffer())
-        if (active) setDatabase(new SQL.Database(bytes))
-      } catch (error) {
-        if (active) setLoadError(error instanceof Error ? error.message : "Unable to load the archive")
+    const timeout = window.setTimeout(() => setSettledQuery(query.trim()), 250)
+    return () => window.clearTimeout(timeout)
+  }, [query])
+
+  useEffect(() => {
+    const controller = new AbortController()
+    fetchJson<WikiListResponse>(listUrl, controller.signal)
+      .then((data) => setListState({ key: listRequestKey, data, error: null }))
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return
+        setListState({
+          key: listRequestKey,
+          data: null,
+          error: error instanceof Error ? error.message : "The archive could not be loaded.",
+        })
+      })
+
+    return () => controller.abort()
+  }, [listRequestKey, listUrl])
+
+  useEffect(() => {
+    if (!detailUrl) return
+
+    const controller = new AbortController()
+    fetchJson<WikiDetailResponse>(detailUrl, controller.signal)
+      .then((response) => setDetailState({ key: detailRequestKey, data: response.entity, error: null }))
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return
+        setDetailState({
+          key: detailRequestKey,
+          data: null,
+          error: error instanceof Error ? error.message : "The record could not be loaded.",
+        })
+      })
+
+    return () => controller.abort()
+  }, [detailRequestKey, detailUrl])
+
+  const closeDetail = useCallback(() => setSelected(null), [])
+  const dialogOpen = selected !== null
+
+  useEffect(() => {
+    if (!dialogOpen) return
+
+    const previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    window.requestAnimationFrame(() => closeRef.current?.focus())
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault()
+        closeDetail()
+        return
+      }
+      if (event.key !== "Tab" || !dialogRef.current) return
+
+      const focusable = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((element) => !element.hasAttribute("hidden"))
+      if (!focusable.length) {
+        event.preventDefault()
+        dialogRef.current.focus()
+        return
+      }
+
+      const first = focusable[0]
+      const last = focusable.at(-1)
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last?.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
       }
     }
-    load()
+
+    document.addEventListener("keydown", handleKeyDown)
     return () => {
-      active = false
+      document.removeEventListener("keydown", handleKeyDown)
+      document.body.style.overflow = originalOverflow
+      previouslyFocused?.focus()
     }
-  }, [])
+  }, [closeDetail, dialogOpen])
 
-  const stats = useMemo(() => {
-    if (!database) return { character: 0, dragon: 0, house: 0 }
-    const result = rows<{ type: string; count: number }>(
-      database.exec("SELECT type, COUNT(*) AS count FROM entities GROUP BY type"),
-    )
-    return Object.assign({ character: 0, dragon: 0, house: 0 }, ...result.map((item) => ({ [item.type]: item.count })))
-  }, [database])
+  const list = listState.data
+  const listLoading = listState.key !== listRequestKey
+  const listError = listState.key === listRequestKey ? listState.error : null
+  const detail = detailState.key === detailRequestKey ? detailState.data : null
+  const detailLoading = Boolean(selected) && detailState.key !== detailRequestKey
+  const detailError = detailState.key === detailRequestKey ? detailState.error : null
+  const stats = list?.counts ?? { character: 0, dragon: 0, house: 0 }
+  const total = list?.pagination.total ?? 0
+  const totalPages = list?.pagination.totalPages ?? 1
+  const entriesStart = total ? (page - 1) * PAGE_SIZE + 1 : 0
+  const entriesEnd = Math.min(page * PAGE_SIZE, total)
 
-  const { entities, total } = useMemo(() => {
-    if (!database) return { entities: [] as Entity[], total: 0 }
-    const filters: string[] = []
-    const params: Record<string, string | number> = {}
-    if (type !== "all") {
-      filters.push("e.type = $type")
-      params.$type = type
-    }
-    if (query.trim()) {
-      filters.push("(e.name LIKE $query OR EXISTS (SELECT 1 FROM aliases a WHERE a.entity_key = e.entity_key AND a.alias LIKE $query))")
-      params.$query = `%${query.trim()}%`
-    }
-    const where = filters.length ? `WHERE ${filters.join(" AND ")}` : ""
-    const countStatement = database.prepare(`SELECT COUNT(*) AS count FROM entities e ${where}`)
-    countStatement.bind(params)
-    countStatement.step()
-    const totalRows = countStatement.getAsObject() as { count: number }
-    countStatement.free()
-    const statement = database.prepare(`
-      SELECT e.entity_key, e.id, e.type, e.name, e.description, e.status,
-        e.verification, m.local_path, m.uncertain
-      FROM entities e JOIN media m USING (entity_key)
-      ${where}
-      ORDER BY CASE e.type WHEN 'character' THEN 1 WHEN 'dragon' THEN 2 ELSE 3 END,
-        e.name COLLATE NOCASE
-      LIMIT $limit OFFSET $offset
-    `)
-    statement.bind({ ...params, $limit: PAGE_SIZE, $offset: page * PAGE_SIZE })
-    const values: Entity[] = []
-    while (statement.step()) values.push(statement.getAsObject() as Entity)
-    statement.free()
-    return { entities: values, total: totalRows.count }
-  }, [database, page, query, type])
-
-  const detail = useMemo(() => {
-    if (!database || !selectedKey) return null
-    const statement = database.prepare(`
-      SELECT e.*, m.local_path, m.uncertain,
-        (SELECT group_concat(alias, ' · ') FROM aliases WHERE entity_key = e.entity_key) AS aliases,
-        (SELECT json_group_array(json_object('show', show_id, 'kind', presence_kind, 'first', first_reference)) FROM appearances WHERE entity_key = e.entity_key) AS appearances,
-        (SELECT json_group_array(json_object('target', target_key, 'type', relationship_type)) FROM relationships WHERE source_key = e.entity_key) AS relationships,
-        (SELECT json_group_array(json_object('label', label, 'url', url, 'provider', provider)) FROM sources WHERE entity_key = e.entity_key) AS sources
-      FROM entities e JOIN media m USING (entity_key) WHERE e.entity_key = $key
-    `)
-    statement.bind({ $key: selectedKey })
-    const value = statement.step() ? (statement.getAsObject() as Detail) : null
-    statement.free()
-    return value
-  }, [database, selectedKey])
-
-  const changeType = useCallback((nextType: EntityType) => {
+  const changeType = useCallback((nextType: WikiEntityFilter) => {
     setType(nextType)
-    setPage(0)
+    setPage(1)
   }, [])
-  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
 
-  if (loadError) {
-    return <main className="grid min-h-svh place-items-center p-8"><div className="max-w-lg border border-border bg-card p-8"><p className="archive-kicker">Archive unavailable</p><h1 className="mt-4 font-heading text-4xl">The database could not be opened.</h1><p className="mt-4 text-sm text-muted-foreground">{loadError}</p></div></main>
-  }
+  const statusLabel = listError
+    ? "Archive unavailable"
+    : list
+      ? "Archive API online"
+      : "Connecting to archive…"
 
   return (
-    <main className="min-h-svh">
+    <main className="archive-shell">
       <header className="archive-header">
-        <div className="archive-brand"><span className="archive-seal">A</span><div><strong>A Wiki of Ice &amp; Fire</strong><small>People, dragons &amp; houses</small></div></div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground"><DatabaseIcon /><span>{database ? "SQLite archive online" : "Opening SQLite archive…"}</span></div>
+        <a className="archive-brand" href="#top" aria-label="A Wiki of Ice and Fire home">
+          <span className="archive-seal" aria-hidden="true">A</span>
+          <span>
+            <strong>A Wiki of Ice &amp; Fire</strong>
+            <small>Television archive</small>
+          </span>
+        </a>
+        <div className={cn("archive-status", listError && "is-error")}>
+          <DatabaseIcon aria-hidden="true" />
+          <span>{statusLabel}</span>
+        </div>
       </header>
 
-      <section className="archive-intro">
-        <p className="archive-kicker">The complete private archive</p>
-        <h1>Every name has<br />a <em>story.</em></h1>
-        <p>Browse the known people, dragons, and houses of the recorded world. Every page is read directly from the SQLite dataset.</p>
-        <dl className="archive-stats">
-          <div><dt>Characters</dt><dd>{stats.character.toLocaleString()}</dd></div>
-          <div><dt>Dragons</dt><dd>{stats.dragon.toLocaleString()}</dd></div>
-          <div><dt>Houses</dt><dd>{stats.house.toLocaleString()}</dd></div>
+      <section className="archive-intro" id="top">
+        <div>
+          <p className="archive-kicker">A television-only index</p>
+          <h1>People, dragons,<br />and the houses they shaped.</h1>
+          <p className="archive-lede">
+            Search the curated archive, open a record, and follow its verified relationships and sources.
+          </p>
+        </div>
+        <dl className="archive-stats" aria-label="Archive totals">
+          <div><dt>Characters</dt><dd>{list ? stats.character.toLocaleString() : "—"}</dd></div>
+          <div><dt>Dragons</dt><dd>{list ? stats.dragon.toLocaleString() : "—"}</dd></div>
+          <div><dt>Houses</dt><dd>{list ? stats.house.toLocaleString() : "—"}</dd></div>
         </dl>
       </section>
 
-      <section className="archive-browser">
+      <section className="archive-browser" aria-label="Browse the archive">
         <aside className="archive-sidebar">
-          <p className="archive-kicker">Browse the archive</p>
+          <p className="archive-kicker">Browse</p>
           <nav aria-label="Entity types">
-            {(Object.keys(typeLabels) as EntityType[]).map((item) => (
-              <button key={item} className={cn(type === item && "active")} onClick={() => changeType(item)}>
+            {(Object.keys(typeLabels) as WikiEntityFilter[]).map((item) => (
+              <button
+                type="button"
+                key={item}
+                className={cn(type === item && "active")}
+                onClick={() => changeType(item)}
+                aria-pressed={type === item}
+              >
                 <span>{typeLabels[item]}</span>
                 <b>{item === "all" ? stats.character + stats.dragon + stats.house : stats[item]}</b>
               </button>
             ))}
           </nav>
-          <div className="archive-note"><DatabaseIcon /><p>The original record, source links, relationships, appearances, and image confidence are preserved on every page.</p></div>
+          <p className="archive-note">
+            Images are shown in a uniform 4:3 frame at their full original proportion—never cropped or stretched.
+          </p>
         </aside>
 
         <div className="archive-results">
           <label className="archive-search">
-            <Search />
-            <input value={query} onChange={(event) => { setQuery(event.target.value); setPage(0) }} placeholder="Search names and aliases…" aria-label="Search names and aliases" />
-            {query && <button onClick={() => setQuery("")} aria-label="Clear search"><X /></button>}
+            <Search aria-hidden="true" />
+            <input
+              value={query}
+              maxLength={100}
+              onChange={(event) => {
+                setQuery(event.target.value)
+                setPage(1)
+              }}
+              placeholder="Search names and aliases"
+              aria-label="Search names and aliases"
+            />
+            {query && (
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery("")
+                  setPage(1)
+                }}
+                aria-label="Clear search"
+              >
+                <X aria-hidden="true" />
+              </button>
+            )}
           </label>
-          <div className="archive-result-heading"><div><p className="archive-kicker">{typeLabels[type]}</p><h2>{total.toLocaleString()} entries</h2></div><span>Page {page + 1} of {totalPages}</span></div>
 
-          {!database ? <LoadingGrid /> : entities.length ? (
+          <div className="archive-result-heading">
+            <div>
+              <p className="archive-kicker">{typeLabels[type]}</p>
+              <h2>{listLoading && !list ? "Opening the archive" : `${total.toLocaleString()} entries`}</h2>
+            </div>
+            {list && <span>Page {page} of {totalPages}</span>}
+          </div>
+
+          {listLoading ? (
+            <LoadingGrid />
+          ) : listError ? (
+            <ErrorState message={listError} onRetry={() => setListRetry((value) => value + 1)} />
+          ) : list?.items.length ? (
             <div className="archive-grid">
-              {entities.map((entity) => (
-                <button className="archive-card" key={entity.entity_key} onClick={() => setSelectedKey(entity.entity_key)}>
-                  <span className="archive-image"><Image src={entity.local_path} alt="" fill sizes="(max-width: 700px) 50vw, 220px" unoptimized /></span>
-                  <span className="archive-card-copy"><small>{entity.type}{entity.uncertain ? " · image unverified" : ""}</small><strong>{entity.name}</strong><span>{entity.description || entity.status || "Open the record"}</span></span>
-                </button>
+              {list.items.map((entity) => (
+                <EntityCard key={entity.entityKey} entity={entity} onSelect={setSelected} />
               ))}
             </div>
-          ) : <div className="archive-empty"><Search /><h2>No records found</h2><p>Try a shorter name or browse a different section.</p></div>}
+          ) : (
+            <div className="archive-empty">
+              <Search aria-hidden="true" />
+              <h2>No records found</h2>
+              <p>Try a shorter name or browse another section.</p>
+            </div>
+          )}
 
-          <div className="archive-pagination">
-            <Button variant="outline" disabled={page === 0} onClick={() => setPage((value) => value - 1)}><ChevronLeft data-icon="inline-start" />Previous</Button>
-            <span>{Math.min(page * PAGE_SIZE + 1, total)}–{Math.min((page + 1) * PAGE_SIZE, total)} of {total}</span>
-            <Button variant="outline" disabled={page + 1 >= totalPages} onClick={() => setPage((value) => value + 1)}>Next<ChevronRight data-icon="inline-end" /></Button>
-          </div>
+          {list && !listError && (
+            <div className="archive-pagination" aria-label="Pagination">
+              <Button
+                variant="outline"
+                disabled={page === 1 || listLoading}
+                onClick={() => setPage((value) => Math.max(1, value - 1))}
+              >
+                <ChevronLeft data-icon="inline-start" />Previous
+              </Button>
+              <span>{entriesStart}–{entriesEnd} of {total}</span>
+              <Button
+                variant="outline"
+                disabled={page >= totalPages || listLoading}
+                onClick={() => setPage((value) => Math.min(totalPages, value + 1))}
+              >
+                Next<ChevronRight data-icon="inline-end" />
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
-      {detail && <DetailPanel detail={detail} onClose={() => setSelectedKey(null)} />}
+      <footer className="archive-footer">Made with love by Russel.</footer>
+
+      {selected && (
+        <DetailPanel
+          selected={selected}
+          detail={detail}
+          loading={detailLoading}
+          error={detailError}
+          dialogRef={dialogRef}
+          closeRef={closeRef}
+          onClose={closeDetail}
+          onRetry={() => setDetailRetry((value) => value + 1)}
+          onSelect={setSelected}
+        />
+      )}
     </main>
   )
 }
 
-function LoadingGrid() {
-  return <div className="archive-grid" aria-label="Loading records">{Array.from({ length: 12 }, (_, index) => <div className="archive-card loading" key={index} />)}</div>
+function EntityCard({
+  entity,
+  onSelect,
+}: {
+  entity: EntitySummary
+  onSelect: (entity: EntitySummary) => void
+}) {
+  return (
+    <button type="button" className="archive-card" onClick={() => onSelect(entity)}>
+      <span className="archive-image">
+        <ArchiveImage entity={entity} sizes="(max-width: 640px) 92vw, (max-width: 980px) 44vw, 260px" />
+      </span>
+      <span className="archive-card-copy">
+        <small>{entity.type}{entity.image.uncertain ? " · fallback" : ""}</small>
+        <strong>{entity.name}</strong>
+        <span>{entity.description || entity.status || "Open the complete record"}</span>
+      </span>
+    </button>
+  )
 }
 
-function DetailPanel({ detail, onClose }: { detail: Detail; onClose: () => void }) {
-  const raw = JSON.parse(detail.raw_json) as Record<string, unknown>
-  const appearances = JSON.parse(detail.appearances || "[]") as { show: string; kind: string; first: string | null }[]
-  const relationships = JSON.parse(detail.relationships || "[]") as { target: string; type: string }[]
-  const sources = JSON.parse(detail.sources || "[]") as { label: string; url: string | null; provider: string }[]
-  return <div className="archive-overlay" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}><article className="archive-detail">
-    <Button className="archive-close" variant="outline" size="icon" onClick={onClose} aria-label="Close record"><X /></Button>
-    <div className="archive-detail-hero"><Image src={detail.local_path} alt={detail.name} fill sizes="(max-width: 700px) 100vw, 430px" unoptimized /><span>{detail.uncertain ? "Unverified image / fallback" : "Sourced image"}</span></div>
-    <div className="archive-detail-body"><p className="archive-kicker">{detail.type} record</p><h2>{detail.name}</h2>{detail.aliases && <p className="archive-aliases">{detail.aliases}</p>}
-      {detail.description && <p className="archive-description">{detail.description}</p>}
-      <section><h3>At a glance</h3><dl className="archive-facts">{Object.entries(raw).filter(([name, value]) => ["gender","culture","born","died","status","color","region","words","seat","verification"].includes(name) && value).map(([name,value]) => <div key={name}><dt>{name}</dt><dd>{String(value)}</dd></div>)}</dl></section>
-      {!!appearances.length && <section><h3>Screen record</h3><ul>{appearances.map((item,index) => <li key={`${item.show}-${index}`}><b>{item.show.replaceAll("-", " ")}</b><span>{item.kind.replaceAll("_", " ")}{item.first ? ` · ${item.first}` : ""}</span></li>)}</ul></section>}
-      {!!relationships.length && <section><h3>Relationships</h3><ul>{relationships.map((item,index) => <li key={`${item.target}-${item.type}-${index}`}><b>{item.type.replaceAll("_", " ")}</b><span>{item.target.replace(/^[^:]+:/, "")}</span></li>)}</ul></section>}
-      <section><h3>Sources</h3><div className="archive-sources">{sources.map((source,index) => source.url ? <a key={`${source.url}-${index}`} href={source.url} target="_blank" rel="noreferrer"><span>{source.provider}</span>{source.label || source.url}</a> : <p key={index}>No external source URL recorded.</p>)}</div></section>
-      <details><summary>Complete original record</summary><pre>{JSON.stringify(raw, null, 2)}</pre></details>
+function LoadingGrid() {
+  return (
+    <div className="archive-grid" aria-label="Loading records" aria-busy="true">
+      {Array.from({ length: 8 }, (_, index) => (
+        <div className="archive-card archive-card-loading" key={index}>
+          <span className="archive-image" />
+          <span className="archive-loading-line" />
+          <span className="archive-loading-line short" />
+        </div>
+      ))}
     </div>
-  </article></div>
+  )
+}
+
+function ErrorState({ message, onRetry }: { message: string; onRetry: () => void }) {
+  return (
+    <div className="archive-empty archive-error" role="alert">
+      <DatabaseIcon aria-hidden="true" />
+      <h2>The archive is unavailable</h2>
+      <p>{message}</p>
+      <Button variant="outline" onClick={onRetry}>Try again</Button>
+    </div>
+  )
+}
+
+function DetailPanel({
+  selected,
+  detail,
+  loading,
+  error,
+  dialogRef,
+  closeRef,
+  onClose,
+  onRetry,
+  onSelect,
+}: {
+  selected: EntitySummary
+  detail: EntityDetail | null
+  loading: boolean
+  error: string | null
+  dialogRef: RefObject<HTMLDivElement | null>
+  closeRef: RefObject<HTMLButtonElement | null>
+  onClose: () => void
+  onRetry: () => void
+  onSelect: (entity: EntitySummary) => void
+}) {
+  const entity = detail ?? selected
+  const facts = useMemo(() => {
+    if (!detail) return []
+    return Object.entries(detail.raw).flatMap(([name, value]) => {
+      if (!factNames.has(name) || value === null || value === "") return []
+      const display = displayFact(value)
+      return display ? [[name, display] as const] : []
+    })
+  }, [detail])
+
+  return (
+    <div
+      className="archive-overlay"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose()
+      }}
+    >
+      <div
+        className="archive-detail"
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="archive-detail-title"
+        tabIndex={-1}
+      >
+        <Button
+          ref={closeRef}
+          className="archive-close"
+          variant="outline"
+          size="icon"
+          onClick={onClose}
+          aria-label="Close record"
+        >
+          <X aria-hidden="true" />
+        </Button>
+
+        <figure className="archive-detail-figure">
+          <div className="archive-detail-image">
+            <ArchiveImage entity={entity} sizes="(max-width: 700px) 100vw, 900px" />
+          </div>
+          <figcaption>
+            {entity.image.uncertain ? "Fallback image" : entity.image.provider || "Archive image"}
+            <span>Full image · no crop</span>
+          </figcaption>
+        </figure>
+
+        <div className="archive-detail-body" aria-busy={loading}>
+          <p className="archive-kicker">{entity.type} record</p>
+          <h2 id="archive-detail-title">{entity.name}</h2>
+
+          {loading && <DetailSkeleton />}
+          {error && <ErrorState message={error} onRetry={onRetry} />}
+
+          {detail && !loading && !error && (
+            <>
+              {!!detail.aliases.length && <p className="archive-aliases">{detail.aliases.join(" · ")}</p>}
+              {detail.description && <p className="archive-description">{detail.description}</p>}
+
+              {!!facts.length && (
+                <section>
+                  <h3>At a glance</h3>
+                  <dl className="archive-facts">
+                    {facts.map(([name, value]) => (
+                      <div key={name}><dt>{readable(name)}</dt><dd>{value}</dd></div>
+                    ))}
+                  </dl>
+                </section>
+              )}
+
+              {!!detail.houseMembers.length && (
+                <section>
+                  <div className="archive-section-heading">
+                    <h3>House members</h3>
+                    <span>{detail.houseMembers.length.toLocaleString()} people</span>
+                  </div>
+                  <div className="archive-member-grid">
+                    {detail.houseMembers.map((member) => (
+                      <button type="button" key={member.entityKey} onClick={() => onSelect(member)}>
+                        <span className="archive-member-image">
+                          <ArchiveImage entity={member} sizes="88px" />
+                        </span>
+                        <span><strong>{member.name}</strong><small>{member.relationshipTypes.map(readable).join(" · ")}</small></span>
+                      </button>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {!!detail.appearances.length && (
+                <section>
+                  <h3>Screen record</h3>
+                  <ul className="archive-record-list">
+                    {detail.appearances.map((item, index) => (
+                      <li key={`${item.showId}-${item.presenceKind}-${index}`}>
+                        <b>{readable(item.showId)}</b>
+                        <span>{readable(item.presenceKind)}{item.firstReference ? ` · ${item.firstReference}` : ""}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {!!detail.relationships.length && (
+                <section>
+                  <h3>Relationships</h3>
+                  <div className="archive-relationship-list">
+                    {detail.relationships.map((relationship) => (
+                      <button
+                        type="button"
+                        key={`${relationship.direction}-${relationship.relationshipType}-${relationship.entity.entityKey}`}
+                        onClick={() => onSelect(relationship.entity)}
+                      >
+                        <span><small>{readable(relationship.relationshipType)}</small><strong>{relationship.entity.name}</strong></span>
+                        <em>{relationship.direction === "outgoing" ? "View record →" : "← Linked from"}</em>
+                      </button>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              <section>
+                <h3>Sources</h3>
+                <div className="archive-sources">
+                  {detail.sources.length ? detail.sources.map((source, index) =>
+                    source.url ? (
+                      <a key={`${source.url}-${index}`} href={source.url} target="_blank" rel="noreferrer">
+                        <span>{source.provider || "Source"}</span>
+                        {source.label || source.url}
+                      </a>
+                    ) : (
+                      <p key={`${source.label}-${index}`}>{source.label || "Source URL not recorded."}</p>
+                    ),
+                  ) : <p>No external source URL is recorded.</p>}
+                </div>
+              </section>
+
+              <details>
+                <summary>Complete original record</summary>
+                <pre>{JSON.stringify(detail.raw, null, 2)}</pre>
+              </details>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function DetailSkeleton() {
+  return (
+    <div className="archive-detail-skeleton" aria-label="Loading record">
+      <span /><span /><span />
+    </div>
+  )
 }

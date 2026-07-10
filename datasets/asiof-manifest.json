@@ -1,0 +1,71 @@
+{
+  "datasetVersion": "1.0.0",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-10T00:00:00.000Z",
+  "scope": {
+    "shows": [
+      "game-of-thrones",
+      "house-of-the-dragon",
+      "a-knight-of-the-seven-kingdoms"
+    ],
+    "characterException": "api-character-42"
+  },
+  "counts": {
+    "characters": 274,
+    "dragons": 23,
+    "houses": 45,
+    "sourceRowsAudited": 2583,
+    "relationships": 830
+  },
+  "audit": {
+    "file": "audit-report.json",
+    "decisions": {
+      "keep": 342,
+      "merge": 4,
+      "drop": 2237
+    },
+    "sourceSha256": {
+      "character": "8f2440f179bff3ceacf4af359d663d5619cb6b6b61bc592b6b4ffa878b996ef6",
+      "dragon": "f71ad22f9db4ccda1f4df5e237d286711418249ae07254f4c9891f1b06f40ed6",
+      "house": "b69f4209731a920ce5de712ba1ad96aa7e2961f7023f319c7ca538d43fff3831"
+    }
+  },
+  "assets": [
+    {
+      "name": "asiof.sql",
+      "contentType": "application/sql",
+      "bytes": 1494262,
+      "sha256": "9203c9e72f139a82bcd9f14e0418eab8917493e7e8f5a761e906e85ff2f120b9"
+    },
+    {
+      "name": "asiof.sqlite",
+      "contentType": "application/vnd.sqlite3",
+      "bytes": 1757184,
+      "sha256": "a2d8226500ea5d0e0e6a577d6dbbbe281555ed3e993bbd9640775a06d82b9540"
+    },
+    {
+      "name": "audit-report.json",
+      "contentType": "application/json",
+      "bytes": 851851,
+      "sha256": "9f4c19b6ea77d6909e49d26d365121daf9e50cb148a9475299235a4d4eb6e03c"
+    },
+    {
+      "name": "charachters.json",
+      "contentType": "application/json",
+      "bytes": 594155,
+      "sha256": "e7ba71e32a84fc9e4ba41bfdca13d595136cba76f6890f092f6a6ca36649ce5c"
+    },
+    {
+      "name": "dragons.json",
+      "contentType": "application/json",
+      "bytes": 38316,
+      "sha256": "ecfe4ed70767cb5b993d52f8f7c3123152dbb340f2da58dc06353d4cf69c893f"
+    },
+    {
+      "name": "houses.json",
+      "contentType": "application/json",
+      "bytes": 115951,
+      "sha256": "5fcc518632096e6702f277568fff479482a37af6830df7a52c3a02d7e6361be1"
+    }
+  ]
+}

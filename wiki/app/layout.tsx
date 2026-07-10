@@ -8,9 +8,13 @@ const body = Manrope({ subsets: ["latin"], variable: "--font-body" })
 
 export const metadata: Metadata = {
   title: "A Wiki of Ice & Fire",
-  description: "A private, source-backed archive of characters, dragons, and houses.",
+  description: "A source-backed television archive of characters, dragons, and houses.",
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${heading.variable} ${body.variable}`}><body>{children}</body></html>
+  return (
+    <html lang="en" className={`${heading.variable} ${body.variable}`}>
+      <body>{children}</body>
+    </html>
+  )
 }

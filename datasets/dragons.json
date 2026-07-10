@@ -34,18 +34,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Balerion",
+        "url": "https://awoiaf.westeros.org/index.php/Balerion",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/dragons/balerion.jpg",
+    "image": "/images/dragons/balerion.webp",
     "imageSource": {
-      "provider": "A Song of Ice and Fire Wiki",
+      "provider": "A Wiki of Ice and Fire",
       "kind": "wiki_lead_image",
-      "match": "exact_title",
+      "match": "exact_page_title",
       "uncertain": false,
-      "url": "https://iceandfire.fandom.com/wiki/Balerion",
-      "assetUrl": "https://static.wikia.nocookie.net/iceandfire/images/9/97/Balerion_2.jpg/revision/latest?cb=20140916165208",
-      "accessed": "2026-07-10"
+      "url": "https://awoiaf.westeros.org/index.php/Balerion",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/d/d4/Aegon_on_Balerion.jpg/1200px-Aegon_on_Balerion.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "cf3666e458e889b0d9df8b14a3d96793a22e38f1c009e25b4b2f7127a654de52",
+      "derivativeSha256": "72486f9616f0da471190eb53d2038e3ebccfe96d6d6dcf925ef8f041220ff944",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -74,18 +86,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Meraxes",
+        "url": "https://awoiaf.westeros.org/index.php/Meraxes",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
     "image": "/images/dragons/meraxes.webp",
     "imageSource": {
-      "provider": "A Song of Ice and Fire Wiki",
+      "provider": "A Wiki of Ice and Fire",
       "kind": "wiki_lead_image",
-      "match": "exact_title",
+      "match": "exact_page_title",
       "uncertain": false,
-      "url": "https://iceandfire.fandom.com/wiki/Meraxes",
-      "assetUrl": "https://static.wikia.nocookie.net/iceandfire/images/9/98/Rhaenys_Targaryen_by_Alexandra_Boshevska.webp/revision/latest?cb=20210222172840",
-      "accessed": "2026-07-10"
+      "url": "https://awoiaf.westeros.org/index.php/Meraxes",
+      "assetUrl": "https://awoiaf.westeros.org/images/e/e4/Meraxes_by_Paparinka_Art.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "36e47e69b4b70b85d1eaba7313fc699b971edefec424923812825ad87b4692a8",
+      "derivativeSha256": "7ecb6a3c627d4d783b6e8b9885e3e22ef2693f9bc2649216ffce9ae9cadd20ad",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -117,18 +141,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Vhagar",
+        "url": "https://awoiaf.westeros.org/index.php/Vhagar",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
     "image": "/images/dragons/vhagar.webp",
     "imageSource": {
-      "provider": "A Song of Ice and Fire Wiki",
+      "provider": "A Wiki of Ice and Fire",
       "kind": "wiki_lead_image",
-      "match": "exact_title",
+      "match": "exact_page_title",
       "uncertain": false,
-      "url": "https://iceandfire.fandom.com/wiki/Vhagar",
-      "assetUrl": "https://static.wikia.nocookie.net/iceandfire/images/2/22/Burning_Arryn_fleet.webp/revision/latest?cb=20210222172113",
-      "accessed": "2026-07-10"
+      "url": "https://awoiaf.westeros.org/index.php/Vhagar",
+      "assetUrl": "https://awoiaf.westeros.org/images/f/f6/Burning_Arryn_fleet.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "edb3696faa543c26e08f7b321d7e125507d521b4be9657178772d8794594ad27",
+      "derivativeSha256": "db50a1d6c15cbd3b1c746a3299b882a32665da23b6817b500745aa96ffbd083e",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -161,16 +197,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Vermithor",
+        "url": "https://awoiaf.westeros.org/index.php/Vermithor",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/vermithor.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Vermithor",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/c/ca/Jaehaerys_I_makes_peace_with_Rogar_Baratheon_by_Jota_Saraiva.jpg/800px-Jaehaerys_I_makes_peace_with_Rogar_Baratheon_by_Jota_Saraiva.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "5ec20145b009fdc07c84a6b752c4f73c42538e3242309760ca76487ab2fec429",
+      "derivativeSha256": "9d3ff8a7330b0c40ee41ae113cd5f61d43d6eb70d4de54d8b950f61f914c3a28",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -201,16 +251,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Silverwing",
+        "url": "https://awoiaf.westeros.org/index.php/Silverwing",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/silverwing.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Silverwing",
+      "assetUrl": "https://awoiaf.westeros.org/images/d/df/Queen_Alysanne_by_Trishkell.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "26663fa18cfbd98576539aac7ae3f7f0da8c4be7be5edef65b0a862f7f5f0c1b",
+      "derivativeSha256": "1e4f0d978a9c052a256fcf2cd0f1e0cd6989bc9da5e260008fc5ebecc5eb0831",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -243,16 +307,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Meleys",
+        "url": "https://awoiaf.westeros.org/index.php/Meleys",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/meleys.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Meleys",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/5/59/Meleys.png/700px-Meleys.png",
+      "accessed": "2026-07-10",
+      "originalSha256": "e8ab405192a7e3918185242c5d4b3c5cabfedf2da25e0f7f87ad7fabec461220",
+      "derivativeSha256": "b40fc5d4931973fbeab9c6ccc82da65ebb7ef02fc5a6a99741364cd9b93e27c0",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -284,16 +362,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Caraxes",
+        "url": "https://awoiaf.westeros.org/index.php/Caraxes",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/caraxes.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Caraxes",
+      "assetUrl": "https://awoiaf.westeros.org/images/9/99/Caraxes_at_Harrenhal_by_Gaga_Turmanishvili_%28The_Rise_of_the_Dragon%29.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "2d7cd8c4285e7540740eb11fdd16337f4a1185f8a362d8e59d8a1d926fecf622",
+      "derivativeSha256": "0239ea9b4c4dd0422eb2ea231228b7e77825dba2a5f2e965e5884ef2454861f7",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -323,16 +415,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Syrax",
+        "url": "https://awoiaf.westeros.org/index.php/Syrax",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/syrax.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Syrax",
+      "assetUrl": "https://awoiaf.westeros.org/images/a/a7/Rhaenyra_and_Syrax_by_Nutchapol_Thitinunthakorn_%28The_Rise_of_the_Dragon%29.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "72c204abea0cb79c0a4ad7e64df2913ef4c185eab085e671e0bfae629f3c77b0",
+      "derivativeSha256": "2c7e6e4d0839c22c4c9874bab61b495ee54cc49a4287a584834eb8b3aebf4858",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -363,16 +469,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Seasmoke",
+        "url": "https://awoiaf.westeros.org/index.php/Seasmoke",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/seasmoke.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Seasmoke",
+      "assetUrl": "https://awoiaf.westeros.org/images/b/be/TV_Seasmoke.png",
+      "accessed": "2026-07-10",
+      "originalSha256": "d574ef77a8c881e1eb9a27df0579e1414a39ac9d7400a8971f60ee5ce3d31e6e",
+      "derivativeSha256": "4b1d0bee4c7a5d38ab74877372c8437ef8a9abcf86335d1823c224601733af16",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -404,16 +524,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Sunfyre",
+        "url": "https://awoiaf.westeros.org/index.php/Sunfyre",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/sunfyre.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Sunfyre",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/9/91/Ertac_Altinoz-Sunfyre.jpg/1200px-Ertac_Altinoz-Sunfyre.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "aa094f7f2d6b28e6a8a50c3d90a12fc980fb735647fdc8a576280c3ea18ffdd4",
+      "derivativeSha256": "77a433a56da095de581f8243033ba8e51133c01ee5089f6816388d9b6b9915ce",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -443,16 +577,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Dreamfyre",
+        "url": "https://awoiaf.westeros.org/index.php/Dreamfyre",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/dreamfyre.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Dreamfyre",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/d/dd/Kyidyl-Dreamfyre.jpg/1200px-Kyidyl-Dreamfyre.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "b2988d78cdb892f381243689bb355eab5200a3c0820ea27feb32e472c400e2b0",
+      "derivativeSha256": "40313be6921100c2940611e17d0dd3d776a5d3b2a628883f6e6a9840e9a6d6a5",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -484,16 +632,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Tessarion",
+        "url": "https://awoiaf.westeros.org/index.php/Tessarion",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/tessarion.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Tessarion",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/d/dc/Kyidyl-tessarion.jpg/1200px-Kyidyl-tessarion.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "d0750a9d9d571d15e69a376987cb5808fe1b17de2bcdcc348147693663b99a05",
+      "derivativeSha256": "825144989dc3068146d08193443b77b6817ab7b14aca6aed7a9466a171fdc830",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -523,16 +685,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Arrax",
+        "url": "https://awoiaf.westeros.org/index.php/Arrax",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/arrax.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Arrax",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/8/8b/Prince_Lucerys_Velaryon_and_his_dragon_Arrax_by_Jota_Saraiva.jpg/700px-Prince_Lucerys_Velaryon_and_his_dragon_Arrax_by_Jota_Saraiva.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "0540740c45a2b4ea2314bf2c19d8a54350aaedea3570797d98b6a0f5f9c9bf9a",
+      "derivativeSha256": "d92d4288d4b8e7439f5883afa61c21ff4727c6528f64f3d482c7401682b8d3ca",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -562,16 +738,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Vermax",
+        "url": "https://awoiaf.westeros.org/index.php/Vermax",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/vermax.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Vermax",
+      "assetUrl": "https://awoiaf.westeros.org/images/9/91/Prince_Jacaerys_Velaryon_and_his_dragon_Vermax_by_Jota_Saraiva.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "6e24a52e1e15d28ff935730fe3bbac2c6d17e955529e9c0e105bb99b08e0800d",
+      "derivativeSha256": "b7d61a35efd9fdc698d54fd44e1752d982b3b71a65ae82b653a87feaeb396f2b",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -601,16 +791,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Moondancer",
+        "url": "https://awoiaf.westeros.org/index.php/Moondancer",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/moondancer.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Moondancer",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/b/b0/Lady_Baela_and_her_dragon_Moondancer_by_Jota_Saraiva.jpg/800px-Lady_Baela_and_her_dragon_Moondancer_by_Jota_Saraiva.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "9dda3a07b01f75f4026b0876d530c53a00bb80f1c47818ecf88c51528d7fdc7b",
+      "derivativeSha256": "bd0e38e5dfafa95a23c4b78a461d0e3c1051aeeb845344a9ab7c3e763c683f6e",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -639,16 +843,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Tyraxes",
+        "url": "https://awoiaf.westeros.org/index.php/Tyraxes",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/tyraxes.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Tyraxes",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/f/fc/Tyraxes_by_Rudolf_Hima.jpg/700px-Tyraxes_by_Rudolf_Hima.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "bb01d463dcc5037f6c268a1b8eb5de560e2c59b7c94ee1a87fbdce55c8efa75d",
+      "derivativeSha256": "f2195ef66b4d498b879094e856af79353d1a35273cae0ff289a61eaa24f07130",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -677,16 +895,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Stormcloud",
+        "url": "https://awoiaf.westeros.org/index.php/Stormcloud",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/stormcloud.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Stormcloud",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/b/b9/Stormcloud_Aegon.jpg/1200px-Stormcloud_Aegon.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "d487aa2b2462b38161ab3668b667d142abe13e32174925587b65413cdae54f74",
+      "derivativeSha256": "ab04943d57de74181d0409ecb3a7ec38f318d0e6916873d3ed9f442403d2d495",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -714,16 +946,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Sheepstealer",
+        "url": "https://awoiaf.westeros.org/index.php/Sheepstealer",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/sheepstealer.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Sheepstealer",
+      "assetUrl": "https://awoiaf.westeros.org/images/0/0c/Nettles_and_her_dragon_Sheepstealer_by_Jota_Saraiva.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "daadef74cbb4084d2d71346f6ce8dcb3b707caf8aea2723d5c79859b3e25c61c",
+      "derivativeSha256": "d1ce1c99332b0f6080561748bf039d0a5088109a54cef7d8f3cb317d56d43c91",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -750,16 +996,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Cannibal (dragon)",
+        "url": "https://awoiaf.westeros.org/index.php/Cannibal_(dragon)",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/the-cannibal.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Cannibal_(dragon)",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/e/e9/Cannibal.jpg/1200px-Cannibal.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "c92ee5a487b6f2fe70bc87b9bd644869cdf9e2ee84de33b2ce3208d295ab3e55",
+      "derivativeSha256": "f0470270e4dcd7ba51783decef23072382d3bede48fd8363abc089bbd57b42f6",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -786,16 +1046,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Grey Ghost",
+        "url": "https://awoiaf.westeros.org/index.php/Grey_Ghost",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/grey-ghost.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Grey_Ghost",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/4/47/Rudolf_Hima-Grey-Ghost.jpg/1200px-Rudolf_Hima-Grey-Ghost.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "2459bfe1099be8e8a385c6ba1e1be392defe1e298a3939e24d91a13c010ba5a9",
+      "derivativeSha256": "413306a1dfb7754d85a116643f2d5233f3586d00074adcbc6e1d326de978aa4f",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -826,16 +1100,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Drogon",
+        "url": "https://awoiaf.westeros.org/index.php/Drogon",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/drogon.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Drogon",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/d/d9/Drogon_a_hidden_agenda_by_christopherburdett.jpg/700px-Drogon_a_hidden_agenda_by_christopherburdett.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "99a9009ddeeb5a3b129549c47b9278b3566c0ede8b7715da814566a8786be66f",
+      "derivativeSha256": "a27ed9a7df0e0ba9709d5c73633340aca107e35be64011ce19b8d1d9e0372359",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -867,16 +1155,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
+      },
+      {
+        "label": "A Wiki of Ice and Fire — Rhaegal",
+        "url": "https://awoiaf.westeros.org/index.php/Rhaegal",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/rhaegal.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Rhaegal",
+      "assetUrl": "https://awoiaf.westeros.org/images/thumb/0/0f/Rhaegal_a_hidden_agenda_by_christopherburdett.jpg/700px-Rhaegal_a_hidden_agenda_by_christopherburdett.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "c177e1c0f0125142be6774e47701e9f0b5e8cdbacfa7a3890173ab68afe00ff9",
+      "derivativeSha256": "97a45a09d7b051e6070f366cddd600e1449b3383a3ec4b517755f9552ee3e3ab",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   },
   {
@@ -908,196 +1210,30 @@
         "provider": "Wiki of Westeros",
         "kind": "reference_page",
         "accessed": "2026-07-10"
-      }
-    ],
-    "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
-    "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
-    }
-  },
-  {
-    "id": "morning",
-    "name": "Morning",
-    "aliases": [],
-    "color": null,
-    "status": "unknown",
-    "riders": [
-      "rhaena-targaryen"
-    ],
-    "show": [],
-    "presence": [],
-    "era": null,
-    "sources": [
+      },
       {
-        "label": "A Wiki of Ice and Fire — Morning",
-        "url": "https://awoiaf.westeros.org/index.php/Morning",
+        "label": "A Wiki of Ice and Fire — Viserion",
+        "url": "https://awoiaf.westeros.org/index.php/Viserion",
         "provider": "A Wiki of Ice and Fire",
         "kind": "reference_page",
         "accessed": "2026-07-10"
       }
     ],
     "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
+    "image": "/images/dragons/viserion.webp",
     "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
-    }
-  },
-  {
-    "id": "morghul",
-    "name": "Morghul",
-    "aliases": [],
-    "color": null,
-    "status": "unknown",
-    "riders": [
-      "jaehaera-targaryen"
-    ],
-    "show": [],
-    "presence": [],
-    "era": null,
-    "sources": [
-      {
-        "label": "A Wiki of Ice and Fire — Morghul",
-        "url": "https://awoiaf.westeros.org/index.php/Morghul",
-        "provider": "A Wiki of Ice and Fire",
-        "kind": "reference_page",
-        "accessed": "2026-07-10"
-      }
-    ],
-    "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
-    "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
-    }
-  },
-  {
-    "id": "shrykos",
-    "name": "Shrykos",
-    "aliases": [],
-    "color": null,
-    "status": "unknown",
-    "riders": [
-      "jaehaerys-targaryen"
-    ],
-    "show": [],
-    "presence": [],
-    "era": null,
-    "sources": [
-      {
-        "label": "A Wiki of Ice and Fire — Shrykos",
-        "url": "https://awoiaf.westeros.org/index.php/Shrykos",
-        "provider": "A Wiki of Ice and Fire",
-        "kind": "reference_page",
-        "accessed": "2026-07-10"
-      }
-    ],
-    "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
-    "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
-    }
-  },
-  {
-    "id": "quicksilver",
-    "name": "Quicksilver",
-    "aliases": [],
-    "color": null,
-    "status": "unknown",
-    "riders": [],
-    "show": [],
-    "presence": [],
-    "era": null,
-    "sources": [
-      {
-        "label": "A Wiki of Ice and Fire — Quicksilver",
-        "url": "https://awoiaf.westeros.org/index.php/Quicksilver",
-        "provider": "A Wiki of Ice and Fire",
-        "kind": "reference_page",
-        "accessed": "2026-07-10"
-      }
-    ],
-    "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
-    "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
-    }
-  },
-  {
-    "id": "terrax",
-    "name": "Terrax",
-    "aliases": [],
-    "color": null,
-    "status": "unknown",
-    "riders": [],
-    "show": [],
-    "presence": [],
-    "era": null,
-    "sources": [
-      {
-        "label": "A Wiki of Ice and Fire — Terrax",
-        "url": "https://awoiaf.westeros.org/index.php/Terrax",
-        "provider": "A Wiki of Ice and Fire",
-        "kind": "reference_page",
-        "accessed": "2026-07-10"
-      }
-    ],
-    "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
-    "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
-    }
-  },
-  {
-    "id": "urrax",
-    "name": "Urrax",
-    "aliases": [],
-    "color": null,
-    "status": "unknown",
-    "riders": [],
-    "show": [],
-    "presence": [],
-    "era": null,
-    "sources": [
-      {
-        "label": "A Wiki of Ice and Fire — Urrax",
-        "url": "https://awoiaf.westeros.org/index.php/Urrax",
-        "provider": "A Wiki of Ice and Fire",
-        "kind": "reference_page",
-        "accessed": "2026-07-10"
-      }
-    ],
-    "verification": "single_source_curated",
-    "image": "/images/fallback-dragon.svg",
-    "imageSource": {
-      "provider": "Local archive fallback",
-      "kind": "fallback",
-      "uncertain": true,
-      "reason": "No exact-title wiki lead image was available.",
-      "url": null
+      "provider": "A Wiki of Ice and Fire",
+      "kind": "wiki_lead_image",
+      "match": "exact_page_title",
+      "uncertain": false,
+      "url": "https://awoiaf.westeros.org/index.php/Viserion",
+      "assetUrl": "https://awoiaf.westeros.org/images/b/bc/Viserion_a_hidden_agenda_by_christopherburdett.jpg",
+      "accessed": "2026-07-10",
+      "originalSha256": "49fc020f225681f72416631704e20b8cad4b80b793303882f6c617c7a8fa30be",
+      "derivativeSha256": "0b174a7d9822953f803eb5d426bc1576068e423eba0ee9037c681fef6ce7f888",
+      "width": 1200,
+      "height": 900,
+      "presentation": "proportional_resize_with_padding"
     }
   }
 ]

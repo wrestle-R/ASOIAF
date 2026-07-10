@@ -1,0 +1,313 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 1200,
+    "height": 900,
+    "matte": "#17130f",
+    "format": "webp",
+    "quality": 88
+  },
+  "entities": {
+    "character:aegon-i": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Aegon_I_Targaryen",
+      "expectedPageTitle": "Aegon I Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:visenya": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Visenya_Targaryen",
+      "expectedPageTitle": "Visenya Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:rhaenys-i": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Rhaenys_Targaryen",
+      "expectedPageTitle": "Rhaenys Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:aenys-i": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Aenys_I_Targaryen",
+      "expectedPageTitle": "Aenys I Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:maegor-i": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Maegor_I_Targaryen",
+      "expectedPageTitle": "Maegor I Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:alysanne-targaryen": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Alysanne_Targaryen",
+      "expectedPageTitle": "Alysanne Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:baelon-targaryen": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Baelon_Targaryen_(son_of_Jaehaerys_I)",
+      "expectedPageTitle": "Baelon Targaryen (son of Jaehaerys I)",
+      "requiredProvider": "awoiaf"
+    },
+    "character:daeron-targaryen": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Daeron_Targaryen_(son_of_Viserys_I)",
+      "expectedPageTitle": "Daeron Targaryen (son of Viserys I)",
+      "requiredProvider": "awoiaf"
+    },
+    "character:aegon-iv": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Aegon_IV_Targaryen",
+      "expectedPageTitle": "Aegon IV Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:naerys-targaryen": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Naerys_Targaryen",
+      "expectedPageTitle": "Naerys Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:daemon-blackfyre": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Daemon_I_Blackfyre",
+      "expectedPageTitle": "Daemon I Blackfyre",
+      "requiredProvider": "awoiaf"
+    },
+    "character:daeron-ii": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Daeron_II_Targaryen",
+      "expectedPageTitle": "Daeron II Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:myriah-martell": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Myriah_Martell",
+      "expectedPageTitle": "Myriah Martell",
+      "requiredProvider": "awoiaf"
+    },
+    "character:rhaella-targaryen": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Rhaella_Targaryen",
+      "expectedPageTitle": "Rhaella Targaryen",
+      "requiredProvider": "awoiaf"
+    },
+    "character:elia-martell": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Elia_Martell",
+      "expectedPageTitle": "Elia Martell",
+      "requiredProvider": "awoiaf"
+    },
+    "character:api-character-42": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Aegon_Targaryen_(Young_Griff)",
+      "expectedPageTitle": "Aegon Targaryen (Young Griff)",
+      "requiredProvider": "awoiaf"
+    },
+    "character:daenerys-targaryen": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/0",
+      "assetUrl": "https://thronesapi.com/assets/images/daenerys.jpg",
+      "expectedApiName": "Daenerys Targaryen",
+      "expectedRecordName": "Daenerys Targaryen",
+      "directScreenAsset": true
+    },
+    "character:jon-snow": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/2",
+      "assetUrl": "https://thronesapi.com/assets/images/jon-snow.jpg",
+      "expectedApiName": "Jon Snow",
+      "expectedRecordName": "Jon Snow",
+      "directScreenAsset": true
+    },
+    "character:eddard-stark": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/6",
+      "assetUrl": "https://thronesapi.com/assets/images/ned-stark.jpg",
+      "expectedApiName": "Ned Stark",
+      "expectedRecordName": "Eddard Stark",
+      "directScreenAsset": true
+    },
+    "character:robb-stark": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/11",
+      "assetUrl": "https://thronesapi.com/assets/images/robb-stark.jpg",
+      "expectedApiName": "Rob Stark",
+      "expectedRecordName": "Robb Stark",
+      "directScreenAsset": true
+    },
+    "character:sansa-stark": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/4",
+      "assetUrl": "https://thronesapi.com/assets/images/sansa-stark.jpeg",
+      "expectedApiName": "Sansa Stark",
+      "expectedRecordName": "Sansa Stark",
+      "directScreenAsset": true
+    },
+    "character:arya-stark": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/3",
+      "assetUrl": "https://thronesapi.com/assets/images/arya-stark.jpg",
+      "expectedApiName": "Arya Stark",
+      "expectedRecordName": "Arya Stark",
+      "directScreenAsset": true
+    },
+    "character:bran-stark": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/5",
+      "assetUrl": "https://thronesapi.com/assets/images/bran-stark.jpg",
+      "expectedApiName": "Brandon Stark",
+      "expectedRecordName": "Bran Stark",
+      "directScreenAsset": true
+    },
+    "character:cersei-lannister": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/9",
+      "assetUrl": "https://thronesapi.com/assets/images/cersei.jpg",
+      "expectedApiName": "Cersei Lannister",
+      "expectedRecordName": "Cersei Lannister",
+      "directScreenAsset": true
+    },
+    "character:jaime-lannister": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/8",
+      "assetUrl": "https://thronesapi.com/assets/images/jaime-lannister.jpg",
+      "expectedApiName": "Jamie Lannister",
+      "expectedRecordName": "Jaime Lannister",
+      "directScreenAsset": true
+    },
+    "character:tyrion-lannister": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/14",
+      "assetUrl": "https://thronesapi.com/assets/images/tyrion-lannister.jpg",
+      "expectedApiName": "Tyrion Lannister",
+      "expectedRecordName": "Tyrion Lannister",
+      "directScreenAsset": true
+    },
+    "character:joffrey-baratheon": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/13",
+      "assetUrl": "https://thronesapi.com/assets/images/joffrey.jpg",
+      "expectedApiName": "Joffrey Baratheon",
+      "expectedRecordName": "Joffrey Baratheon",
+      "directScreenAsset": true
+    },
+    "character:robert-baratheon": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/7",
+      "assetUrl": "https://thronesapi.com/assets/images/robert-baratheon.jpeg",
+      "expectedApiName": "Robert Baratheon",
+      "expectedRecordName": "Robert Baratheon",
+      "directScreenAsset": true
+    },
+    "character:stannis-baratheon": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/18",
+      "assetUrl": "https://thronesapi.com/assets/images/stannis.jpg",
+      "expectedApiName": "Stannis Baratheon",
+      "expectedRecordName": "Stannis Baratheon",
+      "directScreenAsset": true
+    },
+    "character:theon-greyjoy": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/12",
+      "assetUrl": "https://thronesapi.com/assets/images/theon.jpg",
+      "expectedApiName": "Theon Greyjoy",
+      "expectedRecordName": "Theon Greyjoy",
+      "directScreenAsset": true
+    },
+    "character:samwell-tarly": {
+      "apiUrl": "https://thronesapi.com/api/v2/Characters/1",
+      "assetUrl": "https://thronesapi.com/assets/images/sam.jpg",
+      "expectedApiName": "Samwell Tarly",
+      "expectedRecordName": "Samwell Tarly",
+      "directScreenAsset": true
+    },
+    "dragon:balerion": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Balerion",
+      "expectedPageTitle": "Balerion",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:meraxes": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Meraxes",
+      "expectedPageTitle": "Meraxes",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:vhagar": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Vhagar",
+      "expectedPageTitle": "Vhagar",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:vermithor": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Vermithor",
+      "expectedPageTitle": "Vermithor",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:silverwing": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Silverwing",
+      "expectedPageTitle": "Silverwing",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:meleys": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Meleys",
+      "expectedPageTitle": "Meleys",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:caraxes": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Caraxes",
+      "expectedPageTitle": "Caraxes",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:syrax": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Syrax",
+      "expectedPageTitle": "Syrax",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:seasmoke": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Seasmoke",
+      "expectedPageTitle": "Seasmoke",
+      "assetUrl": "https://awoiaf.westeros.org/images/b/be/TV_Seasmoke.png",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:sunfyre": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Sunfyre",
+      "expectedPageTitle": "Sunfyre",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:dreamfyre": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Dreamfyre",
+      "expectedPageTitle": "Dreamfyre",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:tessarion": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Tessarion",
+      "expectedPageTitle": "Tessarion",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:arrax": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Arrax",
+      "expectedPageTitle": "Arrax",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:vermax": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Vermax",
+      "expectedPageTitle": "Vermax",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:moondancer": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Moondancer",
+      "expectedPageTitle": "Moondancer",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:tyraxes": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Tyraxes",
+      "expectedPageTitle": "Tyraxes",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:stormcloud": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Stormcloud",
+      "expectedPageTitle": "Stormcloud",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:sheepstealer": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Sheepstealer",
+      "expectedPageTitle": "Sheepstealer",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:the-cannibal": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Cannibal_(dragon)",
+      "expectedPageTitle": "Cannibal (dragon)",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:grey-ghost": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Grey_Ghost",
+      "expectedPageTitle": "Grey Ghost",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:drogon": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Drogon",
+      "expectedPageTitle": "Drogon",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:rhaegal": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Rhaegal",
+      "expectedPageTitle": "Rhaegal",
+      "requiredProvider": "awoiaf"
+    },
+    "dragon:viserion": {
+      "pageUrl": "https://awoiaf.westeros.org/index.php/Viserion",
+      "expectedPageTitle": "Viserion",
+      "requiredProvider": "awoiaf"
+    }
+  }
+}
