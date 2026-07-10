@@ -1,0 +1,1103 @@
+[
+  {
+    "id": "balerion",
+    "name": "Balerion",
+    "aliases": [
+      "The Black Dread"
+    ],
+    "color": "Black",
+    "status": "dead",
+    "riders": [
+      "aegon-i",
+      "maegor-i",
+      "viserys-i"
+    ],
+    "show": [
+      "house-of-the-dragon",
+      "game-of-thrones"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "historical_reference"
+      },
+      {
+        "show": "game-of-thrones",
+        "kind": "depicted"
+      }
+    ],
+    "era": 0,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Balerion",
+        "url": "https://gameofthrones.fandom.com/wiki/Balerion",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/dragons/balerion.jpg",
+    "imageSource": {
+      "provider": "A Song of Ice and Fire Wiki",
+      "kind": "wiki_lead_image",
+      "match": "exact_title",
+      "uncertain": false,
+      "url": "https://iceandfire.fandom.com/wiki/Balerion",
+      "assetUrl": "https://static.wikia.nocookie.net/iceandfire/images/9/97/Balerion_2.jpg/revision/latest?cb=20140916165208",
+      "accessed": "2026-07-10"
+    }
+  },
+  {
+    "id": "meraxes",
+    "name": "Meraxes",
+    "aliases": [],
+    "color": null,
+    "status": "dead",
+    "riders": [
+      "rhaenys-i"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "historical_reference"
+      }
+    ],
+    "era": 0,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Meraxes",
+        "url": "https://gameofthrones.fandom.com/wiki/Meraxes",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/dragons/meraxes.webp",
+    "imageSource": {
+      "provider": "A Song of Ice and Fire Wiki",
+      "kind": "wiki_lead_image",
+      "match": "exact_title",
+      "uncertain": false,
+      "url": "https://iceandfire.fandom.com/wiki/Meraxes",
+      "assetUrl": "https://static.wikia.nocookie.net/iceandfire/images/9/98/Rhaenys_Targaryen_by_Alexandra_Boshevska.webp/revision/latest?cb=20210222172840",
+      "accessed": "2026-07-10"
+    }
+  },
+  {
+    "id": "vhagar",
+    "name": "Vhagar",
+    "aliases": [],
+    "color": "Bronze with green-blue highlights",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "visenya",
+      "laena-velaryon",
+      "aemond-targaryen"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E2"
+      }
+    ],
+    "era": 0,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Vhagar",
+        "url": "https://gameofthrones.fandom.com/wiki/Vhagar",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/dragons/vhagar.webp",
+    "imageSource": {
+      "provider": "A Song of Ice and Fire Wiki",
+      "kind": "wiki_lead_image",
+      "match": "exact_title",
+      "uncertain": false,
+      "url": "https://iceandfire.fandom.com/wiki/Vhagar",
+      "assetUrl": "https://static.wikia.nocookie.net/iceandfire/images/2/22/Burning_Arryn_fleet.webp/revision/latest?cb=20210222172113",
+      "accessed": "2026-07-10"
+    }
+  },
+  {
+    "id": "vermithor",
+    "name": "Vermithor",
+    "aliases": [
+      "The Bronze Fury"
+    ],
+    "color": "Bronze",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "jaehaerys-i",
+      "hugh-hammer"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E10"
+      }
+    ],
+    "era": 1,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Vermithor",
+        "url": "https://gameofthrones.fandom.com/wiki/Vermithor",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "silverwing",
+    "name": "Silverwing",
+    "aliases": [],
+    "color": "Silver",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "alysanne-targaryen",
+      "ulf-white"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S2E7"
+      }
+    ],
+    "era": 1,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Silverwing",
+        "url": "https://gameofthrones.fandom.com/wiki/Silverwing",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "meleys",
+    "name": "Meleys",
+    "aliases": [
+      "The Red Queen"
+    ],
+    "color": "Scarlet",
+    "status": "dead",
+    "riders": [
+      "alyssa-targaryen",
+      "rhaenys-targaryen"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E5"
+      }
+    ],
+    "era": 2,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Meleys",
+        "url": "https://gameofthrones.fandom.com/wiki/Meleys",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "caraxes",
+    "name": "Caraxes",
+    "aliases": [
+      "The Blood Wyrm"
+    ],
+    "color": "Red",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "daemon-targaryen"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E1"
+      }
+    ],
+    "era": 2,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Caraxes",
+        "url": "https://gameofthrones.fandom.com/wiki/Caraxes",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "syrax",
+    "name": "Syrax",
+    "aliases": [],
+    "color": "Yellow-gold",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "rhaenyra-targaryen"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E1"
+      }
+    ],
+    "era": 2,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Syrax",
+        "url": "https://gameofthrones.fandom.com/wiki/Syrax",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "seasmoke",
+    "name": "Seasmoke",
+    "aliases": [],
+    "color": "Pale silver-grey",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "laenor-velaryon",
+      "addam-of-hull"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E3"
+      }
+    ],
+    "era": 2,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Seasmoke",
+        "url": "https://gameofthrones.fandom.com/wiki/Seasmoke",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "sunfyre",
+    "name": "Sunfyre",
+    "aliases": [
+      "Sunfyre the Golden"
+    ],
+    "color": "Gold",
+    "status": "uncertain_as_of_cutoff",
+    "riders": [
+      "aegon-ii"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E7"
+      }
+    ],
+    "era": 3,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Sunfyre",
+        "url": "https://gameofthrones.fandom.com/wiki/Sunfyre",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "dreamfyre",
+    "name": "Dreamfyre",
+    "aliases": [],
+    "color": "Pale blue",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "helaena-targaryen"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E6"
+      }
+    ],
+    "era": 3,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Dreamfyre",
+        "url": "https://gameofthrones.fandom.com/wiki/Dreamfyre",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "tessarion",
+    "name": "Tessarion",
+    "aliases": [
+      "The Blue Queen"
+    ],
+    "color": "Cobalt blue",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "daeron-targaryen"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S3"
+      }
+    ],
+    "era": 3,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Tessarion",
+        "url": "https://gameofthrones.fandom.com/wiki/Tessarion",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "arrax",
+    "name": "Arrax",
+    "aliases": [],
+    "color": "Pearlescent white",
+    "status": "dead",
+    "riders": [
+      "lucerys-velaryon"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E10"
+      }
+    ],
+    "era": 3,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Arrax",
+        "url": "https://gameofthrones.fandom.com/wiki/Arrax",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "vermax",
+    "name": "Vermax",
+    "aliases": [],
+    "color": "Olive green",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "jacaerys-velaryon"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S1E6"
+      }
+    ],
+    "era": 3,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Vermax",
+        "url": "https://gameofthrones.fandom.com/wiki/Vermax",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "moondancer",
+    "name": "Moondancer",
+    "aliases": [],
+    "color": "Pale green",
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "baela-targaryen"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S2E3"
+      }
+    ],
+    "era": 3,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Moondancer",
+        "url": "https://gameofthrones.fandom.com/wiki/Moondancer",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "tyraxes",
+    "name": "Tyraxes",
+    "aliases": [],
+    "color": null,
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "joffrey-velaryon"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "mentioned"
+      }
+    ],
+    "era": 3,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Tyraxes",
+        "url": "https://gameofthrones.fandom.com/wiki/Tyraxes",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "stormcloud",
+    "name": "Stormcloud",
+    "aliases": [],
+    "color": null,
+    "status": "alive_as_of_cutoff",
+    "riders": [
+      "aegon-iii"
+    ],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted"
+      }
+    ],
+    "era": 3,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Stormcloud",
+        "url": "https://gameofthrones.fandom.com/wiki/Stormcloud",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "sheepstealer",
+    "name": "Sheepstealer",
+    "aliases": [],
+    "color": "Muddy brown",
+    "status": "alive_as_of_cutoff",
+    "riders": [],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "depicted",
+        "first": "S2"
+      }
+    ],
+    "era": 2,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Sheepstealer",
+        "url": "https://gameofthrones.fandom.com/wiki/Sheepstealer",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "the-cannibal",
+    "name": "The Cannibal",
+    "aliases": [],
+    "color": "Black with green eyes",
+    "status": "unconfirmed",
+    "riders": [],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "mentioned"
+      }
+    ],
+    "era": 2,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Cannibal",
+        "url": "https://gameofthrones.fandom.com/wiki/Cannibal",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "grey-ghost",
+    "name": "Grey Ghost",
+    "aliases": [],
+    "color": "Pale grey-white",
+    "status": "unconfirmed",
+    "riders": [],
+    "show": [
+      "house-of-the-dragon"
+    ],
+    "presence": [
+      {
+        "show": "house-of-the-dragon",
+        "kind": "mentioned"
+      }
+    ],
+    "era": 2,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Grey Ghost",
+        "url": "https://gameofthrones.fandom.com/wiki/Grey_Ghost",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "drogon",
+    "name": "Drogon",
+    "aliases": [],
+    "color": "Black with red markings",
+    "status": "alive",
+    "riders": [
+      "daenerys-targaryen"
+    ],
+    "show": [
+      "game-of-thrones"
+    ],
+    "presence": [
+      {
+        "show": "game-of-thrones",
+        "kind": "depicted",
+        "first": "S1E10",
+        "last": "S8E6"
+      }
+    ],
+    "era": 8,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Drogon",
+        "url": "https://gameofthrones.fandom.com/wiki/Drogon",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "rhaegal",
+    "name": "Rhaegal",
+    "aliases": [],
+    "color": "Green and bronze",
+    "status": "dead",
+    "riders": [
+      "daenerys-targaryen",
+      "jon-snow"
+    ],
+    "show": [
+      "game-of-thrones"
+    ],
+    "presence": [
+      {
+        "show": "game-of-thrones",
+        "kind": "depicted",
+        "first": "S1E10",
+        "last": "S8E4"
+      }
+    ],
+    "era": 8,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Rhaegal",
+        "url": "https://gameofthrones.fandom.com/wiki/Rhaegal",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "viserion",
+    "name": "Viserion",
+    "aliases": [],
+    "color": "Cream and gold",
+    "status": "dead",
+    "riders": [
+      "daenerys-targaryen",
+      "night-king"
+    ],
+    "show": [
+      "game-of-thrones"
+    ],
+    "presence": [
+      {
+        "show": "game-of-thrones",
+        "kind": "depicted",
+        "first": "S1E10",
+        "last": "S8E3"
+      }
+    ],
+    "era": 8,
+    "sources": [
+      {
+        "label": "Wiki of Westeros — Viserion",
+        "url": "https://gameofthrones.fandom.com/wiki/Viserion",
+        "provider": "Wiki of Westeros",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "morning",
+    "name": "Morning",
+    "aliases": [],
+    "color": null,
+    "status": "unknown",
+    "riders": [
+      "rhaena-targaryen"
+    ],
+    "show": [],
+    "presence": [],
+    "era": null,
+    "sources": [
+      {
+        "label": "A Wiki of Ice and Fire — Morning",
+        "url": "https://awoiaf.westeros.org/index.php/Morning",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "morghul",
+    "name": "Morghul",
+    "aliases": [],
+    "color": null,
+    "status": "unknown",
+    "riders": [
+      "jaehaera-targaryen"
+    ],
+    "show": [],
+    "presence": [],
+    "era": null,
+    "sources": [
+      {
+        "label": "A Wiki of Ice and Fire — Morghul",
+        "url": "https://awoiaf.westeros.org/index.php/Morghul",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "shrykos",
+    "name": "Shrykos",
+    "aliases": [],
+    "color": null,
+    "status": "unknown",
+    "riders": [
+      "jaehaerys-targaryen"
+    ],
+    "show": [],
+    "presence": [],
+    "era": null,
+    "sources": [
+      {
+        "label": "A Wiki of Ice and Fire — Shrykos",
+        "url": "https://awoiaf.westeros.org/index.php/Shrykos",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "quicksilver",
+    "name": "Quicksilver",
+    "aliases": [],
+    "color": null,
+    "status": "unknown",
+    "riders": [],
+    "show": [],
+    "presence": [],
+    "era": null,
+    "sources": [
+      {
+        "label": "A Wiki of Ice and Fire — Quicksilver",
+        "url": "https://awoiaf.westeros.org/index.php/Quicksilver",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "terrax",
+    "name": "Terrax",
+    "aliases": [],
+    "color": null,
+    "status": "unknown",
+    "riders": [],
+    "show": [],
+    "presence": [],
+    "era": null,
+    "sources": [
+      {
+        "label": "A Wiki of Ice and Fire — Terrax",
+        "url": "https://awoiaf.westeros.org/index.php/Terrax",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  },
+  {
+    "id": "urrax",
+    "name": "Urrax",
+    "aliases": [],
+    "color": null,
+    "status": "unknown",
+    "riders": [],
+    "show": [],
+    "presence": [],
+    "era": null,
+    "sources": [
+      {
+        "label": "A Wiki of Ice and Fire — Urrax",
+        "url": "https://awoiaf.westeros.org/index.php/Urrax",
+        "provider": "A Wiki of Ice and Fire",
+        "kind": "reference_page",
+        "accessed": "2026-07-10"
+      }
+    ],
+    "verification": "single_source_curated",
+    "image": "/images/fallback-dragon.svg",
+    "imageSource": {
+      "provider": "Local archive fallback",
+      "kind": "fallback",
+      "uncertain": true,
+      "reason": "No exact-title wiki lead image was available.",
+      "url": null
+    }
+  }
+]
