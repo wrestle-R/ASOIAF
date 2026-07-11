@@ -1,0 +1,1131 @@
+[
+  {
+    "id": 0,
+    "firstName": "Viserys I",
+    "lastName": "Targaryen",
+    "fullName": "Viserys I Targaryen",
+    "title": "King of the Seven Kingdoms",
+    "family": "House Targaryen",
+    "image": "viserys-i-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "The Peaceful King",
+      "His Grace",
+      "King Viserys I"
+    ],
+    "father": "Baelon Targaryen",
+    "mother": "Alyssa Targaryen",
+    "children": [
+      "Rhaenyra Targaryen",
+      "Aegon II Targaryen",
+      "Helaena Targaryen",
+      "Aemond Targaryen",
+      "Daeron Targaryen"
+    ],
+    "dragons": [
+      "Balerion"
+    ],
+    "description": "Viserys I Targaryen is the fifth king of the Targaryen dynasty and is chosen by the Great Council of 101 AC over Princess Rhaenys Targaryen. His reign begins in peace and prosperity, earning him a reputation as a kind and generous ruler who values family unity over political ambition. After the death of his wife, Queen Aemma Arryn, and their infant son, Viserys names his daughter Rhaenyra as heir to the Iron Throne despite the expectations of many lords that a male successor should inherit. He later marries Alicent Hightower, with whom he has four more children: Aegon, Helaena, Aemond, and Daeron. Throughout his reign he struggles to keep peace between Rhaenyra's faction and Alicent's supporters, refusing to alter the succession despite mounting pressure. As his health deteriorates from illness, he becomes physically frail but remains determined to preserve his family's unity. Shortly before his death he makes one final effort to reconcile the rival branches of his family during a dinner at the Red Keep. After his death, the Green Council secretly crowns Aegon II instead of honoring Viserys' wishes, beginning the Dance of the Dragons. His inability to resolve the succession crisis ultimately leads to one of the bloodiest civil wars in Targaryen history."
+  },
+  {
+    "id": 1,
+    "firstName": "Daemon",
+    "lastName": "Targaryen",
+    "fullName": "Daemon Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "daemon-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Prince Daemon",
+      "The Rogue Prince",
+      "King Consort"
+    ],
+    "father": "Baelon Targaryen",
+    "mother": "Alyssa Targaryen",
+    "children": [
+      "Baela Targaryen",
+      "Rhaena Targaryen",
+      "Aegon III Targaryen",
+      "Viserys II Targaryen"
+    ],
+    "dragons": [
+      "Caraxes"
+    ],
+    "description": "Daemon Targaryen is the younger brother of King Viserys I and one of the greatest warriors of his age. Ambitious, unpredictable, and charismatic, he serves as Commander of the City Watch, transforming the Gold Cloaks into an effective fighting force. Frustrated by his brother's refusal to name him heir, Daemon repeatedly clashes with the Small Council and is eventually exiled from court. He wages war in the Stepstones alongside Corlys Velaryon, defeating the Triarchy and earning the title King of the Narrow Sea. Daemon later marries Laena Velaryon, with whom he has Baela and Rhaena. After Laena's death he marries his niece Rhaenyra Targaryen, strengthening her claim to the throne. Together they have Aegon III and Viserys II. During the Dance of the Dragons, Daemon becomes Rhaenyra's greatest military commander, capturing Harrenhal and organizing the Black war effort. Riding the fearsome dragon Caraxes, he remains one of the Greens' greatest threats. His legendary duel with Prince Aemond above the Gods Eye becomes one of the most famous events of the civil war, cementing his reputation as one of House Targaryen's greatest warriors."
+  },
+  {
+    "id": 2,
+    "firstName": "Rhaenyra",
+    "lastName": "Targaryen",
+    "fullName": "Rhaenyra Targaryen",
+    "title": "Princess of Dragonstone",
+    "family": "House Targaryen",
+    "image": "rhaenyra-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "The Realm's Delight",
+      "The Black Queen"
+    ],
+    "father": "Viserys I Targaryen",
+    "mother": "Aemma Arryn",
+    "children": [
+      "Jacaerys Velaryon",
+      "Lucerys Velaryon",
+      "Joffrey Velaryon",
+      "Aegon III Targaryen",
+      "Viserys II Targaryen",
+      "Visenya Targaryen"
+    ],
+    "dragons": [
+      "Syrax"
+    ],
+    "description": "Rhaenyra Targaryen is the only surviving child of King Viserys I and Queen Aemma Arryn. Following the deaths of her mother and infant brother, Viserys names her heir to the Iron Throne, making her the first officially recognized female heir in Targaryen history. Once celebrated as the Realm's Delight, she grows into a capable dragonrider and political figure while facing constant opposition from those who support her half-brother Aegon. She first marries Laenor Velaryon and becomes the mother of Jacaerys, Lucerys, and Joffrey Velaryon. Although many question their legitimacy, Viserys steadfastly defends them. After Laenor's apparent death, Rhaenyra marries her uncle Daemon Targaryen, with whom she has Aegon III, Viserys II, and the stillborn Visenya. Following Viserys' death, Alicent and the Green Council crown Aegon II in secret, prompting Rhaenyra to declare herself queen. Supported by the Blacks, she begins the Dance of the Dragons in an attempt to reclaim the throne she believes is rightfully hers. Her leadership, determination, and resilience make her one of the central figures of the civil war."
+  },
+  {
+    "id": 3,
+    "firstName": "Aegon II",
+    "lastName": "Targaryen",
+    "fullName": "Aegon II Targaryen",
+    "title": "King of the Seven Kingdoms",
+    "family": "House Targaryen",
+    "image": "aegon-ii-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "King Aegon II",
+      "The Elder"
+    ],
+    "father": "Viserys I Targaryen",
+    "mother": "Alicent Hightower",
+    "children": [
+      "Jaehaerys Targaryen",
+      "Jaehaera Targaryen",
+      "Maelor Targaryen"
+    ],
+    "dragons": [
+      "Sunfyre"
+    ],
+    "description": "Aegon II Targaryen is the eldest son of King Viserys I and Queen Alicent Hightower. Although Viserys repeatedly affirms Rhaenyra as his chosen heir, Alicent and her supporters believe Aegon should inherit the Iron Throne according to long-standing tradition favoring male succession. Reluctant to rule during his youth, Aegon spends much of his time avoiding responsibility until the Green Council secretly crowns him immediately after Viserys' death. Riding the magnificent dragon Sunfyre, Aegon becomes the figurehead of the Green faction during the Dance of the Dragons. Despite his flaws, he gradually accepts the burdens of kingship as civil war spreads across Westeros. His rivalry with Rhaenyra forms the heart of the conflict, dividing noble houses and dragonriders alike. The war leaves lasting devastation across the realm and dramatically weakens House Targaryen."
+  },
+  {
+    "id": 4,
+    "firstName": "Aemond",
+    "lastName": "Targaryen",
+    "fullName": "Aemond Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "aemond-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "One-Eye",
+      "Prince Regent"
+    ],
+    "father": "Viserys I Targaryen",
+    "mother": "Alicent Hightower",
+    "children": [],
+    "dragons": [
+      "Vhagar"
+    ],
+    "description": "Aemond Targaryen is the second son of King Viserys I and Queen Alicent Hightower. As a child he is mocked by his relatives for lacking a dragon, but he ultimately claims the legendary Vhagar following Laena Velaryon's death, becoming one of the most powerful dragonriders in the world. During the confrontation that follows, Lucerys Velaryon slashes out Aemond's left eye, an injury that shapes his fierce determination and desire for vengeance. He grows into a disciplined warrior and exceptional swordsman under Ser Criston Cole, contrasting sharply with his older brother Aegon. Loyal to the Green cause, Aemond becomes one of its most dangerous military leaders during the Dance of the Dragons. His pursuit of Lucerys above Shipbreaker Bay ends with Vhagar killing both Lucerys and his dragon Arrax, an act that transforms a succession dispute into full-scale civil war. As the conflict escalates, Aemond's courage, ruthlessness, and command of Vhagar make him the Blacks' greatest battlefield threat and one of the most feared princes in Targaryen history."
+  },
+  {
+    "id": 5,
+    "firstName": "Helaena",
+    "lastName": "Targaryen",
+    "fullName": "Helaena Targaryen",
+    "title": "Queen Consort",
+    "family": "House Targaryen",
+    "image": "helaena-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Queen Helaena"
+    ],
+    "father": "Viserys I Targaryen",
+    "mother": "Alicent Hightower",
+    "children": [
+      "Jaehaerys Targaryen",
+      "Jaehaera Targaryen",
+      "Maelor Targaryen"
+    ],
+    "dragons": [
+      "Dreamfyre"
+    ],
+    "description": "Helaena Targaryen is the only daughter of King Viserys I Targaryen and Queen Alicent Hightower. Gentle, compassionate, and fascinated by insects, Helaena often speaks in cryptic prophetic phrases that are dismissed by those around her but later prove to foreshadow future events. Following Targaryen custom, she marries her older brother Aegon II and becomes Queen Consort after his coronation. Together they have three children: Jaehaerys, Jaehaera, and Maelor. Unlike many members of her family, Helaena avoids political conflict and shows little interest in power, preferring a quiet life with her children and her dragon Dreamfyre. During the Dance of the Dragons, she becomes one of the greatest emotional victims of the war as violence reaches the royal family. Her tragic fate symbolizes the devastating human cost of the Targaryen civil war and the destruction inflicted upon innocent members of both factions."
+  },
+  {
+    "id": 6,
+    "firstName": "Daeron",
+    "lastName": "Targaryen",
+    "fullName": "Daeron Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "daeron-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Prince Daeron",
+      "Daeron the Daring"
+    ],
+    "father": "Viserys I Targaryen",
+    "mother": "Alicent Hightower",
+    "children": [],
+    "dragons": [
+      "Tessarion"
+    ],
+    "description": "Daeron Targaryen is the youngest son of King Viserys I Targaryen and Queen Alicent Hightower. Raised primarily in Oldtown under the care of House Hightower, he develops a reputation for courtesy, discipline, and skill that distinguishes him from many of his relatives. Daeron rides the blue dragon Tessarion, known as the Blue Queen, and eventually joins the Green cause during the Dance of the Dragons. Although absent for much of the early conflict, he becomes an important military commander whose campaigns strengthen the Greens in the Reach. Brave in battle and respected by both allies and enemies, Daeron earns the title 'the Daring.' His participation demonstrates that not every member of the Green faction shares the ambition or cruelty displayed by others, making him one of the more honorable princes involved in the civil war."
+  },
+  {
+    "id": 7,
+    "firstName": "Jacaerys",
+    "lastName": "Velaryon",
+    "fullName": "Jacaerys Velaryon",
+    "title": "Prince of Dragonstone",
+    "family": "House Targaryen",
+    "image": "jacaerys-velaryon.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Jace"
+    ],
+    "father": "Harwin Strong",
+    "mother": "Rhaenyra Targaryen",
+    "children": [],
+    "dragons": [
+      "Vermax"
+    ],
+    "description": "Jacaerys 'Jace' Velaryon is the eldest son of Princess Rhaenyra Targaryen. Although officially recognized as the son of Laenor Velaryon, widespread rumors claim that his biological father is Ser Harwin Strong because of his appearance. Despite these accusations, King Viserys I fiercely defends Jacaerys' legitimacy throughout his reign. Intelligent, diplomatic, and determined, Jacaerys grows into one of Rhaenyra's most capable supporters. Riding the dragon Vermax, he plays a crucial role in gathering allies for the Black faction following Aegon II's coronation. His diplomatic missions help secure important alliances that strengthen Rhaenyra's claim. Jace consistently demonstrates maturity beyond his years and is widely regarded as the future of the Black cause during the Dance of the Dragons."
+  },
+  {
+    "id": 8,
+    "firstName": "Lucerys",
+    "lastName": "Velaryon",
+    "fullName": "Lucerys Velaryon",
+    "title": "Lord of Driftmark (Heir)",
+    "family": "House Targaryen",
+    "image": "lucerys-velaryon.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Luke"
+    ],
+    "father": "Harwin Strong",
+    "mother": "Rhaenyra Targaryen",
+    "children": [],
+    "dragons": [
+      "Arrax"
+    ],
+    "description": "Lucerys 'Luke' Velaryon is the second son of Princess Rhaenyra Targaryen. Officially acknowledged as the son of Laenor Velaryon, he is widely believed to be the biological son of Harwin Strong. As the chosen heir to Driftmark, Luke finds himself at the center of disputes over House Velaryon's succession. During childhood he accidentally cuts out Prince Aemond Targaryen's left eye while defending his brothers, creating a lifelong rivalry between them. Loyal, kind-hearted, and reluctant to seek conflict, Luke later serves as one of Rhaenyra's messengers after the outbreak of the Dance of the Dragons. While returning from Storm's End on his dragon Arrax, he is pursued by Aemond riding Vhagar. The encounter ends with Vhagar killing both Luke and Arrax above Shipbreaker Bay, transforming the succession dispute into a brutal civil war."
+  },
+  {
+    "id": 9,
+    "firstName": "Joffrey",
+    "lastName": "Velaryon",
+    "fullName": "Joffrey Velaryon",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "joffrey-velaryon.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": "Harwin Strong",
+    "mother": "Rhaenyra Targaryen",
+    "children": [],
+    "dragons": [
+      "Tyraxes"
+    ],
+    "description": "Joffrey Velaryon is the youngest son of Princess Rhaenyra Targaryen and is officially recognized as the son of Laenor Velaryon, though he is widely believed to have been fathered by Harwin Strong. Growing up alongside his brothers Jacaerys and Lucerys, Joffrey remains loyal to his mother and the Black faction. He bonds with the young dragon Tyraxes and is raised during a period of increasing hostility between the rival branches of House Targaryen. Although still a child when the Dance of the Dragons begins, Joffrey represents the next generation of dragonriders whose futures are threatened by the growing conflict. His presence emphasizes what is at stake as the civil war consumes nearly every branch of the Targaryen family."
+  },
+  {
+    "id": 10,
+    "firstName": "Aegon III",
+    "lastName": "Targaryen",
+    "fullName": "Aegon III Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "aegon-iii-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Young Aegon"
+    ],
+    "father": "Daemon Targaryen",
+    "mother": "Rhaenyra Targaryen",
+    "children": [],
+    "dragons": [
+      "Stormcloud"
+    ],
+    "description": "Aegon III Targaryen is the eldest son of Queen Rhaenyra Targaryen and Prince Daemon Targaryen. Born during the growing tensions between the Black and Green factions, he spends his early childhood on Dragonstone alongside his younger brother Viserys. Although still very young when the Dance of the Dragons begins, Aegon becomes an important symbol of the Black claim to the Iron Throne. He bonds with the young dragon Stormcloud and is forced to witness the devastating consequences of the Targaryen civil war from an early age. The conflict leaves lasting emotional scars on him and permanently changes the future of House Targaryen. As one of the last surviving princes of his generation, Aegon ultimately represents the continuation of the royal bloodline after the destruction caused by the Dance."
+  },
+  {
+    "id": 11,
+    "firstName": "Viserys II",
+    "lastName": "Targaryen",
+    "fullName": "Viserys II Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "viserys-ii-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Young Viserys"
+    ],
+    "father": "Daemon Targaryen",
+    "mother": "Rhaenyra Targaryen",
+    "children": [],
+    "dragons": [],
+    "description": "Viserys II Targaryen is the youngest surviving son of Queen Rhaenyra Targaryen and Prince Daemon Targaryen. Raised on Dragonstone during the final years of King Viserys I's reign, he spends his childhood alongside his elder brother Aegon III. Although still an infant when the Dance of the Dragons begins, Viserys becomes one of the most important surviving members of House Targaryen as the civil war devastates nearly every branch of the family. His survival ensures the continuation of Daemon and Rhaenyra's line after the conflict. While he plays only a minor on-screen role due to his age, his existence carries significant importance for the future of the Targaryen dynasty."
+  },
+  {
+    "id": 12,
+    "firstName": "Baela",
+    "lastName": "Targaryen",
+    "fullName": "Baela Targaryen",
+    "title": "Lady of Driftmark",
+    "family": "House Targaryen",
+    "image": "baela-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": "Daemon Targaryen",
+    "mother": "Laena Velaryon",
+    "children": [],
+    "dragons": [
+      "Moondancer"
+    ],
+    "description": "Baela Targaryen is the elder daughter of Prince Daemon Targaryen and Lady Laena Velaryon. Following her mother's death, she and her sister Rhaena are raised by their father and later become members of Queen Rhaenyra's household after Daemon marries Rhaenyra. Courageous, independent, and fiercely loyal to her family, Baela is betrothed to her cousin Jacaerys Velaryon in order to strengthen the alliance between House Targaryen and House Velaryon. She rides the swift dragon Moondancer and strongly supports the Black faction during the Dance of the Dragons. Despite her young age, Baela demonstrates the determination and bravery expected of a Targaryen dragonrider."
+  },
+  {
+    "id": 13,
+    "firstName": "Rhaena",
+    "lastName": "Targaryen",
+    "fullName": "Rhaena Targaryen",
+    "title": "Lady",
+    "family": "House Targaryen",
+    "image": "rhaena-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": "Daemon Targaryen",
+    "mother": "Laena Velaryon",
+    "children": [],
+    "dragons": [],
+    "description": "Rhaena Targaryen is the younger daughter of Prince Daemon Targaryen and Lady Laena Velaryon. Unlike many members of House Targaryen, Rhaena spends much of her childhood without a dragon, something that causes her considerable sadness and insecurity. She deeply admires her mother and is devastated after Laena's death. Following Daemon's marriage to Rhaenyra, Rhaena becomes part of the Black household on Dragonstone and develops close relationships with her extended family. She is betrothed to Lucerys Velaryon as part of an alliance intended to unite the Velaryon and Targaryen bloodlines. Although she is less outspoken than her sister Baela, Rhaena remains loyal to the Black cause throughout the growing conflict."
+  },
+  {
+    "id": 14,
+    "firstName": "Visenya",
+    "lastName": "Targaryen",
+    "fullName": "Visenya Targaryen",
+    "title": "Princess",
+    "family": "House Targaryen",
+    "image": "visenya-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": "Daemon Targaryen",
+    "mother": "Rhaenyra Targaryen",
+    "children": [],
+    "dragons": [],
+    "description": "Visenya Targaryen is the stillborn daughter of Queen Rhaenyra Targaryen and Prince Daemon Targaryen. Rhaenyra goes into premature labor after learning that her half-brother Aegon II has been crowned king despite King Viserys I's decision naming her heir. The emotional and physical trauma of the usurpation leads to a difficult birth in which Visenya is delivered stillborn with visible deformities. Her death becomes one of the first personal tragedies suffered by the Black faction during the Dance of the Dragons and further strengthens Rhaenyra's determination to fight for the throne she believes is rightfully hers. Although Visenya never lives, her loss symbolizes the devastating cost that the coming civil war will exact upon House Targaryen."
+  },
+  {
+    "id": 15,
+    "firstName": "Alicent",
+    "lastName": "Hightower",
+    "fullName": "Alicent Hightower",
+    "title": "Queen Consort",
+    "family": "House Hightower",
+    "image": "alicent-hightower.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Queen Alicent",
+      "Dowager Queen"
+    ],
+    "father": "Otto Hightower",
+    "mother": null,
+    "children": [
+      "Aegon II Targaryen",
+      "Helaena Targaryen",
+      "Aemond Targaryen",
+      "Daeron Targaryen"
+    ],
+    "dragons": [],
+    "description": "Alicent Hightower is the daughter of Ser Otto Hightower, Hand of the King, and the second wife of King Viserys I Targaryen. Once the closest friend of Princess Rhaenyra Targaryen, Alicent's relationship with her deteriorates after she secretly marries Viserys and gives birth to his sons. Believing that her children will never be safe while Rhaenyra remains heir, Alicent gradually becomes the leader of the Green faction at court. She constantly seeks to protect her children while navigating the dangerous politics of King's Landing. Following Viserys' death, Alicent supports the Green Council's decision to crown her eldest son, Aegon II, believing it fulfills both tradition and her late husband's wishes. Although she often attempts to limit unnecessary bloodshed, her actions directly contribute to the outbreak of the Dance of the Dragons. Throughout the conflict she struggles to balance her ambition, faith, guilt, and love for her family, becoming one of the central political figures of the civil war."
+  },
+  {
+    "id": 16,
+    "firstName": "Otto",
+    "lastName": "Hightower",
+    "fullName": "Otto Hightower",
+    "title": "Hand of the King",
+    "family": "House Hightower",
+    "image": "otto-hightower.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Otto",
+      "Hand of the King"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [
+      "Alicent Hightower",
+      "Gwayne Hightower"
+    ],
+    "dragons": [],
+    "description": "Otto Hightower is one of the most experienced statesmen in Westeros and serves as Hand of the King under both King Jaehaerys I and King Viserys I. Intelligent, calculating, and politically ambitious, Otto believes the stability of the realm depends upon careful governance rather than military strength. He arranges for his daughter Alicent to grow close to the widowed Viserys, ultimately securing her marriage to the king and dramatically increasing House Hightower's influence. Otto consistently opposes Prince Daemon and later works tirelessly to ensure that Alicent's eldest son, Aegon, succeeds Viserys instead of Princess Rhaenyra. After Viserys dies, Otto organizes the Green Council and oversees Aegon's coronation before news of the king's death reaches Dragonstone. His political skill and willingness to manipulate events behind the scenes make him one of the principal architects of the Dance of the Dragons."
+  },
+  {
+    "id": 17,
+    "firstName": "Gwayne",
+    "lastName": "Hightower",
+    "fullName": "Gwayne Hightower",
+    "title": "Ser",
+    "family": "House Hightower",
+    "image": "gwayne-hightower.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Gwayne"
+    ],
+    "father": "Otto Hightower",
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Gwayne Hightower is the son of Otto Hightower and the elder brother of Queen Alicent Hightower. A knight of House Hightower, he serves the Green cause during the Targaryen civil war and represents the military interests of Oldtown within Aegon II's faction. Though not as politically influential as his father or sister, Gwayne is a loyal supporter of House Hightower and the Green claim to the Iron Throne. His presence reinforces the significant military and political backing that Oldtown provides throughout the conflict."
+  },
+  {
+    "id": 18,
+    "firstName": "Corlys",
+    "lastName": "Velaryon",
+    "fullName": "Corlys Velaryon",
+    "title": "Lord of the Tides",
+    "family": "House Velaryon",
+    "image": "corlys-velaryon.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "The Sea Snake"
+    ],
+    "father": "Corwyn Velaryon",
+    "mother": null,
+    "children": [
+      "Laena Velaryon",
+      "Laenor Velaryon"
+    ],
+    "dragons": [],
+    "description": "Lord Corlys Velaryon, known throughout the realm as the Sea Snake, is the greatest sailor of his age and the head of House Velaryon. Through nine legendary voyages across the known world, he transforms Driftmark into one of the wealthiest seats in Westeros. Married to Princess Rhaenys Targaryen, Corlys believes his family has repeatedly been denied the Iron Throne despite possessing the strongest blood claim. After years of frustration with King Viserys' policies, he wages war against the Triarchy in the Stepstones alongside Prince Daemon Targaryen. Corlys later supports Princess Rhaenyra's claim to the throne through the marriages of his children and grandchildren, becoming one of the Black faction's most powerful allies. His fleet, political influence, and experience prove indispensable throughout the Dance of the Dragons."
+  },
+  {
+    "id": 19,
+    "firstName": "Rhaenys",
+    "lastName": "Targaryen",
+    "fullName": "Rhaenys Targaryen",
+    "title": "The Queen Who Never Was",
+    "family": "House Velaryon",
+    "image": "rhaenys-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "The Queen Who Never Was",
+      "Princess Rhaenys"
+    ],
+    "father": "Aemon Targaryen",
+    "mother": "Jocelyn Baratheon",
+    "children": [
+      "Laena Velaryon",
+      "Laenor Velaryon"
+    ],
+    "dragons": [
+      "Meleys"
+    ],
+    "description": "Princess Rhaenys Targaryen is the daughter of Prince Aemon Targaryen and the granddaughter of King Jaehaerys I. Despite possessing the strongest hereditary claim to succeed the Old King, she is passed over by the Great Council of 101 AC in favor of her cousin Viserys, earning her the title 'The Queen Who Never Was.' Married to Lord Corlys Velaryon, Rhaenys becomes one of the realm's most respected dragonriders, bonded with the swift red dragon Meleys. Wise, politically astute, and independent, she often serves as a voice of reason during the growing conflict between the Blacks and Greens. Following Viserys' death, she escapes the Green coup by bursting through the Dragonpit on Meleys during Aegon II's coronation but chooses not to kill the royal family. She later pledges herself to Rhaenyra and becomes one of the Black faction's most experienced military leaders, remaining committed to preventing unnecessary bloodshed while defending her family's honor."
+  },
+  {
+    "id": 20,
+    "firstName": "Laenor",
+    "lastName": "Velaryon",
+    "fullName": "Laenor Velaryon",
+    "title": "Ser",
+    "family": "House Velaryon",
+    "image": "laenor-velaryon.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": "Corlys Velaryon",
+    "mother": "Rhaenys Targaryen",
+    "children": [],
+    "dragons": [
+      "Seasmoke"
+    ],
+    "description": "Ser Laenor Velaryon is the son of Lord Corlys Velaryon and Princess Rhaenys Targaryen. As the heir to Driftmark and a dragonrider bonded with Seasmoke, Laenor is considered one of the most eligible nobles in Westeros. To strengthen the royal succession, he marries Princess Rhaenyra Targaryen despite both understanding that he prefers the company of men. Their marriage remains politically successful even though they produce no biological children, with Rhaenyra's three sons widely believed to have been fathered by Ser Harwin Strong. Laenor remains loyal to Rhaenyra and supports the Black faction. To escape the burdens of noble life and live freely with his companion Ser Qarl Correy, Laenor secretly fakes his death with Rhaenyra and Daemon's assistance, leaving Westeros and allowing the realm to believe he has been murdered."
+  },
+  {
+    "id": 21,
+    "firstName": "Laena",
+    "lastName": "Velaryon",
+    "fullName": "Laena Velaryon",
+    "title": "Lady",
+    "family": "House Velaryon",
+    "image": "laena-velaryon.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": "Corlys Velaryon",
+    "mother": "Rhaenys Targaryen",
+    "children": [
+      "Baela Targaryen",
+      "Rhaena Targaryen"
+    ],
+    "dragons": [
+      "Vhagar"
+    ],
+    "description": "Laena Velaryon is the daughter of Lord Corlys Velaryon and Princess Rhaenys Targaryen. From a young age she dreams of becoming a dragonrider and eventually claims Vhagar, the largest and oldest living dragon in the world. She later marries Prince Daemon Targaryen, and together they travel across Essos before settling in Pentos. Their marriage is a loving one, and they have twin daughters, Baela and Rhaena. During the birth of her third child, Laena suffers fatal complications. Refusing to die helplessly in childbirth, she walks to Vhagar and commands her dragon to burn her alive with dragonfire, choosing a dragonrider's death over prolonged suffering. Her death deeply affects Daemon and her daughters while leaving Vhagar riderless, allowing Prince Aemond to claim the legendary dragon."
+  },
+  {
+    "id": 22,
+    "firstName": "Vaemond",
+    "lastName": "Velaryon",
+    "fullName": "Vaemond Velaryon",
+    "title": "Ser",
+    "family": "House Velaryon",
+    "image": "vaemond-velaryon.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Vaemond Velaryon is the younger brother of Lord Corlys Velaryon and a prominent member of House Velaryon. Fiercely proud of his family's Valyrian heritage, Vaemond openly challenges the legitimacy of Rhaenyra's sons and argues that Driftmark should pass to a true Velaryon by blood rather than to Lucerys Velaryon. While Corlys is gravely ill, Vaemond petitions the Iron Throne to recognize his claim as heir to Driftmark. During the hearing, he publicly denounces Rhaenyra's children as bastards and calls her a whore. Before King Viserys I can respond, Prince Daemon Targaryen executes Vaemond by beheading him in the throne room. His death further deepens the hostility between the Green and Black factions shortly before Viserys' own death."
+  },
+  {
+    "id": 23,
+    "firstName": "Alyn",
+    "lastName": "of Hull",
+    "fullName": "Alyn of Hull",
+    "title": "Sailor",
+    "family": "House Velaryon",
+    "image": "alyn-of-hull.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": "Corlys Velaryon",
+    "mother": "Marilda of Hull",
+    "children": [],
+    "dragons": [],
+    "description": "Alyn of Hull is a skilled sailor from the port town of Hull and the younger brother of Addam of Hull. Widely believed to be the illegitimate son of Lord Corlys Velaryon and Marilda of Hull, Alyn earns a reputation for courage and seamanship. During the Dance of the Dragons he serves aboard the Velaryon fleet and repeatedly demonstrates loyalty to House Velaryon despite his humble origins. Although he is not a dragonrider, his abilities as a mariner make him an important supporter of the Black faction. His growing relationship with Corlys highlights the complicated legacy of House Velaryon and the importance of loyalty over birth."
+  },
+  {
+    "id": 24,
+    "firstName": "Addam",
+    "lastName": "of Hull",
+    "fullName": "Addam of Hull",
+    "title": "Dragonseed",
+    "family": "House Velaryon",
+    "image": "addam-of-hull.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": "Corlys Velaryon",
+    "mother": "Marilda of Hull",
+    "children": [],
+    "dragons": [
+      "Seasmoke"
+    ],
+    "description": "Addam of Hull is the elder brother of Alyn of Hull and is widely believed to be the illegitimate son of Lord Corlys Velaryon and Marilda of Hull. During the Dance of the Dragons, Rhaenyra seeks new dragonriders capable of strengthening the Black faction, and Addam successfully bonds with Seasmoke, the former dragon of Laenor Velaryon. His achievement proves that individuals of Valyrian descent outside the main royal family can successfully claim dragons. Despite questions surrounding his birth, Addam demonstrates exceptional loyalty, humility, and bravery. His service greatly strengthens the Black cause and earns him recognition as one of the most respected dragonseeds of the civil war."
+  },
+  {
+    "id": 25,
+    "firstName": "Harwin",
+    "lastName": "Strong",
+    "fullName": "Harwin Strong",
+    "title": "Ser",
+    "family": "House Strong",
+    "image": "harwin-strong.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Breakbones"
+    ],
+    "father": "Lyonel Strong",
+    "mother": null,
+    "children": [
+      "Jacaerys Velaryon",
+      "Lucerys Velaryon",
+      "Joffrey Velaryon"
+    ],
+    "dragons": [],
+    "description": "Ser Harwin Strong, known throughout the Seven Kingdoms as 'Breakbones,' is the eldest son of Lord Lyonel Strong and heir to Harrenhal. Renowned as one of the strongest knights in Westeros, Harwin serves in the City Watch before becoming Princess Rhaenyra Targaryen's sworn protector. Their close relationship develops into a secret romance, and he is widely believed to be the biological father of Rhaenyra's three eldest sons: Jacaerys, Lucerys, and Joffrey Velaryon. Although King Viserys I refuses to acknowledge the rumors publicly, Harwin's resemblance to the boys fuels political tension at court. After attacking Ser Criston Cole in defense of his sons, Harwin is dismissed from court and returns to Harrenhal alongside his father. Soon afterward, both Harwin and Lyonel perish when Harrenhal is consumed by a mysterious fire secretly orchestrated by Larys Strong. His death deprives Rhaenyra of one of her most loyal allies and intensifies the growing rivalry between the Blacks and Greens."
+  },
+  {
+    "id": 26,
+    "firstName": "Lyonel",
+    "lastName": "Strong",
+    "fullName": "Lyonel Strong",
+    "title": "Hand of the King",
+    "family": "House Strong",
+    "image": "lyonel-strong.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Lord of Harrenhal",
+      "Hand of the King"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [
+      "Harwin Strong",
+      "Larys Strong"
+    ],
+    "dragons": [],
+    "description": "Lord Lyonel Strong is the Lord of Harrenhal and succeeds Otto Hightower as Hand of the King under Viserys I Targaryen. Wise, honest, and respected throughout the realm, Lyonel consistently offers impartial advice based on the good of the kingdom rather than personal ambition. He openly recommends Princess Rhaenyra marry Laenor Velaryon to strengthen the crown's alliance with House Velaryon and later advises Viserys on numerous political matters. When rumors surrounding Harwin Strong and Rhaenyra become impossible to ignore, Lyonel attempts to resign as Hand to avoid a conflict of interest. Before he can leave King's Landing, he and Harwin travel to Harrenhal, where they are killed in a fire arranged by his younger son Larys. Lyonel's death removes one of the few genuinely honorable voices from the Small Council and allows Otto Hightower to reclaim the office of Hand, strengthening the Green faction before the Dance of the Dragons."
+  },
+  {
+    "id": 27,
+    "firstName": "Larys",
+    "lastName": "Strong",
+    "fullName": "Larys Strong",
+    "title": "Lord of Harrenhal",
+    "family": "House Strong",
+    "image": "larys-strong.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "The Clubfoot"
+    ],
+    "father": "Lyonel Strong",
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Larys Strong is the younger son of Lord Lyonel Strong and the younger brother of Ser Harwin Strong. Born with a clubfoot, Larys relies on intelligence, manipulation, and espionage rather than physical strength. Quiet and observant, he builds an extensive network of informants while cultivating a close relationship with Queen Alicent Hightower. Seeking power for himself, Larys secretly arranges the deaths of both his father and brother by setting fire to Harrenhal, allowing Otto Hightower to return as Hand of the King while making himself Lord of Harrenhal. Throughout the growing conflict between the Greens and Blacks, Larys serves as Alicent's chief spymaster and political adviser. His willingness to commit murder, blackmail, and betrayal without hesitation makes him one of the most dangerous schemers in Westeros and one of the principal architects of the Green faction's rise to power."
+  },
+  {
+    "id": 28,
+    "firstName": "Criston",
+    "lastName": "Cole",
+    "fullName": "Criston Cole",
+    "title": "Lord Commander of the Kingsguard",
+    "family": "House Cole",
+    "image": "criston-cole.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Criston",
+      "The Kingmaker"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Criston Cole rises from the son of a steward in the Dornish Marches to become one of the finest knights in Westeros. After impressing the court during a tournament, he is appointed to the Kingsguard by Princess Rhaenyra Targaryen. The two develop a romantic relationship, but when Rhaenyra refuses his proposal to abandon Westeros and marry him, Criston becomes deeply embittered. His loyalty shifts completely to Queen Alicent Hightower, and he emerges as the Greens' fiercest military supporter. Criston kills Ser Joffrey Lonmouth during Rhaenyra's wedding feast and later trains Alicent's sons, especially Aemond, into formidable warriors. Following King Viserys' death, Criston plays a central role in Aegon II's coronation, earning the title 'Kingmaker' by placing the Conqueror's crown upon Aegon's head. As Lord Commander of the Kingsguard, he becomes one of the Green faction's principal generals during the Dance of the Dragons."
+  },
+  {
+    "id": 29,
+    "firstName": "Harrold",
+    "lastName": "Westerling",
+    "fullName": "Harrold Westerling",
+    "title": "Lord Commander of the Kingsguard",
+    "family": "House Westerling",
+    "image": "harrold-westerling.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Harrold"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Harrold Westerling serves as Lord Commander of the Kingsguard during the reign of King Viserys I Targaryen. A veteran knight respected throughout the Seven Kingdoms, Harrold places duty and honor above political ambition. He oversees the training and conduct of the Kingsguard while mentoring younger members, including Ser Criston Cole. Unlike many nobles at court, Harrold refuses to involve himself in factional rivalries between the Blacks and Greens. After Viserys dies, he rejects the Green Council's plan to seize the throne for Aegon II before Rhaenyra can be informed. Refusing to betray the king's declared wishes, Harrold resigns from the Kingsguard rather than support what he considers an unlawful usurpation. His departure symbolizes the collapse of unity within the royal household and highlights the moral divisions created by the succession crisis."
+  },
+  {
+    "id": 30,
+    "firstName": "Rickard",
+    "lastName": "Thorne",
+    "fullName": "Rickard Thorne",
+    "title": "Ser",
+    "family": "Kingsguard",
+    "image": "rickard-thorne.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Rickard"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Rickard Thorne is a knight of the Kingsguard who serves King Viserys I Targaryen and later King Aegon II during the succession crisis. A disciplined and dutiful member of the royal guard, Rickard remains loyal to the institution of the monarchy rather than involving himself in court intrigue. During the Green coup following Viserys' death, he carries out the orders of the new regime and continues protecting the royal family as the kingdom descends into civil war. Though not a major political figure, Rickard represents the professional soldiers whose loyalty keeps the monarchy functioning during one of the most turbulent periods in Targaryen history."
+  },
+  {
+    "id": 31,
+    "firstName": "Arryk",
+    "lastName": "Cargyll",
+    "fullName": "Arryk Cargyll",
+    "title": "Ser",
+    "family": "Kingsguard",
+    "image": "arryk-cargyll.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Arryk"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Arryk Cargyll is one of the identical Cargyll twins and a sworn brother of the Kingsguard. After King Viserys I dies, Arryk remains loyal to King Aegon II and the Green faction while his twin brother Erryk supports Princess Rhaenyra. The brothers' opposing loyalties become one of the most tragic examples of how the Dance of the Dragons tears families apart. Acting under Green orders, Arryk undertakes dangerous missions in support of Aegon's claim despite knowing he may eventually face his own brother. His unwavering sense of duty demonstrates the impossible choices forced upon the Kingsguard during the civil war."
+  },
+  {
+    "id": 32,
+    "firstName": "Erryk",
+    "lastName": "Cargyll",
+    "fullName": "Erryk Cargyll",
+    "title": "Ser",
+    "family": "Kingsguard",
+    "image": "erryk-cargyll.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Erryk"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Erryk Cargyll is the twin brother of Ser Arryk Cargyll and a knight of the Kingsguard. Horrified by the Green Council's decision to conceal King Viserys' death and crown Aegon II, Erryk chooses honor over obedience and secretly escapes King's Landing. He rescues Princess Rhaenys from the Red Keep before pledging his sword to Queen Rhaenyra and the Black faction on Dragonstone. Erryk becomes one of Rhaenyra's most trusted protectors and embodies the belief that a Kingsguard's greatest duty is to uphold the lawful succession established by the king. His conflict with his identical twin becomes one of the most emotionally powerful stories of the civil war."
+  },
+  {
+    "id": 33,
+    "firstName": "Orwyle",
+    "lastName": "",
+    "fullName": "Grand Maester Orwyle",
+    "title": "Grand Maester",
+    "family": "The Citadel",
+    "image": "grand-maester-orwyle.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Grand Maester Orwyle"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Grand Maester Orwyle serves on King Viserys I's Small Council as the realm's chief healer and adviser from the Citadel. During Viserys' final illness he oversees the king's medical care while attempting to ease his worsening condition. After Viserys dies, Orwyle participates in the Green Council, where the succession crisis is debated. Although less politically ambitious than figures such as Otto Hightower or Criston Cole, he ultimately supports the government's efforts to maintain stability following the king's death. His presence illustrates the influential but often cautious role played by the Citadel during the Dance of the Dragons."
+  },
+  {
+    "id": 34,
+    "firstName": "Jasper",
+    "lastName": "Wylde",
+    "fullName": "Jasper Wylde",
+    "title": "Master of Laws",
+    "family": "House Wylde",
+    "image": "jasper-wylde.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ironrod",
+      "Lord Jasper",
+      "Master of Laws"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Lord Jasper Wylde, better known by the nickname 'Ironrod,' serves as Master of Laws on King Viserys I's Small Council. A firm believer in legal tradition and male-preference succession, Jasper consistently argues that Prince Aegon should inherit the Iron Throne rather than Princess Rhaenyra. After Viserys' death, he becomes one of the strongest supporters of the Green Council's plan to crown Aegon II before Dragonstone learns of the king's passing. His uncompromising interpretation of the law provides much of the legal justification used by the Greens to defend Aegon's claim. Though not a military commander, Jasper's influence on the political decisions leading to the Dance of the Dragons is considerable."
+  },
+  {
+    "id": 35,
+    "firstName": "Lyman",
+    "lastName": "Beesbury",
+    "fullName": "Lyman Beesbury",
+    "title": "Master of Coin",
+    "family": "House Beesbury",
+    "image": "lyman-beesbury.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Lord Beesbury",
+      "Master of Coin"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Lord Lyman Beesbury serves as Master of Coin on King Viserys I Targaryen's Small Council and is one of the king's oldest and most loyal advisers. Having served Viserys faithfully for decades, Beesbury firmly believes that the king's declared heir, Princess Rhaenyra Targaryen, must succeed to the Iron Throne. During the Green Council following Viserys' death, he openly condemns Otto Hightower's plan to crown Prince Aegon instead, accusing the conspirators of treason. His refusal to support the usurpation makes him the first major casualty of the Green coup. Ser Criston Cole violently silences him during the council meeting, marking the point at which political disagreement gives way to bloodshed. Beesbury's death symbolizes the destruction of lawful governance that accompanies the beginning of the Dance of the Dragons."
+  },
+  {
+    "id": 36,
+    "firstName": "Jason",
+    "lastName": "Lannister",
+    "fullName": "Jason Lannister",
+    "title": "Lord of Casterly Rock",
+    "family": "House Lannister",
+    "image": "jason-lannister.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Lord Jason"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Lord Jason Lannister is the proud and wealthy head of House Lannister during the reign of King Viserys I. Confident in his family's prestige, he unsuccessfully courts Princess Rhaenyra Targaryen, assuming that marriage into House Lannister would naturally appeal to the heir to the Iron Throne. His arrogance and inability to recognize Rhaenyra's independence lead to a humiliating rejection. Jason later aligns House Lannister with the Green faction after Aegon II's coronation, bringing the immense wealth and military resources of the Westerlands to the civil war. Though often portrayed as vain and self-important, Jason remains an influential regional lord whose support significantly strengthens the Greens."
+  },
+  {
+    "id": 37,
+    "firstName": "Tyland",
+    "lastName": "Lannister",
+    "fullName": "Tyland Lannister",
+    "title": "Master of Ships",
+    "family": "House Lannister",
+    "image": "tyland-lannister.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Tyland",
+      "Master of Ships"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Tyland Lannister is the twin brother of Jason Lannister and serves on King Viserys I's Small Council as Master of Ships. Highly intelligent and financially astute, Tyland plays a central administrative role in the Green faction's preparations for civil war. Anticipating conflict after Viserys' death, he secretly redistributes the royal treasury to prevent Queen Rhaenyra from gaining access to the crown's wealth should she capture King's Landing. Throughout the Dance of the Dragons he remains one of Aegon II's most capable political advisers, using strategy and logistics rather than battlefield prowess to support the Green cause. His careful planning makes him one of the Greens' most valuable administrators."
+  },
+  {
+    "id": 38,
+    "firstName": "Simon",
+    "lastName": "Strong",
+    "fullName": "Simon Strong",
+    "title": "Castellan of Harrenhal",
+    "family": "House Strong",
+    "image": "simon-strong.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Simon"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Simon Strong is an elderly member of House Strong who serves as the castellan of Harrenhal after the deaths of Lord Lyonel Strong and Ser Harwin Strong. Unlike his ambitious nephew Larys Strong, Simon values stability and seeks to avoid unnecessary conflict during the Dance of the Dragons. When Prince Daemon Targaryen captures Harrenhal for the Black faction, Simon peacefully surrenders the castle rather than sacrifice innocent lives in a hopeless defense. His willingness to cooperate reflects his practical nature and his understanding that preserving lives is often more important than making symbolic stands during war."
+  },
+  {
+    "id": 39,
+    "firstName": "Hugh",
+    "lastName": "Hammer",
+    "fullName": "Hugh Hammer",
+    "title": "Dragonseed",
+    "family": "Dragonseeds",
+    "image": "hugh-hammer.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Hugh"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [
+      "Vermithor"
+    ],
+    "description": "Hugh Hammer is a blacksmith of Valyrian descent living on Dragonstone during the outbreak of the Dance of the Dragons. As Queen Rhaenyra searches for new dragonriders to strengthen the Black faction, Hugh answers the call despite the deadly risks involved. Through courage and determination, he succeeds in claiming Vermithor, the enormous bronze dragon once ridden by King Jaehaerys I Targaryen. His success proves that individuals with distant Valyrian ancestry can still bond with dragons, dramatically increasing the military strength of the Blacks. Hugh's rise from common blacksmith to dragonrider makes him one of the most remarkable examples of the dragonseed initiative."
+  },
+  {
+    "id": 40,
+    "firstName": "Ulf",
+    "lastName": "White",
+    "fullName": "Ulf White",
+    "title": "Dragonseed",
+    "family": "Dragonseeds",
+    "image": "ulf-white.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ulf"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [
+      "Silverwing"
+    ],
+    "description": "Ulf White is a commoner of Valyrian descent living on Dragonstone who claims to possess Targaryen ancestry. Known for his boastful personality, fondness for drink, and easygoing nature, Ulf initially appears an unlikely candidate to become a dragonrider. During Queen Rhaenyra's search for dragonseeds capable of strengthening the Black faction, he volunteers alongside many others willing to risk their lives. Against overwhelming odds, Ulf successfully bonds with the dragon Silverwing, formerly ridden by Queen Alysanne Targaryen. His success demonstrates that dragonriding ability extends beyond the immediate royal family and significantly increases the military strength of the Blacks. Despite his humble origins, Ulf's newfound status dramatically changes his place within the war and the history of House Targaryen."
+  },
+  {
+    "id": 41,
+    "firstName": "Nettles",
+    "lastName": "",
+    "fullName": "Nettles",
+    "title": "Dragonseed",
+    "family": "Dragonseeds",
+    "image": "nettles.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [
+      "Sheepstealer"
+    ],
+    "description": "Nettles is a dragonseed who appears prominently in Fire & Blood but has not yet appeared in the released episodes of House of the Dragon. In the source material she becomes famous for taming the wild dragon Sheepstealer through patience rather than traditional dragonriding methods, making her one of the most remarkable figures of the Dance of the Dragons. As of the currently released television series, Nettles has not been introduced, and no canonical TV events involving her have taken place. This entry exists for future compatibility should she appear in later seasons."
+  },
+  {
+    "id": 42,
+    "firstName": "Alys",
+    "lastName": "Rivers",
+    "fullName": "Alys Rivers",
+    "title": "Lady of Harrenhal",
+    "family": "House Strong",
+    "image": "alys-rivers.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Alys"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Alys Rivers is a mysterious woman residing at Harrenhal during the Dance of the Dragons. Rumored to possess prophetic visions and supernatural abilities, she becomes one of the most enigmatic figures in the conflict. Unlike the ambitious nobles competing for the Iron Throne, Alys appears deeply connected to Harrenhal itself, often speaking in riddles and displaying knowledge that others cannot explain. Her interactions with Prince Daemon Targaryen reveal an unsettling understanding of both the castle's history and the psychological burdens carried by those who enter it. Whether her abilities stem from genuine magic or extraordinary perception remains uncertain, adding to her mystique. Her presence reinforces the ancient, haunted reputation of Harrenhal and introduces a supernatural dimension to the political struggle consuming Westeros."
+  },
+  {
+    "id": 43,
+    "firstName": "Benjicot",
+    "lastName": "Blackwood",
+    "fullName": "Benjicot Blackwood",
+    "title": "Lord of Raventree Hall",
+    "family": "House Blackwood",
+    "image": "benjicot-blackwood.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Black Ben"
+    ],
+    "father": "Samwell Blackwood",
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Benjicot Blackwood, often called 'Black Ben,' is the young Lord of Raventree Hall and head of House Blackwood during the Dance of the Dragons. Despite his youth, he proves himself an exceptionally capable military commander and a steadfast supporter of Queen Rhaenyra Targaryen. House Blackwood has long been allied with the Targaryens, and Benjicot continues that tradition by committing his forces to the Black cause. His courage, intelligence, and battlefield leadership earn him widespread respect despite his age. Though only beginning to emerge in the television adaptation, Benjicot represents the loyalty of the Riverlands to Rhaenyra and the next generation of Westerosi nobility."
+  },
+  {
+    "id": 44,
+    "firstName": "Willem",
+    "lastName": "Blackwood",
+    "fullName": "Willem Blackwood",
+    "title": "Ser",
+    "family": "House Blackwood",
+    "image": "willem-blackwood.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Young Willem"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Willem Blackwood is a young nobleman of House Blackwood who appears during the reign of King Viserys I. Even at a young age he demonstrates the fierce rivalry between House Blackwood and House Bracken by defeating Amos Bracken in a duel after being mocked. His actions earn the admiration of Princess Rhaenyra Targaryen and establish House Blackwood as one of her earliest and most loyal supporters. Willem's courage and willingness to defend his family's honor foreshadow the important role House Blackwood will play in supporting the Black faction during the Dance of the Dragons."
+  },
+  {
+    "id": 45,
+    "firstName": "Amos",
+    "lastName": "Bracken",
+    "fullName": "Amos Bracken",
+    "title": "Ser",
+    "family": "House Bracken",
+    "image": "amos-bracken.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Ser Amos"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Amos Bracken is a knight of House Bracken and represents his family's long-standing rivalry with House Blackwood. During Princess Rhaenyra Targaryen's royal progress, Amos attempts to win her favor by boasting of his lineage and challenging young Willem Blackwood. The duel ends with Willem killing Amos despite being much younger, immediately reigniting the ancient feud between the Blackwoods and Brackens. His death demonstrates how personal rivalries among Westerosi noble houses continue to fuel larger political conflicts. Although Amos appears only briefly, his death foreshadows the Riverlands' violent divisions during the Dance of the Dragons."
+  },
+  {
+    "id": 46,
+    "firstName": "Cregan",
+    "lastName": "Stark",
+    "fullName": "Cregan Stark",
+    "title": "Lord of Winterfell",
+    "family": "House Stark",
+    "image": "cregan-stark.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Lord Cregan",
+      "The Wolf of the North"
+    ],
+    "father": "Rickon Stark",
+    "mother": "Gilliane Glover",
+    "children": [],
+    "dragons": [],
+    "description": "Lord Cregan Stark is the head of House Stark and Warden of the North during the Dance of the Dragons. A stern, honorable, and highly respected ruler, Cregan values duty, justice, and loyalty above political ambition. When Prince Jacaerys Velaryon travels north to seek allies, Cregan swears support for Queen Rhaenyra in what becomes known as the Pact of Ice and Fire, strengthening the alliance between House Stark and the Black faction. Although the North remains geographically distant from much of the fighting, Cregan's support carries enormous political weight. His reputation for unwavering honor and decisive leadership makes him one of the most respected lords in Westeros and reinforces House Stark's image as a family devoted to keeping its word."
+  },
+  {
+    "id": 47,
+    "firstName": "Oscar",
+    "lastName": "Tully",
+    "fullName": "Oscar Tully",
+    "title": "Ser",
+    "family": "House Tully",
+    "image": "oscar-tully.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": "Elmo Tully",
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Oscar Tully is a young member of House Tully who appears during the growing conflict between the Black and Green factions. As part of one of the Riverlands' most influential families, Oscar represents the next generation of Tully leadership during the Dance of the Dragons. Though still young, he becomes involved in the political and military decisions affecting the Riverlands as neighboring houses choose sides in the civil war. His presence reflects the importance of House Tully's support in determining control of central Westeros."
+  },
+  {
+    "id": 48,
+    "firstName": "Elmo",
+    "lastName": "Tully",
+    "fullName": "Elmo Tully",
+    "title": "Lord of Riverrun",
+    "family": "House Tully",
+    "image": "elmo-tully.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Lord Elmo"
+    ],
+    "father": "Grover Tully",
+    "mother": null,
+    "children": [
+      "Oscar Tully"
+    ],
+    "dragons": [],
+    "description": "Lord Elmo Tully is the heir to House Tully and later becomes Lord of Riverrun during the Dance of the Dragons. Following the decline of his aging father, Lord Grover Tully, Elmo assumes increasing responsibility for the governance of the Riverlands. He ultimately supports Queen Rhaenyra and the Black faction, bringing the strength of House Tully and many Riverlords to her cause. As one of the principal lords of central Westeros, Elmo plays an important role in organizing resistance against the Greens and maintaining unity among the often-divided Riverlands."
+  },
+  {
+    "id": 49,
+    "firstName": "Mysaria",
+    "lastName": "",
+    "fullName": "Mysaria",
+    "title": "Mistress of Whisperers",
+    "family": "None",
+    "image": "mysaria.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "The White Worm"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Mysaria, widely known as the White Worm, is a former dancer and courtesan from Lys who builds one of the most effective intelligence networks in King's Landing. Initially associated with Prince Daemon Targaryen, she gradually establishes herself as an independent political operator whose influence comes from information rather than noble birth or military power. Through an extensive network of spies among the city's common people, Mysaria becomes aware of major political developments before many members of the royal court. Although she frequently pursues her own interests, she ultimately provides valuable intelligence to Queen Rhaenyra and the Black faction during the Dance of the Dragons. Her ability to navigate the dangerous politics of King's Landing without noble status makes her one of the era's most resourceful and enigmatic figures."
+  },
+  {
+    "id": 50,
+    "firstName": "Blood",
+    "lastName": "",
+    "fullName": "Blood",
+    "title": "Gold Cloak",
+    "family": "None",
+    "image": "blood.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "The Butcher"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Blood is a brutal former member of the City Watch of King's Landing who becomes infamous for his role in one of the most horrifying events of the Dance of the Dragons. Following the death of Prince Lucerys Velaryon, Prince Daemon Targaryen secretly arranges an act of vengeance against the Green faction by hiring Blood and his accomplice Cheese. Using his knowledge of the Red Keep, Blood infiltrates the royal apartments, overpowers Queen Helaena, and forces her to choose which of her sons should die before murdering the young Prince Jaehaerys. The assassination shocks both factions and permanently escalates the brutality of the civil war. Blood is eventually captured by Aegon II's forces, tortured for information, and executed."
+  },
+  {
+    "id": 51,
+    "firstName": "Cheese",
+    "lastName": "",
+    "fullName": "Cheese",
+    "title": "Ratcatcher",
+    "family": "None",
+    "image": "cheese.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Cheese is a ratcatcher employed within the Red Keep whose intimate knowledge of its hidden passages makes him an ideal accomplice for Blood. Recruited as part of Prince Daemon Targaryen's revenge against the Greens, Cheese guides Blood through secret tunnels into the royal chambers occupied by Queen Helaena and her children. Together they carry out the infamous 'Blood and Cheese' assassination, murdering Prince Jaehaerys after forcing Helaena to make an impossible choice. The crime becomes one of the darkest moments of the Dance of the Dragons and deepens the hatred between the rival factions. Following the murder, Cheese attempts to flee but is later captured and executed."
+  },
+  {
+    "id": 52,
+    "firstName": "Lohar",
+    "lastName": "",
+    "fullName": "Lohar",
+    "title": "Triarchy Admiral",
+    "family": "Triarchy",
+    "image": "lohar.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Admiral Lohar"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Lohar is an admiral serving the Triarchy, the alliance of the Free Cities that contests control of the Stepstones. Introduced in House of the Dragon, Lohar commands naval forces operating against Westerosi interests and becomes involved in the widening conflict surrounding the Stepstones. As tensions between the Targaryens and their enemies spread beyond Westeros, Lohar represents the growing influence of foreign powers seeking to profit from the kingdom's instability. His naval leadership contributes to the strategic importance of controlling the narrow seas during the Dance of the Dragons."
+  },
+  {
+    "id": 53,
+    "firstName": "Sharako",
+    "lastName": "Lohar",
+    "fullName": "Sharako Lohar",
+    "title": "Triarchy Commander",
+    "family": "Triarchy",
+    "image": "sharako-lohar.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Sharako Lohar is a prominent military commander of the Triarchy in George R. R. Martin's Fire & Blood. As of the currently released episodes of House of the Dragon, the character has not appeared on screen, and no television-canon events involving Sharako have taken place. This entry is included for future compatibility should the television adaptation introduce the character in later seasons."
+  },
+  {
+    "id": 54,
+    "firstName": "Grover",
+    "lastName": "Tully",
+    "fullName": "Grover Tully",
+    "title": "Lord of Riverrun",
+    "family": "House Tully",
+    "image": "grover-tully.jpg",
+    "imageUrl": "",
+    "tvShow": "House of the Dragon",
+    "aliases": [
+      "Lord Grover"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [
+      "Elmo Tully"
+    ],
+    "dragons": [],
+    "description": "Lord Grover Tully is the aging Lord of Riverrun during the early stages of the Dance of the Dragons. Advanced in age and declining health leave much of the administration of House Tully to his heir, Elmo Tully. Although Grover favors the Green faction, his illness prevents him from taking an active role in the conflict. As his condition worsens, Elmo increasingly directs the affairs of Riverrun and ultimately commits House Tully to Queen Rhaenyra's cause. Grover's failing health illustrates how leadership transitions among the great houses influence the political balance of the civil war."
+  }
+]

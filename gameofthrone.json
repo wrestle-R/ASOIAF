@@ -23,7 +23,8 @@
       "Drogon",
       "Rhaegal",
       "Viserion"
-    ]
+    ],
+    "description": "Daenerys Targaryen is the youngest child of King Aerys II Targaryen, the 'Mad King,' and one of the last surviving members of House Targaryen after Robert's Rebellion. Raised in exile with her abusive brother Viserys, she is married to Khal Drogo in exchange for his promise to help reclaim the Iron Throne. Over time she transforms from a timid young woman into a confident and determined ruler. After the birth of three dragons from Drogo's funeral pyre, she becomes known as the Mother of Dragons. Daenerys frees the Unsullied in Astapor, conquers Yunkai and Meereen, and abolishes slavery across Slaver's Bay while attempting to establish just rule. She forms alliances with Tyrion Lannister, Missandei, Grey Worm, Olenna Tyrell, Yara Greyjoy, and others before finally sailing to Westeros. During the Great War she fights alongside Jon Snow against the Night King, losing the dragon Viserion to the White Walkers and later Jorah Mormont in the Battle of Winterfell. After the executions of Missandei and the death of Rhaegal, Daenerys becomes increasingly isolated and distrustful. She destroys King's Landing despite the city's surrender, believing fear is the only path to lasting peace. Realizing she intends to continue conquering the world, Jon Snow kills her in the throne room. Drogon melts the Iron Throne before carrying her body away. Her rise and tragic fall remain one of the defining stories of Game of Thrones."
   },
   {
     "id": 1,
@@ -41,7 +42,8 @@
     "father": "Randyll Tarly",
     "mother": "Melessa Florent",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Samwell Tarly is the eldest son of Randyll Tarly but is disowned for lacking the martial qualities expected of his family. Forced to join the Night's Watch, he befriends Jon Snow and quickly becomes one of his closest and most loyal companions. Although physically timid, Sam proves exceptionally intelligent, compassionate, and resourceful. He discovers ancient records, researches dragonglass, and becomes one of the first people to kill a White Walker using dragonglass. Beyond the Wall he rescues Gilly and her infant son from Craster's Keep, eventually bringing them south for safety. Sam later studies at the Citadel to become a maester, where he uncovers evidence proving Jon Snow's true parentage as Aegon Targaryen, the legitimate son of Rhaegar Targaryen and Lyanna Stark. He returns to Winterfell before the Battle of Winterfell and fights alongside his friends during the Great War. After Daenerys' death he proposes the idea of allowing the common people to choose their rulers, though the suggestion is dismissed. Under King Bran Stark, Sam becomes Grand Maester and helps compile 'A Song of Ice and Fire,' chronicling the events of the wars. Throughout the series, Sam represents knowledge, kindness, and moral integrity, demonstrating that courage often comes from doing what is right despite overwhelming fear."
   },
   {
     "id": 2,
@@ -64,7 +66,8 @@
     "children": [],
     "dragons": [
       "Rhaegal"
-    ]
+    ],
+    "description": "Jon Snow is introduced as the illegitimate son of Eddard Stark and grows up at Winterfell feeling like an outsider. Seeking purpose, he joins the Night's Watch and rises through its ranks under Lord Commander Jeor Mormont. Beyond the Wall he infiltrates the Free Folk, falls in love with Ygritte, and gains a deep understanding of the true threat posed by the White Walkers. After being elected Lord Commander, Jon attempts to unite the Night's Watch and the Free Folk, leading to his assassination by mutinous brothers. He is resurrected by Melisandre and later defeats Ramsay Bolton in the Battle of the Bastards, reclaiming Winterfell and becoming King in the North. Jon allies with Daenerys Targaryen against the Night King and eventually learns that he is actually Aegon Targaryen, the legitimate son of Rhaegar Targaryen and Lyanna Stark, making him the rightful heir to the Iron Throne. During the Battle of Winterfell he helps defend humanity while Arya Stark ultimately kills the Night King. After Daenerys destroys King's Landing despite its surrender, Jon concludes that she has become a tyrant and kills her to prevent further bloodshed. As punishment he is sent back to the Night's Watch, but instead chooses to travel north of the Wall with Tormund and the Free Folk, finding peace beyond the politics of Westeros."
   },
   {
     "id": 3,
@@ -85,7 +88,8 @@
     "father": "Eddard Stark",
     "mother": "Catelyn Stark",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Arya Stark is the youngest daughter of Eddard and Catelyn Stark and has little interest in becoming a traditional noble lady. Trained in swordsmanship by Syrio Forel, she witnesses the execution of her father and escapes King's Landing disguised as a boy. Along her journey she travels with Yoren, Gendry, Hot Pie, Sandor Clegane, and Jaqen H'ghar while creating a list of people she intends to kill for their crimes against her family. Arya trains with the Faceless Men in Braavos, mastering stealth, deception, and assassination while struggling to abandon her identity. She returns to Westeros to avenge the Red Wedding by killing Walder Frey and his sons before reuniting with Sansa and Bran at Winterfell. During the Battle of Winterfell she uses her agility and training to kill the Night King with a Valyrian steel dagger, ending the Long Night and saving humanity. Arya later witnesses Daenerys destroy King's Landing and abandons her plan to kill Cersei after Sandor convinces her not to become consumed by revenge. Following Bran's coronation, Arya chooses not to remain in Westeros and instead sails west of the known world to explore lands beyond any previously charted maps, embracing the adventurous life she always desired."
   },
   {
     "id": 4,
@@ -104,7 +108,8 @@
     "father": "Eddard Stark",
     "mother": "Catelyn Stark",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Sansa Stark begins the series dreaming of marrying a prince and living at court, but her idealism is shattered after King Joffrey orders the execution of her father. Held hostage in King's Landing, she endures years of manipulation and psychological abuse from Joffrey, Cersei Lannister, and Petyr Baelish. After escaping the capital she spends time in the Vale before being forced into marriage with Ramsay Bolton, whose cruelty leaves lasting emotional scars. With the help of Jon Snow and the Knights of the Vale, Sansa helps defeat Ramsay during the Battle of the Bastards and reclaims Winterfell. She grows into a highly capable political leader, managing the North while Jon is away and recognizing Littlefinger's manipulations. Together with Bran and Arya, she exposes Littlefinger's crimes and sentences him to death. During the Great War she oversees Winterfell's defenses and later openly questions Daenerys Targaryen's intentions. After Daenerys' death and Bran's election as king, Sansa successfully argues that the North should remain an independent kingdom. She is crowned Queen in the North, fulfilling her lifelong duty to protect her people. Her journey from a naive noble girl to a respected ruler is one of the series' most significant character developments."
   },
   {
     "id": 5,
@@ -124,7 +129,8 @@
     "father": "Eddard Stark",
     "mother": "Catelyn Stark",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Brandon 'Bran' Stark is the second son of Eddard and Catelyn Stark. His life changes forever when Jaime Lannister pushes him from a tower after Bran witnesses Jaime and Cersei's secret relationship, leaving him permanently paralyzed. As strange visions begin to appear, Bran journeys beyond the Wall with Hodor, Meera Reed, Jojen Reed, and Summer in search of the Three-Eyed Raven. Under the Raven's guidance he develops powerful greensight abilities, allowing him to see events from the past, present, and fragments of the future while also learning to warg into animals and people. Bran discovers the truth about Jon Snow's parentage by witnessing the marriage of Rhaegar Targaryen and Lyanna Stark. During the Battle of Winterfell he serves as bait for the Night King, whose defeat comes when Arya kills him. After Daenerys' death, the surviving lords of Westeros choose Bran as king because of his unique knowledge of history and humanity. Accepting the role as Bran the Broken, he becomes the first ruler of the Six Kingdoms under an elective monarchy while appointing Tyrion as Hand of the King. His transformation from an adventurous boy into the mystical Three-Eyed Raven fundamentally reshapes the political future of Westeros."
   },
   {
     "id": 6,
@@ -134,7 +140,8 @@
     "title": "Lord of Winterfell",
     "family": "House Stark",
     "image": "ned-stark.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/ned-stark.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/ned-stark.jpg",
+    "description": "Eddard 'Ned' Stark is the honorable Lord of Winterfell and Warden of the North, renowned throughout Westeros for his integrity and unwavering sense of justice. A close friend of King Robert Baratheon, Ned accepts the position of Hand of the King following the death of Jon Arryn. While investigating Arryn's death, he discovers that Queen Cersei's children are actually fathered by Jaime Lannister rather than Robert, making them illegitimate heirs to the throne. Refusing to act dishonorably, Ned warns Cersei instead of seizing power immediately, allowing her time to respond. After Robert's death, Cersei and Joffrey move against him, and Littlefinger betrays Ned despite promising his support. Imprisoned for treason, Ned falsely confesses in hopes of saving his daughters, but Joffrey orders his execution regardless. His death shocks the realm, triggers the War of the Five Kings, and becomes the defining moment that shapes the futures of Jon, Robb, Arya, Sansa, Bran, and the North. Ned's commitment to honor continues to inspire his children long after his death, even though his rigid morality ultimately contributes to his downfall."
   },
   {
     "id": 7,
@@ -154,7 +161,8 @@
     "children": [
       "Gendry"
     ],
-    "dragons": []
+    "dragons": [],
+    "description": "Robert Baratheon is the first king of the Baratheon dynasty after leading the rebellion that overthrows the Targaryens. Once a fearless warrior, Robert becomes an overweight and disinterested ruler who spends much of his reign hunting, drinking, and avoiding matters of governance. Still grieving the death of Lyanna Stark, whom he loved, he never develops genuine affection for his wife, Cersei Lannister. His friendship with Eddard Stark leads him to appoint Ned as Hand of the King after Jon Arryn's death. Robert remains unaware that all three of the children he believes are his—Joffrey, Myrcella, and Tommen—are actually the offspring of Jaime and Cersei Lannister. During a hunting trip arranged through Cersei's schemes, Robert is mortally wounded by a boar while intoxicated. Before dying, he names Ned Protector of the Realm until Joffrey comes of age, unknowingly setting the stage for the political conflict that follows. Robert's death marks the beginning of the War of the Five Kings and the collapse of the fragile peace he established after the rebellion."
   },
   {
     "id": 8,
@@ -164,7 +172,8 @@
     "title": "Lord Commander of the Kingsguard",
     "family": "House Lannister",
     "image": "jaime-lannister.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/jaime-lannister.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/jaime-lannister.jpg",
+    "description": "Jaime Lannister is one of the greatest swordsmen in Westeros and a member of the Kingsguard. Known as the Kingslayer for killing King Aerys II Targaryen during Robert's Rebellion, he carries a reputation for dishonor despite preventing the Mad King from destroying King's Landing with wildfire. Jaime secretly maintains an incestuous relationship with his twin sister Cersei, fathering Joffrey, Myrcella, and Tommen. At the beginning of the series he pushes Bran Stark from a tower to protect their secret. Captured during the War of the Five Kings, Jaime gradually changes through his travels with Brienne of Tarth, developing humility, compassion, and a stronger sense of honor after losing his sword hand. He rescues Brienne from a bear pit, knights her before the Battle of Winterfell, and fights alongside the living against the Night King. Despite years of personal growth, Jaime cannot fully abandon Cersei. He returns to King's Landing during Daenerys' invasion in an attempt to save her. The twins die together beneath the collapsing Red Keep as the city is destroyed. Jaime's story explores redemption, loyalty, love, and the struggle between personal honor and destructive attachment."
   },
   {
     "id": 9,
@@ -187,7 +196,8 @@
       "Myrcella Baratheon",
       "Tommen Baratheon"
     ],
-    "dragons": []
+    "dragons": [],
+    "description": "Cersei Lannister is the daughter of Tywin Lannister and the twin sister and lover of Jaime Lannister. Ambitious, intelligent, and fiercely protective of her children, she spends much of the series consolidating power within King's Landing. Although married to King Robert Baratheon, she secretly bears Jaime's children—Joffrey, Myrcella, and Tommen—whose illegitimacy sparks the War of the Five Kings after Robert's death. Cersei constantly competes with political rivals including Tyrion, Margaery Tyrell, the High Sparrow, and Olenna Tyrell. After enduring imprisonment and her humiliating Walk of Atonement by the Faith Militant, she orchestrates the destruction of the Great Sept of Baelor using wildfire, killing the High Sparrow, Margaery, Loras, Mace Tyrell, Kevan Lannister, and many others. Tommen, devastated by the explosion, commits suicide, leaving Cersei to crown herself Queen of the Seven Kingdoms. She later allies with Euron Greyjoy while refusing to aid the fight against the White Walkers, instead hoping her enemies weaken one another. During Daenerys' assault on King's Landing, Cersei remains in the Red Keep until the castle collapses around her. She dies alongside Jaime beneath the ruins, bringing an end to the main Lannister line that had dominated Westerosi politics for decades."
   },
   {
     "id": 10,
@@ -211,7 +221,8 @@
       "Brandon Stark",
       "Rickon Stark"
     ],
-    "dragons": []
+    "dragons": [],
+    "description": "Catelyn Stark, born Catelyn Tully, is the devoted wife of Eddard Stark and the mother of Robb, Sansa, Arya, Bran, and Rickon Stark. Fiercely protective of her family, she struggles to accept Jon Snow because she believes he is Ned's illegitimate son. After Bran is attacked and left paralyzed, Catelyn investigates the attempted murder and travels to King's Landing, where she becomes involved in the growing conflict between the Starks and Lannisters. She arrests Tyrion Lannister, believing he was responsible for the attempt on Bran's life, a decision that further escalates tensions between the two great houses. During the War of the Five Kings, Catelyn serves as Robb's closest adviser and negotiates with Renly and Stannis Baratheon in an unsuccessful attempt to unite them against the Lannisters. Desperate to save her daughters, she secretly frees Jaime Lannister in hopes of exchanging him for Sansa and Arya. Although her actions are controversial, they stem from her unwavering love for her children. Catelyn is murdered alongside Robb and Talisa during the Red Wedding after witnessing the deaths of her son, daughter-in-law, and unborn grandson. Her death marks one of the greatest tragedies of the series and effectively ends Stark resistance in the south until Jon and Sansa reclaim Winterfell."
   },
   {
     "id": 11,
@@ -221,7 +232,8 @@
     "title": "Lord of Winterfell",
     "family": "House Stark",
     "image": "robb-stark.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/robb-stark.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/robb-stark.jpg",
+    "description": "Robb Stark is the eldest legitimate son of Eddard and Catelyn Stark and becomes Lord of Winterfell after Ned's arrest. Following his father's execution, the northern lords proclaim Robb the King in the North, beginning his campaign against House Lannister during the War of the Five Kings. A gifted military commander, Robb wins several impressive victories, including capturing Jaime Lannister and repeatedly defeating larger Lannister armies through clever strategy. Despite his success on the battlefield, Robb's political decisions ultimately undermine his cause. He breaks his marriage pact with House Frey by marrying Talisa Maegyr for love instead of honoring his agreement to wed one of Walder Frey's daughters. This betrayal, combined with Roose Bolton's ambition and Tywin Lannister's political maneuvering, leads to the infamous Red Wedding. While attending Edmure Tully's wedding at the Twins under guest right, Robb, Talisa, and Catelyn are betrayed by the Freys and Boltons. Talisa and her unborn child are murdered before Robb himself is stabbed by Roose Bolton, who declares that 'The Lannisters send their regards.' Robb's death destroys the northern rebellion and remains one of the most shocking turning points in the series."
   },
   {
     "id": 12,
@@ -240,7 +252,8 @@
     "father": "Balon Greyjoy",
     "mother": "Alannys Harlaw",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Theon Greyjoy is the only surviving son of Balon Greyjoy and is raised as a hostage and ward of Eddard Stark after Balon's failed rebellion. Although he grows up alongside the Stark children and considers Robb his brother, Theon struggles with his divided identity between House Stark and House Greyjoy. Seeking his father's approval, he betrays Robb by capturing Winterfell and falsely claiming to have killed Bran and Rickon Stark. His actions alienate both families, and he soon loses Winterfell to Ramsay Snow, later Bolton. Ramsay subjects Theon to prolonged physical and psychological torture, stripping away his identity until he believes himself to be 'Reek.' Over time, Theon slowly rebuilds his sense of self after helping Sansa Stark escape Winterfell. He later rescues his sister Yara from Euron Greyjoy and ultimately chooses to fight for House Stark during the Battle of Winterfell. Entrusted by Bran Stark to defend the godswood, Theon leads the Ironborn in a desperate last stand against the Night King. After exhausting every option, he charges the Night King in a final act of courage and is killed. Bran thanks him before his death, telling him he is 'a good man,' completing one of the series' strongest redemption arcs."
   },
   {
     "id": 13,
@@ -258,7 +271,8 @@
     "father": "Jaime Lannister",
     "mother": "Cersei Lannister",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Joffrey Baratheon is publicly believed to be the eldest son of King Robert Baratheon and Queen Cersei Lannister, but he is actually the product of Cersei's incestuous relationship with Jaime Lannister. Cruel, sadistic, arrogant, and impulsive, Joffrey becomes king after Robert's death and immediately demonstrates his unfitness to rule. Against promises of mercy, he orders the execution of Eddard Stark, igniting the War of the Five Kings. Throughout his reign he delights in humiliating and abusing Sansa Stark while relying heavily on his grandfather Tywin Lannister and his mother to govern the realm. Despite his royal status, Joffrey proves cowardly in battle and lacks political wisdom. He alienates allies, mistreats his uncle Tyrion, and creates unnecessary enemies through his unpredictable cruelty. During his wedding feast to Margaery Tyrell, Joffrey drinks poisoned wine in a conspiracy orchestrated by Olenna Tyrell and Petyr Baelish. He dies in front of the royal court, an event later known as the Purple Wedding. His death dramatically alters the balance of power in King's Landing and leads to Tyrion's wrongful arrest and trial for regicide."
   },
   {
     "id": 14,
@@ -277,7 +291,8 @@
     "father": "Tywin Lannister",
     "mother": "Joanna Lannister",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Tyrion Lannister is the youngest child of Tywin Lannister and one of the most intelligent and politically gifted individuals in Westeros. Born with dwarfism, he endures constant prejudice, particularly from his father, while maintaining a sharp wit and love of books and wine. Despite his reputation, Tyrion repeatedly proves himself capable of effective leadership. During the Battle of the Blackwater he masterminds the city's defense using wildfire and personally leads soldiers into combat. As Hand of the King for Joffrey, he attempts to stabilize King's Landing while navigating the schemes of Cersei, Varys, Littlefinger, and Tywin. Wrongfully accused of murdering Joffrey, Tyrion demands trial by combat, which ends in Oberyn Martell's death. After learning that Tywin orchestrated the lies surrounding his first wife, Tyrion kills both Shae and Tywin before fleeing Westeros. He eventually joins Daenerys Targaryen and becomes her Hand, advising her throughout her conquest of Westeros. Although many of his political strategies fail, he remains committed to minimizing unnecessary bloodshed. Horrified by Daenerys' destruction of King's Landing, Tyrion convinces Jon Snow that she has become a tyrant. After her death, he helps persuade the surviving lords to choose Bran Stark as king and is appointed Hand of the King once again, dedicating himself to rebuilding the realm."
   },
   {
     "id": 15,
@@ -287,7 +302,8 @@
     "title": "The Hound",
     "family": "House Clegane",
     "image": "the-hound.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/the-hound.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/the-hound.jpg",
+    "description": "Sandor Clegane, better known as the Hound, is a feared warrior who serves House Lannister despite despising knights and the ideals they claim to represent. Scarred as a child when his brother Gregor burned his face in a fire, Sandor develops a lifelong fear of flames and a cynical view of honor. Initially serving as Joffrey's personal bodyguard, he protects Sansa Stark whenever possible despite his rough exterior. During the Battle of the Blackwater his fear of wildfire causes him to abandon King's Landing. He later travels with Arya Stark, and although they constantly argue, the two gradually form an unlikely bond. Severely wounded after fighting Brienne of Tarth, Sandor survives and eventually joins the Brotherhood Without Banners, where he begins seeking redemption. He fights beside Jon Snow beyond the Wall and later joins the living during the Battle of Winterfell. Ultimately, Sandor abandons thoughts of redemption to confront his monstrous brother during the fall of King's Landing. In the long-awaited Cleganebowl, he kills Gregor by tackling both of them into a burning ruin, sacrificing his own life to ensure his brother's death. Sandor's story is one of redemption, self-acceptance, and overcoming hatred."
   },
   {
     "id": 16,
@@ -306,7 +322,8 @@
     "father": null,
     "mother": null,
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Petyr Baelish, commonly known as Littlefinger, rises from minor nobility to become one of the most influential political manipulators in Westeros. Master of Coin under King Robert Baratheon, he secretly controls an extensive network of spies, brothels, and informants, using information as his greatest weapon. Littlefinger engineers many of the conflicts that shape the series, including convincing Lysa Arryn to poison Jon Arryn and framing the Lannisters, an act that contributes directly to the War of the Five Kings. He repeatedly shifts loyalties whenever it benefits him, betraying Ned Stark after promising his support and later helping Olenna Tyrell poison Joffrey. Obsessed with Catelyn Stark and later Sansa Stark, he manipulates Sansa into trusting him before marrying her to Ramsay Bolton for political gain. Returning to Winterfell, Littlefinger attempts to turn Arya and Sansa against one another, believing he can control the North through division. However, Bran Stark exposes Littlefinger's many crimes using his visions. During a trial organized by the Stark siblings, Sansa accuses him of murder, treason, and conspiracy. Despite begging for mercy, Littlefinger is sentenced to death, and Arya executes him. His downfall demonstrates that even the greatest political schemer cannot outmaneuver those who finally understand his games."
   },
   {
     "id": 17,
@@ -327,7 +344,8 @@
     "children": [
       "Matthos Seaworth"
     ],
-    "dragons": []
+    "dragons": [],
+    "description": "Davos Seaworth begins life as a smuggler before earning the respect of Stannis Baratheon by secretly supplying food to Storm's End during Robert's Rebellion. As punishment for his past crimes, Stannis removes the fingertips of Davos' left hand but rewards him with knighthood, creating a lifelong bond of loyalty. Throughout Stannis' campaign for the Iron Throne, Davos serves as his most trusted adviser and consistently urges mercy, justice, and practical leadership over Melisandre's religious extremism. He opposes the sacrifice of innocent people, especially Shireen Baratheon, whose death ultimately destroys his faith in Stannis' cause. After Stannis is defeated, Davos joins Jon Snow and becomes one of his closest advisers. He helps convince northern houses to support Jon against Ramsay Bolton and later supports the alliance with Daenerys Targaryen to defeat the White Walkers. During the Battle of Winterfell he fights alongside the defenders despite lacking exceptional combat skills. Following Daenerys' death, Davos participates in selecting Bran Stark as king and is appointed Master of Ships on the Small Council. Throughout the series, Davos earns widespread respect for his honesty, compassion, humility, and unwavering moral compass."
   },
   {
     "id": 18,
@@ -347,7 +365,8 @@
     "children": [
       "Shireen Baratheon"
     ],
-    "dragons": []
+    "dragons": [],
+    "description": "Stannis Baratheon is the younger brother of King Robert Baratheon and believes he is the rightful heir to the Iron Throne after learning that Robert's children are illegitimate. Known for his rigid sense of justice, military discipline, and lack of charisma, Stannis relies heavily on the priestess Melisandre, who convinces him he is the prophesied Prince That Was Promised. He defeats his younger brother Renly after Melisandre gives birth to a shadow assassin that murders Renly, allowing Stannis to claim much of his army. Although his assault on King's Landing nearly succeeds, Tyrion Lannister's defense and the arrival of Tywin Lannister force his retreat. Later, Stannis answers Jon Snow's request for aid by defeating the wildlings north of the Wall and temporarily becoming the Night's Watch's strongest ally. Preparing to march on Winterfell, his army becomes trapped by harsh winter conditions. Persuaded by Melisandre, Stannis allows the sacrifice of his beloved daughter Shireen, believing it will secure victory. Instead, many of his soldiers desert, his wife commits suicide, and his remaining forces are crushed by Ramsay Bolton. Wounded after the battle, Stannis accepts responsibility for his failures before Brienne of Tarth executes him in revenge for Renly's death."
   },
   {
     "id": 19,
@@ -357,7 +376,8 @@
     "title": "Master of Whisperers",
     "family": "Unknown",
     "image": "varys.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/varys.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/varys.jpg",
+    "description": "Varys, known throughout Westeros as the Master of Whisperers, serves successive rulers while claiming his true loyalty belongs to 'the realm' rather than any individual monarch. A former slave from Essos, Varys builds one of the most extensive intelligence networks in history through his 'little birds,' allowing him to uncover political secrets before almost anyone else. During Robert Baratheon's reign and the War of the Five Kings, he quietly works to preserve stability while often assisting Tyrion Lannister. After Tyrion is condemned for Joffrey's murder, Varys helps him escape King's Landing and eventually joins Daenerys Targaryen in Meereen. Serving as one of her chief advisers, Varys supports her campaign because he believes she can become a just ruler. However, after witnessing Daenerys' increasingly ruthless behavior and learning of Jon Snow's true heritage, Varys concludes that Jon would be the better monarch. He secretly attempts to build support for Jon but is discovered before his plans can succeed. Refusing to deny his actions, Varys calmly accepts his fate and is executed by Drogon's dragonfire on Daenerys' orders. Even in death, Varys remains committed to placing the welfare of the realm above his own survival."
   },
   {
     "id": 20,
@@ -367,7 +387,8 @@
     "title": "Khal",
     "family": "House Targaryen",
     "image": "khal-drogo.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/khal-drogo.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/khal-drogo.jpg",
+    "description": "Khal Drogo is the legendary khal of the Dothraki and one of the most powerful warlords in Essos. Feared for his unmatched combat ability and undefeated leadership, Drogo marries Daenerys Targaryen as part of a political arrangement organized by Viserys Targaryen, who hopes to use the Dothraki army to reclaim the Iron Throne. Although Daenerys initially fears him, their relationship gradually develops into one of mutual respect and genuine love. Drogo teaches Daenerys confidence and leadership while promising to cross the Narrow Sea and conquer Westeros after Viserys insults the Dothraki and dies by molten gold. During a raid, Drogo suffers what appears to be a minor wound, but it becomes infected after he ignores medical treatment. Desperate to save him, Daenerys asks the healer Mirri Maz Duur to perform blood magic, which leaves Drogo alive only in a vegetative state while also causing the death of Daenerys' unborn son, Rhaego. Refusing to let him remain in such a condition, Daenerys ends his life herself. She later places Drogo's body on his funeral pyre along with three fossilized dragon eggs. Emerging unharmed from the flames with three newly hatched dragons, Daenerys begins her transformation into one of the most powerful figures in the world."
   },
   {
     "id": 21,
@@ -385,7 +406,8 @@
     "father": "Mace Tyrell",
     "mother": "Alerie Hightower",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Margaery Tyrell is the intelligent and politically gifted granddaughter of Olenna Tyrell and a member of one of Westeros' wealthiest and most influential houses. Initially married to Renly Baratheon in support of his claim to the Iron Throne, Margaery quickly adapts after his death by pursuing alliances with the Lannisters. She becomes engaged to King Joffrey Baratheon and skillfully wins the affection of the smallfolk through public acts of charity and kindness, making her one of the most popular figures in King's Landing. Following Joffrey's death at the Purple Wedding, she marries his younger brother Tommen Baratheon and gradually gains considerable influence over the young king, causing concern for Cersei Lannister. When the Faith Militant rises to power, Margaery and her brother Loras are imprisoned by the High Sparrow. Realizing open defiance is futile, she carefully pretends to embrace the Faith while secretly planning to escape its control. Before her plans can succeed, Cersei destroys the Great Sept of Baelor with wildfire, killing Margaery, Loras, Mace Tyrell, the High Sparrow, and hundreds of others. Moments before the explosion, Margaery realizes Cersei's absence signals danger and attempts to evacuate the Sept, but there is not enough time. Her death effectively ends House Tyrell's influence in King's Landing."
   },
   {
     "id": 22,
@@ -395,7 +417,8 @@
     "title": "Spearwife",
     "family": "Free Folk",
     "image": "ygritte.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/ygritte.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/ygritte.jpg",
+    "description": "Ygritte is a fierce spearwife of the Free Folk who lives beyond the Wall. Captured by Jon Snow during a ranging by the Night's Watch, she quickly realizes he is reluctant to kill her and uses that hesitation to escape. After recapturing Jon, she helps integrate him into Mance Rayder's army, believing he has abandoned the Night's Watch. During this time the two genuinely fall in love, and Ygritte teaches Jon about the customs, freedom, and hardships of the Free Folk, repeatedly reminding him that he 'knows nothing.' When Jon ultimately returns to the Night's Watch to warn them of Mance's invasion, Ygritte feels deeply betrayed but continues to love him. She participates in the assault on Castle Black and nearly kills Jon during the battle before hesitating. In that moment she is struck by an arrow fired by Olly, a young Night's Watch recruit seeking revenge against the Free Folk. Dying in Jon's arms, Ygritte shares a final moment with the man she loved before succumbing to her wounds. Her relationship with Jon profoundly shapes his understanding of the people beyond the Wall and influences his later efforts to unite the Free Folk with the North against the White Walkers."
   },
   {
     "id": 23,
@@ -414,7 +437,8 @@
     "father": "Selwyn Tarth",
     "mother": null,
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Brienne of Tarth is a highly skilled warrior and the daughter of Lord Selwyn Tarth. Mocked throughout her life because she does not fit traditional expectations of noble women, Brienne dedicates herself to becoming an honorable knight despite being denied that title because of her gender. She first serves Renly Baratheon as a member of his Rainbow Guard and remains fiercely loyal even after his assassination. Swearing an oath to Catelyn Stark, Brienne spends years searching for Sansa and Arya Stark, accompanied by the former sellsword Podrick Payne. During her travels she develops mutual respect and friendship with Jaime Lannister, helping him rediscover his sense of honor while he inspires her to continue believing in her ideals. Brienne defeats Sandor Clegane in an attempt to protect Arya and later kills Stannis Baratheon to avenge Renly's death. She eventually reunites with Sansa and faithfully serves House Stark, defending Winterfell during the Battle of the Bastards and the Battle of Winterfell. Before the Great War, Jaime knights Brienne, making her the first female knight shown in the series. Following Bran Stark's coronation, Brienne becomes Lord Commander of the Kingsguard and records Jaime's honorable deeds in the White Book, ensuring his legacy is remembered fairly."
   },
   {
     "id": 24,
@@ -424,7 +448,8 @@
     "title": "Queen's Personal Advisor",
     "family": "Naathi",
     "image": "missandei.jpeg",
-    "imageUrl": "https://thronesapi.com/assets/images/missandei.jpeg"
+    "imageUrl": "https://thronesapi.com/assets/images/missandei.jpeg",
+    "description": "Missandei is a former slave from the island of Naath who serves as a translator in Astapor before being freed by Daenerys Targaryen during the liberation of the Unsullied. Choosing to remain by Daenerys' side despite being offered her freedom, Missandei becomes one of the queen's closest advisers, confidants, and friends. Fluent in numerous languages, she acts as Daenerys' interpreter during diplomatic negotiations across Slaver's Bay and provides calm, thoughtful counsel throughout her campaigns. She develops a romantic relationship with Grey Worm, and together they dream of one day retiring peacefully to Naath after Daenerys wins the Iron Throne. Following the disastrous naval ambush by Euron Greyjoy, Missandei is captured and taken to King's Landing as Cersei Lannister's prisoner. During a tense meeting outside the city walls, Cersei orders the Mountain to execute her. With her final word, 'Dracarys,' Missandei encourages Daenerys to continue fighting rather than surrender. Her brutal execution devastates both Daenerys and Grey Worm, becoming one of the final events that drives Daenerys toward the destruction of King's Landing. Missandei is remembered as one of Daenerys' most loyal companions and a symbol of compassion, wisdom, and unwavering friendship."
   },
   {
     "id": 25,
@@ -434,7 +459,8 @@
     "title": "The Rabbit Keeper",
     "family": "None",
     "image": "gilly.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/gilly.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/gilly.jpg",
+    "description": "Gilly is a member of the Free Folk and one of Craster's many daughters, who are also forced to become his wives. Living under constant abuse beyond the Wall, she fears that her newborn son will eventually be sacrificed to the White Walkers like Craster's other sons. Samwell Tarly rescues Gilly and her child after the mutiny at Craster's Keep, and she accompanies him on his journey south. Although she has never learned to read, Gilly displays remarkable intelligence and curiosity, eventually learning from Sam while staying at the Citadel. She accidentally discovers the record of Prince Rhaegar Targaryen's annulment and remarriage, information that later helps reveal Jon Snow's true parentage and legitimate claim to the Iron Throne. Throughout the series, Gilly remains fiercely protective of her son and serves as Sam's emotional support during his many struggles. She later accompanies Sam back to Winterfell before the Battle of Winterfell and survives the Great War. By the series finale, Gilly is expecting another child with Sam as they prepare to begin a peaceful life together while Sam serves as Grand Maester under King Bran."
   },
   {
     "id": 26,
@@ -444,7 +470,8 @@
     "title": "King Viserys III",
     "family": "Targaryan",
     "image": "viserys-targaryan.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/viserys-targaryan.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/viserys-targaryan.jpg",
+    "description": "Viserys Targaryen is the elder brother of Daenerys Targaryen and the last surviving male child of the Mad King, Aerys II Targaryen. Forced into exile following Robert's Rebellion, Viserys spends years obsessively plotting to reclaim the Iron Throne. Bitter, arrogant, and increasingly unstable, he treats Daenerys as little more than a bargaining tool, arranging her marriage to Khal Drogo in exchange for the promise of a Dothraki army. Viserys constantly reminds others of his royal blood and demands respect despite contributing little to his own cause. His impatience and cruelty alienate both the Dothraki and Daenerys, who gradually grows into an independent leader no longer intimidated by her brother. During a feast in Vaes Dothrak, Viserys drunkenly threatens Daenerys and her unborn child with a sword, violating sacred Dothraki customs. In response, Khal Drogo fulfills Viserys' demand for a 'golden crown' by pouring molten gold over his head, killing him instantly. Daenerys calmly observes his death, declaring that he was no true dragon because fire cannot kill a dragon. Viserys' downfall marks the end of his failed ambition and serves as the catalyst for Daenerys' emergence as the true Targaryen claimant."
   },
   {
     "id": 27,
@@ -460,7 +487,8 @@
     "father": "Eddard Stark",
     "mother": "Catelyn Stark",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Rickon Stark is the youngest son of Eddard and Catelyn Stark. As one of the youngest members of House Stark, he witnesses the family's collapse after Ned's execution and the fall of Winterfell. Accompanied by Osha and his direwolf Shaggydog, Rickon flees Winterfell alongside Bran before the two brothers separate to improve their chances of survival. Rickon spends several years in hiding on the island of Skagos, remaining largely absent from the political conflicts engulfing Westeros. Eventually, he is betrayed by the Umbers, who deliver him to Ramsay Bolton as a gesture of loyalty. Ramsay uses Rickon as bait before the Battle of the Bastards, releasing him across the battlefield while Jon Snow desperately attempts to rescue him. Just before Jon can reach him, Ramsay shoots Rickon through the heart with an arrow, provoking Jon into charging recklessly and triggering the battle. Rickon's tragic death motivates the Stark forces and symbolizes the devastating losses suffered by House Stark before they ultimately reclaim Winterfell."
   },
   {
     "id": 28,
@@ -481,7 +509,8 @@
     "children": [
       "Ramsay Bolton"
     ],
-    "dragons": []
+    "dragons": [],
+    "description": "Roose Bolton is the calculating and ruthless Lord of the Dreadfort and one of House Stark's most powerful bannermen during the War of the Five Kings. Initially serving Robb Stark, Roose commands northern armies while quietly evaluating opportunities to improve his own position. Recognizing the growing strength of House Lannister and Robb's weakening political situation after breaking his marriage alliance with House Frey, Roose secretly negotiates with Tywin Lannister. He becomes one of the principal architects of the Red Wedding, betraying Robb Stark by personally stabbing him and announcing that 'The Lannisters send their regards.' Rewarded with the title of Warden of the North, Roose legitimizes his bastard son Ramsay and installs House Bolton as rulers of Winterfell. Despite his ruthless reputation, Roose remains calm, patient, and politically pragmatic, often contrasting with Ramsay's impulsive cruelty. After Sansa Stark escapes Winterfell with Theon Greyjoy, Roose criticizes Ramsay for his failures. Fearing replacement by his newly born legitimate half-brother, Ramsay murders Roose with a knife before killing his infant brother and stepmother. Roose's calculated ambition ultimately enables House Bolton's brief rise before his own son destroys the dynasty from within."
   },
   {
     "id": 29,
@@ -491,7 +520,8 @@
     "title": "Commander of the Second Sons",
     "family": "Naharis",
     "image": "daario.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/daario.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/daario.jpg",
+    "description": "Daario Naharis is a charismatic and highly skilled sellsword who serves as one of the commanders of the Second Sons. Originally hired to fight against Daenerys Targaryen, Daario instead kills his fellow commanders and pledges both himself and his company to her cause after becoming impressed by her leadership. As one of Daenerys' most capable military officers, he assists in the capture of Meereen and helps suppress the Sons of the Harpy during the difficult period of her rule. Daario develops a romantic relationship with Daenerys, though she ultimately prioritizes political alliances over personal feelings. Fiercely loyal and confident in battle, he frequently advocates decisive military action while remaining devoted to Daenerys' vision of a better world. When Daenerys prepares to sail for Westeros, Tyrion advises that she end the relationship and leave Daario behind to maintain stability in Meereen. Although disappointed, Daario accepts her decision and remains in Essos to govern the city and preserve the peace she established. He does not appear again after Daenerys departs, leaving his ultimate fate unknown within the television series."
   },
   {
     "id": 30,
@@ -501,7 +531,8 @@
     "title": "Mistress",
     "family": "Lorathi",
     "image": "shae.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/shae.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/shae.jpg",
+    "description": "Shae is a prostitute from the Free City of Lorath who meets Tyrion Lannister shortly before the Battle of the Green Fork. Initially hired for companionship, she and Tyrion develop a genuine romantic relationship despite the dangers posed by his family's disapproval. Tyrion brings Shae to King's Landing against his better judgment and secretly keeps her hidden while serving as Hand of the King. To protect her, he arranges for her to work as Sansa Stark's handmaiden, where she forms a close friendship with the young Stark girl. As political tensions increase, Tyrion repeatedly urges Shae to leave Westeros for her own safety, but she refuses, believing he no longer loves her. Feeling betrayed after Tyrion sends her away, Shae later appears as a witness during his trial for Joffrey's murder, falsely testifying against him and deeply wounding him emotionally. After escaping his death sentence, Tyrion discovers Shae in Tywin Lannister's bed. Believing she has fully betrayed him, he confronts her, and when she attempts to attack him with a knife, Tyrion strangles her to death with the Hand of the King's chain. Her death represents one of the darkest and most tragic moments in Tyrion's life, leaving lasting emotional scars."
   },
   {
     "id": 31,
@@ -519,7 +550,8 @@
     "father": "Jaime Lannister",
     "mother": "Cersei Lannister",
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Tommen Baratheon is publicly known as the youngest son of King Robert Baratheon and Queen Cersei Lannister, though he is secretly the son of Jaime Lannister. Gentle, kind-hearted, and compassionate, Tommen becomes king following the death of his older brother Joffrey. Unlike Joffrey, he has little desire for power and prefers peace over conflict. He falls deeply in love with Margaery Tyrell, whose influence helps him become a more thoughtful ruler but also creates tension with Cersei. As the Faith Militant gains authority under the High Sparrow, Tommen finds himself unable to balance the competing demands of his wife, mother, and religious leaders. Hoping to avoid bloodshed, he repeatedly chooses compromise, but his indecisiveness allows others to manipulate events around him. When Cersei destroys the Great Sept of Baelor using wildfire, killing Margaery and countless others, Tommen is devastated by the loss of his wife and the realization of his mother's actions. Overcome with grief and hopelessness, he silently removes his crown and jumps from a window in the Red Keep, ending his own life. His death leaves Cersei with no surviving children and paves the way for her to seize the Iron Throne herself."
   },
   {
     "id": 32,
@@ -538,7 +570,8 @@
     "father": "Robert Baratheon",
     "mother": null,
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Gendry is the unacknowledged bastard son of King Robert Baratheon and a talented blacksmith raised in King's Landing. Unaware of his royal parentage for most of his life, he is targeted after Robert's death because Joffrey seeks to eliminate all of Robert's illegitimate children. Gendry escapes the city with Yoren's Night's Watch recruits and befriends Arya Stark and Hot Pie during their journey through the Riverlands. Eventually captured by the Brotherhood Without Banners, he is later handed over to Melisandre, who uses his royal blood in magical rituals supporting Stannis Baratheon's claim. Davos Seaworth secretly frees Gendry before he can be sacrificed. Years later, Gendry returns as a skilled weaponsmith and forges dragonglass weapons for the defenders preparing to fight the White Walkers. He fights bravely during the Battle of Winterfell and survives the Great War. After Daenerys Targaryen legitimizes him as Gendry Baratheon and names him Lord of Storm's End, he becomes the first officially recognized Baratheon heir since Robert's death. He proposes marriage to Arya Stark, but she declines, choosing a different path. Gendry nevertheless remains a respected lord and participates in selecting Bran Stark as king."
   },
   {
     "id": 33,
@@ -556,7 +589,8 @@
     "father": "Jeor Mormont",
     "mother": null,
     "children": [],
-    "dragons": []
+    "dragons": [],
+    "description": "Ser Jorah Mormont is the exiled heir of House Mormont who flees Westeros after illegally selling poachers into slavery to pay his debts. Living in Essos, he initially spies on Daenerys Targaryen for King Robert Baratheon in exchange for a royal pardon. However, as he comes to know Daenerys, Jorah develops genuine loyalty and deep, unrequited love for her. He repeatedly risks his life protecting her from assassins, advising her during her early conquests, and serving as one of her most trusted knights. When Daenerys discovers his past espionage, she banishes him despite his sincere remorse. Determined to earn forgiveness, Jorah survives slavery, gladiatorial combat, and a greyscale infection before returning to Daenerys' service after being cured by Samwell Tarly at the Citadel. He accompanies Jon Snow beyond the Wall and later fights in the Battle of Winterfell. During the final defense of the godswood, Jorah sacrifices himself protecting Daenerys from waves of undead attackers. He dies in her arms after ensuring her survival, finally receiving her gratitude and forgiveness. His unwavering devotion makes him one of Daenerys' most loyal and tragic companions throughout the series."
   },
   {
     "id": 34,
@@ -566,7 +600,8 @@
     "title": "The Bastard of Bolton",
     "family": "Bolton",
     "image": "ramsey-bolton.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/ramsey-bolton.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/ramsey-bolton.jpg",
+    "description": "Ramsay Bolton, originally born Ramsay Snow, is the sadistic and illegitimate son of Roose Bolton. Gifted with intelligence but driven by extreme cruelty, Ramsay delights in psychological and physical torture, making him one of the most feared figures in Westeros. After capturing Theon Greyjoy, he subjects him to prolonged abuse until Theon loses his identity and becomes the broken servant known as 'Reek.' Following his legitimization by King Tommen, Ramsay becomes the heir to House Bolton and later murders his father Roose, stepmother Walda, and infant half-brother to secure sole control of the North. Ramsay forces Sansa Stark into marriage and repeatedly abuses her, strengthening northern hatred toward House Bolton. During the Battle of the Bastards, Ramsay cruelly murders Rickon Stark to provoke Jon Snow into abandoning his strategy. Although his forces initially gain the upper hand, the arrival of the Knights of the Vale turns the battle against him. Captured after Winterfell falls, Ramsay is imprisoned by Sansa, who sentences him to death by releasing his own starving hounds. Abandoned by the animals he once weaponized against others, Ramsay is torn apart while Sansa quietly watches, bringing justice for countless victims."
   },
   {
     "id": 35,
@@ -576,7 +611,8 @@
     "title": "Queen Consort",
     "family": "Stark",
     "image": "talisa-stark.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/talisa-stark.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/talisa-stark.jpg",
+    "description": "Talisa Maegyr is a noblewoman from Volantis who rejects her privileged upbringing to become a battlefield healer in Westeros. While caring for wounded soldiers during the War of the Five Kings, she meets Robb Stark, and the two gradually fall in love despite Robb's political obligation to marry a daughter of House Frey. Choosing love over duty, Robb marries Talisa, unintentionally breaking his alliance with Walder Frey and weakening his political position. Talisa supports Robb throughout his campaign, offering medical assistance and compassionate advice while remaining largely removed from court politics. She becomes pregnant with their first child and dreams of raising their family peacefully after the war ends. During Edmure Tully's wedding at the Twins, Talisa accompanies Robb despite the fragile reconciliation with House Frey. The celebration turns into the Red Wedding when Walder Frey, Roose Bolton, and the Lannisters betray the Stark forces. Talisa is brutally stabbed multiple times in the abdomen, killing both her and her unborn child before Robb's eyes. Her murder is one of the most horrifying moments of the massacre and symbolizes the complete destruction of Robb Stark's hopes for both his kingdom and his family."
   },
   {
     "id": 36,
@@ -597,7 +633,8 @@
     "children": [
       "Jorah Mormont"
     ],
-    "dragons": []
+    "dragons": [],
+    "description": "Jeor Mormont, known as the Old Bear, is the respected Lord Commander of the Night's Watch at the beginning of the series. Having voluntarily surrendered his ancestral seat on Bear Island to his son Jorah, Jeor dedicates the remainder of his life to defending the Wall. He recognizes Jon Snow's leadership potential early and becomes one of his most important mentors, teaching him that duty often requires difficult sacrifices. Concerned by increasing reports of supernatural activity beyond the Wall, Jeor leads the Great Ranging to investigate the disappearance of Benjen Stark and the growing threat posed by the White Walkers. The expedition ultimately ends in disaster after the Night's Watch suffers heavy losses at the Fist of the First Men. Retreating to Craster's Keep, Jeor is murdered during a mutiny led by dissatisfied members of the Watch. Before his death, he remains committed to protecting the realm from the true enemy beyond the Wall rather than the political struggles of Westeros. His leadership, wisdom, and belief in Jon Snow significantly influence Jon's later decisions as Lord Commander and King in the North."
   },
   {
     "id": 37,
@@ -607,7 +644,8 @@
     "title": "High Septon",
     "family": "Sparrow",
     "image": "the-high-sparrow.jpg",
-    "imageUrl": "https://thronesapi.com/assets/images/the-high-sparrow.jpg"
+    "imageUrl": "https://thronesapi.com/assets/images/the-high-sparrow.jpg",
+    "description": "The High Sparrow is the humble yet extraordinarily influential leader of the Faith Militant, emerging during a period of political instability in King's Landing. Rejecting wealth and luxury, he presents himself as a servant of the common people while gradually expanding the authority of the Faith over the monarchy. With Cersei Lannister's initial support, the Faith Militant is restored and begins arresting nobles accused of moral crimes. The High Sparrow imprisons Loras Tyrell, Margaery Tyrell, and eventually Cersei herself, forcing Cersei to endure the humiliating Walk of Atonement through the streets of King's Landing. Calm, patient, and highly intelligent, he manipulates both King Tommen and the nobility into accepting increasing religious authority. Although he appears peaceful, his uncompromising ideology threatens the balance between church and crown. Confident that Cersei can no longer oppose him, the High Sparrow gathers the royal court inside the Great Sept of Baelor for Loras' trial. Moments before proceedings begin, Cersei detonates hidden caches of wildfire beneath the Sept, destroying the building and killing the High Sparrow along with hundreds of worshippers, nobles, and members of the Faith Militant."
   },
   {
     "id": 38,
@@ -634,7 +672,8 @@
       "Dorea Sand",
       "Loreza Sand"
     ],
-    "dragons": []
+    "dragons": [],
+    "description": "Prince Oberyn Martell, famously known as the Red Viper of Dorne, is a charismatic warrior, scholar, and diplomat renowned for his exceptional combat skills and use of poison. He arrives in King's Landing to attend Joffrey Baratheon's wedding but secretly seeks vengeance against House Lannister for the deaths of his sister Elia Martell and her children during Robert's Rebellion. Oberyn openly challenges the prejudices of Westerosi society through his acceptance of different cultures, religions, and relationships, while remaining fiercely loyal to his homeland of Dorne. After Tyrion Lannister is accused of murdering Joffrey, Oberyn volunteers to serve as his champion in a trial by combat against Ser Gregor Clegane, the man responsible for Elia's murder. During the duel, Oberyn outmaneuvers and mortally wounds Gregor with a poisoned spear while repeatedly demanding a confession. However, his desire for justice causes him to lower his guard, allowing Gregor to seize him. The Mountain confesses before brutally crushing Oberyn's skull with his bare hands, killing him instantly. Although Oberyn dies, the poison eventually kills Gregor as well, and his quest for vengeance continues to influence the Martells and Ellaria Sand long after his death."
   },
   {
     "id": 39,

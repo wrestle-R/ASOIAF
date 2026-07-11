@@ -1,0 +1,319 @@
+[
+  {
+    "id": 0,
+    "firstName": "Duncan",
+    "lastName": "the Tall",
+    "fullName": "Ser Duncan the Tall",
+    "title": "Hedge Knight",
+    "family": "None",
+    "image": "ser-duncan-the-tall.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Dunk",
+      "Ser Duncan",
+      "Ser Duncan the Tall"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Duncan the Tall, commonly known as Dunk, is a humble hedge knight who begins his journey after the death of his mentor, Ser Arlan of Pennytree. Despite his enormous size and strength, Dunk possesses a kind heart, an unwavering sense of justice, and a deep respect for the ideals of true knighthood. After burying Ser Arlan, he decides to continue traveling as a knight in his own right and journeys to the great tournament at Ashford Meadow in search of employment and honor. Along the way he encounters a mysterious young boy called Egg, who insists on becoming his squire. Dunk quickly discovers that the responsibilities of knighthood extend far beyond combat as he becomes involved in disputes among nobles and members of House Targaryen. His willingness to defend the innocent, even against princes of the royal family, demonstrates the courage and integrity that define his character. His adventures mark the beginning of one of the most famous partnerships in Westerosi history."
+  },
+  {
+    "id": 1,
+    "firstName": "Aegon",
+    "lastName": "Targaryen",
+    "fullName": "Prince Aegon Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "aegon-egg-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Egg",
+      "Prince Aegon",
+      "Aegon the Unlikely"
+    ],
+    "father": "Maekar Targaryen",
+    "mother": "Dyanna Dayne",
+    "children": [],
+    "dragons": [],
+    "description": "Prince Aegon Targaryen, affectionately known as Egg, is the youngest son of Prince Maekar Targaryen. Curious, intelligent, and adventurous, Egg disguises himself as a common boy by shaving his distinctive silver hair and attaching himself to Ser Duncan the Tall as a squire. Although born into the royal family, Egg is fascinated by the lives of ordinary people and wishes to experience the world beyond the Red Keep. Throughout his travels with Dunk, he learns the values of humility, compassion, and justice while witnessing firsthand the hardships faced by the smallfolk. His friendship with Dunk profoundly shapes his outlook on leadership and duty, laying the foundation for the wise ruler he will one day become."
+  },
+  {
+    "id": 2,
+    "firstName": "Baelor",
+    "lastName": "Targaryen",
+    "fullName": "Prince Baelor Targaryen",
+    "title": "Prince of Dragonstone",
+    "family": "House Targaryen",
+    "image": "baelor-breakspear-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Breakspear",
+      "Prince Baelor",
+      "Baelor Breakspear"
+    ],
+    "father": "Daeron II Targaryen",
+    "mother": "Myriah Martell",
+    "children": [
+      "Valarr Targaryen"
+    ],
+    "dragons": [],
+    "description": "Prince Baelor Targaryen, better known as Baelor Breakspear, is the eldest son of King Daeron II Targaryen and heir to the Iron Throne. Respected throughout Westeros for his wisdom, fairness, and military skill, Baelor is regarded as one of the finest princes of his generation. At the Ashford tournament he intervenes when Ser Duncan the Tall is unjustly accused after defending Tanselle from Prince Aerion. Believing that justice must prevail regardless of rank, Baelor joins Dunk's side in the Trial of Seven, risking both his life and his claim to the throne. His actions demonstrate extraordinary honor and reinforce his reputation as one of House Targaryen's greatest princes."
+  },
+  {
+    "id": 3,
+    "firstName": "Maekar",
+    "lastName": "Targaryen",
+    "fullName": "Prince Maekar Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "maekar-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Prince Maekar"
+    ],
+    "father": "Daeron II Targaryen",
+    "mother": "Myriah Martell",
+    "children": [
+      "Daeron Targaryen",
+      "Aerion Targaryen",
+      "Aemon Targaryen",
+      "Aegon Targaryen"
+    ],
+    "dragons": [],
+    "description": "Prince Maekar Targaryen is the fourth son of King Daeron II Targaryen and the father of Prince Aegon, known as Egg. Stern, disciplined, and fiercely committed to duty, Maekar is a respected military commander who places honor and loyalty to his family above personal ambition. During the events at Ashford Meadow, he initially stands beside his son Aerion in the dispute with Ser Duncan but later participates in the Trial of Seven out of loyalty to his family. Though often perceived as harsh and uncompromising, Maekar is driven by a deep sense of responsibility and the belief that members of House Targaryen must uphold the dignity of the crown."
+  },
+  {
+    "id": 4,
+    "firstName": "Aerion",
+    "lastName": "Targaryen",
+    "fullName": "Prince Aerion Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "aerion-brightflame-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Brightflame",
+      "Prince Aerion"
+    ],
+    "father": "Maekar Targaryen",
+    "mother": "Dyanna Dayne",
+    "children": [
+      "Maegor Targaryen"
+    ],
+    "dragons": [],
+    "description": "Prince Aerion Targaryen, known as Brightflame, is the second son of Prince Maekar Targaryen and one of the most feared members of the royal family. Arrogant, cruel, and convinced of his own superiority, Aerion delights in abusing those beneath him. At the Ashford tournament he brutally attacks the puppeteer Tanselle for entertainment, prompting Ser Duncan the Tall to intervene. Aerion retaliates by accusing Dunk of assaulting a prince, leading to the Trial of Seven that becomes the central conflict of the story. His violent temperament and abuse of royal privilege make him one of the principal antagonists of the series."
+  },
+  {
+    "id": 5,
+    "firstName": "Daeron",
+    "lastName": "Targaryen",
+    "fullName": "Prince Daeron Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "daeron-the-drunken-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Daeron the Drunken",
+      "Prince Daeron"
+    ],
+    "father": "Maekar Targaryen",
+    "mother": "Dyanna Dayne",
+    "children": [],
+    "dragons": [],
+    "description": "Prince Daeron Targaryen, often called Daeron the Drunken, is the eldest son of Prince Maekar Targaryen. Unlike his ambitious brothers, Daeron prefers wine to politics and often appears carefree and irresponsible. Beneath his drunken exterior, however, he possesses prophetic dragon dreams that frequently trouble him and occasionally reveal glimpses of future events. At the tournament at Ashford Meadow he becomes caught up in the conflict surrounding Ser Duncan the Tall but contributes little to the fighting itself. His unusual dreams and reluctance to embrace his princely responsibilities make him one of the more mysterious members of House Targaryen."
+  },
+  {
+    "id": 6,
+    "firstName": "Valarr",
+    "lastName": "Targaryen",
+    "fullName": "Prince Valarr Targaryen",
+    "title": "Prince",
+    "family": "House Targaryen",
+    "image": "valarr-targaryen.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Prince Valarr"
+    ],
+    "father": "Baelor Targaryen",
+    "mother": "Jena Dondarrion",
+    "children": [],
+    "dragons": [],
+    "description": "Prince Valarr Targaryen is the eldest son of Prince Baelor Breakspear and grandson of King Daeron II Targaryen. As one of the highest-ranking princes of the realm, Valarr participates in the Ashford tournament and represents the dignity and prestige of the royal family. Though initially associated with the Targaryen princes opposing Ser Duncan the Tall, Valarr ultimately follows his father Baelor's sense of honor and duty. His conduct reflects the disciplined upbringing and strong moral example provided by Baelor Breakspear."
+  },
+  {
+    "id": 7,
+    "firstName": "Lyonel",
+    "lastName": "Baratheon",
+    "fullName": "Ser Lyonel Baratheon",
+    "title": "Knight",
+    "family": "House Baratheon",
+    "image": "lyonel-baratheon.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "The Laughing Storm",
+      "Ser Lyonel"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Lyonel Baratheon, famously known as the Laughing Storm, is one of the greatest young knights in Westeros and a proud member of House Baratheon. Charismatic, fearless, and fiercely honorable, Lyonel earns widespread admiration for both his martial skill and his spirited personality. During the events at Ashford Meadow he joins Ser Duncan the Tall in the Trial of Seven, believing that Dunk deserves a fair chance against Prince Aerion's accusations. His willingness to risk his own life for justice reinforces his reputation as one of the realm's finest knights."
+  },
+  {
+    "id": 8,
+    "firstName": "Steffon",
+    "lastName": "Fossoway",
+    "fullName": "Ser Steffon Fossoway",
+    "title": "Knight",
+    "family": "House Fossoway",
+    "image": "steffon-fossoway.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Ser Steffon"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Steffon Fossoway is a knight of House Fossoway and one of the competitors at the Ashford tournament. Loyal to Prince Aerion and the Targaryen side of the dispute, Steffon agrees to fight against Ser Duncan the Tall during the Trial of Seven. Though not portrayed as cruel or malicious, his loyalty to his allies places him in direct opposition to Dunk. His participation highlights the difficult choices many knights face when personal honor conflicts with feudal obligations."
+  },
+  {
+    "id": 9,
+    "firstName": "Raymun",
+    "lastName": "Fossoway",
+    "fullName": "Ser Raymun Fossoway",
+    "title": "Knight",
+    "family": "House Fossoway",
+    "image": "raymun-fossoway.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Ser Raymun"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Ser Raymun Fossoway is a young knight of House Fossoway and cousin to Ser Steffon Fossoway. Initially expected to support his family's side in the conflict, Raymun instead chooses to stand beside Ser Duncan the Tall after recognizing that Dunk acted honorably in defending Tanselle from Prince Aerion. His decision costs him his place within the senior branch of House Fossoway and leads to the creation of the green-apple branch of the family. Raymun's willingness to sacrifice status for justice makes him one of the story's clearest examples of true knighthood."
+  },
+  {
+    "id": 15,
+    "firstName": "Tanselle",
+    "lastName": "",
+    "fullName": "Tanselle",
+    "title": "Puppeteer",
+    "family": "None",
+    "image": "tanselle.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Tanselle Too-Tall"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Tanselle, often called Tanselle Too-Tall, is a traveling puppeteer performing at the tournament at Ashford Meadow. Gifted, independent, and kind-hearted, she earns the admiration of many spectators through her elaborate puppet shows. Her life changes when Prince Aerion Targaryen violently destroys her performance and brutally attacks her simply for his own amusement. Ser Duncan the Tall intervenes to protect her, striking the prince and triggering the chain of events that leads to the Trial of Seven. Although she plays no role in the fighting itself, Tanselle becomes the innocent victim whose mistreatment exposes Aerion's cruelty and inspires Dunk to risk everything in defense of justice."
+  },
+  {
+    "id": 16,
+    "firstName": "Steely",
+    "lastName": "Pate",
+    "fullName": "Steely Pate",
+    "title": "Blacksmith",
+    "family": "None",
+    "image": "steely-pate.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Pate",
+      "Steely Pate"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Steely Pate is the local blacksmith serving the tournament grounds at Ashford Meadow. Skilled in forging and repairing weapons and armor, he helps prepare the many knights competing in the lists. After Ser Duncan the Tall arrives with worn equipment inherited from Ser Arlan of Pennytree, Pate assists in repairing and fitting Dunk's armor, allowing the young hedge knight to compete with greater confidence. Though not a warrior himself, Steely Pate contributes to Dunk's success through honest craftsmanship and practical support, representing the hardworking artisans who make tournaments possible."
+  },
+  {
+    "id": 17,
+    "firstName": "Plummer",
+    "lastName": "",
+    "fullName": "Plummer",
+    "title": "Innkeeper",
+    "family": "None",
+    "image": "plummer.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Plummer is a commoner encountered by Ser Duncan the Tall and Egg during their travels surrounding the Ashford tournament. Like many ordinary people living under the rule of kings and great lords, Plummer provides a grounded perspective on the lives of the smallfolk. His interactions with Dunk and Egg emphasize the contrast between noble politics and the everyday concerns of ordinary Westerosi citizens. Though his role is limited, Plummer helps reinforce one of the central themes of the series: that true knighthood exists to protect common people rather than merely serve the ambitions of nobles."
+  },
+  {
+    "id": 18,
+    "firstName": "Beony",
+    "lastName": "",
+    "fullName": "Beony",
+    "title": "Smallfolk",
+    "family": "None",
+    "image": "beony.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Beony is one of the smallfolk characters appearing during the events surrounding the Ashford Meadow tournament. Though not involved in the political struggles between the Targaryen princes and Ser Duncan the Tall, Beony contributes to the depiction of everyday life in Westeros during a time of relative peace. Through interactions with travelers, merchants, and knights, characters like Beony illustrate the lives that are often overlooked in the struggles of the great houses, reinforcing the grounded and human perspective that distinguishes the adventures of Dunk and Egg."
+  },
+  {
+    "id": 19,
+    "firstName": "Red",
+    "lastName": "",
+    "fullName": "Red",
+    "title": "Stableboy",
+    "family": "None",
+    "image": "red.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Red is a young stableboy working around the tournament grounds at Ashford Meadow. Responsible for caring for horses and assisting visiting knights, he represents the countless ordinary workers whose labor supports the great tournaments of Westeros. Through characters like Red, the story highlights the contrast between the glamorous lives of nobles and the hardworking smallfolk who keep the realm functioning. His brief appearances contribute to the grounded atmosphere that defines A Knight of the Seven Kingdoms."
+  },
+  {
+    "id": 20,
+    "firstName": "Gwin",
+    "lastName": "",
+    "fullName": "Lady Gwin",
+    "title": "Lady",
+    "family": "None",
+    "image": "lady-gwin.jpg",
+    "imageUrl": "",
+    "tvShow": "A Knight of the Seven Kingdoms",
+    "aliases": [
+      "Lady Gwin"
+    ],
+    "father": null,
+    "mother": null,
+    "children": [],
+    "dragons": [],
+    "description": "Lady Gwin is a noblewoman appearing in the television adaptation of A Knight of the Seven Kingdoms. Present among the assembled nobles during the tournament at Ashford Meadow, she represents the aristocratic society observing the contests, feasts, and political tensions that unfold throughout the story. Although her role is relatively limited compared to the principal characters, Lady Gwin helps illustrate the social environment surrounding the tournament and the wider network of noble families present during this pivotal event."
+  }
+]
