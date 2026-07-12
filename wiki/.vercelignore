@@ -1,0 +1,4 @@
+node_modules
+dist
+.data/*.download
+public/assets/world-map.png

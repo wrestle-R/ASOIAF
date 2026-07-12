@@ -1,0 +1,36 @@
+{
+  "name": "wiki-of-ice-and-fire",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c yellow,cyan \"node --watch server/index.js\" \"vite\"",
+    "start": "node server/index.js",
+    "prepare:db": "node scripts/prepare-database.mjs",
+    "prebuild": "npm run prepare:db",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run test && npm run build"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "compression": "^1.8.1",
+    "express": "^5.1.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.8.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@vitejs/plugin-react": "^5.0.2",
+    "concurrently": "^9.2.1",
+    "jsdom": "^26.1.0",
+    "tailwindcss": "^4.1.13",
+    "vite": "^7.1.5",
+    "vitest": "^3.2.4"
+  }
+}

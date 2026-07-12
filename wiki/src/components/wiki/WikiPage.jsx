@@ -1,0 +1,195 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { fetchCollections, fetchWikiEntries } from "../../data/houseApi.js";
+import { WikiEntryCard } from "./WikiEntryCard.jsx";
+import { WikiEntryPanel } from "./WikiEntryPanel.jsx";
+
+const PAGE_SIZE = 18;
+
+export function WikiPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchInput, setSearchInput] = useState(searchParams.get("search") || "");
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [collection, setCollection] = useState(searchParams.get("collection") || "all");
+  const [collections, setCollections] = useState([]);
+  const [entries, setEntries] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [error, setError] = useState(null);
+  const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setSearch(searchInput.trim()), 280);
+    return () => window.clearTimeout(timer);
+  }, [searchInput]);
+
+  useEffect(() => {
+    const next = {};
+    if (search) next.search = search;
+    if (collection !== "all") next.collection = collection;
+    setSearchParams(next, { replace: true });
+  }, [collection, search, setSearchParams]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetchCollections(controller.signal)
+      .then((payload) => setCollections(payload.collections ?? []))
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
+
+  const loadEntries = useCallback(async (offset = 0, append = false) => {
+    if (append) setLoadingMore(true);
+    else setLoading(true);
+    setError(null);
+    try {
+      const payload = await fetchWikiEntries(
+        { search, collection, limit: PAGE_SIZE, offset },
+      );
+      setEntries((current) => append ? [...current, ...payload.entries] : payload.entries);
+      setTotal(payload.total);
+    } catch (reason) {
+      setError(reason.message);
+    } finally {
+      setLoading(false);
+      setLoadingMore(false);
+    }
+  }, [collection, search]);
+
+  useEffect(() => {
+    loadEntries();
+  }, [loadEntries]);
+
+  const totalRecords = useMemo(
+    () => collections.reduce((sum, item) => sum + item.count, 0),
+    [collections],
+  );
+
+  return (
+    <main className="wiki-page">
+      <header className="wiki-header">
+        <Link to="/" className="wiki-brand">
+          <span>W</span>
+          <strong>Wiki of Ice and Fire</strong>
+        </Link>
+        <nav aria-label="Archive navigation">
+          <Link to="/">Interactive map</Link>
+          <a href="#archive-index">Browse records</a>
+        </nav>
+      </header>
+
+      <section className="wiki-hero">
+        <div className="wiki-hero-ornament" aria-hidden="true">✦</div>
+        <p className="eyebrow">The collected record · Volume I</p>
+        <h1>Names carried<br />through <em>ice</em> and <i>fire</i>.</h1>
+        <p className="wiki-intro">
+          Open the archive by name, allegiance, or chronicle. Every entry below is read
+          directly from the local SQLite record.
+        </p>
+        <div className="wiki-stat-line" aria-label={`${totalRecords} archive records`}>
+          <span>{totalRecords || "—"}</span>
+          <small>records preserved<br />in one local archive</small>
+        </div>
+      </section>
+
+      <section className="archive-index" id="archive-index">
+        <div className="archive-toolbar">
+          <label className="archive-search">
+            <span>Search the archive</span>
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.5" cy="10.5" r="6.5" />
+                <path d="m16 16 5 5" />
+              </svg>
+              <input
+                type="search"
+                value={searchInput}
+                onChange={(event) => setSearchInput(event.target.value)}
+                placeholder="A name, house, or title…"
+              />
+              {searchInput && (
+                <button type="button" onClick={() => setSearchInput("")} aria-label="Clear search">×</button>
+              )}
+            </div>
+          </label>
+
+          <div className="collection-tabs" role="group" aria-label="Filter by chronicle">
+            <button
+              type="button"
+              className={collection === "all" ? "is-active" : ""}
+              onClick={() => setCollection("all")}
+            >
+              All <small>{totalRecords}</small>
+            </button>
+            {collections.map((item) => (
+              <button
+                type="button"
+                key={item.id}
+                className={collection === item.id ? "is-active" : ""}
+                onClick={() => setCollection(item.id)}
+              >
+                {item.label} <small>{item.count}</small>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="archive-result-heading" aria-live="polite">
+          <p>{search ? <>Results for <strong>“{search}”</strong></> : "Recently opened folios"}</p>
+          <span>{total} {total === 1 ? "entry" : "entries"}</span>
+        </div>
+
+        {error ? (
+          <div className="wiki-error" role="alert">
+            <p className="eyebrow">Archive unavailable</p>
+            <h2>The record could not be read.</h2>
+            <p>{error}</p>
+            <button type="button" onClick={() => loadEntries()}>Try again</button>
+          </div>
+        ) : loading ? (
+          <div className="folio-loading" aria-label="Loading archive records">
+            {Array.from({ length: 9 }, (_, index) => <span key={index} />)}
+          </div>
+        ) : entries.length ? (
+          <>
+            <div className="wiki-grid">
+              {entries.map((entry, index) => (
+                <WikiEntryCard
+                  key={`${entry.recordId}-${index}`}
+                  entry={entry}
+                  index={index}
+                  onOpen={setSelected}
+                />
+              ))}
+            </div>
+            {entries.length < total && (
+              <button
+                type="button"
+                className="load-more"
+                disabled={loadingMore}
+                onClick={() => loadEntries(entries.length, true)}
+              >
+                {loadingMore ? "Opening more folios…" : "Open the next folios"}
+              </button>
+            )}
+          </>
+        ) : (
+          <div className="wiki-empty">
+            <span aria-hidden="true">∅</span>
+            <h2>No matching record was found.</h2>
+            <p>Try a shorter name, a house, or another chronicle.</p>
+          </div>
+        )}
+      </section>
+
+      <footer className="wiki-footer">
+        <span>Wiki of Ice and Fire</span>
+        <p>A private, SQLite-backed archive.</p>
+        <Link to="/">Return to the map ↑</Link>
+      </footer>
+
+      {selected && <WikiEntryPanel entry={selected} onClose={() => setSelected(null)} />}
+    </main>
+  );
+}
