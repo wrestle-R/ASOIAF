@@ -1,5 +1,10 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  MAP_BOUNDARIES,
+  MAP_PLACE_LABELS,
+  MAP_REGION_LABELS,
+} from "../../data/mapAnnotations.js";
 import { withMapPosition } from "../../data/mapPositions.js";
 import { HouseDetailPanel } from "./HouseDetailPanel.jsx";
 import { HouseMarker } from "./HouseMarker.jsx";
@@ -59,6 +64,29 @@ export function MapLanding({ houses, introActive, onReplay, partial }) {
               draggable="false"
             />
             <div className="map-toning" aria-hidden="true" />
+            <div className="atlas-annotations" aria-hidden="true">
+              <svg className="atlas-boundaries" viewBox="0 0 100 100" preserveAspectRatio="none">
+                {MAP_BOUNDARIES.map((path) => <path key={path} d={path} />)}
+              </svg>
+              {MAP_REGION_LABELS.map(({ name, x, y, rotate = 0 }) => (
+                <span
+                  className="atlas-label atlas-region-label"
+                  key={name}
+                  style={{ left: `${x}%`, top: `${y}%`, "--label-rotation": `${rotate}deg` }}
+                >
+                  {name}
+                </span>
+              ))}
+              {MAP_PLACE_LABELS.map(({ name, x, y }) => (
+                <span
+                  className="atlas-label atlas-place-label"
+                  key={name}
+                  style={{ left: `${x}%`, top: `${y}%` }}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
             <div className="map-title" aria-hidden="true">
               <span>Wiki of</span>
               <strong>Ice <i>&amp;</i> Fire</strong>

@@ -37,28 +37,45 @@ function motifFromText(text = "") {
   return null;
 }
 
+const CANONICAL_SIGILS = Object.freeze({
+  "house-stark": "/assets/houses/house-stark.webp",
+  "house-arryn": "/assets/houses/house-arryn.webp",
+  "house-tully": "/assets/houses/house-tully.webp",
+  "house-greyjoy": "/assets/houses/house-greyjoy.webp",
+  "house-lannister": "/assets/houses/house-lannister.webp",
+  "house-tyrell": "/assets/houses/house-tyrell.webp",
+  "house-baratheon": "/assets/houses/house-baratheon.webp",
+  "house-martell": "/assets/houses/house-martell.webp",
+  "house-targaryen": "/assets/houses/house-targaryen.webp",
+});
+
 export function SigilIcon({ house, size = 38, className = "" }) {
+  const image = CANONICAL_SIGILS[house.id];
   const motif = motifFromText(house.coatOfArms);
   const initial = house.name?.replace(/^House\s+/i, "").charAt(0) || "?";
   const color = house.color || "#8b7650";
 
   return (
     <span
-      className={`sigil ${className}`}
+      className={`sigil ${image ? "has-image" : ""} ${className}`}
       style={{ "--sigil-color": color, width: size, height: size }}
       aria-hidden="true"
     >
-      <svg viewBox="0 0 24 24" role="presentation">
-        {motif ? (
-          <g fill="none" stroke="currentColor" strokeWidth="1.35" strokeLinejoin="round">
-            <Motif type={motif} />
-          </g>
-        ) : (
-          <text x="12" y="16" textAnchor="middle" fontSize="11">
-            {initial}
-          </text>
-        )}
-      </svg>
+      {image ? (
+        <img src={image} alt="" draggable="false" />
+      ) : (
+        <svg viewBox="0 0 24 24" role="presentation">
+          {motif ? (
+            <g fill="none" stroke="currentColor" strokeWidth="1.35" strokeLinejoin="round">
+              <Motif type={motif} />
+            </g>
+          ) : (
+            <text x="12" y="16" textAnchor="middle" fontSize="11">
+              {initial}
+            </text>
+          )}
+        </svg>
+      )}
     </span>
   );
 }

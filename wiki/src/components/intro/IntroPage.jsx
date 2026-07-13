@@ -55,13 +55,8 @@ export function IntroPage() {
   }, []);
 
   useEffect(() => {
-    if (!introActive || reducedMotion || !houses.length) {
-      if (reducedMotion && introActive) finishIntro();
-      return undefined;
-    }
-    const timer = window.setTimeout(finishIntro, 7600);
-    return () => window.clearTimeout(timer);
-  }, [finishIntro, houses.length, introActive, reducedMotion]);
+    if (reducedMotion && introActive) finishIntro();
+  }, [finishIntro, introActive, reducedMotion]);
 
   function replayIntro() {
     if (reducedMotion) return;
@@ -83,7 +78,13 @@ export function IntroPage() {
         onReplay={replayIntro}
         partial={houses.length !== 9}
       />
-      {introActive && !reducedMotion && <IntroOverlay onSkip={finishIntro} />}
+      {introActive && !reducedMotion && (
+        <IntroOverlay
+          houses={houses}
+          onSkip={finishIntro}
+          onComplete={finishIntro}
+        />
+      )}
     </>
   );
 }

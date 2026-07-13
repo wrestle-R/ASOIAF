@@ -1,11 +1,13 @@
 import { forwardRef } from "react";
+import { INTRO_HOUSE_ORDER } from "../../data/mapPositions.js";
 import { SigilIcon } from "./SigilIcon.jsx";
 
 export const HouseMarker = forwardRef(function HouseMarker(
   { house, selected, muted, onSelect, introActive },
   ref,
 ) {
-  const { x, y, labelOffset, order } = house.position;
+  const { x, y, labelOffset, seat, markerScale } = house.position;
+  const revealIndex = Math.max(0, INTRO_HOUSE_ORDER.indexOf(house.id));
 
   return (
     <button
@@ -16,7 +18,8 @@ export const HouseMarker = forwardRef(function HouseMarker(
         left: `${x}%`,
         top: `${y}%`,
         "--marker-color": house.color || "#bda66f",
-        "--marker-delay": `${introActive ? 4.5 + order * 0.18 : 0}s`,
+        "--marker-delay": `${introActive ? 1.25 + revealIndex * 1.05 : 0}s`,
+        "--marker-scale": markerScale,
       }}
       aria-label={`${house.name}${house.region ? `, ${house.region}` : ""}`}
       aria-pressed={selected}
@@ -26,7 +29,8 @@ export const HouseMarker = forwardRef(function HouseMarker(
       <SigilIcon house={house} />
       <span className="marker-label">
         <span>{house.name.replace(/^House\s+/i, "")}</span>
-        {house.seat && <small>{house.seat}</small>}
+        <small>{house.region || seat || house.seat}</small>
+        {house.words && <em>{house.words}</em>}
       </span>
     </button>
   );
