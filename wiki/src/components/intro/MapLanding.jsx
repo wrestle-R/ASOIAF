@@ -1,19 +1,25 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { BookOpenIcon, CircleAlertIcon } from "lucide-react";
 import { Link } from "react-router-dom";
-import {
-  MAP_BOUNDARIES,
-  MAP_PLACE_LABELS,
-  MAP_REGION_LABELS,
-} from "../../data/mapAnnotations.js";
+import { Alert, AlertAction, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { withMapPosition } from "../../data/mapPositions.js";
 import { HouseDetailPanel } from "./HouseDetailPanel.jsx";
 import { HouseMarker } from "./HouseMarker.jsx";
 
-export function MapLanding({ houses, introActive, onReplay, partial }) {
+export function MapLanding({ houses, loading, error, onRetry, partial }) {
   const positionedHouses = useMemo(() => withMapPosition(houses), [houses]);
   const [selected, setSelected] = useState(null);
   const [opener, setOpener] = useState(null);
-  const viewportRef = useRef(null);
+  const [phoneLayout, setPhoneLayout] = useState(() => window.matchMedia("(max-width: 880px)").matches);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 880px)");
+    const updateLayout = (event) => setPhoneLayout(event.matches);
+    media.addEventListener("change", updateLayout);
+    return () => media.removeEventListener("change", updateLayout);
+  }, []);
 
   const handleSelect = useCallback((house, button) => {
     setSelected(house);
@@ -22,29 +28,40 @@ export function MapLanding({ houses, introActive, onReplay, partial }) {
 
   const closePanel = useCallback(() => setSelected(null), []);
 
-  function resetMap() {
-    viewportRef.current?.scrollTo({ left: 0, top: 0, behavior: "smooth" });
-  }
-
   return (
-    <main className={`map-page ${introActive ? "intro-is-active" : "intro-is-complete"}`}>
+    <main className="map-page">
       <header className="map-header">
         <Link to="/" className="brand-lockup" aria-label="Wiki of Ice and Fire home">
           <span className="brand-mark">W</span>
           <span>
             <strong>Wiki of Ice and Fire</strong>
-            <small>An archive of the known world</small>
+            <small>Westeros atlas</small>
           </span>
         </Link>
         <nav aria-label="Primary navigation">
-          <button type="button" className="text-button replay-button" onClick={onReplay}>
-            Replay intro
-          </button>
-          <Link className="enter-archive" to="/wiki">
-            Enter the archive <span aria-hidden="true">→</span>
+          <span className="map-hint">Select a sigil</span>
+          <Link
+            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "archive-button")}
+            to="/wiki"
+          >
+            <BookOpenIcon data-icon="inline-start" />
+            Archive
           </Link>
         </nav>
       </header>
+
+      {loading && <span className="sr-only" role="status">Loading house sigils</span>}
+
+      {error && (
+        <Alert className="map-alert" variant="destructive">
+          <CircleAlertIcon />
+          <AlertTitle>House records are unavailable</AlertTitle>
+          <AlertDescription>The map is ready, but its sigils could not be loaded.</AlertDescription>
+          <AlertAction>
+            <Button type="button" size="xs" variant="outline" onClick={onRetry}>Retry</Button>
+          </AlertAction>
+        </Alert>
+      )}
 
       {partial && (
         <p className="partial-notice" role="status">
@@ -53,45 +70,20 @@ export function MapLanding({ houses, introActive, onReplay, partial }) {
       )}
 
       <section className="map-shell" aria-label="Map of the great houses">
-        <div className="map-viewport" ref={viewportRef}>
+        <div className="map-viewport">
           <div className="map-stage">
-            <img
-              className="world-map"
-              src="/assets/world-map.webp"
-              alt="An original illustrated map with a western and eastern continent separated by a broad sea"
-              width="1484"
-              height="1060"
-              draggable="false"
-            />
+            <picture className="world-map-picture">
+              <source media="(max-width: 880px)" srcSet="/assets/world-map-realms-mobile-capitals.webp" />
+              <img
+                className="world-map"
+                src="/assets/world-map-houses.webp"
+                alt="An illustrated political map of the nine realms of Westeros"
+                width="1484"
+                height="1060"
+                draggable="false"
+              />
+            </picture>
             <div className="map-toning" aria-hidden="true" />
-            <div className="atlas-annotations" aria-hidden="true">
-              <svg className="atlas-boundaries" viewBox="0 0 100 100" preserveAspectRatio="none">
-                {MAP_BOUNDARIES.map((path) => <path key={path} d={path} />)}
-              </svg>
-              {MAP_REGION_LABELS.map(({ name, x, y, rotate = 0 }) => (
-                <span
-                  className="atlas-label atlas-region-label"
-                  key={name}
-                  style={{ left: `${x}%`, top: `${y}%`, "--label-rotation": `${rotate}deg` }}
-                >
-                  {name}
-                </span>
-              ))}
-              {MAP_PLACE_LABELS.map(({ name, x, y }) => (
-                <span
-                  className="atlas-label atlas-place-label"
-                  key={name}
-                  style={{ left: `${x}%`, top: `${y}%` }}
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-            <div className="map-title" aria-hidden="true">
-              <span>Wiki of</span>
-              <strong>Ice <i>&amp;</i> Fire</strong>
-              <small>An archive of the known world</small>
-            </div>
             <div className="marker-layer">
               {positionedHouses.map((house) => (
                 <HouseMarker
@@ -100,42 +92,20 @@ export function MapLanding({ houses, introActive, onReplay, partial }) {
                   selected={selected?.id === house.id}
                   muted={Boolean(selected && selected.id !== house.id)}
                   onSelect={handleSelect}
-                  introActive={introActive}
                 />
               ))}
             </div>
-            <span className="map-scale" aria-hidden="true">
-              <i /> Known world <i />
-            </span>
           </div>
         </div>
-        <button type="button" className="reset-map" onClick={resetMap}>
-          Reset map
-        </button>
         {selected && (
           <HouseDetailPanel
             house={selected}
             opener={opener}
             onClose={closePanel}
+            side={phoneLayout ? "bottom" : "right"}
           />
         )}
       </section>
-
-      <details className="house-index">
-        <summary>Houses on this map</summary>
-        <div>
-          {positionedHouses.map((house) => (
-            <button
-              type="button"
-              key={house.id}
-              onClick={(event) => handleSelect(house, event.currentTarget)}
-            >
-              <span>{house.name}</span>
-              <small>{house.region || house.seat}</small>
-            </button>
-          ))}
-        </div>
-      </details>
     </main>
   );
 }

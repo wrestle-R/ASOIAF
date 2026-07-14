@@ -3,6 +3,7 @@ import {
   CAMERA_SCALES,
   getMapCameraFrame,
   INTRO_HOUSE_ORDER,
+  MAP_LAYOUTS,
   MAP_POSITIONS,
 } from "../../data/mapPositions.js";
 import { SigilIcon } from "./SigilIcon.jsx";
@@ -125,7 +126,10 @@ export function IntroOverlay({ houses, onSkip, onComplete }) {
   }, [houses]);
 
   const activeHouse = orderedHouses[activeIndex] ?? null;
-  const cameraPosition = activeHouse ? MAP_POSITIONS[activeHouse.id] : null;
+  const phone = viewport.width <= 880;
+  const layoutName = phone ? "mobile" : "desktop";
+  const layout = MAP_LAYOUTS[layoutName];
+  const cameraPosition = activeHouse ? MAP_POSITIONS[layoutName][activeHouse.id] : null;
 
   useEffect(() => {
     const handleResize = () => setViewport({
@@ -140,20 +144,20 @@ export function IntroOverlay({ houses, onSkip, onComplete }) {
 
   const camera = useMemo(() => {
     const position = cameraPosition || { x: 50, y: 50 };
-    const phone = viewport.width <= 880;
     const baseScale = activeHouse ? CAMERA_SCALES[activeHouse.id] : 1;
-    const finaleTightening = scene === "kings-landing" ? 1.12 : 1;
-    const scale = baseScale * (phone ? 1.52 : 1) * finaleTightening;
+    const finaleTightening = scene === "kings-landing" ? 1.1 : 1;
+    const scale = baseScale * (phone ? 1.08 : 1) * finaleTightening;
     const frame = getMapCameraFrame({
       viewportWidth: viewport.width,
       viewportHeight: viewport.height,
       position,
       scale,
+      aspectRatio: layout.aspectRatio,
       focusX: phone ? 0.5 : 0.32,
       focusY: phone ? 0.47 : 0.5,
     });
     return { ...frame, position, scale };
-  }, [activeHouse, cameraPosition, scene, viewport]);
+  }, [activeHouse, cameraPosition, layout.aspectRatio, phone, scene, viewport]);
 
   useEffect(() => {
     let cancelled = false;
@@ -165,7 +169,8 @@ export function IntroOverlay({ houses, onSkip, onComplete }) {
     });
     const fallback = window.setTimeout(() => setReady(true), 2400);
     Promise.all([
-      preload("/assets/world-map.webp"),
+      preload("/assets/world-map-houses.webp"),
+      preload("/assets/world-map-realms-mobile-capitals.webp"),
       preload("/assets/cinematic/red-keep.webp"),
     ]).then(() => {
       if (!cancelled) setReady(true);
@@ -225,11 +230,14 @@ export function IntroOverlay({ houses, onSkip, onComplete }) {
     >
       <div className="cinematic-map-camera" aria-hidden="true">
         <div className="cinematic-map-stage">
-          <img src="/assets/world-map.webp" alt="" draggable="false" />
+          <picture>
+            <source media="(max-width: 880px)" srcSet="/assets/world-map-realms-mobile-capitals.webp" />
+            <img src="/assets/world-map-houses.webp" alt="" draggable="false" />
+          </picture>
           <span className="cinematic-map-light" />
           <div className="cinematic-marker-layer">
             {orderedHouses.slice(0, activeIndex + 1).map((house) => {
-              const position = MAP_POSITIONS[house.id];
+              const position = MAP_POSITIONS[layoutName][house.id];
               return (
                 <span
                   className={`cinematic-map-marker ${house.id === activeHouse?.id ? "is-current" : ""}`}
@@ -237,7 +245,6 @@ export function IntroOverlay({ houses, onSkip, onComplete }) {
                   style={{ left: `${position.x}%`, top: `${position.y}%` }}
                 >
                   <SigilIcon house={house} size={32} />
-                  <i style={{ "--marker-color": house.color || "#bda66f" }} />
                 </span>
               );
             })}

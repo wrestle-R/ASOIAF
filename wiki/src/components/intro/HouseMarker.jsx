@@ -1,36 +1,33 @@
 import { forwardRef } from "react";
-import { INTRO_HOUSE_ORDER } from "../../data/mapPositions.js";
 import { SigilIcon } from "./SigilIcon.jsx";
 
 export const HouseMarker = forwardRef(function HouseMarker(
-  { house, selected, muted, onSelect, introActive },
+  { house, selected, muted, onSelect },
   ref,
 ) {
-  const { x, y, labelOffset, seat, markerScale } = house.position;
-  const revealIndex = Math.max(0, INTRO_HOUSE_ORDER.indexOf(house.id));
+  const { desktop, mobile } = house.position;
 
   return (
     <button
       ref={ref}
       type="button"
-      className={`house-marker marker-label-${labelOffset} ${selected ? "is-selected" : ""} ${muted ? "is-muted" : ""}`}
+      className={`house-marker marker-label-${desktop.labelOffset} marker-label-mobile-${mobile.labelOffset} ${selected ? "is-selected" : ""} ${muted ? "is-muted" : ""}`}
       style={{
-        left: `${x}%`,
-        top: `${y}%`,
-        "--marker-color": house.color || "#bda66f",
-        "--marker-delay": `${introActive ? 1.25 + revealIndex * 1.05 : 0}s`,
-        "--marker-scale": markerScale,
+        "--marker-x": `${desktop.x}%`,
+        "--marker-y": `${desktop.y}%`,
+        "--marker-x-mobile": `${mobile.x}%`,
+        "--marker-y-mobile": `${mobile.y}%`,
+        "--marker-scale": desktop.markerScale,
+        "--marker-scale-mobile": mobile.markerScale,
       }}
       aria-label={`${house.name}${house.region ? `, ${house.region}` : ""}`}
       aria-pressed={selected}
       onClick={(event) => onSelect(house, event.currentTarget)}
     >
-      <span className="marker-pulse" />
       <SigilIcon house={house} />
       <span className="marker-label">
         <span>{house.name.replace(/^House\s+/i, "")}</span>
-        <small>{house.region || seat || house.seat}</small>
-        {house.words && <em>{house.words}</em>}
+        <small>{desktop.seat || house.seat}</small>
       </span>
     </button>
   );

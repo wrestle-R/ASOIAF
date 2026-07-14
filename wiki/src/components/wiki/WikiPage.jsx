@@ -79,21 +79,19 @@ export function WikiPage() {
         </nav>
       </header>
 
-      <section className="wiki-hero">
-        <div className="wiki-hero-ornament" aria-hidden="true">✦</div>
-        <p className="eyebrow">The collected record · Volume I</p>
-        <h1>Names carried<br />through <em>ice</em> and <i>fire</i>.</h1>
-        <p className="wiki-intro">
-          Open the archive by name, allegiance, or chronicle. Every entry below is read
-          directly from the local SQLite record.
-        </p>
-        <div className="wiki-stat-line" aria-label={`${totalRecords} archive records`}>
-          <span>{totalRecords || "—"}</span>
-          <small>records preserved<br />in one local archive</small>
-        </div>
-      </section>
-
       <section className="archive-index" id="archive-index">
+        <div className="archive-heading">
+          <div>
+            <p className="eyebrow">Local SQLite archive</p>
+            <h1>Browse the known record.</h1>
+            <p>Search by name, allegiance, or chronicle.</p>
+          </div>
+          <div className="archive-count" aria-label={`${totalRecords} archive records`}>
+            <strong>{totalRecords || "—"}</strong>
+            <span>records</span>
+          </div>
+        </div>
+
         <div className="archive-toolbar">
           <label className="archive-search">
             <span>Search the archive</span>
