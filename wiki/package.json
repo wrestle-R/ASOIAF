@@ -10,8 +10,10 @@
     "prebuild": "npm run prepare:db",
     "build": "vite build",
     "preview": "vite preview",
+    "render:journey-assets": "node scripts/render-daenerys-posters.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
+    "verify:journey": "node scripts/verify-daenerys-journey.mjs",
     "verify:map": "node scripts/verify-map-visuals.mjs",
     "check": "npm run test && npm run build"
   },
