@@ -1,8 +1,8 @@
 # Wiki of Ice and Fire
 
-An atmospheric React archive backed directly by the local SQLite artifact. The opening
-screen places nine main houses on an original 1.40:1 atlas; `/wiki` provides a searchable,
-image-aware view of every record in the database.
+An atmospheric React archive backed directly by the local SQLite artifact. `/` is a quiet
+entrance, `/map` is an autoplaying nine-realm tour, `/wiki` is the searchable editorial
+archive, and `/danerys` preserves the television journey animation.
 
 ## Run locally
 
@@ -35,8 +35,7 @@ into frontend JSON.
 The release URL, expected file size, and SHA-256 live in `database-manifest.json`. The build
 fails if the downloaded asset does not match the manifest.
 
-The database is deliberately kept server-side: it contains hundreds of image BLOBs and is
-too large to ship to each browser just to render nine markers.
+The database is deliberately kept server-side because it contains hundreds of image BLOBs.
 
 ## Deploy on Vercel
 
@@ -73,16 +72,15 @@ npm run check
 - Embedded database images were audited before layout work: the archive contains square,
   portrait, and landscape files. Cards receive their recorded intrinsic ratio and use
   media-specific `object-fit` behavior.
-- House artwork stored in SQLite is not rendered in the intro. House seals are original
-  SVG motifs generated from queried color and coat-of-arms text.
+- The realm tour reuses the retained canonical house sigils and never changes map geography.
 - The supplied reference map was used only for broad composition. The project map is an
   original generated asset without copied labels, logos, or line work.
 
-## Map calibration
+## Realm-tour assets
 
-Marker coordinates live in `src/data/mapPositions.js` as percentages of the map's intrinsic
-width and height. They contain presentation coordinates only—house names, seats, words,
-regions, colors, and arms always come from SQLite.
+Realm metadata and camera framing live in `src/data/realmTour.js`. Regenerate all nine
+reduced-motion posters deterministically with `npm run render:realm-assets`; each poster
+uses the exact map, a restrained parchment spotlight, and the corresponding retained sigil.
 
 ## Checks
 
@@ -90,4 +88,6 @@ regions, colors, and arms always come from SQLite.
 npm run check
 ```
 
-This runs the SQLite/query tests and the production Vite build.
+This runs the unit tests and production Vite build. With the development server running,
+`npm run verify:map`, `npm run verify:wiki`, and `npm run verify:journey` exercise the three
+browser experiences.

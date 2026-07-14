@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { MapIcon, MoonIcon, SunIcon } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { fetchCollections, fetchWikiEntries } from "../../data/houseApi.js";
+import { useWikiTheme } from "../../hooks/useWikiTheme.js";
 import { WikiEntryCard } from "./WikiEntryCard.jsx";
 import { WikiEntryPanel } from "./WikiEntryPanel.jsx";
 
@@ -18,6 +20,8 @@ export function WikiPage() {
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState(null);
   const [selected, setSelected] = useState(null);
+  const [opener, setOpener] = useState(null);
+  const { theme, toggleTheme } = useWikiTheme();
 
   useEffect(() => {
     const timer = window.setTimeout(() => setSearch(searchInput.trim()), 280);
@@ -66,25 +70,45 @@ export function WikiPage() {
     [collections],
   );
 
+  const openEntry = useCallback((entry, button) => {
+    setSelected(entry);
+    setOpener(button);
+  }, []);
+
+  const closeEntry = useCallback(() => setSelected(null), []);
+
   return (
-    <main className="wiki-page">
+    <main className={`wiki-page wiki-theme wiki-theme-${theme}`} data-theme={theme}>
+      <a className="skip-link" href="#archive-index">Skip to archive</a>
       <header className="wiki-header">
-        <Link to="/" className="wiki-brand">
+        <Link to="/" className="wiki-brand" aria-label="A Wiki of Ice and Fire home">
           <span>W</span>
-          <strong>Wiki of Ice and Fire</strong>
+          <strong>A Wiki of Ice and Fire</strong>
         </Link>
         <nav aria-label="Archive navigation">
-          <Link to="/">Interactive map</Link>
-          <a href="#archive-index">Browse records</a>
+          <Link to="/map">
+            <MapIcon aria-hidden="true" />
+            Map
+          </Link>
+          <button
+            type="button"
+            className="wiki-theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+          >
+            {theme === "dark" ? <SunIcon aria-hidden="true" /> : <MoonIcon aria-hidden="true" />}
+            <span>{theme === "dark" ? "Light" : "Dark"}</span>
+          </button>
         </nav>
       </header>
 
       <section className="archive-index" id="archive-index">
         <div className="archive-heading">
           <div>
-            <p className="eyebrow">Local SQLite archive</p>
-            <h1>Browse the known record.</h1>
-            <p>Search by name, allegiance, or chronicle.</p>
+            <p className="eyebrow">The known record</p>
+            <h1>Explore the archive.</h1>
+            <p>Characters, houses, and chronicles from the local collection.</p>
           </div>
           <div className="archive-count" aria-label={`${totalRecords} archive records`}>
             <strong>{totalRecords || "—"}</strong>
@@ -92,7 +116,7 @@ export function WikiPage() {
           </div>
         </div>
 
-        <div className="archive-toolbar">
+        <div className="archive-toolbar" aria-label="Archive filters">
           <label className="archive-search">
             <span>Search the archive</span>
             <div>
@@ -102,6 +126,8 @@ export function WikiPage() {
               </svg>
               <input
                 type="search"
+                name="archive-search"
+                autoComplete="off"
                 value={searchInput}
                 onChange={(event) => setSearchInput(event.target.value)}
                 placeholder="A name, house, or title…"
@@ -112,7 +138,7 @@ export function WikiPage() {
             </div>
           </label>
 
-          <div className="collection-tabs" role="group" aria-label="Filter by chronicle">
+          <div className="collection-tabs" role="group" aria-label="Filter by collection">
             <button
               type="button"
               className={collection === "all" ? "is-active" : ""}
@@ -134,7 +160,7 @@ export function WikiPage() {
         </div>
 
         <div className="archive-result-heading" aria-live="polite">
-          <p>{search ? <>Results for <strong>“{search}”</strong></> : "Recently opened folios"}</p>
+          <p>{search ? <>Results for <strong>“{search}”</strong></> : "Archive entries"}</p>
           <span>{total} {total === 1 ? "entry" : "entries"}</span>
         </div>
 
@@ -157,7 +183,7 @@ export function WikiPage() {
                   key={`${entry.recordId}-${index}`}
                   entry={entry}
                   index={index}
-                  onOpen={setSelected}
+                  onOpen={openEntry}
                 />
               ))}
             </div>
@@ -182,12 +208,19 @@ export function WikiPage() {
       </section>
 
       <footer className="wiki-footer">
-        <span>Wiki of Ice and Fire</span>
+        <span>A Wiki of Ice and Fire</span>
         <p>A private, SQLite-backed archive.</p>
-        <Link to="/">Return to the map ↑</Link>
+        <Link to="/map">View the map ↑</Link>
       </footer>
 
-      {selected && <WikiEntryPanel entry={selected} onClose={() => setSelected(null)} />}
+      {selected && (
+        <WikiEntryPanel
+          entry={selected}
+          onClose={closeEntry}
+          opener={opener}
+          theme={theme}
+        />
+      )}
     </main>
   );
 }

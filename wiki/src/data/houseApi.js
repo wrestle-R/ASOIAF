@@ -6,11 +6,6 @@ async function readJson(response) {
   return response.json();
 }
 
-export async function fetchIntroHouses(signal) {
-  const response = await fetch("/api/intro/houses", { signal });
-  return readJson(response);
-}
-
 export async function fetchCollections(signal) {
   const response = await fetch("/api/wiki/collections", { signal });
   return readJson(response);

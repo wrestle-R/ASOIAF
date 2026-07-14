@@ -120,354 +120,6 @@ button {
   text-transform: uppercase;
 }
 
-.icon-button {
-  display: grid;
-  width: 2.25rem;
-  height: 2.25rem;
-  padding: 0;
-  border: 1px solid color-mix(in srgb, var(--parchment) 35%, transparent);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--ink) 78%, transparent);
-  cursor: pointer;
-  place-items: center;
-}
-
-/* Intro map */
-
-.map-page {
-  position: relative;
-  min-height: 100svh;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 22% 50%, rgba(112, 101, 68, 0.13), transparent 31%),
-    #0b1114;
-  isolation: isolate;
-}
-
-.map-page::after,
-.wiki-page::after {
-  position: fixed;
-  z-index: 30;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
-  content: "";
-  mix-blend-mode: soft-light;
-  opacity: 0.16;
-  pointer-events: none;
-}
-
-.map-header {
-  position: fixed;
-  z-index: 20;
-  top: 0;
-  right: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.15rem 1.6rem;
-  background: linear-gradient(to bottom, rgba(8, 13, 16, 0.88), transparent);
-}
-
-.brand-lockup,
-.wiki-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.brand-mark,
-.wiki-brand > span {
-  display: grid;
-  width: 2.35rem;
-  height: 2.35rem;
-  border: 1px solid rgba(223, 207, 155, 0.5);
-  border-radius: 50%;
-  color: var(--parchment-light);
-  font-family: var(--display);
-  font-size: 1.08rem;
-  place-items: center;
-}
-
-.brand-lockup > span:last-child {
-  display: grid;
-  gap: 0.12rem;
-}
-
-.brand-lockup strong {
-  font-family: var(--display);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.brand-lockup small {
-  color: var(--muted);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-}
-
-.map-header nav {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-.text-button,
-.enter-archive {
-  min-height: 2.6rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid rgba(223, 207, 155, 0.25);
-  background: rgba(10, 16, 19, 0.55);
-  font-family: var(--display);
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  backdrop-filter: blur(10px);
-}
-
-.text-button {
-  cursor: pointer;
-}
-
-.enter-archive {
-  border-color: rgba(223, 207, 155, 0.55);
-  background: rgba(199, 173, 103, 0.13);
-}
-
-.enter-archive span,
-.archive-link span {
-  margin-left: 0.45rem;
-  transition: transform 180ms ease;
-}
-
-.enter-archive:hover span,
-.archive-link:hover span {
-  display: inline-block;
-  transform: translateX(0.2rem);
-}
-
-.partial-notice {
-  position: fixed;
-  z-index: 22;
-  top: 5rem;
-  left: 50%;
-  margin: 0;
-  padding: 0.55rem 0.85rem;
-  border: 1px solid rgba(201, 103, 61, 0.5);
-  background: rgba(16, 21, 24, 0.92);
-  color: var(--parchment-light);
-  font-size: 0.78rem;
-  transform: translateX(-50%);
-}
-
-.map-shell {
-  position: relative;
-  display: grid;
-  min-height: 100svh;
-  place-items: center;
-}
-
-.map-viewport {
-  width: 100%;
-  overflow: auto;
-  scrollbar-color: var(--line) var(--ink);
-  scrollbar-width: thin;
-}
-
-.map-stage {
-  position: relative;
-  width: min(100vw, calc(100svh * 1.4));
-  min-width: min(100vw, 46rem);
-  margin: auto;
-  overflow: hidden;
-  aspect-ratio: 1.4;
-  background: var(--sea-deep);
-  box-shadow: 0 0 90px #000;
-}
-
-.world-map-picture {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.world-map {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  user-select: none;
-}
-
-.map-toning {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, transparent 0 36%, rgba(9, 15, 18, 0.13) 52%, rgba(8, 12, 14, 0.28) 100%),
-    radial-gradient(ellipse at center, transparent 55%, rgba(4, 8, 10, 0.7) 110%);
-  pointer-events: none;
-}
-
-.map-title {
-  position: absolute;
-  top: 16%;
-  left: 51.5%;
-  display: grid;
-  width: 34%;
-  color: #e8dfc7;
-  text-align: center;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
-  transform: translateX(-50%);
-}
-
-.map-title > span,
-.intro-wordmark > span {
-  font-family: var(--display);
-  font-size: clamp(0.48rem, 0.85vw, 0.78rem);
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-}
-
-.map-title strong,
-.intro-wordmark strong {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2em;
-  margin-top: 0.3em;
-  font-family: var(--display);
-  font-size: clamp(1.4rem, 3.6vw, 3.7rem);
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.map-title i,
-.intro-wordmark i {
-  color: var(--ember);
-  font-size: 0.52em;
-  font-style: normal;
-}
-
-.map-title small,
-.intro-wordmark small {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 0.7rem;
-  margin-top: 0.75rem;
-  color: rgba(238, 229, 207, 0.62);
-  font-size: clamp(0.45rem, 0.75vw, 0.66rem);
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.map-title small::before,
-.map-title small::after,
-.intro-wordmark small::before,
-.intro-wordmark small::after {
-  height: 1px;
-  background: linear-gradient(to right, transparent, currentColor);
-  content: "";
-}
-
-.map-title small::after,
-.intro-wordmark small::after {
-  background: linear-gradient(to left, transparent, currentColor);
-}
-
-.marker-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.atlas-annotations {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  overflow: hidden;
-  color: rgba(54, 43, 27, 0.42);
-  pointer-events: none;
-}
-
-.atlas-boundaries {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.atlas-boundaries path {
-  fill: none;
-  stroke: rgba(69, 49, 29, 0.24);
-  stroke-dasharray: 0.55 0.42;
-  stroke-linecap: round;
-  stroke-width: 0.14;
-  vector-effect: non-scaling-stroke;
-}
-
-.atlas-label {
-  position: absolute;
-  white-space: nowrap;
-  text-shadow: 0 1px rgba(226, 202, 148, 0.22);
-  transform: translate(-50%, -50%) rotate(var(--label-rotation, 0deg));
-}
-
-.atlas-region-label {
-  font-family: var(--display);
-  font-size: clamp(0.34rem, 0.53vw, 0.52rem);
-  font-weight: 600;
-  letter-spacing: 0.21em;
-  opacity: 0.52;
-  text-transform: uppercase;
-}
-
-.atlas-place-label {
-  font-family: var(--body);
-  font-size: clamp(0.29rem, 0.39vw, 0.4rem);
-  font-style: italic;
-  letter-spacing: 0.035em;
-  opacity: 0.42;
-}
-
-.house-marker {
-  position: absolute;
-  z-index: 3;
-  display: grid;
-  width: clamp(2.45rem, 3.2vw, 3.25rem);
-  height: clamp(2.45rem, 3.2vw, 3.25rem);
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-  opacity: 1;
-  pointer-events: auto;
-  left: var(--marker-x);
-  top: var(--marker-y);
-  transform: translate(-50%, -50%);
-  transition: filter 240ms ease, opacity 240ms ease;
-}
-
-.house-marker > .sigil {
-  filter:
-    drop-shadow(0 0 1px rgba(239, 226, 195, 0.68))
-    drop-shadow(0 3px 2px rgba(0, 0, 0, 0.88))
-    drop-shadow(0 9px 11px rgba(0, 0, 0, 0.48));
-  transform: scale(var(--marker-scale, 1));
-  transition: filter 180ms ease, transform 180ms ease;
-}
-
-.intro-is-active .house-marker {
-  opacity: 0;
-  animation: place-marker 480ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--marker-delay) forwards;
-}
-
 .sigil {
   position: relative;
   display: inline-grid;
@@ -524,1820 +176,6 @@ button {
   filter: none;
   user-select: none;
 }
-
-.house-marker:hover,
-.house-marker:focus-visible,
-.house-marker.is-selected {
-  z-index: 10;
-  transform: translate(-50%, -50%);
-}
-
-.house-marker:hover > .sigil,
-.house-marker:focus-visible > .sigil,
-.house-marker.is-selected > .sigil {
-  filter:
-    drop-shadow(0 0 2px rgba(249, 232, 187, 0.9))
-    drop-shadow(0 4px 3px rgba(0, 0, 0, 0.88))
-    drop-shadow(0 12px 15px rgba(0, 0, 0, 0.54));
-  transform: scale(calc(var(--marker-scale, 1) * 1.08));
-}
-
-.house-marker.is-muted {
-  filter: grayscale(0.8);
-  opacity: 0.38;
-}
-
-.marker-label {
-  position: absolute;
-  top: 50%;
-  display: grid;
-  min-width: max-content;
-  padding: 0.4rem 0.55rem;
-  border-block: 1px solid rgba(223, 207, 155, 0.28);
-  background: rgba(13, 21, 24, 0.9);
-  color: var(--text);
-  opacity: 0;
-  text-align: left;
-  pointer-events: none;
-  transform: translateY(-50%) translateX(-0.3rem);
-  transition: opacity 180ms ease, transform 180ms ease;
-  backdrop-filter: blur(8px);
-}
-
-.marker-label::after {
-  position: absolute;
-  top: 50%;
-  width: 0.8rem;
-  height: 1px;
-  background: linear-gradient(to right, rgba(223, 207, 155, 0.58), transparent);
-  content: "";
-}
-
-.marker-label-right .marker-label {
-  left: calc(100% + 0.75rem);
-}
-
-.marker-label-right .marker-label::after {
-  right: 100%;
-  transform: rotate(180deg);
-}
-
-.marker-label-left .marker-label {
-  right: calc(100% + 0.75rem);
-  text-align: right;
-  transform: translateY(-50%) translateX(0.3rem);
-}
-
-.marker-label-left .marker-label::after {
-  left: 100%;
-}
-
-.marker-label-top .marker-label,
-.marker-label-bottom .marker-label {
-  left: 50%;
-  text-align: center;
-  transform: translateX(-50%) translateY(0.3rem);
-}
-
-.marker-label-top .marker-label {
-  top: auto;
-  bottom: calc(100% + 0.9rem);
-}
-
-.marker-label-bottom .marker-label {
-  top: calc(100% + 0.9rem);
-}
-
-.marker-label-top .marker-label::after,
-.marker-label-bottom .marker-label::after {
-  left: 50%;
-  width: 1px;
-  height: 0.8rem;
-  transform: translateX(-50%);
-}
-
-.marker-label-top .marker-label::after {
-  top: 100%;
-  background: linear-gradient(to bottom, rgba(223, 207, 155, 0.58), transparent);
-}
-
-.marker-label-bottom .marker-label::after {
-  top: auto;
-  bottom: 100%;
-  background: linear-gradient(to top, rgba(223, 207, 155, 0.58), transparent);
-}
-
-.marker-label span {
-  font-family: var(--display);
-  font-size: clamp(0.5rem, 0.75vw, 0.67rem);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.marker-label small {
-  margin-top: 0.12rem;
-  color: var(--muted);
-  font-size: clamp(0.48rem, 0.65vw, 0.62rem);
-}
-
-.marker-label em {
-  margin-top: 0.28rem;
-  color: rgba(238, 229, 207, 0.82);
-  font-size: clamp(0.52rem, 0.7vw, 0.66rem);
-  font-style: italic;
-}
-
-.house-marker:hover .marker-label,
-.house-marker:focus-visible .marker-label,
-.house-marker.is-selected .marker-label {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
-}
-
-.marker-label-top:hover .marker-label,
-.marker-label-top:focus-visible .marker-label,
-.marker-label-top.is-selected .marker-label,
-.marker-label-bottom:hover .marker-label,
-.marker-label-bottom:focus-visible .marker-label,
-.marker-label-bottom.is-selected .marker-label {
-  transform: translateX(-50%) translateY(0);
-}
-
-.map-scale {
-  position: absolute;
-  right: 5%;
-  bottom: 4%;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: rgba(238, 229, 207, 0.42);
-  font-family: var(--display);
-  font-size: clamp(0.38rem, 0.55vw, 0.55rem);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.map-scale i {
-  display: block;
-  width: 2rem;
-  height: 1px;
-  background: currentColor;
-}
-
-.reset-map {
-  position: fixed;
-  z-index: 12;
-  right: 1rem;
-  bottom: 1rem;
-  display: none;
-  padding: 0.65rem 0.8rem;
-  border: 1px solid rgba(223, 207, 155, 0.3);
-  background: rgba(10, 16, 19, 0.84);
-  font-family: var(--display);
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.house-panel {
-  position: fixed;
-  z-index: 25;
-  top: 51%;
-  left: 65%;
-  width: min(30rem, 32vw);
-  max-height: 74svh;
-  padding: clamp(1.35rem, 2.3vw, 2.3rem);
-  overflow-y: auto;
-  border: 1px solid rgba(223, 207, 155, 0.38);
-  background:
-    linear-gradient(145deg, rgba(29, 38, 41, 0.95), rgba(13, 19, 22, 0.96)),
-    var(--ink);
-  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.58);
-  transform: translate(-50%, -50%);
-  animation: annotate-in 320ms cubic-bezier(0.2, 0.75, 0.2, 1);
-  backdrop-filter: blur(16px);
-}
-
-.house-panel-rule {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 34%;
-  height: 2px;
-  background: var(--parchment);
-}
-
-.panel-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.25rem;
-}
-
-.house-panel-heading {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  padding-right: 2rem;
-}
-
-.house-panel h2 {
-  margin: 0.25rem 0 0;
-  font-family: var(--display);
-  font-size: clamp(1.4rem, 2.3vw, 2.3rem);
-  font-weight: 400;
-  line-height: 1.1;
-}
-
-.house-panel blockquote {
-  margin: 0.55rem 0 0;
-  color: var(--parchment-light);
-  font-style: italic;
-}
-
-.house-facts {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 1.5rem 0;
-  border-block: 1px solid rgba(223, 207, 155, 0.2);
-}
-
-.house-facts div {
-  padding: 0.9rem 0;
-}
-
-.house-facts div + div {
-  padding-left: 1rem;
-  border-left: 1px solid rgba(223, 207, 155, 0.2);
-}
-
-.house-facts dt,
-.entry-panel dt {
-  color: var(--muted);
-  font-family: var(--display);
-  font-size: 0.56rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.house-facts dd,
-.entry-panel dd {
-  margin: 0.25rem 0 0;
-  font-size: 0.95rem;
-}
-
-.blazon,
-.entry-arms {
-  color: rgba(238, 229, 207, 0.76);
-  font-size: 0.9rem;
-  line-height: 1.55;
-}
-
-.blazon span,
-.entry-arms span,
-.entry-aliases > span {
-  display: block;
-  margin-bottom: 0.35rem;
-  color: var(--parchment);
-  font-family: var(--display);
-  font-size: 0.56rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.archive-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1.4rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(223, 207, 155, 0.2);
-  font-family: var(--display);
-  font-size: 0.61rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.house-index {
-  position: fixed;
-  z-index: 18;
-  bottom: 1rem;
-  left: 1rem;
-  width: min(23rem, calc(100vw - 2rem));
-  border: 1px solid rgba(223, 207, 155, 0.24);
-  background: rgba(10, 16, 19, 0.82);
-  backdrop-filter: blur(12px);
-}
-
-.house-index summary {
-  padding: 0.72rem 0.9rem;
-  cursor: pointer;
-  font-family: var(--display);
-  font-size: 0.56rem;
-  letter-spacing: 0.14em;
-  list-style-position: inside;
-  text-transform: uppercase;
-}
-
-.house-index > div {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  max-height: 13rem;
-  padding: 0.45rem;
-  overflow: auto;
-  border-top: 1px solid rgba(223, 207, 155, 0.18);
-}
-
-.house-index button {
-  display: grid;
-  gap: 0.12rem;
-  padding: 0.55rem;
-  border: 0;
-  background: transparent;
-  text-align: left;
-  cursor: pointer;
-}
-
-.house-index button:hover {
-  background: rgba(223, 207, 155, 0.08);
-}
-
-.house-index button span {
-  font-size: 0.72rem;
-}
-
-.house-index button small {
-  overflow: hidden;
-  color: var(--muted);
-  font-size: 0.62rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Loading */
-
-.archive-state {
-  display: grid;
-  min-height: 100svh;
-  padding: 2rem;
-  background:
-    radial-gradient(circle at center, rgba(113, 98, 58, 0.17), transparent 30%),
-    var(--ink);
-  text-align: center;
-  place-content: center;
-  justify-items: center;
-}
-
-.archive-state-mark {
-  display: grid;
-  width: 4.5rem;
-  height: 4.5rem;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(223, 207, 155, 0.45);
-  border-radius: 50%;
-  color: var(--parchment-light);
-  font-family: var(--display);
-  font-size: 1.8rem;
-  place-items: center;
-}
-
-.archive-state h1 {
-  max-width: 34rem;
-  margin: 0.5rem 0;
-  font-family: var(--display);
-  font-size: clamp(1.7rem, 4vw, 3.3rem);
-  font-weight: 400;
-}
-
-.archive-state > p:not(.eyebrow) {
-  max-width: 30rem;
-  color: var(--muted);
-}
-
-.archive-state button,
-.wiki-error button {
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--line);
-  background: transparent;
-  cursor: pointer;
-}
-
-.ink-loader {
-  position: relative;
-  display: block;
-  width: 12rem;
-  height: 1px;
-  margin-top: 1.5rem;
-  overflow: hidden;
-  background: rgba(223, 207, 155, 0.18);
-}
-
-.ink-loader::after {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background: var(--parchment);
-  content: "";
-  animation: loading-line 1.2s ease-in-out infinite;
-}
-
-/* Wiki */
-
-.wiki-page {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  background:
-    linear-gradient(rgba(14, 19, 21, 0.97), rgba(14, 19, 21, 0.97)),
-    url("/assets/world-map.webp") top center / 100% auto no-repeat;
-}
-
-.wiki-header {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 90rem;
-  margin: auto;
-  padding: 1.4rem clamp(1.1rem, 4vw, 4rem);
-  border-bottom: 1px solid rgba(223, 207, 155, 0.14);
-}
-
-.wiki-brand strong {
-  font-family: var(--display);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.wiki-header nav {
-  display: flex;
-  gap: 1.8rem;
-  color: var(--muted);
-  font-family: var(--display);
-  font-size: 0.57rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.wiki-header nav a:hover {
-  color: var(--text);
-}
-
-.wiki-hero {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.4fr);
-  max-width: 82rem;
-  min-height: 34rem;
-  margin: auto;
-  padding: clamp(5rem, 11vw, 9rem) clamp(1.1rem, 4vw, 4rem) 5rem;
-}
-
-.wiki-hero .eyebrow,
-.wiki-hero h1,
-.wiki-intro {
-  grid-column: 1;
-}
-
-.wiki-hero h1 {
-  margin: 1rem 0 1.4rem;
-  font-family: var(--display);
-  font-size: clamp(3rem, 7vw, 7rem);
-  font-weight: 400;
-  letter-spacing: -0.045em;
-  line-height: 0.88;
-}
-
-.wiki-hero h1 em,
-.wiki-hero h1 i {
-  font-style: normal;
-}
-
-.wiki-hero h1 em {
-  color: var(--ice);
-}
-
-.wiki-hero h1 i {
-  color: var(--ember);
-}
-
-.wiki-intro {
-  max-width: 36rem;
-  margin: 0;
-  color: var(--muted);
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
-  line-height: 1.65;
-}
-
-.wiki-stat-line {
-  grid-column: 2;
-  grid-row: 1 / span 3;
-  align-self: end;
-  display: flex;
-  align-items: flex-end;
-  gap: 1rem;
-  margin: 0 0 1.5rem auto;
-  padding-left: 2rem;
-  border-left: 1px solid rgba(223, 207, 155, 0.28);
-}
-
-.wiki-stat-line span {
-  color: var(--parchment-light);
-  font-family: var(--display);
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  line-height: 0.8;
-}
-
-.wiki-stat-line small {
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.wiki-hero-ornament {
-  position: absolute;
-  top: 15%;
-  right: 3%;
-  color: rgba(223, 207, 155, 0.11);
-  font-size: 13rem;
-  line-height: 1;
-  transform: rotate(18deg);
-}
-
-.archive-index {
-  position: relative;
-  z-index: 2;
-  padding: clamp(2rem, 5vw, 5rem) clamp(1.1rem, 4vw, 4rem) 6rem;
-  border-top: 1px solid rgba(223, 207, 155, 0.22);
-  background:
-    linear-gradient(170deg, rgba(33, 41, 43, 0.96), rgba(14, 19, 21, 0.99) 32rem),
-    var(--ink);
-}
-
-.archive-index::before {
-  position: absolute;
-  top: 0;
-  left: 7%;
-  width: 15%;
-  height: 2px;
-  background: var(--parchment);
-  content: "";
-}
-
-.archive-toolbar,
-.archive-result-heading,
-.wiki-grid,
-.folio-loading,
-.wiki-error,
-.wiki-empty {
-  max-width: 82rem;
-  margin-inline: auto;
-}
-
-.archive-toolbar {
-  display: grid;
-  grid-template-columns: minmax(18rem, 0.65fr) minmax(0, 1.35fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: end;
-}
-
-.archive-search > span {
-  display: block;
-  margin-bottom: 0.65rem;
-  color: var(--muted);
-  font-family: var(--display);
-  font-size: 0.57rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.archive-search > div {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.7rem;
-  border-bottom: 1px solid rgba(223, 207, 155, 0.48);
-}
-
-.archive-search svg {
-  width: 1rem;
-  fill: none;
-  stroke: var(--parchment);
-  stroke-width: 1.3;
-}
-
-.archive-search input {
-  min-width: 0;
-  padding: 0.9rem 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--text);
-  font-size: 1.05rem;
-}
-
-.archive-search input::placeholder {
-  color: rgba(185, 173, 148, 0.52);
-}
-
-.archive-search button {
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-}
-
-.collection-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 0.45rem;
-}
-
-.collection-tabs button {
-  padding: 0.68rem 0.8rem;
-  border: 1px solid rgba(223, 207, 155, 0.18);
-  background: transparent;
-  color: var(--muted);
-  font-family: var(--display);
-  font-size: 0.55rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
-}
-
-.collection-tabs button:hover,
-.collection-tabs button.is-active {
-  border-color: rgba(223, 207, 155, 0.55);
-  background: rgba(199, 173, 103, 0.1);
-  color: var(--text);
-}
-
-.collection-tabs small {
-  margin-left: 0.32rem;
-  color: var(--parchment);
-}
-
-.archive-result-heading {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4.5rem;
-  margin-bottom: 1.1rem;
-  padding-bottom: 0.8rem;
-  border-bottom: 1px solid rgba(223, 207, 155, 0.16);
-  color: var(--muted);
-}
-
-.archive-result-heading p {
-  margin: 0;
-  font-style: italic;
-}
-
-.archive-result-heading strong {
-  color: var(--text);
-  font-weight: 400;
-}
-
-.archive-result-heading span {
-  font-family: var(--display);
-  font-size: 0.55rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.wiki-grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: clamp(1rem, 2vw, 1.8rem);
-  align-items: start;
-}
-
-.wiki-entry-card {
-  grid-column: span 4;
-  min-width: 0;
-  opacity: 0;
-  animation: folio-enter 550ms ease var(--entry-delay) forwards;
-}
-
-.wiki-entry-card.media-landscape {
-  grid-column: span 6;
-}
-
-.wiki-entry-card.media-portrait {
-  grid-column: span 3;
-}
-
-.wiki-entry-card > button {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  text-align: left;
-  cursor: pointer;
-}
-
-.wiki-entry-card figure {
-  position: relative;
-  display: grid;
-  min-height: 13rem;
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid rgba(223, 207, 155, 0.15);
-  background:
-    radial-gradient(circle at 50% 38%, rgba(199, 173, 103, 0.2), transparent 34%),
-    #131b1e;
-  place-items: center;
-}
-
-.wiki-entry-card figure::after {
-  position: absolute;
-  inset: 0;
-  border: 1px solid transparent;
-  background: linear-gradient(to top, rgba(8, 13, 15, 0.55), transparent 38%);
-  content: "";
-  transition: border-color 180ms ease;
-}
-
-.wiki-entry-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.75) sepia(0.08) contrast(1.03);
-  transition: filter 400ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.wiki-entry-card.media-landscape img {
-  object-fit: contain;
-  background: #11191c;
-}
-
-.wiki-entry-card:hover img,
-.wiki-entry-card:focus-within img {
-  filter: saturate(0.95) sepia(0) contrast(1.03);
-  transform: scale(1.025);
-}
-
-.wiki-entry-card:hover figure::after,
-.wiki-entry-card:focus-within figure::after {
-  border-color: rgba(223, 207, 155, 0.4);
-}
-
-.wiki-entry-card figcaption {
-  position: absolute;
-  z-index: 2;
-  bottom: 0.65rem;
-  left: 0.75rem;
-  padding: 0.28rem 0.4rem;
-  background: rgba(10, 16, 18, 0.7);
-  color: rgba(238, 229, 207, 0.7);
-  font-family: var(--display);
-  font-size: 0.48rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  backdrop-filter: blur(7px);
-}
-
-.wiki-house-sigil {
-  width: 5.25rem !important;
-  height: 5.25rem !important;
-}
-
-.entry-monogram {
-  color: rgba(223, 207, 155, 0.45);
-  font-family: var(--display);
-  font-size: 5rem;
-}
-
-.wiki-entry-copy {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 0.7rem;
-  align-items: start;
-  padding: 0.9rem 0.15rem 1.4rem;
-  border-bottom: 1px solid rgba(223, 207, 155, 0.14);
-}
-
-.entry-number {
-  margin-top: 0.28rem;
-  color: var(--line);
-  font-family: var(--display);
-  font-size: 0.5rem;
-}
-
-.wiki-entry-copy h2 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: clamp(0.9rem, 1.4vw, 1.2rem);
-  font-weight: 400;
-  letter-spacing: 0.015em;
-}
-
-.wiki-entry-copy p {
-  margin: 0.3rem 0 0;
-  overflow: hidden;
-  color: var(--muted);
-  font-size: 0.78rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.entry-arrow {
-  color: var(--parchment);
-  transition: transform 180ms ease;
-}
-
-.wiki-entry-card:hover .entry-arrow {
-  transform: translate(0.18rem, -0.18rem);
-}
-
-.load-more {
-  display: block;
-  min-width: 14rem;
-  margin: 4rem auto 0;
-  padding: 0.9rem 1.2rem;
-  border: 1px solid rgba(223, 207, 155, 0.42);
-  background: transparent;
-  font-family: var(--display);
-  font-size: 0.6rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.load-more:hover {
-  background: rgba(199, 173, 103, 0.09);
-}
-
-.folio-loading {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.folio-loading span {
-  min-height: 22rem;
-  background: linear-gradient(110deg, #151d20 20%, #20292b 38%, #151d20 56%);
-  background-size: 200% 100%;
-  animation: folio-shimmer 1.4s linear infinite;
-}
-
-.wiki-error,
-.wiki-empty {
-  padding: 5rem 1rem;
-  text-align: center;
-}
-
-.wiki-error h2,
-.wiki-empty h2 {
-  margin: 0.5rem 0;
-  font-family: var(--display);
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-.wiki-empty > span {
-  color: var(--line);
-  font-family: var(--display);
-  font-size: 4rem;
-}
-
-.wiki-footer {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  padding: 2rem clamp(1.1rem, 4vw, 4rem);
-  border-top: 1px solid rgba(223, 207, 155, 0.16);
-  color: var(--muted);
-  font-family: var(--display);
-  font-size: 0.57rem;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.wiki-footer p {
-  margin: 0;
-}
-
-.wiki-footer a {
-  justify-self: end;
-  color: var(--text);
-}
-
-.entry-panel-backdrop {
-  position: fixed;
-  z-index: 80;
-  inset: 0;
-  display: flex;
-  justify-content: flex-end;
-  background: rgba(5, 9, 11, 0.75);
-  animation: simple-fade 180ms ease;
-  backdrop-filter: blur(5px);
-}
-
-.entry-panel {
-  position: relative;
-  width: min(39rem, 100%);
-  height: 100%;
-  overflow-y: auto;
-  border-left: 1px solid rgba(223, 207, 155, 0.32);
-  background: #11191c;
-  box-shadow: -2rem 0 5rem rgba(0, 0, 0, 0.5);
-  animation: panel-in 360ms cubic-bezier(0.2, 0.75, 0.2, 1);
-}
-
-.entry-panel-close {
-  position: fixed;
-  z-index: 3;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(12, 18, 20, 0.9);
-  font-size: 1.2rem;
-}
-
-.entry-panel-media {
-  width: 100%;
-  max-height: 54svh;
-  margin: 0;
-  overflow: hidden;
-  background: #0c1214;
-}
-
-.entry-panel-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-height: 54svh;
-  object-fit: contain;
-}
-
-.entry-panel-sigil {
-  display: grid;
-  min-height: 17rem;
-  background:
-    radial-gradient(circle, rgba(199, 173, 103, 0.18), transparent 42%),
-    #0d1417;
-  place-items: center;
-}
-
-.entry-panel-content {
-  padding: clamp(1.5rem, 5vw, 3.5rem);
-}
-
-.entry-panel h2 {
-  margin: 0.6rem 0 0;
-  font-family: var(--display);
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 400;
-  line-height: 1;
-}
-
-.entry-panel-title {
-  margin: 0.7rem 0 0;
-  color: var(--parchment-light);
-  font-style: italic;
-  font-size: 1.05rem;
-}
-
-.entry-panel blockquote {
-  margin: 1rem 0 0;
-  color: var(--parchment-light);
-  font-size: 1.15rem;
-  font-style: italic;
-}
-
-.entry-panel dl {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin: 2rem 0;
-  padding-block: 1.2rem;
-  border-block: 1px solid rgba(223, 207, 155, 0.17);
-}
-
-.entry-panel dl div {
-  min-width: 0;
-}
-
-.entry-description {
-  color: rgba(238, 229, 207, 0.82);
-  font-size: 1rem;
-  line-height: 1.72;
-}
-
-.entry-aliases {
-  margin-top: 1.5rem;
-  padding-top: 1.2rem;
-  border-top: 1px solid rgba(223, 207, 155, 0.17);
-}
-
-.entry-aliases p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-/* Motion */
-
-@keyframes place-marker {
-  from { opacity: 0; transform: translate(-50%, -50%) scale(0.75); }
-  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes annotate-in {
-  from { opacity: 0; transform: translate(-47%, -48%) scale(0.97); }
-  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes simple-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes loading-line {
-  0% { left: -50%; }
-  100% { left: 100%; }
-}
-
-@keyframes folio-enter {
-  from { opacity: 0; transform: translateY(1rem); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes folio-shimmer {
-  to { background-position: -200% 0; }
-}
-
-@keyframes panel-in {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-/* Responsive */
-
-@media (max-width: 880px) {
-  .map-header {
-    align-items: flex-start;
-    padding: 0.8rem;
-  }
-
-  .brand-lockup small,
-  .replay-button {
-    display: none;
-  }
-
-  .brand-lockup strong {
-    font-size: 0.58rem;
-  }
-
-  .enter-archive {
-    padding: 0.65rem 0.7rem;
-    font-size: 0.52rem;
-  }
-
-  .map-shell {
-    display: block;
-    padding-top: 4.2rem;
-  }
-
-  .map-viewport {
-    display: grid;
-    height: calc(100svh - 4.2rem);
-    overflow: hidden;
-    overscroll-behavior: contain;
-    place-items: center;
-  }
-
-  .map-stage {
-    width: min(100vw, calc((100svh - 4.2rem) * 0.5628));
-    min-width: 0;
-    margin: auto;
-    aspect-ratio: 941 / 1671;
-  }
-
-  .map-title {
-    display: none;
-  }
-
-  .map-scale {
-    display: none;
-  }
-
-  .house-marker {
-    left: var(--marker-x-mobile);
-    top: var(--marker-y-mobile);
-    width: clamp(2.5rem, 11vw, 3rem);
-    height: clamp(2.5rem, 11vw, 3rem);
-  }
-
-  .marker-label {
-    display: none;
-    max-width: min(10rem, 42vw);
-    padding: 0.42rem 0.5rem;
-    white-space: nowrap;
-  }
-
-  .house-marker.is-selected .marker-label {
-    display: grid;
-  }
-
-  .house-marker:focus-visible .marker-label {
-    display: grid;
-  }
-
-  .house-marker > .sigil {
-    transform: scale(var(--marker-scale-mobile, 0.84));
-  }
-
-  .house-marker:hover > .sigil,
-  .house-marker:focus-visible > .sigil,
-  .house-marker.is-selected > .sigil {
-    transform: scale(calc(var(--marker-scale-mobile, 0.84) * 1.08));
-  }
-
-  .marker-label-mobile-right .marker-label {
-    top: 50%;
-    right: auto;
-    bottom: auto;
-    left: calc(100% + 0.55rem);
-    text-align: left;
-    transform: translateY(-50%) translateX(-0.3rem);
-  }
-
-  .marker-label-mobile-right .marker-label::after {
-    top: 50%;
-    right: 100%;
-    bottom: auto;
-    left: auto;
-    width: 0.6rem;
-    height: 1px;
-    background: linear-gradient(to left, rgba(223, 207, 155, 0.58), transparent);
-    transform: none;
-  }
-
-  .marker-label-mobile-left .marker-label {
-    top: 50%;
-    right: calc(100% + 0.55rem);
-    bottom: auto;
-    left: auto;
-    text-align: right;
-    transform: translateY(-50%) translateX(0.3rem);
-  }
-
-  .marker-label-mobile-left .marker-label::after {
-    top: 50%;
-    right: auto;
-    bottom: auto;
-    left: 100%;
-    width: 0.6rem;
-    height: 1px;
-    background: linear-gradient(to right, rgba(223, 207, 155, 0.58), transparent);
-    transform: none;
-  }
-
-  .marker-label-mobile-top .marker-label,
-  .marker-label-mobile-bottom .marker-label {
-    right: auto;
-    left: 50%;
-    text-align: center;
-    transform: translateX(-50%) translateY(0.3rem);
-  }
-
-  .marker-label-mobile-top .marker-label::after,
-  .marker-label-mobile-bottom .marker-label::after {
-    right: auto;
-    left: 50%;
-    width: 1px;
-    height: 0.6rem;
-    transform: translateX(-50%);
-  }
-
-  .marker-label-mobile-top .marker-label::after {
-    top: 100%;
-    bottom: auto;
-    background: linear-gradient(to bottom, rgba(223, 207, 155, 0.58), transparent);
-  }
-
-  .marker-label-mobile-bottom .marker-label::after {
-    top: auto;
-    bottom: 100%;
-    background: linear-gradient(to top, rgba(223, 207, 155, 0.58), transparent);
-  }
-
-  .marker-label-mobile-top .marker-label {
-    top: auto;
-    bottom: calc(100% + 0.7rem);
-  }
-
-  .marker-label-mobile-bottom .marker-label {
-    top: calc(100% + 0.7rem);
-    bottom: auto;
-  }
-
-  .marker-label-mobile-right.is-selected .marker-label,
-  .marker-label-mobile-right:focus-visible .marker-label,
-  .marker-label-mobile-left.is-selected .marker-label,
-  .marker-label-mobile-left:focus-visible .marker-label {
-    transform: translateY(-50%) translateX(0);
-  }
-
-  .marker-label-mobile-top.is-selected .marker-label,
-  .marker-label-mobile-top:focus-visible .marker-label,
-  .marker-label-mobile-bottom.is-selected .marker-label,
-  .marker-label-mobile-bottom:focus-visible .marker-label {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .reset-map {
-    display: none;
-  }
-
-  .house-panel {
-    top: auto;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    max-height: 47svh;
-    transform: none;
-    animation: panel-up 300ms cubic-bezier(0.2, 0.75, 0.2, 1);
-  }
-
-  .house-index {
-    display: none;
-  }
-
-  .wiki-hero {
-    grid-template-columns: 1fr;
-  }
-
-  .wiki-stat-line {
-    grid-column: 1;
-    grid-row: auto;
-    margin: 3rem 0 0;
-  }
-
-  .archive-toolbar {
-    grid-template-columns: 1fr;
-  }
-
-  .collection-tabs {
-    justify-content: flex-start;
-  }
-
-  .wiki-entry-card,
-  .wiki-entry-card.media-landscape,
-  .wiki-entry-card.media-portrait {
-    grid-column: span 6;
-  }
-}
-
-@media (max-width: 580px) {
-  .wiki-header {
-    padding: 0.9rem;
-  }
-
-  .wiki-brand strong {
-    max-width: 9rem;
-    font-size: 0.57rem;
-  }
-
-  .wiki-header nav a:last-child {
-    display: none;
-  }
-
-  .wiki-header nav {
-    gap: 0;
-  }
-
-  .wiki-hero {
-    min-height: 32rem;
-    padding-top: 6rem;
-  }
-
-  .wiki-hero h1 {
-    font-size: clamp(2.7rem, 14vw, 4.6rem);
-  }
-
-  .archive-index {
-    padding-inline: 0.85rem;
-  }
-
-  .collection-tabs {
-    flex-wrap: nowrap;
-    margin-right: -0.85rem;
-    padding-right: 0.85rem;
-    overflow-x: auto;
-  }
-
-  .collection-tabs button {
-    flex: 0 0 auto;
-  }
-
-  .archive-result-heading {
-    margin-top: 3rem;
-  }
-
-  .wiki-grid {
-    gap: 1rem 0.75rem;
-  }
-
-  .wiki-entry-card,
-  .wiki-entry-card.media-landscape,
-  .wiki-entry-card.media-portrait {
-    grid-column: span 6;
-  }
-
-  .wiki-entry-card figure {
-    min-height: 10rem;
-  }
-
-  .wiki-entry-copy {
-    grid-template-columns: auto 1fr;
-  }
-
-  .entry-arrow {
-    display: none;
-  }
-
-  .wiki-entry-copy h2 {
-    font-size: 0.78rem;
-  }
-
-  .wiki-entry-copy p {
-    font-size: 0.68rem;
-  }
-
-  .wiki-footer {
-    grid-template-columns: 1fr auto;
-  }
-
-  .wiki-footer p {
-    display: none;
-  }
-
-  .folio-loading {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .folio-loading span {
-    min-height: 15rem;
-  }
-
-  .entry-panel dl {
-    grid-template-columns: 1fr;
-  }
-}
-
-@keyframes panel-up {
-  from { opacity: 0; transform: translateY(100%); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-@theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: 'Geist Variable', sans-serif;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--surface-muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
-}
-
-/* Map-first interface */
-
-.map-page::after,
-.wiki-page::after {
-  display: none;
-}
-
-.map-page {
-  background: #090e11;
-}
-
-.map-header {
-  min-height: 4rem;
-  padding: 0.7rem clamp(0.8rem, 2vw, 1.5rem);
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--background) 88%, transparent);
-  backdrop-filter: blur(18px);
-}
-
-.brand-lockup,
-.wiki-brand {
-  gap: 0.65rem;
-}
-
-.brand-mark,
-.wiki-brand > span {
-  width: 2rem;
-  height: 2rem;
-  border-color: var(--border);
-  border-radius: var(--radius-md);
-  color: var(--primary);
-  font-family: var(--display);
-  font-size: 1.15rem;
-}
-
-.brand-lockup strong,
-.wiki-brand strong {
-  font-family: var(--display);
-  font-size: 0.96rem;
-  font-weight: 560;
-  letter-spacing: -0.01em;
-  text-transform: none;
-}
-
-.brand-lockup small {
-  color: var(--muted-foreground);
-  font-size: 0.62rem;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.map-header nav {
-  gap: 0.8rem;
-}
-
-.map-hint {
-  color: var(--muted-foreground);
-  font-size: 0.72rem;
-}
-
-.archive-button {
-  border-color: var(--border);
-  background: color-mix(in srgb, var(--background) 78%, transparent);
-  backdrop-filter: blur(12px);
-}
-
-.map-alert {
-  position: fixed;
-  z-index: 40;
-  top: 4.75rem;
-  left: 50%;
-  width: min(30rem, calc(100vw - 2rem));
-  transform: translateX(-50%);
-}
-
-.partial-notice {
-  top: 4.75rem;
-  border-color: var(--border);
-  border-radius: var(--radius-md);
-  background: var(--card);
-  color: var(--muted-foreground);
-}
-
-.map-stage {
-  box-shadow: none;
-}
-
-.map-toning {
-  background: radial-gradient(ellipse at center, transparent 64%, rgba(3, 7, 9, 0.48) 118%);
-}
-
-.house-marker {
-  width: clamp(2.3rem, 3vw, 3rem);
-  height: clamp(2.3rem, 3vw, 3rem);
-}
-
-.house-marker > .sigil {
-  filter: none;
-  transition: transform 160ms ease;
-}
-
-.house-marker:hover > .sigil,
-.house-marker:focus-visible > .sigil,
-.house-marker.is-selected > .sigil {
-  filter: none;
-  transform: scale(var(--marker-scale, 1));
-}
-
-.house-marker .sigil.has-image {
-  overflow: hidden;
-}
-
-.marker-label {
-  padding: 0.38rem 0.52rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--popover) 94%, transparent);
-  color: var(--popover-foreground);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.26);
-}
-
-.marker-label span {
-  font-family: var(--body);
-  font-size: clamp(0.58rem, 0.68vw, 0.7rem);
-  font-weight: 650;
-  letter-spacing: 0.02em;
-  text-transform: none;
-}
-
-.marker-label small {
-  color: var(--muted-foreground);
-  font-size: clamp(0.52rem, 0.6vw, 0.62rem);
-}
-
-.house-sheet {
-  max-height: 92svh;
-  overflow-y: auto;
-}
-
-.house-sheet-header {
-  gap: 1rem;
-  padding: 1.5rem;
-}
-
-.house-sheet-heading {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding-right: 2rem;
-}
-
-.house-sheet-heading > div {
-  min-width: 0;
-}
-
-.house-sheet [data-slot="sheet-title"] {
-  margin-top: 0.2rem;
-  font-family: var(--display);
-  font-size: 1.75rem;
-  font-weight: 560;
-  letter-spacing: -0.02em;
-}
-
-.house-sheet [data-slot="sheet-description"] {
-  font-family: var(--display);
-  font-size: 1rem;
-  font-style: italic;
-}
-
-.house-sheet-content {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 1.25rem;
-  padding: 0.5rem 1.5rem 1.5rem;
-}
-
-.house-sheet .house-facts {
-  margin: 0;
-  border-block: 0;
-}
-
-.house-sheet .house-facts div {
-  padding: 0.7rem 0;
-}
-
-.house-sheet .house-facts dt,
-.house-sheet .blazon span {
-  color: var(--muted-foreground);
-  font-family: var(--body);
-  font-size: 0.68rem;
-  font-weight: 650;
-  letter-spacing: 0.06em;
-}
-
-.house-sheet .house-facts dd {
-  font-family: var(--display);
-  font-size: 1.08rem;
-}
-
-.house-sheet .blazon {
-  margin: 0;
-  color: var(--muted-foreground);
-}
-
-.house-archive-link {
-  width: 100%;
-}
-
-.wiki-page {
-  background: var(--background);
-}
-
-.wiki-header {
-  max-width: 82rem;
-  padding-block: 0.85rem;
-  border-color: var(--border);
-}
-
-.wiki-header nav {
-  color: var(--muted-foreground);
-  font-family: var(--body);
-  font-size: 0.72rem;
-  font-weight: 560;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-.archive-index {
-  padding-top: clamp(2rem, 4vw, 3.5rem);
-  border-top: 0;
-  background: var(--background);
-}
-
-.archive-index::before {
-  display: none;
-}
-
-.archive-heading {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  max-width: 82rem;
-  margin: 0 auto clamp(2rem, 5vw, 4rem);
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.archive-heading h1 {
-  margin: 0.35rem 0 0;
-  font-family: var(--display);
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
-  font-weight: 520;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
-}
-
-.archive-heading p:last-child {
-  margin: 0.7rem 0 0;
-  color: var(--muted-foreground);
-  font-size: 0.9rem;
-}
-
-.archive-count {
-  display: grid;
-  justify-items: end;
-}
-
-.archive-count strong {
-  color: var(--primary);
-  font-family: var(--display);
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 520;
-  line-height: 1;
-}
-
-.archive-count span {
-  color: var(--muted-foreground);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-@media (max-width: 880px) {
-  .map-header {
-    align-items: center;
-    min-height: 3.8rem;
-    padding: 0.6rem 0.75rem;
-  }
-
-  .map-hint,
-  .brand-lockup small {
-    display: none;
-  }
-
-  .brand-lockup strong {
-    font-size: 0.86rem;
-  }
-
-  .map-shell {
-    padding-top: 3.8rem;
-  }
-
-  .map-viewport {
-    height: calc(100svh - 3.8rem);
-  }
-
-  .house-sheet {
-    max-height: min(74svh, 38rem);
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  }
-
-  .house-marker:hover > .sigil,
-  .house-marker:focus-visible > .sigil,
-  .house-marker.is-selected > .sigil {
-    transform: scale(var(--marker-scale-mobile, 0.84));
-  }
-
-  .archive-heading {
-    align-items: flex-start;
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 580px) {
-  .archive-button {
-    padding-inline: 0.65rem;
-  }
-
-  .archive-heading h1 {
-    font-size: clamp(2rem, 11vw, 3rem);
-  }
-
-  .archive-count {
-    flex: 0 0 auto;
-  }
-}
-
 /* Daenerys journey */
 
 .journey-page {
@@ -2704,4 +542,1068 @@ button {
   .journey-progress span {
     transition: none;
   }
+}
+
+/* Landing */
+.landing-page {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  place-items: center;
+  overflow: hidden;
+  padding: max(1.5rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right))
+    max(1.5rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
+  color: #f1e6ca;
+  background: #071012;
+  isolation: isolate;
+}
+
+.landing-map,
+.landing-shade {
+  position: absolute;
+  inset: 0;
+}
+
+.landing-map {
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 25% 50%;
+  filter: saturate(0.72) brightness(0.58) contrast(1.08);
+  transform: scale(1.025);
+  animation: landing-drift 22s ease-out both;
+}
+
+.landing-shade {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(3, 8, 10, 0.44), rgba(3, 8, 10, 0.66)),
+    radial-gradient(circle at 50% 44%, transparent 0 18%, rgba(3, 8, 10, 0.72) 74%);
+}
+
+.landing-content {
+  width: min(66rem, 100%);
+  text-align: center;
+}
+
+.landing-mark {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1.5rem;
+  place-items: center;
+  border: 1px solid rgba(217, 190, 135, 0.44);
+  border-radius: 50%;
+  color: #d6ba82;
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: 1.3rem;
+}
+
+.landing-content h1 {
+  max-width: 12ch;
+  margin: 0 auto;
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: clamp(3.4rem, 9.8vw, 8.6rem);
+  font-weight: 420;
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  text-shadow: 0 0.14em 0.55em rgba(0, 0, 0, 0.7);
+}
+
+.landing-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: clamp(2.25rem, 5vw, 4rem);
+}
+
+.landing-action {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.2rem;
+  border: 1px solid rgba(222, 201, 158, 0.32);
+  border-radius: 999px;
+  color: #f2e7d0;
+  background: rgba(5, 12, 14, 0.62);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.landing-action svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.landing-action:hover {
+  border-color: rgba(222, 201, 158, 0.7);
+  background: rgba(218, 193, 143, 0.12);
+  transform: translateY(-2px);
+}
+
+.landing-action-primary {
+  color: #101719;
+  background: #dec99d;
+}
+
+.landing-action-primary:hover {
+  color: #0b1113;
+  background: #efe0bd;
+}
+
+@keyframes landing-drift {
+  from { transform: scale(1.025); }
+  to { transform: scale(1.075); }
+}
+
+/* Nine-realm cinematic tour */
+.realm-tour,
+.realm-stage {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: #f2e7cf;
+  background: #061013;
+}
+
+.realm-map-frame {
+  position: absolute;
+  transform-origin: 0 0;
+  transition: transform 1150ms cubic-bezier(0.2, 0.72, 0.18, 1);
+  will-change: transform;
+}
+
+.realm-map-image,
+.realm-map-toning {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.realm-capital-link {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.realm-capital-link line {
+  stroke: rgba(222, 197, 143, 0.82);
+  stroke-width: 1.2;
+}
+
+.realm-capital-link circle {
+  fill: #071012;
+  stroke: rgba(222, 197, 143, 0.94);
+  stroke-width: 1.2;
+}
+
+.realm-map-image {
+  display: block;
+  object-fit: fill;
+  filter: saturate(0.78) contrast(1.05) brightness(0.8);
+  user-select: none;
+}
+
+.realm-map-toning {
+  pointer-events: none;
+  background: rgba(5, 12, 14, 0.17);
+  box-shadow: inset 0 0 10rem rgba(2, 6, 8, 0.46);
+}
+
+.realm-spotlight {
+  position: absolute;
+  width: calc(var(--realm-radius) * 2);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.realm-sigil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: realm-sigil-arrive 820ms 150ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.realm-sigil.sigil {
+  border: 0;
+  background: rgba(8, 13, 14, 0.48);
+  box-shadow: 0 0 2rem rgba(1, 4, 5, 0.5);
+}
+
+.realm-sigil img {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.62));
+}
+
+.realm-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(3, 8, 10, 0.62), transparent 24%),
+    linear-gradient(0deg, rgba(3, 8, 10, 0.72), transparent 29%),
+    radial-gradient(circle at 58% 48%, transparent 25%, rgba(2, 7, 9, 0.47) 100%);
+}
+
+.realm-copy {
+  position: absolute;
+  z-index: 2;
+  bottom: max(5rem, calc(3.4rem + env(safe-area-inset-bottom)));
+  left: max(2rem, calc(1.5rem + env(safe-area-inset-left)));
+  display: grid;
+  max-width: min(34rem, 62vw);
+  animation: realm-copy-arrive 620ms 240ms ease-out both;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.78);
+}
+
+.realm-copy p {
+  margin: 0 0 0.5rem;
+  color: #d4bb8b;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.realm-copy h1 {
+  margin: 0 0 0.35rem;
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: clamp(3.4rem, 7.4vw, 7.4rem);
+  font-weight: 430;
+  line-height: 0.84;
+  letter-spacing: -0.05em;
+}
+
+.realm-copy strong,
+.realm-copy span {
+  font-size: clamp(0.78rem, 1vw, 0.95rem);
+  line-height: 1.6;
+}
+
+.realm-copy strong { color: #f2e7cf; }
+.realm-copy span { color: #b9b8b0; }
+
+.realm-controls {
+  position: absolute;
+  z-index: 3;
+  right: max(1.5rem, calc(1rem + env(safe-area-inset-right)));
+  bottom: max(1.5rem, calc(1rem + env(safe-area-inset-bottom)));
+}
+
+.realm-controls button {
+  display: inline-flex;
+  min-width: 7.4rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(226, 203, 158, 0.35);
+  border-radius: 999px;
+  color: #f2e7cf;
+  background: rgba(5, 12, 14, 0.7);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.realm-controls button:hover {
+  border-color: rgba(226, 203, 158, 0.72);
+  background: rgba(226, 203, 158, 0.11);
+}
+
+.realm-controls svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.realm-progress {
+  position: absolute;
+  z-index: 3;
+  right: max(1.75rem, calc(1.25rem + env(safe-area-inset-right)));
+  bottom: max(5rem, calc(4.5rem + env(safe-area-inset-bottom)));
+  display: flex;
+  gap: 0.35rem;
+}
+
+.realm-progress span {
+  width: 1.2rem;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(240, 225, 195, 0.25);
+  transition: background-color 240ms ease, width 240ms ease;
+}
+
+.realm-progress .is-past,
+.realm-progress .is-current { background: #d9c08e; }
+.realm-progress .is-current { width: 2rem; }
+
+.realm-tour-static,
+.realm-poster {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.realm-poster {
+  position: relative;
+  overflow: hidden;
+  background: #061013;
+}
+
+.realm-poster > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.realm-poster-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(3, 8, 10, 0.78), transparent 58%);
+}
+
+.realm-picker {
+  position: absolute;
+  z-index: 3;
+  right: max(1.5rem, calc(1rem + env(safe-area-inset-right)));
+  bottom: max(1.5rem, calc(1rem + env(safe-area-inset-bottom)));
+  display: flex;
+  gap: 0.4rem;
+}
+
+.realm-picker button {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid rgba(226, 203, 158, 0.3);
+  border-radius: 50%;
+  color: #d9ccb2;
+  background: rgba(5, 12, 14, 0.68);
+  font: inherit;
+  font-size: 0.7rem;
+}
+
+.realm-picker button[aria-current="step"] {
+  color: #071012;
+  background: #dfc996;
+}
+
+@keyframes realm-sigil-arrive {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.72); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes realm-copy-arrive {
+  from { opacity: 0; transform: translateY(0.8rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Editorial wiki, including its route-scoped light and dark themes */
+.wiki-theme-light {
+  --wiki-bg: #f4f0e7;
+  --wiki-surface: #fbf8f1;
+  --wiki-raised: #fffdf8;
+  --wiki-text: #1b211f;
+  --wiki-muted: #676d68;
+  --wiki-faint: #858b85;
+  --wiki-border: #d9d4c8;
+  --wiki-accent: #785d31;
+  --wiki-accent-soft: #e7dcc6;
+  --background: #fbf8f1;
+  --foreground: #1b211f;
+  --card: #fffdf8;
+  --card-foreground: #1b211f;
+  --popover: #fffdf8;
+  --popover-foreground: #1b211f;
+  --primary: #1b211f;
+  --primary-foreground: #fffdf8;
+  --secondary: #ece7dc;
+  --secondary-foreground: #252b28;
+  --muted: #ece7dc;
+  --muted-foreground: #676d68;
+  --accent: #e7dcc6;
+  --accent-foreground: #312716;
+  --border: #d9d4c8;
+  --input: #d9d4c8;
+  --ring: #785d31;
+  color-scheme: light;
+}
+
+.wiki-theme-dark {
+  --wiki-bg: #101615;
+  --wiki-surface: #151c1a;
+  --wiki-raised: #1a2220;
+  --wiki-text: #eee8db;
+  --wiki-muted: #a9aca4;
+  --wiki-faint: #7f857f;
+  --wiki-border: #303936;
+  --wiki-accent: #d1b77f;
+  --wiki-accent-soft: #302b20;
+  --background: #151c1a;
+  --foreground: #eee8db;
+  --card: #1a2220;
+  --card-foreground: #eee8db;
+  --popover: #1a2220;
+  --popover-foreground: #eee8db;
+  --primary: #eee8db;
+  --primary-foreground: #101615;
+  --secondary: #222b28;
+  --secondary-foreground: #eee8db;
+  --muted: #222b28;
+  --muted-foreground: #a9aca4;
+  --accent: #302b20;
+  --accent-foreground: #eed9ab;
+  --border: #303936;
+  --input: #303936;
+  --ring: #d1b77f;
+  color-scheme: dark;
+}
+
+.wiki-page {
+  min-height: 100vh;
+  color: var(--wiki-text);
+  background: var(--wiki-bg);
+  font-family: "Geist Variable", system-ui, sans-serif;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.wiki-page :focus-visible,
+.wiki-entry-sheet :focus-visible {
+  outline-color: var(--wiki-accent);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.35rem;
+  color: var(--wiki-bg);
+  background: var(--wiki-text);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+.wiki-header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  display: flex;
+  width: 100%;
+  min-height: 4.25rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: max(0.75rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right))
+    0.75rem max(1.25rem, env(safe-area-inset-left));
+  border-bottom: 1px solid color-mix(in srgb, var(--wiki-border) 76%, transparent);
+  color: var(--wiki-text);
+  background: color-mix(in srgb, var(--wiki-bg) 88%, transparent);
+  box-shadow: none;
+  backdrop-filter: blur(16px);
+}
+
+.wiki-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.wiki-brand > span {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid var(--wiki-border);
+  border-radius: 50%;
+  color: var(--wiki-accent);
+  font-family: "Newsreader Variable", Georgia, serif;
+}
+
+.wiki-brand strong {
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: 1.06rem;
+  font-weight: 530;
+}
+
+.wiki-header nav {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.wiki-header nav a,
+.wiki-theme-toggle {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.72rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--wiki-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+.wiki-header nav a:hover,
+.wiki-theme-toggle:hover {
+  border-color: var(--wiki-border);
+  color: var(--wiki-text);
+  background: var(--wiki-surface);
+}
+
+.wiki-header nav svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.archive-index {
+  width: min(92rem, 100%);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 5.5rem) clamp(1rem, 3vw, 2.75rem) 5rem;
+  color: var(--wiki-text);
+  background: transparent;
+}
+
+.archive-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
+}
+
+.eyebrow,
+.archive-heading .eyebrow {
+  margin: 0 0 0.6rem;
+  color: var(--wiki-accent);
+  font-size: 0.66rem;
+  font-weight: 720;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.archive-heading h1 {
+  margin: 0;
+  color: var(--wiki-text);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: clamp(2.9rem, 6vw, 6.5rem);
+  font-weight: 430;
+  line-height: 0.88;
+  letter-spacing: -0.052em;
+}
+
+.archive-heading > div > p:last-child {
+  max-width: 38rem;
+  margin: 1rem 0 0;
+  color: var(--wiki-muted);
+  font-size: 0.95rem;
+}
+
+.archive-count {
+  display: grid;
+  min-width: 7rem;
+  padding: 1rem;
+  border: 1px solid var(--wiki-border);
+  border-radius: 0.7rem;
+  background: var(--wiki-surface);
+  text-align: right;
+}
+
+.archive-count strong {
+  color: var(--wiki-text);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.archive-count span {
+  color: var(--wiki-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.archive-toolbar {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.archive-search {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--wiki-muted);
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+.archive-search > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.archive-search svg {
+  position: absolute;
+  left: 1rem;
+  width: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  pointer-events: none;
+}
+
+.archive-search input {
+  width: 100%;
+  min-height: 3.4rem;
+  padding: 0.8rem 3rem;
+  border: 1px solid var(--wiki-border);
+  border-radius: 0.55rem;
+  outline: 0;
+  color: var(--wiki-text);
+  background: var(--wiki-surface);
+  font: inherit;
+  font-size: 1rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.archive-search input::placeholder { color: var(--wiki-faint); }
+.archive-search input:focus {
+  border-color: var(--wiki-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--wiki-accent) 18%, transparent);
+}
+
+.archive-search button {
+  position: absolute;
+  right: 0.7rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  color: var(--wiki-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 1.25rem;
+}
+
+.collection-tabs {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding: 0.15rem 0 0.45rem;
+  scrollbar-width: thin;
+}
+
+.collection-tabs button {
+  flex: 0 0 auto;
+  min-height: 2.45rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--wiki-border);
+  border-radius: 999px;
+  color: var(--wiki-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 620;
+  white-space: nowrap;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+.collection-tabs button small { margin-left: 0.25rem; color: var(--wiki-faint); }
+.collection-tabs button:hover { color: var(--wiki-text); background: var(--wiki-surface); }
+.collection-tabs button.is-active {
+  border-color: var(--wiki-text);
+  color: var(--wiki-bg);
+  background: var(--wiki-text);
+}
+
+.collection-tabs button.is-active small { color: inherit; opacity: 0.7; }
+
+.archive-result-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wiki-border);
+  color: var(--wiki-muted);
+  font-size: 0.76rem;
+}
+
+.archive-result-heading p { margin: 0; }
+.archive-result-heading strong { color: var(--wiki-text); }
+
+.wiki-grid,
+.folio-loading {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: clamp(0.8rem, 1.6vw, 1.35rem);
+}
+
+.wiki-entry-card {
+  min-width: 0;
+  color: var(--wiki-text);
+  background: transparent;
+  animation: wiki-card-arrive 420ms var(--entry-delay) ease-out both;
+}
+
+.wiki-entry-card > button {
+  display: grid;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--wiki-border);
+  border-radius: 0.65rem;
+  color: inherit;
+  background: var(--wiki-raised);
+  font: inherit;
+  text-align: left;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.wiki-entry-card > button:hover {
+  border-color: color-mix(in srgb, var(--wiki-accent) 55%, var(--wiki-border));
+  box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.wiki-entry-card figure {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  overflow: hidden;
+  background: var(--wiki-surface);
+}
+
+.wiki-entry-card figure > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.82) contrast(1.02);
+  transition: filter 220ms ease, transform 450ms ease;
+}
+
+.wiki-entry-card button:hover figure > img { filter: saturate(1); transform: scale(1.025); }
+
+.wiki-entry-card figcaption {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  padding: 0.3rem 0.48rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  color: #f4eee0;
+  background: rgba(8, 13, 14, 0.68);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.wiki-house-sigil,
+.entry-monogram {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.entry-monogram {
+  color: var(--wiki-accent);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: 4.5rem;
+}
+
+.wiki-entry-copy {
+  display: flex;
+  min-height: 7.1rem;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.wiki-entry-copy h2 {
+  margin: 0;
+  color: var(--wiki-text);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  font-weight: 520;
+  line-height: 1.02;
+}
+
+.wiki-entry-copy p {
+  display: -webkit-box;
+  margin: 0.42rem 0 0;
+  overflow: hidden;
+  color: var(--wiki-muted);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.entry-arrow {
+  flex: 0 0 auto;
+  color: var(--wiki-accent);
+  font-size: 0.66rem;
+  font-weight: 650;
+}
+
+.folio-loading span {
+  display: block;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--wiki-border);
+  border-radius: 0.65rem;
+  background: linear-gradient(105deg, var(--wiki-surface) 25%, var(--wiki-raised) 40%, var(--wiki-surface) 55%);
+  background-size: 220% 100%;
+  animation: wiki-skeleton 1.4s linear infinite;
+}
+
+.wiki-error,
+.wiki-empty {
+  display: grid;
+  min-height: 24rem;
+  place-content: center;
+  justify-items: center;
+  padding: 2rem;
+  border: 1px dashed var(--wiki-border);
+  border-radius: 0.75rem;
+  color: var(--wiki-muted);
+  background: var(--wiki-surface);
+  text-align: center;
+}
+
+.wiki-error h2,
+.wiki-empty h2 {
+  margin: 0.3rem 0;
+  color: var(--wiki-text);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: 2rem;
+}
+
+.wiki-error button,
+.load-more {
+  min-height: 2.75rem;
+  margin-top: 1rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--wiki-border);
+  border-radius: 999px;
+  color: var(--wiki-text);
+  background: var(--wiki-surface);
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.load-more { display: block; margin: 2rem auto 0; }
+.load-more:disabled { opacity: 0.55; }
+
+.wiki-footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  width: min(92rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.4rem 0 max(1.4rem, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--wiki-border);
+  color: var(--wiki-muted);
+  background: transparent;
+  font-size: 0.72rem;
+}
+
+.wiki-footer span { color: var(--wiki-text); font-family: "Newsreader Variable", Georgia, serif; }
+.wiki-footer p { margin: 0; text-align: center; }
+.wiki-footer a { justify-self: end; color: var(--wiki-accent); text-decoration: none; }
+
+.wiki-entry-sheet {
+  display: flex;
+  width: min(34rem, 100vw);
+  height: 100%;
+  max-height: 100dvh;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  padding: 0;
+  border-color: var(--wiki-border);
+  color: var(--wiki-text);
+  background: var(--wiki-raised);
+}
+
+.wiki-entry-sheet > button {
+  z-index: 3;
+  border-radius: 50%;
+  color: var(--wiki-text);
+  background: color-mix(in srgb, var(--wiki-raised) 82%, transparent);
+}
+
+.wiki-entry-sheet-header { padding: 2rem 2rem 1.25rem; text-align: left; }
+.wiki-entry-sheet-header h2 {
+  color: var(--wiki-text);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  font-weight: 450;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+
+.wiki-entry-sheet-header [data-slot="sheet-description"] { color: var(--wiki-muted); }
+
+.wiki-entry-sheet-media { aspect-ratio: 4 / 3; margin: 0; overflow: hidden; background: var(--wiki-surface); }
+.wiki-entry-sheet-media img { width: 100%; height: 100%; object-fit: cover; }
+.wiki-entry-sheet-sigil { display: grid; min-height: 15rem; place-items: center; background: var(--wiki-surface); }
+.wiki-entry-sheet [data-slot="separator"] { background: var(--wiki-border); }
+
+.wiki-entry-sheet-content { display: grid; gap: 1.4rem; padding: 1.6rem 2rem 3rem; }
+.wiki-entry-sheet-content blockquote {
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--wiki-accent);
+  color: var(--wiki-text);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.wiki-entry-sheet-content dl { display: grid; gap: 0.65rem; margin: 0; }
+.wiki-entry-sheet-content dl div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; }
+.wiki-entry-sheet-content dt,
+.wiki-entry-arms span,
+.wiki-entry-aliases > span {
+  color: var(--wiki-faint);
+  font-size: 0.64rem;
+  font-weight: 680;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.wiki-entry-sheet-content dd { margin: 0; color: var(--wiki-text); }
+.wiki-entry-description { margin: 0; color: var(--wiki-muted); line-height: 1.7; }
+.wiki-entry-arms,
+.wiki-entry-aliases { display: grid; gap: 0.35rem; margin: 0; color: var(--wiki-muted); }
+.wiki-entry-aliases p { margin: 0; }
+
+@keyframes wiki-card-arrive {
+  from { opacity: 0; transform: translateY(0.65rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wiki-skeleton {
+  to { background-position-x: -220%; }
+}
+
+@media (min-width: 1320px) {
+  .wiki-grid,
+  .folio-loading { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+@media (max-width: 880px) {
+  .landing-content h1 { font-size: clamp(3.3rem, 17vw, 6rem); }
+  .realm-copy {
+    top: max(1.2rem, calc(0.9rem + env(safe-area-inset-top)));
+    bottom: auto;
+    left: max(1.1rem, calc(0.8rem + env(safe-area-inset-left)));
+    max-width: min(68vw, 19rem);
+  }
+
+  .realm-copy h1 { font-size: clamp(2.25rem, 11vw, 4.1rem); }
+  .realm-copy strong,
+  .realm-copy span { font-size: 0.72rem; line-height: 1.35; }
+  .realm-controls { right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); }
+  .realm-progress { right: auto; bottom: max(1.7rem, calc(1.25rem + env(safe-area-inset-bottom))); left: max(1rem, env(safe-area-inset-left)); }
+  .realm-progress span { width: 0.7rem; }
+  .realm-progress .is-current { width: 1.3rem; }
+  .realm-picker { right: 50%; bottom: max(1rem, env(safe-area-inset-bottom)); max-width: calc(100% - 2rem); transform: translateX(50%); }
+  .realm-picker button { width: 2rem; height: 2rem; }
+}
+
+@media (max-width: 720px) {
+  .wiki-brand strong,
+  .wiki-header nav a span,
+  .wiki-theme-toggle span { display: none; }
+  .wiki-header { min-height: 3.75rem; padding-block: 0.55rem; }
+  .archive-index { padding-top: 2.6rem; }
+  .archive-heading { align-items: start; }
+  .archive-heading h1 { font-size: clamp(2.8rem, 14vw, 4.5rem); }
+  .archive-heading > div > p:last-child { font-size: 0.82rem; }
+  .archive-count { min-width: 5.2rem; padding: 0.75rem; }
+  .archive-count strong { font-size: 1.55rem; }
+  .wiki-grid,
+  .folio-loading { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+  .wiki-entry-copy { min-height: 6.25rem; padding: 0.75rem; }
+  .wiki-entry-copy h2 { font-size: 1.12rem; }
+  .entry-arrow { display: none; }
+  .wiki-footer { grid-template-columns: 1fr auto; }
+  .wiki-footer p { display: none; }
+  .wiki-entry-sheet { width: 100%; height: min(88dvh, 52rem); border-radius: 1rem 1rem 0 0; }
+  .wiki-entry-sheet-header { padding: 1.5rem 1.25rem 1rem; }
+  .wiki-entry-sheet-content { padding: 1.35rem 1.25rem max(2rem, env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 460px) {
+  .landing-actions { flex-direction: column; }
+  .landing-action { width: min(19rem, 100%); margin-inline: auto; }
+  .archive-heading { display: grid; }
+  .archive-count { display: none; }
+}
+
+@media (max-width: 360px) {
+  .wiki-grid,
+  .folio-loading { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 880px) and (orientation: landscape) {
+  .realm-copy { max-width: 32vw; }
+  .realm-copy h1 { font-size: clamp(2rem, 6vw, 3rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-map,
+  .realm-map-frame,
+  .realm-sigil,
+  .realm-copy,
+  .wiki-entry-card,
+  .folio-loading span { animation: none; transition: none; }
+  .wiki-entry-card > button:hover { transform: none; }
 }

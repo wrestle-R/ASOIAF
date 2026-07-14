@@ -1,7 +1,6 @@
 import compression from "compression";
 import express from "express";
 import { getDatabase } from "./db.js";
-import { getIntroHouses } from "./houseQueries.js";
 import {
   getCollections,
   getMedia,
@@ -22,18 +21,6 @@ app.get("/api/health", (_request, response) => {
     response.json({ ok: integrity === "ok" });
   } catch {
     response.status(503).json({ error: "database-unavailable" });
-  }
-});
-
-app.get("/api/intro/houses", (_request, response) => {
-  try {
-    const houses = getIntroHouses(getDatabase());
-    response.json({ houses, expected: 9, count: houses.length });
-  } catch {
-    response.status(503).json({
-      error: "database-unavailable",
-      message: "The local archive could not be opened.",
-    });
   }
 });
 

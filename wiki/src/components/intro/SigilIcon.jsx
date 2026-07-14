@@ -62,7 +62,7 @@ export function SigilIcon({ house, size = 38, className = "" }) {
       aria-hidden="true"
     >
       {image ? (
-        <img src={image} alt="" draggable="false" />
+        <img src={image} alt="" width={size} height={size} draggable="false" />
       ) : (
         <svg viewBox="0 0 24 24" role="presentation">
           {motif ? (

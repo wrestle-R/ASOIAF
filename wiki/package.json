@@ -11,10 +11,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "render:journey-assets": "node scripts/render-daenerys-posters.mjs",
+    "render:realm-assets": "node scripts/render-realm-posters.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "verify:journey": "node scripts/verify-daenerys-journey.mjs",
     "verify:map": "node scripts/verify-map-visuals.mjs",
+    "verify:wiki": "node scripts/verify-wiki-ui.mjs",
     "check": "npm run test && npm run build"
   },
   "dependencies": {

@@ -1,54 +1,52 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { Separator } from "@/components/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import { SigilIcon } from "../intro/SigilIcon.jsx";
 
-export function WikiEntryPanel({ entry, onClose }) {
-  const panelRef = useRef(null);
-  const closeRef = useRef(null);
+export function WikiEntryPanel({ entry, onClose, opener, theme }) {
+  const phone = useMediaQuery("(max-width: 720px)");
 
-  useEffect(() => {
-    closeRef.current?.focus();
-    function onKeyDown(event) {
-      if (event.key === "Escape") onClose();
-    }
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
+  useEffect(() => () => opener?.focus(), [opener]);
 
   return (
-    <div className="entry-panel-backdrop" role="presentation" onMouseDown={onClose}>
-      <aside
-        ref={panelRef}
-        className="entry-panel"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="entry-panel-title"
-        onMouseDown={(event) => event.stopPropagation()}
+    <Sheet open onOpenChange={(open) => !open && onClose()}>
+      <SheetContent
+        className={`wiki-entry-sheet wiki-theme wiki-theme-${theme}`}
+        side={phone ? "bottom" : "right"}
       >
-        <button
-          ref={closeRef}
-          type="button"
-          className="icon-button entry-panel-close"
-          onClick={onClose}
-          aria-label="Close archive entry"
-        >
-          ×
-        </button>
+        <SheetHeader className="wiki-entry-sheet-header">
+          <p className="eyebrow">{entry.collectionLabel}</p>
+          <SheetTitle>{entry.name}</SheetTitle>
+          <SheetDescription>
+            {entry.title || entry.family || entry.region || "Archive record"}
+          </SheetDescription>
+        </SheetHeader>
+
         {entry.media ? (
-          <figure
-            className="entry-panel-media"
-            style={{ aspectRatio: `${entry.media.width || 1}/${entry.media.height || 1}` }}
-          >
-            <img src={entry.media.url} alt="" />
+          <figure className="wiki-entry-sheet-media">
+            <img
+              src={entry.media.url}
+              alt={entry.name}
+              width={entry.media.width || 800}
+              height={entry.media.height || 1000}
+            />
           </figure>
         ) : (
-          <div className="entry-panel-sigil">
+          <div className="wiki-entry-sheet-sigil">
             <SigilIcon house={entry} size={112} />
           </div>
         )}
-        <div className="entry-panel-content">
-          <p className="eyebrow">{entry.collectionLabel}</p>
-          <h2 id="entry-panel-title">{entry.name}</h2>
-          {entry.title && <p className="entry-panel-title">{entry.title}</p>}
+
+        <Separator />
+
+        <div className="wiki-entry-sheet-content">
           {entry.words && <blockquote>“{entry.words}”</blockquote>}
           <dl>
             {entry.family && <div><dt>Family</dt><dd>{entry.family}</dd></div>}
@@ -58,18 +56,18 @@ export function WikiEntryPanel({ entry, onClose }) {
               <div><dt>Portrayed by</dt><dd>{entry.portrayedBy.join(", ")}</dd></div>
             )}
           </dl>
-          {entry.description && <p className="entry-description">{entry.description}</p>}
+          {entry.description && <p className="wiki-entry-description">{entry.description}</p>}
           {entry.coatOfArms && (
-            <p className="entry-arms"><span>Arms</span>{entry.coatOfArms}</p>
+            <p className="wiki-entry-arms"><span>Arms</span>{entry.coatOfArms}</p>
           )}
           {entry.aliases?.length > 0 && (
-            <div className="entry-aliases">
+            <div className="wiki-entry-aliases">
               <span>Also known as</span>
               <p>{entry.aliases.join(" · ")}</p>
             </div>
           )}
         </div>
-      </aside>
-    </div>
+      </SheetContent>
+    </Sheet>
   );
 }
