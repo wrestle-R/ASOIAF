@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { PauseIcon, PlayIcon, RotateCcwIcon } from "lucide-react";
 import { useReducedMotion } from "../../hooks/useReducedMotion.js";
 import {
@@ -8,6 +8,12 @@ import {
 } from "../../data/daenerysJourney.js";
 
 const SEASON_HOLD_MS = 650;
+const MOBILE_CAMERA_QUERY = "(max-width: 880px)";
+const MOBILE_CAMERA_EASING_MS = 140;
+
+function clamp(value, minimum, maximum) {
+  return Math.min(Math.max(value, minimum), maximum);
+}
 
 function JourneyPoster({ season, onSelect }) {
   return (
@@ -48,8 +54,20 @@ export function DaenerysJourneyPage() {
   const [complete, setComplete] = useState(false);
   const [run, setRun] = useState(0);
   const pausedRef = useRef(false);
+  const cameraRef = useRef(null);
   const pathRef = useRef(null);
   const markerRef = useRef(null);
+  const mobileCameraRef = useRef({
+    cameraHeight: 0,
+    cameraWidth: 0,
+    initialized: false,
+    isMobile: false,
+    needsPosition: true,
+    viewportHeight: 0,
+    viewportWidth: 0,
+    x: 0,
+    y: 0,
+  });
 
   const season = DAENERYS_SEASONS[seasonIndex];
   const waypoints = getSeasonWaypoints(season);
@@ -58,12 +76,49 @@ export function DaenerysJourneyPage() {
     pausedRef.current = paused;
   }, [paused]);
 
+  useLayoutEffect(() => {
+    const camera = cameraRef.current;
+    if (!camera || reducedMotion) return undefined;
+
+    const mobileQuery = window.matchMedia(MOBILE_CAMERA_QUERY);
+    const cameraState = mobileCameraRef.current;
+
+    const measureCamera = () => {
+      cameraState.isMobile = mobileQuery.matches;
+      cameraState.viewportWidth = window.innerWidth;
+      cameraState.viewportHeight = window.innerHeight;
+      cameraState.cameraWidth = camera.offsetWidth;
+      cameraState.cameraHeight = camera.offsetHeight;
+      cameraState.needsPosition = true;
+
+      if (!cameraState.isMobile) {
+        cameraState.initialized = false;
+        camera.style.removeProperty("--mobile-camera-scale");
+        camera.style.removeProperty("--mobile-camera-x");
+        camera.style.removeProperty("--mobile-camera-y");
+      }
+    };
+
+    measureCamera();
+    const resizeObserver = new ResizeObserver(measureCamera);
+    resizeObserver.observe(camera);
+    window.addEventListener("resize", measureCamera);
+    mobileQuery.addEventListener("change", measureCamera);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", measureCamera);
+      mobileQuery.removeEventListener("change", measureCamera);
+    };
+  }, [reducedMotion]);
+
   useEffect(() => {
     if (reducedMotion || complete) return undefined;
 
     const path = pathRef.current;
     const marker = markerRef.current;
-    if (!path || !marker) return undefined;
+    const camera = cameraRef.current;
+    if (!path || !marker || !camera) return undefined;
 
     const pathLength = path.getTotalLength();
     path.style.strokeDasharray = `${pathLength}`;
@@ -86,6 +141,40 @@ export function DaenerysJourneyPage() {
       const point = path.getPointAtLength(pathLength * progress);
       path.style.strokeDashoffset = `${pathLength * (1 - progress)}`;
       marker.setAttribute("transform", `translate(${point.x} ${point.y})`);
+
+      const mobileCamera = mobileCameraRef.current;
+      if (mobileCamera.isMobile && (!pausedRef.current || mobileCamera.needsPosition)) {
+        const landscape = mobileCamera.viewportWidth > mobileCamera.viewportHeight;
+        const scale = landscape ? 1 : 1.05;
+        const scaledWidth = mobileCamera.cameraWidth * scale;
+        const scaledHeight = mobileCamera.cameraHeight * scale;
+        const pointX = (point.x / JOURNEY_MAP.width) * scaledWidth;
+        const pointY = (point.y / JOURNEY_MAP.height) * scaledHeight;
+        const minimumX = Math.min(0, mobileCamera.viewportWidth - scaledWidth);
+        const minimumY = Math.min(0, mobileCamera.viewportHeight - scaledHeight);
+        const desiredX = clamp(
+          mobileCamera.viewportWidth * 0.5 - pointX,
+          minimumX,
+          0,
+        );
+        const desiredY = clamp(
+          mobileCamera.viewportHeight * 0.42 - pointY,
+          minimumY,
+          0,
+        );
+        const easing = mobileCamera.initialized && !mobileCamera.needsPosition
+          ? 1 - Math.exp(-delta / MOBILE_CAMERA_EASING_MS)
+          : 1;
+
+        mobileCamera.x += (desiredX - mobileCamera.x) * easing;
+        mobileCamera.y += (desiredY - mobileCamera.y) * easing;
+        mobileCamera.initialized = true;
+        mobileCamera.needsPosition = false;
+
+        camera.style.setProperty("--mobile-camera-scale", scale);
+        camera.style.setProperty("--mobile-camera-x", `${mobileCamera.x}px`);
+        camera.style.setProperty("--mobile-camera-y", `${mobileCamera.y}px`);
+      }
 
       if (elapsed >= season.duration + SEASON_HOLD_MS) {
         if (seasonIndex === DAENERYS_SEASONS.length - 1) setComplete(true);
@@ -123,7 +212,7 @@ export function DaenerysJourneyPage() {
   return (
     <main className="journey-page">
       <section className="journey-stage" aria-labelledby="journey-title">
-        <div className="journey-camera" style={cameraStyle}>
+        <div ref={cameraRef} className="journey-camera" style={cameraStyle}>
           <img
             className="journey-map-image"
             src={JOURNEY_MAP.image}

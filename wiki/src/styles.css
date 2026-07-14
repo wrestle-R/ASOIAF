@@ -2607,49 +2607,95 @@ button {
   }
 }
 
+@keyframes journey-mobile-copy {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.6rem);
+  }
+  14%,
+  62% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+}
+
 @media (max-width: 880px) {
+  .journey-stage {
+    width: 100dvw;
+    height: 100dvh;
+  }
+
   .journey-camera {
-    width: max(190vw, calc(100svh * 1.4));
+    top: 0;
+    left: 0;
+    width: max(100vw, calc(100svh * 1.4));
+    width: max(100dvw, calc(100dvh * 1.4));
+    transform: translate3d(
+        var(--mobile-camera-x, 0),
+        var(--mobile-camera-y, 0),
+        0
+      )
+      scale(var(--mobile-camera-scale, 1.05));
+    transform-origin: 0 0;
+    transition: none;
   }
 
   .journey-vignette {
     background:
-      linear-gradient(0deg, rgba(5, 8, 10, 0.94) 0%, rgba(5, 8, 10, 0.48) 45%, transparent 74%),
-      radial-gradient(circle at center, transparent 28%, rgba(3, 7, 9, 0.45) 100%);
+      linear-gradient(180deg, rgba(5, 8, 10, 0.72) 0%, transparent 22%),
+      linear-gradient(0deg, rgba(5, 8, 10, 0.72) 0%, transparent 18%),
+      radial-gradient(circle at center, transparent 48%, rgba(3, 7, 9, 0.22) 100%);
   }
 
   .journey-copy {
-    bottom: 5.5rem;
-    left: 1rem;
-    width: calc(100vw - 2rem);
+    top: calc(1rem + env(safe-area-inset-top));
+    bottom: auto;
+    left: calc(1rem + env(safe-area-inset-left));
+    width: min(74vw, 19rem);
+    animation: journey-mobile-copy 2400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    pointer-events: none;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.72);
   }
 
   .journey-copy h1 {
-    max-width: 22rem;
-    font-size: clamp(2.5rem, 12vw, 4.2rem);
+    max-width: 18rem;
+    font-size: clamp(1.75rem, 8vw, 2.6rem);
+    line-height: 0.94;
   }
 
-  .journey-copy > p:not(.journey-kicker) {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+  .journey-kicker {
+    margin-bottom: 0.35rem;
+    font-size: 0.62rem;
   }
 
+  .journey-copy > p:not(.journey-kicker),
   .journey-copy ol {
-    max-height: 4.3rem;
-    overflow: hidden;
+    display: none;
   }
 
   .journey-progress {
     right: auto;
-    bottom: 1.85rem;
-    left: 1rem;
+    bottom: calc(1.85rem + env(safe-area-inset-bottom));
+    left: calc(1rem + env(safe-area-inset-left));
   }
 
   .journey-controls {
-    right: 1rem;
-    bottom: 1rem;
+    right: calc(1rem + env(safe-area-inset-right));
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 880px) and (orientation: landscape) {
+  .journey-copy {
+    width: min(38vw, 16rem);
+  }
+
+  .journey-copy h1 {
+    font-size: clamp(1.45rem, 4.2vw, 2.1rem);
   }
 }
 
