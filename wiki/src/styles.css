@@ -544,129 +544,6 @@ button {
   }
 }
 
-/* Landing */
-.landing-page {
-  position: relative;
-  display: grid;
-  min-height: 100vh;
-  min-height: 100dvh;
-  place-items: center;
-  overflow: hidden;
-  padding: max(1.5rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right))
-    max(1.5rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
-  color: #f1e6ca;
-  background: #071012;
-  isolation: isolate;
-}
-
-.landing-map,
-.landing-shade {
-  position: absolute;
-  inset: 0;
-}
-
-.landing-map {
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 25% 50%;
-  filter: saturate(0.72) brightness(0.58) contrast(1.08);
-  transform: scale(1.025);
-  animation: landing-drift 22s ease-out both;
-}
-
-.landing-shade {
-  z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(3, 8, 10, 0.44), rgba(3, 8, 10, 0.66)),
-    radial-gradient(circle at 50% 44%, transparent 0 18%, rgba(3, 8, 10, 0.72) 74%);
-}
-
-.landing-content {
-  width: min(66rem, 100%);
-  text-align: center;
-}
-
-.landing-mark {
-  display: grid;
-  width: 3rem;
-  height: 3rem;
-  margin: 0 auto 1.5rem;
-  place-items: center;
-  border: 1px solid rgba(217, 190, 135, 0.44);
-  border-radius: 50%;
-  color: #d6ba82;
-  font-family: "Newsreader Variable", Georgia, serif;
-  font-size: 1.3rem;
-}
-
-.landing-content h1 {
-  max-width: 12ch;
-  margin: 0 auto;
-  font-family: "Newsreader Variable", Georgia, serif;
-  font-size: clamp(3.4rem, 9.8vw, 8.6rem);
-  font-weight: 420;
-  line-height: 0.86;
-  letter-spacing: -0.055em;
-  text-wrap: balance;
-  text-shadow: 0 0.14em 0.55em rgba(0, 0, 0, 0.7);
-}
-
-.landing-actions {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: clamp(2.25rem, 5vw, 4rem);
-}
-
-.landing-action {
-  display: inline-flex;
-  min-height: 3rem;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 0.75rem 1.2rem;
-  border: 1px solid rgba(222, 201, 158, 0.32);
-  border-radius: 999px;
-  color: #f2e7d0;
-  background: rgba(5, 12, 14, 0.62);
-  font-size: 0.78rem;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  text-transform: uppercase;
-  backdrop-filter: blur(10px);
-  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease,
-    transform 180ms ease;
-}
-
-.landing-action svg {
-  width: 1rem;
-  height: 1rem;
-}
-
-.landing-action:hover {
-  border-color: rgba(222, 201, 158, 0.7);
-  background: rgba(218, 193, 143, 0.12);
-  transform: translateY(-2px);
-}
-
-.landing-action-primary {
-  color: #101719;
-  background: #dec99d;
-}
-
-.landing-action-primary:hover {
-  color: #0b1113;
-  background: #efe0bd;
-}
-
-@keyframes landing-drift {
-  from { transform: scale(1.025); }
-  to { transform: scale(1.075); }
-}
-
 /* Nine-realm cinematic tour */
 .realm-tour,
 .realm-stage {
@@ -708,12 +585,6 @@ button {
   stroke-width: 1.2;
 }
 
-.realm-capital-link circle {
-  fill: #071012;
-  stroke: rgba(222, 197, 143, 0.94);
-  stroke-width: 1.2;
-}
-
 .realm-map-image {
   display: block;
   object-fit: fill;
@@ -725,6 +596,11 @@ button {
   pointer-events: none;
   background: rgba(5, 12, 14, 0.17);
   box-shadow: inset 0 0 10rem rgba(2, 6, 8, 0.46);
+}
+
+.realm-stage.is-complete .realm-map-toning {
+  background: rgba(5, 12, 14, 0.06);
+  box-shadow: inset 0 0 6rem rgba(2, 6, 8, 0.22);
 }
 
 .realm-spotlight {
@@ -806,9 +682,13 @@ button {
   z-index: 3;
   right: max(1.5rem, calc(1rem + env(safe-area-inset-right)));
   bottom: max(1.5rem, calc(1rem + env(safe-area-inset-bottom)));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem;
 }
 
-.realm-controls button {
+.realm-controls .realm-control {
   display: inline-flex;
   min-width: 7.4rem;
   min-height: 2.75rem;
@@ -829,12 +709,13 @@ button {
   transition: border-color 160ms ease, background-color 160ms ease;
 }
 
-.realm-controls button:hover {
+.realm-controls .realm-control:hover {
   border-color: rgba(226, 203, 158, 0.72);
+  color: #f2e7cf;
   background: rgba(226, 203, 158, 0.11);
 }
 
-.realm-controls svg {
+.realm-controls .realm-control svg {
   width: 0.9rem;
   height: 0.9rem;
 }
@@ -859,59 +740,6 @@ button {
 .realm-progress .is-past,
 .realm-progress .is-current { background: #d9c08e; }
 .realm-progress .is-current { width: 2rem; }
-
-.realm-tour-static,
-.realm-poster {
-  min-height: 100vh;
-  min-height: 100dvh;
-}
-
-.realm-poster {
-  position: relative;
-  overflow: hidden;
-  background: #061013;
-}
-
-.realm-poster > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.realm-poster-shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(3, 8, 10, 0.78), transparent 58%);
-}
-
-.realm-picker {
-  position: absolute;
-  z-index: 3;
-  right: max(1.5rem, calc(1rem + env(safe-area-inset-right)));
-  bottom: max(1.5rem, calc(1rem + env(safe-area-inset-bottom)));
-  display: flex;
-  gap: 0.4rem;
-}
-
-.realm-picker button {
-  display: grid;
-  width: 2.25rem;
-  height: 2.25rem;
-  place-items: center;
-  border: 1px solid rgba(226, 203, 158, 0.3);
-  border-radius: 50%;
-  color: #d9ccb2;
-  background: rgba(5, 12, 14, 0.68);
-  font: inherit;
-  font-size: 0.7rem;
-}
-
-.realm-picker button[aria-current="step"] {
-  color: #071012;
-  background: #dfc996;
-}
 
 @keyframes realm-sigil-arrive {
   from { opacity: 0; transform: translate(-50%, -50%) scale(0.72); }
@@ -982,6 +810,112 @@ button {
   --input: #303936;
   --ring: #d1b77f;
   color-scheme: dark;
+}
+
+.not-found-page {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  place-items: center;
+  padding: max(1.5rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  color: var(--wiki-text);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--wiki-border) 28%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--wiki-border) 28%, transparent) 1px, transparent 1px),
+    var(--wiki-bg);
+  background-size: 4rem 4rem;
+  font-family: "Geist Variable", system-ui, sans-serif;
+  isolation: isolate;
+}
+
+.not-found-page::before {
+  position: absolute;
+  z-index: -1;
+  width: min(44rem, 88vw);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--wiki-accent) 18%, transparent);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--wiki-accent-soft) 58%, transparent),
+    transparent 68%
+  );
+  content: "";
+}
+
+.not-found-card {
+  display: grid;
+  width: min(45rem, 100%);
+  justify-items: center;
+  padding: clamp(2rem, 6vw, 4.5rem);
+  border: 1px solid var(--wiki-border);
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--wiki-raised) 92%, transparent);
+  box-shadow: 0 1.75rem 5rem color-mix(in srgb, #000 18%, transparent);
+  text-align: center;
+  backdrop-filter: blur(18px);
+}
+
+.not-found-mark {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 1.75rem;
+  place-items: center;
+  border: 1px solid var(--wiki-border);
+  border-radius: 50%;
+  color: var(--wiki-accent);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.not-found-code {
+  margin-top: 0.45rem;
+  color: color-mix(in srgb, var(--wiki-accent) 22%, transparent);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: clamp(7rem, 24vw, 14rem);
+  font-weight: 450;
+  line-height: 0.72;
+  letter-spacing: -0.08em;
+  user-select: none;
+}
+
+.not-found-card h1 {
+  max-width: 13ch;
+  margin: -0.1em 0 0;
+  color: var(--wiki-text);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: clamp(2.25rem, 7vw, 4.8rem);
+  font-weight: 430;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+}
+
+.not-found-copy {
+  max-width: 35rem;
+  margin: 1.4rem 0 0;
+  color: var(--wiki-muted);
+  font-size: clamp(0.9rem, 2vw, 1.02rem);
+  line-height: 1.7;
+  text-wrap: balance;
+}
+
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 2rem;
+}
+
+.not-found-actions a {
+  min-height: 2.75rem;
+  border-radius: 999px;
+  padding-inline: 1.1rem;
 }
 
 .wiki-page {
@@ -1539,7 +1473,6 @@ button {
 }
 
 @media (max-width: 880px) {
-  .landing-content h1 { font-size: clamp(3.3rem, 17vw, 6rem); }
   .realm-copy {
     top: max(1.2rem, calc(0.9rem + env(safe-area-inset-top)));
     bottom: auto;
@@ -1554,8 +1487,6 @@ button {
   .realm-progress { right: auto; bottom: max(1.7rem, calc(1.25rem + env(safe-area-inset-bottom))); left: max(1rem, env(safe-area-inset-left)); }
   .realm-progress span { width: 0.7rem; }
   .realm-progress .is-current { width: 1.3rem; }
-  .realm-picker { right: 50%; bottom: max(1rem, env(safe-area-inset-bottom)); max-width: calc(100% - 2rem); transform: translateX(50%); }
-  .realm-picker button { width: 2rem; height: 2rem; }
 }
 
 @media (max-width: 720px) {
@@ -1582,8 +1513,11 @@ button {
 }
 
 @media (max-width: 460px) {
-  .landing-actions { flex-direction: column; }
-  .landing-action { width: min(19rem, 100%); margin-inline: auto; }
+  .realm-controls-complete { left: max(1rem, env(safe-area-inset-left)); }
+  .realm-controls-complete .realm-control { flex: 1 1 9rem; min-width: 0; }
+  .not-found-card { padding: 2rem 1.2rem; }
+  .not-found-actions { width: 100%; }
+  .not-found-actions a { width: 100%; }
   .archive-heading { display: grid; }
   .archive-count { display: none; }
 }
@@ -1599,10 +1533,6 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .landing-map,
-  .realm-map-frame,
-  .realm-sigil,
-  .realm-copy,
   .wiki-entry-card,
   .folio-loading span { animation: none; transition: none; }
   .wiki-entry-card > button:hover { transform: none; }

@@ -14,7 +14,7 @@ export const REALM_MAPS = Object.freeze({
 const poster = (order, id) =>
   `/assets/nine-realms/realm-${String(order).padStart(2, "0")}-${id}.webp`;
 
-const realm = ({ order, id, name, houseId, house, seat, color, desktop, mobile, capital, posterSigil }) =>
+const realm = ({ order, id, name, houseId, house, seat, color, desktop, mobile, capital, sigil }) =>
   Object.freeze({
     order,
     id,
@@ -33,7 +33,10 @@ const realm = ({ order, id, name, houseId, house, seat, color, desktop, mobile, 
       desktop: Object.freeze(capital.desktop),
       mobile: Object.freeze(capital.mobile),
     }),
-    posterSigil: Object.freeze(posterSigil),
+    sigil: Object.freeze({
+      desktop: Object.freeze(sigil.desktop),
+      mobile: Object.freeze(sigil.mobile),
+    }),
   });
 
 export const REALM_TOUR = Object.freeze([
@@ -48,7 +51,7 @@ export const REALM_TOUR = Object.freeze([
     desktop: { x: 20, y: 24.5, scale: 1.66, radius: 8.8 },
     mobile: { x: 47, y: 24, scale: 1.34, radius: 10.5 },
     capital: { desktop: { x: 19.9, y: 25.3 }, mobile: { x: 47, y: 23.5 } },
-    posterSigil: { x: 30.5, y: 25.5 },
+    sigil: { desktop: { x: 30.5, y: 25.5 }, mobile: { x: 70, y: 23.5 } },
   }),
   realm({
     order: 2,
@@ -61,7 +64,7 @@ export const REALM_TOUR = Object.freeze([
     desktop: { x: 22.7, y: 37.3, scale: 1.85, radius: 6.8 },
     mobile: { x: 73, y: 35.3, scale: 1.42, radius: 8.5 },
     capital: { desktop: { x: 22.3, y: 36.8 }, mobile: { x: 73, y: 35.3 } },
-    posterSigil: { x: 18.7, y: 38.2 },
+    sigil: { desktop: { x: 18.7, y: 38.2 }, mobile: { x: 94, y: 34 } },
   }),
   realm({
     order: 3,
@@ -74,7 +77,7 @@ export const REALM_TOUR = Object.freeze([
     desktop: { x: 18, y: 47.2, scale: 1.82, radius: 6.8 },
     mobile: { x: 47, y: 47, scale: 1.42, radius: 8.5 },
     capital: { desktop: { x: 17.6, y: 46.9 }, mobile: { x: 47, y: 47 } },
-    posterSigil: { x: 14.4, y: 49.3 },
+    sigil: { desktop: { x: 14.4, y: 49.3 }, mobile: { x: 70, y: 48 } },
   }),
   realm({
     order: 4,
@@ -87,7 +90,7 @@ export const REALM_TOUR = Object.freeze([
     desktop: { x: 7.5, y: 49, scale: 1.9, radius: 5.8 },
     mobile: { x: 15, y: 49, scale: 1.48, radius: 7.5 },
     capital: { desktop: { x: 7.1, y: 48.4 }, mobile: { x: 15, y: 49 } },
-    posterSigil: { x: 4.4, y: 51.2 },
+    sigil: { desktop: { x: 4.4, y: 51.2 }, mobile: { x: 8, y: 47 } },
   }),
   realm({
     order: 5,
@@ -100,7 +103,7 @@ export const REALM_TOUR = Object.freeze([
     desktop: { x: 5, y: 63, scale: 1.88, radius: 6.8 },
     mobile: { x: 14, y: 63.5, scale: 1.43, radius: 8.5 },
     capital: { desktop: { x: 5.2, y: 62.5 }, mobile: { x: 14, y: 63.5 } },
-    posterSigil: { x: 3.3, y: 65.7 },
+    sigil: { desktop: { x: 3.3, y: 65.7 }, mobile: { x: 7, y: 61.5 } },
   }),
   realm({
     order: 6,
@@ -113,7 +116,7 @@ export const REALM_TOUR = Object.freeze([
     desktop: { x: 35, y: 61, scale: 2.08, radius: 9 },
     mobile: { x: 53, y: 66, scale: 1.5, radius: 8 },
     capital: { desktop: { x: 40, y: 56.3 }, mobile: { x: 53, y: 66 } },
-    posterSigil: { x: 43.2, y: 54.2 },
+    sigil: { desktop: { x: 43.2, y: 54.2 }, mobile: { x: 63, y: 70 } },
   }),
   realm({
     order: 7,
@@ -126,7 +129,7 @@ export const REALM_TOUR = Object.freeze([
     desktop: { x: 29.5, y: 70, scale: 1.86, radius: 6.8 },
     mobile: { x: 82, y: 72, scale: 1.42, radius: 8.5 },
     capital: { desktop: { x: 30.3, y: 70.6 }, mobile: { x: 82, y: 72 } },
-    posterSigil: { x: 34, y: 72.3 },
+    sigil: { desktop: { x: 34, y: 72.3 }, mobile: { x: 90, y: 70 } },
   }),
   realm({
     order: 8,
@@ -139,7 +142,7 @@ export const REALM_TOUR = Object.freeze([
     desktop: { x: 8.4, y: 76.4, scale: 1.82, radius: 7.4 },
     mobile: { x: 24, y: 80, scale: 1.4, radius: 9 },
     capital: { desktop: { x: 8.1, y: 77.4 }, mobile: { x: 24, y: 80 } },
-    posterSigil: { x: 4.8, y: 79.5 },
+    sigil: { desktop: { x: 4.8, y: 79.5 }, mobile: { x: 13, y: 78 } },
   }),
   realm({
     order: 9,
@@ -152,7 +155,7 @@ export const REALM_TOUR = Object.freeze([
     desktop: { x: 31.8, y: 85.3, scale: 1.78, radius: 7.4 },
     mobile: { x: 57, y: 91, scale: 1.36, radius: 9 },
     capital: { desktop: { x: 31.2, y: 85.2 }, mobile: { x: 57, y: 91 } },
-    posterSigil: { x: 35, y: 87.5 },
+    sigil: { desktop: { x: 35, y: 87.5 }, mobile: { x: 85, y: 89.5 } },
   }),
 ]);
 

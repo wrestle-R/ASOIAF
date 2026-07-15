@@ -19,6 +19,11 @@ try {
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto(new URL("/wiki", baseUrl).href, { waitUntil: "networkidle" });
     await page.locator(".wiki-grid").waitFor();
+    const mapLinks = page.getByRole("link", { name: /Map|View the map/ });
+    for (let index = 0; index < await mapLinks.count(); index += 1) {
+      const href = await mapLinks.nth(index).getAttribute("href");
+      if (href !== "/") failures.push(`${viewport.name}: wiki map link targets ${href}`);
+    }
     const expectedColumns = viewport.name === "phone" ? 2 : 3;
     const cards = page.locator(".wiki-entry-card");
     if (await cards.count() < expectedColumns) failures.push(`${viewport.name}: archive grid did not load`);

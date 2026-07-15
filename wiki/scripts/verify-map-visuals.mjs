@@ -1,5 +1,6 @@
 import { mkdir } from "node:fs/promises";
 import { chromium } from "playwright";
+import { REALM_TOUR } from "../src/data/realmTour.js";
 
 const baseUrl = process.env.MAP_VERIFY_URL || "http://127.0.0.1:5174/";
 const outputDir = new URL("../../artifacts/screenshots/map-verification/", import.meta.url);
@@ -15,41 +16,80 @@ async function collectErrors(page, label) {
   return () => errors.length && failures.push(`${label}: ${errors.join(" | ")}`);
 }
 
+async function mapGeometry(page) {
+  return page.locator(".realm-map-frame").evaluate((node) => {
+    const rect = node.getBoundingClientRect();
+    return {
+      left: rect.left,
+      right: rect.right,
+      top: rect.top,
+      bottom: rect.bottom,
+      width: innerWidth,
+      height: innerHeight,
+    };
+  });
+}
+
+async function assertHighlight(page, label, expectedSigilSize) {
+  if (await page.locator(".realm-capital-link line").count() !== 1) {
+    failures.push(`${label}: expected one capital-to-sigil connector`);
+  }
+  if (await page.locator(".realm-capital-link circle").count()) {
+    failures.push(`${label}: legacy capital endpoint circle remains`);
+  }
+  await page.waitForTimeout(1100);
+  const sigilSize = await page.locator(".realm-sigil").evaluate((node) => {
+    const rect = node.getBoundingClientRect();
+    return { width: rect.width, height: rect.height };
+  });
+  if (Math.abs(sigilSize.width - expectedSigilSize) > 2 || Math.abs(sigilSize.height - expectedSigilSize) > 2) {
+    failures.push(`${label}: expected ${expectedSigilSize}px sigil, received ${sigilSize.width}x${sigilSize.height}`);
+  }
+}
+
+async function assertCompleteMap(page, label) {
+  await page.getByRole("button", { name: "Replay", exact: true }).waitFor({ timeout: 40000 });
+  await page.waitForTimeout(1300);
+  if (await page.locator(".realm-copy, .realm-capital-link, .realm-spotlight, .realm-vignette, .realm-progress").count()) {
+    failures.push(`${label}: realm overlays remain over the complete map`);
+  }
+  const wikiHref = await page.getByRole("link", { name: "Explore the Wiki", exact: true }).getAttribute("href");
+  if (wikiHref !== "/wiki") failures.push(`${label}: complete-map wiki action targets ${wikiHref}`);
+  const geometry = await mapGeometry(page);
+  const tolerance = 1.5;
+  if (
+    geometry.left < -tolerance
+    || geometry.right > geometry.width + tolerance
+    || geometry.top < -tolerance
+    || geometry.bottom > geometry.height + tolerance
+  ) {
+    failures.push(`${label}: complete map is cropped (${JSON.stringify(geometry)})`);
+  }
+}
+
 try {
   {
     const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
     const page = await context.newPage();
-    const reportErrors = await collectErrors(page, "landing");
-    await page.goto(new URL("/", baseUrl).href, { waitUntil: "networkidle" });
-    await page.getByRole("heading", { name: "A Wiki of Ice and Fire", exact: true }).waitFor();
-    if (await page.locator(".cinematic, .ink-loader, .topbar, .map-stage").count()) {
-      failures.push("landing: retired cinematic, loader, top bar, or interactive map is present");
-    }
-    const wikiHref = await page.getByRole("link", { name: /Enter the Wiki/ }).getAttribute("href");
-    const mapHref = await page.getByRole("link", { name: /View the Map/ }).getAttribute("href");
-    if (wikiHref !== "/wiki" || mapHref !== "/map") failures.push("landing: navigation targets are incorrect");
-    await page.screenshot({ path: new URL("landing-desktop.png", outputDir).pathname });
-    reportErrors();
-    await context.close();
-  }
-
-  {
-    const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
-    const page = await context.newPage();
     const reportErrors = await collectErrors(page, "tour-desktop");
-    await page.goto(new URL("/map", baseUrl).href, { waitUntil: "networkidle" });
-    await page.locator(".realm-stage").waitFor();
-    if (await page.locator(".realm-map-image").count() !== 1) failures.push("tour-desktop: live tour does not use one map image");
-    if (await page.locator(".house-marker, .map-detail-panel, [aria-label^='Open House']").count()) {
-      failures.push("tour-desktop: clickable realm markers or a detail panel remain");
+    await page.goto(new URL("/", baseUrl).href, { waitUntil: "networkidle" });
+    await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
+    if (await page.locator(".landing-page, .realm-poster, .house-marker, .map-detail-panel").count()) {
+      failures.push("tour-desktop: retired landing, poster picker, or interactive map UI remains");
+    }
+    if (await page.locator(".realm-map-image").count() !== 1) {
+      failures.push("tour-desktop: live tour does not use one persistent map image");
     }
     const source = await page.locator(".realm-map-image").getAttribute("src");
     if (!source?.endsWith("world-map-houses.webp")) failures.push(`tour-desktop: wrong map source ${source}`);
+    await assertHighlight(page, "tour-desktop", 76);
 
     const initialTransform = await page.locator(".realm-map-frame").evaluate((node) => getComputedStyle(node).transform);
     await page.getByRole("button", { name: "Pause", exact: true }).click();
     await page.waitForTimeout(3400);
-    if (!await page.getByRole("heading", { name: "The North", exact: true }).count()) failures.push("tour-desktop: pause did not freeze the realm");
+    if (!await page.getByRole("heading", { name: "The North", exact: true }).count()) {
+      failures.push("tour-desktop: pause did not freeze the realm");
+    }
     const pausedTransform = await page.locator(".realm-map-frame").evaluate((node) => getComputedStyle(node).transform);
     if (pausedTransform !== initialTransform) failures.push("tour-desktop: camera moved while paused");
     await page.getByRole("button", { name: "Continue", exact: true }).click();
@@ -59,9 +99,8 @@ try {
     await page.waitForTimeout(700);
     await page.screenshot({ path: new URL("tour-desktop-vale.png", outputDir).pathname });
 
-    await page.getByRole("heading", { name: "Dorne", exact: true }).waitFor({ timeout: 35000 });
-    await page.getByRole("button", { name: "Replay", exact: true }).waitFor({ timeout: 5000 });
-    await page.screenshot({ path: new URL("tour-desktop-dorne.png", outputDir).pathname });
+    await assertCompleteMap(page, "tour-desktop");
+    await page.screenshot({ path: new URL("tour-desktop-complete.png", outputDir).pathname });
     await page.getByRole("button", { name: "Replay", exact: true }).click();
     await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
     reportErrors();
@@ -69,45 +108,51 @@ try {
   }
 
   for (const viewport of [
-    { name: "phone-portrait", width: 390, height: 844 },
-    { name: "phone-landscape", width: 844, height: 390 },
+    { name: "phone-portrait", width: 390, height: 844, verifyComplete: true },
+    { name: "phone-landscape", width: 844, height: 390, verifyComplete: false },
   ]) {
     const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
     const page = await context.newPage();
     const reportErrors = await collectErrors(page, viewport.name);
-    await page.goto(new URL("/map", baseUrl).href, { waitUntil: "networkidle" });
+    await page.goto(new URL("/", baseUrl).href, { waitUntil: "networkidle" });
     await page.locator(".realm-stage").waitFor();
     const source = await page.locator(".realm-map-image").getAttribute("src");
-    if (!source?.endsWith("world-map-realms-mobile-capitals.webp")) failures.push(`${viewport.name}: wrong portrait map source ${source}`);
-    const geometry = await page.locator(".realm-map-frame").evaluate((node) => {
-      const rect = node.getBoundingClientRect();
-      return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: innerWidth, height: innerHeight };
-    });
+    if (!source?.endsWith("world-map-realms-mobile-capitals.webp")) {
+      failures.push(`${viewport.name}: wrong portrait map source ${source}`);
+    }
+    await assertHighlight(page, viewport.name, 59);
+    const geometry = await mapGeometry(page);
     if (geometry.left > 0 || geometry.right < geometry.width || geometry.top > 0 || geometry.bottom < geometry.height) {
       failures.push(`${viewport.name}: camera exposes an empty map edge`);
     }
-    await page.screenshot({ path: new URL(`${viewport.name}.png`, outputDir).pathname });
+    await page.screenshot({ path: new URL(`${viewport.name}-north.png`, outputDir).pathname });
+    if (viewport.verifyComplete) {
+      for (const realm of REALM_TOUR) {
+        await page.getByRole("heading", { name: realm.name, exact: true }).waitFor({ timeout: 5500 });
+        await page.waitForTimeout(900);
+        await page.screenshot({
+          path: new URL(`${viewport.name}-realm-${String(realm.order).padStart(2, "0")}.png`, outputDir).pathname,
+        });
+      }
+      await assertCompleteMap(page, viewport.name);
+      await page.screenshot({ path: new URL(`${viewport.name}-complete.png`, outputDir).pathname });
+    }
     reportErrors();
     await context.close();
   }
 
-  {
-    const context = await browser.newContext({
-      viewport: { width: 390, height: 844 },
-      reducedMotion: "reduce",
-    });
+  for (const path of ["/map", "/the-page-that-was-promised"]) {
+    const label = path === "/map" ? "retired-map-route" : "unknown-route";
+    const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
     const page = await context.newPage();
-    const reportErrors = await collectErrors(page, "tour-reduced-motion");
-    await page.goto(new URL("/map", baseUrl).href, { waitUntil: "networkidle" });
-    await page.locator(".realm-poster").waitFor();
-    if (await page.locator(".realm-stage, .realm-map-frame").count()) failures.push("tour-reduced-motion: animated camera is present");
-    if (await page.locator(".realm-picker button").count() !== 9) failures.push("tour-reduced-motion: all nine posters are not selectable");
-    for (let index = 1; index <= 9; index += 1) {
-      await page.locator(".realm-picker button").nth(index - 1).click();
-      const poster = await page.locator(".realm-poster > img").getAttribute("src");
-      if (!poster?.includes(`realm-${String(index).padStart(2, "0")}-`)) failures.push(`tour-reduced-motion: poster ${index} is incorrect`);
-    }
-    await page.screenshot({ path: new URL("tour-reduced-motion-dorne.png", outputDir).pathname });
+    const reportErrors = await collectErrors(page, label);
+    await page.goto(new URL(path, baseUrl).href, { waitUntil: "networkidle" });
+    await page.getByRole("heading", { name: "This page has been lost to history.", exact: true }).waitFor();
+    if (new URL(page.url()).pathname !== path) failures.push(`${label}: URL redirected unexpectedly`);
+    const returnHref = await page.getByRole("link", { name: "Return to the Map", exact: true }).getAttribute("href");
+    const wikiHref = await page.getByRole("link", { name: "Explore the Wiki", exact: true }).getAttribute("href");
+    if (returnHref !== "/" || wikiHref !== "/wiki") failures.push(`${label}: 404 actions are incorrect`);
+    await page.screenshot({ path: new URL(`${label}.png`, outputDir).pathname });
     reportErrors();
     await context.close();
   }
@@ -119,5 +164,5 @@ if (failures.length) {
   console.error(`Map tour verification failed:\n${failures.join("\n")}`);
   process.exitCode = 1;
 } else {
-  console.log("Landing and nine-realm tour verification passed.");
+  console.log("Root tour, complete map, responsive sigils, and 404 verification passed.");
 }

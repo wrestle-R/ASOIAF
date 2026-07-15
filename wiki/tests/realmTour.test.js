@@ -28,10 +28,6 @@ describe("REALM_TOUR", () => {
       expect(realm.duration).toBeGreaterThan(0);
       expect(realm.poster).toMatch(/^\/assets\/nine-realms\/realm-\d{2}-[a-z-]+\.webp$/);
       expect(realm.houseId).toMatch(/^house-/);
-      expect(realm.posterSigil.x).toBeGreaterThanOrEqual(0);
-      expect(realm.posterSigil.x).toBeLessThanOrEqual(100);
-      expect(realm.posterSigil.y).toBeGreaterThanOrEqual(0);
-      expect(realm.posterSigil.y).toBeLessThanOrEqual(100);
       accessSync(path.resolve("public/assets/houses", `${realm.houseId}.webp`));
     }
   });
@@ -50,6 +46,11 @@ describe("REALM_TOUR", () => {
         expect(realm.capital[layout].x).toBeLessThanOrEqual(100);
         expect(realm.capital[layout].y).toBeGreaterThanOrEqual(0);
         expect(realm.capital[layout].y).toBeLessThanOrEqual(100);
+        expect(realm.sigil[layout].x).toBeGreaterThanOrEqual(0);
+        expect(realm.sigil[layout].x).toBeLessThanOrEqual(100);
+        expect(realm.sigil[layout].y).toBeGreaterThanOrEqual(0);
+        expect(realm.sigil[layout].y).toBeLessThanOrEqual(100);
+        expect(realm.sigil[layout]).not.toEqual(realm.capital[layout]);
       }
     }
   });

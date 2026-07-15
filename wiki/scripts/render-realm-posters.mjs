@@ -15,7 +15,7 @@ mkdirSync(outputDirectory, { recursive: true });
 function overlayFor(realm) {
   const { x, y, radius } = realm.camera.desktop;
   const { x: capitalX, y: capitalY } = realm.capital.desktop;
-  const { x: sigilX, y: sigilY } = realm.posterSigil;
+  const { x: sigilX, y: sigilY } = realm.sigil.desktop;
   const outerRadius = radius * 1.7;
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1484" height="1060" viewBox="0 0 1484 1060">
@@ -36,8 +36,6 @@ function overlayFor(realm) {
   <rect width="1484" height="1060" fill="url(#shade)"/>
   <line x1="${capitalX}%" y1="${capitalY}%" x2="${sigilX}%" y2="${sigilY}%"
     stroke="#dec58f" stroke-opacity="0.78" stroke-width="1.5"/>
-  <circle cx="${capitalX}%" cy="${capitalY}%" r="4" fill="#071012"
-    stroke="#dec58f" stroke-opacity="0.9" stroke-width="1.5"/>
 </svg>`;
 }
 
@@ -46,9 +44,9 @@ try {
     const overlayPath = path.join(workDirectory, `${realm.id}.svg`);
     const outputPath = path.join(root, "public", realm.poster.replace(/^\//, ""));
     const sigilPath = path.join(root, "public", "assets", "houses", `${realm.houseId}.webp`);
-    const sigilSize = 48;
-    const x = Math.round(REALM_MAPS.desktop.width * realm.posterSigil.x / 100 - sigilSize / 2);
-    const y = Math.round(REALM_MAPS.desktop.height * realm.posterSigil.y / 100 - sigilSize / 2);
+    const sigilSize = 67;
+    const x = Math.round(REALM_MAPS.desktop.width * realm.sigil.desktop.x / 100 - sigilSize / 2);
+    const y = Math.round(REALM_MAPS.desktop.height * realm.sigil.desktop.y / 100 - sigilSize / 2);
 
     writeFileSync(overlayPath, overlayFor(realm));
     execFileSync("magick", [

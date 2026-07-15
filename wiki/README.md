@@ -1,8 +1,9 @@
 # Wiki of Ice and Fire
 
-An atmospheric React archive backed directly by the local SQLite artifact. `/` is a quiet
-entrance, `/map` is an autoplaying nine-realm tour, `/wiki` is the searchable editorial
-archive, and `/danerys` preserves the television journey animation.
+An atmospheric React archive backed directly by the local SQLite artifact. `/` is an
+autoplaying nine-realm tour, `/wiki` is the searchable editorial archive, and `/danerys`
+preserves the television journey animation. Unknown paths, including the retired `/map`
+route, use the editorial not-found page.
 
 ## Run locally
 
@@ -79,8 +80,8 @@ npm run check
 ## Realm-tour assets
 
 Realm metadata and camera framing live in `src/data/realmTour.js`. Regenerate all nine
-reduced-motion posters deterministically with `npm run render:realm-assets`; each poster
-uses the exact map, a restrained parchment spotlight, and the corresponding retained sigil.
+archival posters deterministically with `npm run render:realm-assets`; each poster uses the
+exact map, a restrained parchment spotlight, and the corresponding retained sigil.
 
 ## Checks
 

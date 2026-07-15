@@ -86,7 +86,7 @@ export function WikiPage() {
           <strong>A Wiki of Ice and Fire</strong>
         </Link>
         <nav aria-label="Archive navigation">
-          <Link to="/map">
+          <Link to="/">
             <MapIcon aria-hidden="true" />
             Map
           </Link>
@@ -210,7 +210,7 @@ export function WikiPage() {
       <footer className="wiki-footer">
         <span>A Wiki of Ice and Fire</span>
         <p>A private, SQLite-backed archive.</p>
-        <Link to="/map">View the map ↑</Link>
+        <Link to="/">View the map ↑</Link>
       </footer>
 
       {selected && (
