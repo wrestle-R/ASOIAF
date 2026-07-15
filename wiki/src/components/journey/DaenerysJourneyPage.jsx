@@ -113,6 +113,44 @@ export function DaenerysJourneyPage() {
   }, [reducedMotion]);
 
   useEffect(() => {
+    const handleArrowNavigation = (event) => {
+      const target = event.target;
+      if (
+        window.matchMedia(MOBILE_CAMERA_QUERY).matches
+        || event.defaultPrevented
+        || event.altKey
+        || event.ctrlKey
+        || event.metaKey
+        || event.shiftKey
+        || target instanceof HTMLInputElement
+        || target instanceof HTMLTextAreaElement
+        || target instanceof HTMLSelectElement
+        || target?.isContentEditable
+      ) {
+        return;
+      }
+
+      if (event.key === "ArrowRight" && !complete) {
+        if (seasonIndex === DAENERYS_SEASONS.length - 1 && reducedMotion) return;
+        event.preventDefault();
+        if (seasonIndex === DAENERYS_SEASONS.length - 1) setComplete(true);
+        else setSeasonIndex(seasonIndex + 1);
+        setRun((value) => value + 1);
+      }
+
+      if (event.key === "ArrowLeft" && (complete || seasonIndex > 0)) {
+        event.preventDefault();
+        setComplete(false);
+        setSeasonIndex(complete ? DAENERYS_SEASONS.length - 1 : seasonIndex - 1);
+        setRun((value) => value + 1);
+      }
+    };
+
+    window.addEventListener("keydown", handleArrowNavigation);
+    return () => window.removeEventListener("keydown", handleArrowNavigation);
+  }, [complete, reducedMotion, seasonIndex]);
+
+  useEffect(() => {
     if (reducedMotion || complete) return undefined;
 
     const path = pathRef.current;

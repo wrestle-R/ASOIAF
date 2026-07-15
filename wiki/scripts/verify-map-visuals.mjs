@@ -84,6 +84,12 @@ try {
     if (!source?.endsWith("world-map-houses.webp")) failures.push(`tour-desktop: wrong map source ${source}`);
     await assertHighlight(page, "tour-desktop", 76);
 
+    await page.keyboard.press("ArrowRight");
+    await page.getByRole("heading", { name: "The Vale", exact: true }).waitFor();
+    await page.keyboard.press("ArrowLeft");
+    await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
+    await page.waitForTimeout(1200);
+
     const initialTransform = await page.locator(".realm-map-frame").evaluate((node) => getComputedStyle(node).transform);
     await page.getByRole("button", { name: "Pause", exact: true }).click();
     await page.waitForTimeout(3400);
@@ -101,6 +107,10 @@ try {
 
     await assertCompleteMap(page, "tour-desktop");
     await page.screenshot({ path: new URL("tour-desktop-complete.png", outputDir).pathname });
+    await page.keyboard.press("ArrowLeft");
+    await page.getByRole("heading", { name: "Dorne", exact: true }).waitFor();
+    await page.keyboard.press("ArrowRight");
+    await page.getByRole("button", { name: "Replay", exact: true }).waitFor();
     await page.getByRole("button", { name: "Replay", exact: true }).click();
     await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
     reportErrors();
@@ -121,6 +131,11 @@ try {
       failures.push(`${viewport.name}: wrong portrait map source ${source}`);
     }
     await assertHighlight(page, viewport.name, 59);
+    await page.keyboard.press("ArrowRight");
+    await page.waitForTimeout(200);
+    if (!await page.getByRole("heading", { name: "The North", exact: true }).count()) {
+      failures.push(`${viewport.name}: desktop arrow binding changed the phone realm`);
+    }
     const geometry = await mapGeometry(page);
     if (geometry.left > 0 || geometry.right < geometry.width || geometry.top > 0 || geometry.bottom < geometry.height) {
       failures.push(`${viewport.name}: camera exposes an empty map edge`);

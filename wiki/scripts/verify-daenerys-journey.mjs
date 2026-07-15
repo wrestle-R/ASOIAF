@@ -88,6 +88,11 @@ try {
     const offsetAfter = Number.parseFloat(await routeReveal.evaluate((element) => element.style.strokeDashoffset));
     assert(offsetAfter < offsetBefore, "route stroke must draw forward");
 
+    await page.keyboard.press("ArrowRight");
+    await page.locator(".journey-kicker", { hasText: "Season 2 of 8" }).waitFor();
+    await page.keyboard.press("ArrowLeft");
+    await page.locator(".journey-kicker", { hasText: "Season 1 of 8" }).waitFor();
+
     await page.getByRole("button", { name: "Pause" }).click();
     const pausedOffset = Number.parseFloat(await routeReveal.evaluate((element) => element.style.strokeDashoffset));
     await page.waitForTimeout(650);
@@ -102,6 +107,11 @@ try {
     await page.getByRole("button", { name: "Replay" }).waitFor({ timeout: 45000 });
     assert(await page.locator(".journey-kicker").textContent() === "Season 8 of 8", "animation must stop on Season 8");
     await page.screenshot({ path: new URL("desktop-complete.png", outputDir).pathname });
+    await page.keyboard.press("ArrowLeft");
+    await page.getByRole("button", { name: "Pause" }).waitFor();
+    assert(await page.locator(".journey-kicker").textContent() === "Season 8 of 8", "left arrow from completion must reopen Season 8");
+    await page.keyboard.press("ArrowRight");
+    await page.getByRole("button", { name: "Replay" }).waitFor();
     await page.getByRole("button", { name: "Replay" }).click();
     await page.locator(".journey-kicker", { hasText: "Season 1 of 8" }).waitFor();
     assert(errors.length === 0, `desktop browser errors: ${errors.join(" | ")}`);
@@ -113,6 +123,9 @@ try {
       viewport: { width: 390, height: 844 },
     });
     await page.locator(".journey-stage").waitFor();
+    await page.keyboard.press("ArrowRight");
+    await page.waitForTimeout(200);
+    assert(await page.locator(".journey-kicker").textContent() === "Season 1 of 8", "desktop arrow binding must not change the phone season");
     assert(await page.locator(".journey-map-image").count() === 1, "phone must render one map image");
     assert(await page.getByRole("button", { name: "Pause" }).isVisible(), "phone pause control must be visible");
     assert(!await page.locator(".journey-copy > p:not(.journey-kicker)").isVisible(), "phone summary must be hidden");

@@ -43,6 +43,44 @@ export function RealmTourPage() {
   }, []);
 
   useEffect(() => {
+    if (phone) return undefined;
+
+    const handleArrowNavigation = (event) => {
+      const target = event.target;
+      if (
+        event.defaultPrevented
+        || event.altKey
+        || event.ctrlKey
+        || event.metaKey
+        || event.shiftKey
+        || target instanceof HTMLInputElement
+        || target instanceof HTMLTextAreaElement
+        || target instanceof HTMLSelectElement
+        || target?.isContentEditable
+      ) {
+        return;
+      }
+
+      if (event.key === "ArrowRight" && !complete) {
+        event.preventDefault();
+        if (realmIndex === REALM_TOUR.length - 1) setComplete(true);
+        else setRealmIndex(realmIndex + 1);
+        setRun((value) => value + 1);
+      }
+
+      if (event.key === "ArrowLeft" && (complete || realmIndex > 0)) {
+        event.preventDefault();
+        setComplete(false);
+        setRealmIndex(complete ? REALM_TOUR.length - 1 : realmIndex - 1);
+        setRun((value) => value + 1);
+      }
+    };
+
+    window.addEventListener("keydown", handleArrowNavigation);
+    return () => window.removeEventListener("keydown", handleArrowNavigation);
+  }, [complete, phone, realmIndex]);
+
+  useEffect(() => {
     if (complete) return undefined;
 
     let animationFrame;
