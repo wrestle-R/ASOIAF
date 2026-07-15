@@ -38,6 +38,25 @@ async function assertMobileMarkerVisible(page, label) {
   }
 }
 
+async function assertViewportLocked(page, label) {
+  const before = await page.evaluate(() => ({
+    bodyOverflow: getComputedStyle(document.body).overflow,
+    documentOverflow: getComputedStyle(document.documentElement).overflow,
+    scrollHeight: document.documentElement.scrollHeight,
+    viewportHeight: document.documentElement.clientHeight,
+    scrollY: window.scrollY,
+  }));
+
+  assert(before.bodyOverflow === "hidden", `${label}: body overflow must be locked`);
+  assert(before.documentOverflow === "hidden", `${label}: document overflow must be locked`);
+  assert(before.scrollHeight <= before.viewportHeight + 1, `${label}: page must not exceed the viewport`);
+  assert(before.scrollY === 0, `${label}: page must begin at the viewport origin`);
+
+  await page.mouse.wheel(0, 600);
+  await page.waitForTimeout(100);
+  assert(await page.evaluate(() => window.scrollY) === 0, `${label}: wheel input must not scroll the page`);
+}
+
 async function monitorPhoneSeason(page, seasonNumber) {
   const kicker = page.locator(".journey-kicker");
   await kicker.filter({ hasText: `Season ${seasonNumber} of 8` }).waitFor({ timeout: 7000 });
@@ -121,8 +140,10 @@ try {
   {
     const { context, page, errors } = await openPage(browser, {
       viewport: { width: 390, height: 844 },
+      hasTouch: true,
     });
     await page.locator(".journey-stage").waitFor();
+    await assertViewportLocked(page, "390x844 portrait");
     await page.keyboard.press("ArrowRight");
     await page.waitForTimeout(200);
     assert(await page.locator(".journey-kicker").textContent() === "Season 1 of 8", "desktop arrow binding must not change the phone season");
@@ -130,6 +151,14 @@ try {
     assert(await page.getByRole("button", { name: "Pause" }).isVisible(), "phone pause control must be visible");
     assert(!await page.locator(".journey-copy > p:not(.journey-kicker)").isVisible(), "phone summary must be hidden");
     assert(!await page.locator(".journey-copy ol").isVisible(), "phone location chips must be hidden");
+
+    await page.getByRole("button", { name: "Pause" }).click();
+    assert(await page.locator(".journey-kicker").textContent() === "Season 1 of 8", "phone pause control must not advance the season");
+    await page.touchscreen.tap(330, 420);
+    await page.locator(".journey-kicker", { hasText: "Season 2 of 8" }).waitFor();
+    await page.touchscreen.tap(60, 420);
+    await page.locator(".journey-kicker", { hasText: "Season 1 of 8" }).waitFor();
+    await page.getByRole("button", { name: "Continue" }).click();
 
     await page.waitForTimeout(400);
     await assertMobileMarkerVisible(page, "390x844 portrait");
@@ -190,8 +219,10 @@ try {
   {
     const { context, page, errors } = await openPage(browser, {
       viewport: { width: 360, height: 640 },
+      hasTouch: true,
     });
     await page.locator(".journey-stage").waitFor();
+    await assertViewportLocked(page, "360x640 portrait");
     await page.waitForTimeout(600);
     await assertMobileMarkerVisible(page, "360x640 portrait");
     assert(await page.getByRole("button", { name: "Pause" }).isVisible(), "small phone controls must remain visible");
@@ -204,11 +235,17 @@ try {
     const { context, page, errors } = await openPage(browser, {
       viewport: { width: 390, height: 844 },
       reducedMotion: "reduce",
+      hasTouch: true,
     });
     await page.locator(".journey-page-static").waitFor();
+    await assertViewportLocked(page, "reduced-motion phone");
     assert(await page.locator(".journey-route-layer").count() === 0, "reduced motion must not mount the animated route");
     assert(await page.locator(".journey-static-shell > img").count() === 1, "reduced motion must show a fallback poster");
     assert(await page.locator(".journey-season-picker button").count() === 8, "reduced motion must expose all seasons");
+    await page.touchscreen.tap(330, 420);
+    assert((await page.locator(".journey-static-shell > img").getAttribute("src")).endsWith("season-02.webp"), "phone navigation must select the next fallback poster");
+    await page.touchscreen.tap(60, 420);
+    assert((await page.locator(".journey-static-shell > img").getAttribute("src")).endsWith("season-01.webp"), "phone navigation must select the previous fallback poster");
     await page.getByRole("button", { name: "8", exact: true }).click();
     assert((await page.locator(".journey-static-shell > img").getAttribute("src")).endsWith("season-08.webp"), "Season 8 fallback must be selectable");
     await page.screenshot({ path: new URL("phone-reduced-motion-season-8.png", outputDir).pathname });

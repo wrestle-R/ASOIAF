@@ -3,6 +3,7 @@ import { BookOpenIcon, PauseIcon, PlayIcon, RotateCcwIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SigilIcon } from "../intro/SigilIcon.jsx";
 import { Button, buttonVariants } from "../ui/button.jsx";
+import { useCinematicViewport } from "../../hooks/useCinematicViewport.js";
 import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import { getRealmCameraFrame, REALM_MAPS, REALM_TOUR } from "../../data/realmTour.js";
 import { cn } from "../../lib/utils.js";
@@ -31,6 +32,30 @@ export function RealmTourPage() {
   useEffect(() => {
     pausedRef.current = paused;
   }, [paused]);
+
+  const goToNext = useCallback(() => {
+    if (complete) return;
+
+    if (realmIndex === REALM_TOUR.length - 1) setComplete(true);
+    else setRealmIndex((current) => current + 1);
+    setRun((value) => value + 1);
+  }, [complete, realmIndex]);
+
+  const goToPrevious = useCallback(() => {
+    if (!complete && realmIndex === 0) return;
+
+    setComplete(false);
+    setRealmIndex(complete
+      ? REALM_TOUR.length - 1
+      : (current) => Math.max(0, current - 1));
+    setRun((value) => value + 1);
+  }, [complete, realmIndex]);
+
+  const stagePointerHandlers = useCinematicViewport({
+    enabled: phone,
+    onNext: goToNext,
+    onPrevious: goToPrevious,
+  });
 
   useLayoutEffect(() => {
     const updateViewport = () => setViewport({
@@ -63,22 +88,18 @@ export function RealmTourPage() {
 
       if (event.key === "ArrowRight" && !complete) {
         event.preventDefault();
-        if (realmIndex === REALM_TOUR.length - 1) setComplete(true);
-        else setRealmIndex(realmIndex + 1);
-        setRun((value) => value + 1);
+        goToNext();
       }
 
       if (event.key === "ArrowLeft" && (complete || realmIndex > 0)) {
         event.preventDefault();
-        setComplete(false);
-        setRealmIndex(complete ? REALM_TOUR.length - 1 : realmIndex - 1);
-        setRun((value) => value + 1);
+        goToPrevious();
       }
     };
 
     window.addEventListener("keydown", handleArrowNavigation);
     return () => window.removeEventListener("keydown", handleArrowNavigation);
-  }, [complete, phone, realmIndex]);
+  }, [complete, goToNext, goToPrevious, phone, realmIndex]);
 
   useEffect(() => {
     if (complete) return undefined;
@@ -152,6 +173,7 @@ export function RealmTourPage() {
         className={cn("realm-stage", complete && "is-complete")}
         aria-labelledby={complete ? undefined : "realm-title"}
         aria-label={complete ? "Complete map of the known world" : undefined}
+        {...stagePointerHandlers}
       >
         <div className="realm-map-frame" style={frameStyle}>
           <img

@@ -67,6 +67,28 @@ async function assertCompleteMap(page, label) {
   }
 }
 
+async function assertViewportLocked(page, label) {
+  const before = await page.evaluate(() => ({
+    bodyOverflow: getComputedStyle(document.body).overflow,
+    documentOverflow: getComputedStyle(document.documentElement).overflow,
+    scrollHeight: document.documentElement.scrollHeight,
+    viewportHeight: document.documentElement.clientHeight,
+    scrollY: window.scrollY,
+  }));
+
+  if (before.bodyOverflow !== "hidden" || before.documentOverflow !== "hidden") {
+    failures.push(`${label}: document overflow is not locked`);
+  }
+  if (before.scrollHeight > before.viewportHeight + 1) {
+    failures.push(`${label}: page height exceeds the viewport`);
+  }
+  if (before.scrollY !== 0) failures.push(`${label}: page did not begin at the viewport origin`);
+
+  await page.mouse.wheel(0, 600);
+  await page.waitForTimeout(100);
+  if (await page.evaluate(() => window.scrollY) !== 0) failures.push(`${label}: wheel input scrolled the page`);
+}
+
 try {
   {
     const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
@@ -121,11 +143,15 @@ try {
     { name: "phone-portrait", width: 390, height: 844, verifyComplete: true },
     { name: "phone-landscape", width: 844, height: 390, verifyComplete: false },
   ]) {
-    const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
+    const context = await browser.newContext({
+      viewport: { width: viewport.width, height: viewport.height },
+      hasTouch: true,
+    });
     const page = await context.newPage();
     const reportErrors = await collectErrors(page, viewport.name);
     await page.goto(new URL("/", baseUrl).href, { waitUntil: "networkidle" });
     await page.locator(".realm-stage").waitFor();
+    await assertViewportLocked(page, viewport.name);
     const source = await page.locator(".realm-map-image").getAttribute("src");
     if (!source?.endsWith("world-map-realms-mobile-capitals.webp")) {
       failures.push(`${viewport.name}: wrong portrait map source ${source}`);
@@ -136,6 +162,15 @@ try {
     if (!await page.getByRole("heading", { name: "The North", exact: true }).count()) {
       failures.push(`${viewport.name}: desktop arrow binding changed the phone realm`);
     }
+    await page.getByRole("button", { name: "Pause", exact: true }).click();
+    if (!await page.getByRole("heading", { name: "The North", exact: true }).count()) {
+      failures.push(`${viewport.name}: pause control advanced the realm`);
+    }
+    await page.touchscreen.tap(viewport.width * 0.82, viewport.height * 0.5);
+    await page.getByRole("heading", { name: "The Vale", exact: true }).waitFor();
+    await page.touchscreen.tap(viewport.width * 0.18, viewport.height * 0.5);
+    await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
+    await page.getByRole("button", { name: "Continue", exact: true }).click();
     const geometry = await mapGeometry(page);
     if (geometry.left > 0 || geometry.right < geometry.width || geometry.top > 0 || geometry.bottom < geometry.height) {
       failures.push(`${viewport.name}: camera exposes an empty map edge`);

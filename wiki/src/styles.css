@@ -74,6 +74,25 @@ body {
   background: var(--ink);
 }
 
+html.cinematic-viewport-active,
+body.cinematic-viewport-active {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body.cinematic-viewport-active {
+  position: fixed;
+  inset: 0;
+}
+
+body.cinematic-viewport-active #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 h1,
 h2,
 h3,
@@ -462,9 +481,34 @@ button {
 }
 
 @media (max-width: 880px) {
-  .journey-stage {
+  .journey-page,
+  .journey-stage,
+  .realm-tour,
+  .realm-stage {
     width: 100dvw;
     height: 100dvh;
+    min-height: 0;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+  }
+
+  .journey-stage {
+    isolation: isolate;
+  }
+
+  .journey-page-static {
+    overflow: hidden;
+  }
+
+  .journey-static-shell {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding:
+      max(1rem, env(safe-area-inset-top))
+      max(1rem, env(safe-area-inset-right))
+      max(1rem, env(safe-area-inset-bottom))
+      max(1rem, env(safe-area-inset-left));
   }
 
   .journey-camera {

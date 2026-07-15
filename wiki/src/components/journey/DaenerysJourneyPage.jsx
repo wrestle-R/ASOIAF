@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { PauseIcon, PlayIcon, RotateCcwIcon } from "lucide-react";
+import { useCinematicViewport } from "../../hooks/useCinematicViewport.js";
+import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import { useReducedMotion } from "../../hooks/useReducedMotion.js";
 import {
   DAENERYS_SEASONS,
@@ -15,9 +17,9 @@ function clamp(value, minimum, maximum) {
   return Math.min(Math.max(value, minimum), maximum);
 }
 
-function JourneyPoster({ season, onSelect }) {
+function JourneyPoster({ onSelect, pointerHandlers, season }) {
   return (
-    <main className="journey-page journey-page-static">
+    <main className="journey-page journey-page-static" {...pointerHandlers}>
       <section className="journey-static-shell" aria-labelledby="journey-static-title">
         <div className="journey-static-copy">
           <p>Season {season.season} of 8</p>
@@ -49,6 +51,7 @@ function JourneyPoster({ season, onSelect }) {
 
 export function DaenerysJourneyPage() {
   const reducedMotion = useReducedMotion();
+  const phone = useMediaQuery(MOBILE_CAMERA_QUERY);
   const [seasonIndex, setSeasonIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [complete, setComplete] = useState(false);
@@ -75,6 +78,33 @@ export function DaenerysJourneyPage() {
   useEffect(() => {
     pausedRef.current = paused;
   }, [paused]);
+
+  const goToNext = useCallback(() => {
+    if (
+      complete
+      || (reducedMotion && seasonIndex === DAENERYS_SEASONS.length - 1)
+    ) return;
+
+    if (seasonIndex === DAENERYS_SEASONS.length - 1) setComplete(true);
+    else setSeasonIndex((current) => current + 1);
+    setRun((value) => value + 1);
+  }, [complete, reducedMotion, seasonIndex]);
+
+  const goToPrevious = useCallback(() => {
+    if (!complete && seasonIndex === 0) return;
+
+    setComplete(false);
+    setSeasonIndex(complete
+      ? DAENERYS_SEASONS.length - 1
+      : (current) => Math.max(0, current - 1));
+    setRun((value) => value + 1);
+  }, [complete, seasonIndex]);
+
+  const stagePointerHandlers = useCinematicViewport({
+    enabled: phone,
+    onNext: goToNext,
+    onPrevious: goToPrevious,
+  });
 
   useLayoutEffect(() => {
     const camera = cameraRef.current;
@@ -133,22 +163,18 @@ export function DaenerysJourneyPage() {
       if (event.key === "ArrowRight" && !complete) {
         if (seasonIndex === DAENERYS_SEASONS.length - 1 && reducedMotion) return;
         event.preventDefault();
-        if (seasonIndex === DAENERYS_SEASONS.length - 1) setComplete(true);
-        else setSeasonIndex(seasonIndex + 1);
-        setRun((value) => value + 1);
+        goToNext();
       }
 
       if (event.key === "ArrowLeft" && (complete || seasonIndex > 0)) {
         event.preventDefault();
-        setComplete(false);
-        setSeasonIndex(complete ? DAENERYS_SEASONS.length - 1 : seasonIndex - 1);
-        setRun((value) => value + 1);
+        goToPrevious();
       }
     };
 
     window.addEventListener("keydown", handleArrowNavigation);
     return () => window.removeEventListener("keydown", handleArrowNavigation);
-  }, [complete, reducedMotion, seasonIndex]);
+  }, [complete, goToNext, goToPrevious, reducedMotion, seasonIndex]);
 
   useEffect(() => {
     if (reducedMotion || complete) return undefined;
@@ -238,7 +264,13 @@ export function DaenerysJourneyPage() {
   }, []);
 
   if (reducedMotion) {
-    return <JourneyPoster season={season} onSelect={setSeasonIndex} />;
+    return (
+      <JourneyPoster
+        season={season}
+        onSelect={setSeasonIndex}
+        pointerHandlers={stagePointerHandlers}
+      />
+    );
   }
 
   const cameraStyle = {
@@ -249,7 +281,11 @@ export function DaenerysJourneyPage() {
 
   return (
     <main className="journey-page">
-      <section className="journey-stage" aria-labelledby="journey-title">
+      <section
+        className="journey-stage"
+        aria-labelledby="journey-title"
+        {...stagePointerHandlers}
+      >
         <div ref={cameraRef} className="journey-camera" style={cameraStyle}>
           <img
             className="journey-map-image"
