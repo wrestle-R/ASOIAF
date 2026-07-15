@@ -56,6 +56,16 @@ try {
     }
     if (await dialog.locator('[data-slot="dialog-title"]').count() !== 1) failures.push(`${viewport.name}: entry dialog is missing its title`);
     if (await page.locator('[data-slot="sheet-content"]').count()) failures.push(`${viewport.name}: retired entry Sheet is still rendered`);
+    const dialogImage = dialog.locator(".wiki-entry-dialog-visual img");
+    if (await dialogImage.count()) {
+      const ratioError = await dialogImage.evaluate((image) => {
+        const rendered = image.getBoundingClientRect();
+        const naturalRatio = image.naturalWidth / image.naturalHeight;
+        const renderedRatio = rendered.width / rendered.height;
+        return Math.abs(naturalRatio - renderedRatio);
+      });
+      if (ratioError > 0.01) failures.push(`${viewport.name}: entry image aspect ratio is distorted`);
+    }
     await page.screenshot({
       path: new URL(`wiki-entry-${viewport.name}-${nextTheme}.png`, outputDir).pathname,
     });
