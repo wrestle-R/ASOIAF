@@ -927,7 +927,7 @@ button {
 }
 
 .wiki-page :focus-visible,
-.wiki-entry-sheet :focus-visible {
+.wiki-entry-dialog :focus-visible {
   outline-color: var(--wiki-accent);
 }
 
@@ -1390,59 +1390,178 @@ button {
 .wiki-footer p { margin: 0; text-align: center; }
 .wiki-footer a { justify-self: end; color: var(--wiki-accent); text-decoration: none; }
 
-.wiki-entry-sheet {
-  display: flex;
-  width: min(34rem, 100vw);
-  height: 100%;
-  max-height: 100dvh;
-  flex-direction: column;
+.wiki-entry-dialog {
+  width: min(70rem, calc(100vw - 2rem));
+  max-width: 70rem;
+  height: min(82dvh, 50rem);
+  max-height: 50rem;
   gap: 0;
-  overflow-y: auto;
+  overflow: hidden;
   padding: 0;
-  border-color: var(--wiki-border);
+  border: 1px solid var(--wiki-border);
+  border-radius: 1.15rem;
   color: var(--wiki-text);
   background: var(--wiki-raised);
+  box-shadow: 0 2rem 6rem rgb(0 0 0 / 34%);
 }
 
-.wiki-entry-sheet > button {
-  z-index: 3;
+[data-slot="dialog-overlay"] {
+  background: rgb(5 8 8 / 62%);
+  backdrop-filter: blur(9px) saturate(0.8);
+}
+
+.wiki-entry-dialog > [data-slot="dialog-close"] {
+  z-index: 5;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid color-mix(in srgb, var(--wiki-border) 78%, transparent);
   border-radius: 50%;
   color: var(--wiki-text);
-  background: color-mix(in srgb, var(--wiki-raised) 82%, transparent);
+  background: color-mix(in srgb, var(--wiki-raised) 84%, transparent);
+  box-shadow: 0 0.3rem 1rem rgb(0 0 0 / 12%);
+  backdrop-filter: blur(10px);
 }
 
-.wiki-entry-sheet-header { padding: 2rem 2rem 1.25rem; text-align: left; }
-.wiki-entry-sheet-header h2 {
+.wiki-entry-dialog-layout {
+  display: grid;
+  min-height: 0;
+  height: 100%;
+  grid-template-columns: minmax(19rem, 0.86fr) minmax(0, 1.14fr);
+}
+
+.wiki-entry-dialog-visual {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid var(--wiki-border);
+  background: var(--wiki-surface);
+}
+
+.wiki-entry-dialog-visual figure { width: 100%; height: 100%; margin: 0; }
+.wiki-entry-dialog-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  filter: saturate(0.88) contrast(1.03);
+}
+
+.wiki-entry-dialog-visual::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgb(5 8 8 / 52%) 100%);
+  content: "";
+  pointer-events: none;
+}
+
+.wiki-entry-dialog-visual.is-sigil {
+  background:
+    radial-gradient(circle at center, color-mix(in srgb, var(--wiki-accent) 10%, transparent), transparent 46%),
+    linear-gradient(145deg, var(--wiki-raised), var(--wiki-surface));
+}
+
+.wiki-entry-dialog-sigil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+
+.wiki-entry-dialog-folio {
+  position: absolute;
+  z-index: 2;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  padding: 0.5rem 0.72rem;
+  border: 1px solid rgb(255 255 255 / 24%);
+  border-radius: 999px;
+  color: #f7f2e8;
+  background: rgb(5 8 8 / 50%);
+  font-size: 0.65rem;
+  font-weight: 680;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.wiki-entry-dialog-record {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wiki-entry-dialog-header {
+  flex: none;
+  padding: clamp(2.25rem, 4vw, 3.25rem) clamp(2rem, 4vw, 3.5rem) 1.75rem;
+  padding-right: 4.5rem;
+  text-align: left;
+}
+
+.wiki-entry-dialog-header h2 {
+  max-width: 11ch;
   color: var(--wiki-text);
   font-family: "Newsreader Variable", Georgia, serif;
-  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  font-size: clamp(2.8rem, 5.2vw, 5rem);
   font-weight: 450;
-  line-height: 0.9;
-  letter-spacing: -0.045em;
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
 }
 
-.wiki-entry-sheet-header [data-slot="sheet-description"] { color: var(--wiki-muted); }
+.wiki-entry-dialog-header [data-slot="dialog-description"] {
+  margin-top: 0.35rem;
+  color: var(--wiki-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
 
-.wiki-entry-sheet-media { aspect-ratio: 4 / 3; margin: 0; overflow: hidden; background: var(--wiki-surface); }
-.wiki-entry-sheet-media img { width: 100%; height: 100%; object-fit: cover; }
-.wiki-entry-sheet-sigil { display: grid; min-height: 15rem; place-items: center; background: var(--wiki-surface); }
-.wiki-entry-sheet [data-slot="separator"] { background: var(--wiki-border); }
+.wiki-entry-dialog [data-slot="separator"] { flex: none; background: var(--wiki-border); }
 
-.wiki-entry-sheet-content { display: grid; gap: 1.4rem; padding: 1.6rem 2rem 3rem; }
-.wiki-entry-sheet-content blockquote {
+.wiki-entry-dialog-content {
+  display: grid;
+  min-height: 0;
+  gap: 1.75rem;
+  overflow-y: auto;
+  padding: 1.8rem clamp(2rem, 4vw, 3.5rem) 3rem;
+  scrollbar-color: var(--wiki-border) transparent;
+}
+
+.wiki-entry-dialog-content blockquote {
   margin: 0;
-  padding-left: 1rem;
+  padding: 0.2rem 0 0.2rem 1.25rem;
   border-left: 2px solid var(--wiki-accent);
   color: var(--wiki-text);
   font-family: "Newsreader Variable", Georgia, serif;
-  font-size: 1.35rem;
+  font-size: clamp(1.25rem, 2.3vw, 1.65rem);
   font-style: italic;
   line-height: 1.25;
 }
 
-.wiki-entry-sheet-content dl { display: grid; gap: 0.65rem; margin: 0; }
-.wiki-entry-sheet-content dl div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; }
-.wiki-entry-sheet-content dt,
+.wiki-entry-dialog-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--wiki-border);
+  border-left: 1px solid var(--wiki-border);
+}
+
+.wiki-entry-dialog-facts div {
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 0.9rem 1rem;
+  border-right: 1px solid var(--wiki-border);
+  border-bottom: 1px solid var(--wiki-border);
+}
+
+.wiki-entry-dialog-facts dt,
 .wiki-entry-arms span,
 .wiki-entry-aliases > span {
   color: var(--wiki-faint);
@@ -1452,10 +1571,25 @@ button {
   text-transform: uppercase;
 }
 
-.wiki-entry-sheet-content dd { margin: 0; color: var(--wiki-text); }
-.wiki-entry-description { margin: 0; color: var(--wiki-muted); line-height: 1.7; }
+.wiki-entry-dialog-facts dd { margin: 0; color: var(--wiki-text); line-height: 1.35; }
+.wiki-entry-description {
+  margin: 0;
+  color: var(--wiki-muted);
+  font-family: "Newsreader Variable", Georgia, serif;
+  font-size: 1.08rem;
+  line-height: 1.72;
+}
+
+.wiki-entry-dialog-notes { display: grid; gap: 1rem; }
 .wiki-entry-arms,
-.wiki-entry-aliases { display: grid; gap: 0.35rem; margin: 0; color: var(--wiki-muted); }
+.wiki-entry-aliases {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wiki-border);
+  color: var(--wiki-muted);
+}
 .wiki-entry-aliases p { margin: 0; }
 
 @keyframes wiki-card-arrive {
@@ -1507,9 +1641,37 @@ button {
   .entry-arrow { display: none; }
   .wiki-footer { grid-template-columns: 1fr auto; }
   .wiki-footer p { display: none; }
-  .wiki-entry-sheet { width: 100%; height: min(88dvh, 52rem); border-radius: 1rem 1rem 0 0; }
-  .wiki-entry-sheet-header { padding: 1.5rem 1.25rem 1rem; }
-  .wiki-entry-sheet-content { padding: 1.35rem 1.25rem max(2rem, env(safe-area-inset-bottom)); }
+  .wiki-entry-dialog {
+    width: calc(100vw - 1rem);
+    height: min(92dvh, 52rem);
+    max-width: none;
+    max-height: min(92dvh, 52rem);
+    border-radius: 1rem;
+  }
+
+  .wiki-entry-dialog-layout {
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+  }
+
+  .wiki-entry-dialog-visual {
+    flex: 0 0 min(32dvh, 16rem);
+    min-height: 12rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--wiki-border);
+  }
+
+  .wiki-entry-dialog-record { flex: none; overflow: visible; }
+  .wiki-entry-dialog-header { padding: 1.65rem 1.25rem 1.15rem; padding-right: 4rem; }
+  .wiki-entry-dialog-header h2 { font-size: clamp(2.6rem, 13vw, 4rem); }
+  .wiki-entry-dialog-content {
+    overflow: visible;
+    gap: 1.35rem;
+    padding: 1.35rem 1.25rem max(2rem, env(safe-area-inset-bottom));
+  }
+  .wiki-entry-dialog-facts { grid-template-columns: 1fr; }
+  .wiki-entry-dialog-folio { bottom: 0.85rem; left: 0.85rem; }
 }
 
 @media (max-width: 460px) {

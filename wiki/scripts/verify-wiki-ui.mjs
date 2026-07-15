@@ -1,7 +1,7 @@
 import { mkdir } from "node:fs/promises";
 import { chromium } from "playwright";
 
-const baseUrl = process.env.WIKI_VERIFY_URL || "http://127.0.0.1:5174/";
+const baseUrl = process.env.WIKI_VERIFY_URL || "http://127.0.0.1:5173/";
 const outputDir = new URL("../../artifacts/screenshots/wiki-verification/", import.meta.url);
 const failures = [];
 
@@ -42,13 +42,26 @@ try {
 
     const opener = cards.first().getByRole("button");
     await opener.click();
-    const sheet = page.locator('[data-slot="sheet-content"]');
-    await sheet.waitFor();
-    const expectedSide = viewport.name === "phone" ? "bottom" : "right";
-    if (await sheet.getAttribute("data-side") !== expectedSide) failures.push(`${viewport.name}: entry Sheet is on the wrong side`);
+    const dialog = page.locator('[data-slot="dialog-content"]');
+    await dialog.waitFor();
+    const box = await dialog.boundingBox();
+    if (!box) {
+      failures.push(`${viewport.name}: entry dialog has no visible bounds`);
+    } else {
+      const horizontalOffset = Math.abs((box.x + box.width / 2) - viewport.width / 2);
+      const verticalOffset = Math.abs((box.y + box.height / 2) - viewport.height / 2);
+      if (horizontalOffset > 2 || verticalOffset > 2) failures.push(`${viewport.name}: entry dialog is not centered`);
+      if (viewport.name === "desktop" && box.width < 800) failures.push(`${viewport.name}: entry dialog is too narrow`);
+      if (viewport.name === "phone" && box.width > viewport.width - 6) failures.push(`${viewport.name}: entry dialog lacks a viewport gutter`);
+    }
+    if (await dialog.locator('[data-slot="dialog-title"]').count() !== 1) failures.push(`${viewport.name}: entry dialog is missing its title`);
+    if (await page.locator('[data-slot="sheet-content"]').count()) failures.push(`${viewport.name}: retired entry Sheet is still rendered`);
+    await page.screenshot({
+      path: new URL(`wiki-entry-${viewport.name}-${nextTheme}.png`, outputDir).pathname,
+    });
     await page.keyboard.press("Escape");
-    await sheet.waitFor({ state: "hidden" });
-    if (!await opener.evaluate((node) => document.activeElement === node)) failures.push(`${viewport.name}: Sheet did not return focus`);
+    await dialog.waitFor({ state: "hidden" });
+    if (!await opener.evaluate((node) => document.activeElement === node)) failures.push(`${viewport.name}: dialog did not return focus`);
 
     const search = page.getByRole("searchbox", { name: "Search the archive" });
     await search.fill("Stark");
@@ -66,5 +79,5 @@ if (failures.length) {
   console.error(`Wiki verification failed:\n${failures.join("\n")}`);
   process.exitCode = 1;
 } else {
-  console.log("Wiki desktop, phone, theme, URL, and Sheet verification passed.");
+  console.log("Wiki desktop, phone, theme, URL, and centered dialog verification passed.");
 }

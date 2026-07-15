@@ -4,7 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { fetchCollections, fetchWikiEntries } from "../../data/houseApi.js";
 import { useWikiTheme } from "../../hooks/useWikiTheme.js";
 import { WikiEntryCard } from "./WikiEntryCard.jsx";
-import { WikiEntryPanel } from "./WikiEntryPanel.jsx";
+import { WikiEntryDialog } from "./WikiEntryDialog.jsx";
 
 const PAGE_SIZE = 18;
 
@@ -214,7 +214,7 @@ export function WikiPage() {
       </footer>
 
       {selected && (
-        <WikiEntryPanel
+        <WikiEntryDialog
           entry={selected}
           onClose={closeEntry}
           opener={opener}
