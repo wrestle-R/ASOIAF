@@ -1,0 +1,23 @@
+# Local source data and generated verification output
+dataset/
+artifacts/
+
+# Local builds, dependencies, and generated runtime data
+**/node_modules/
+wiki/dist/
+wiki/.data/
+wiki/coverage/
+
+# Local credentials and project links
+.env
+.env.*
+**/.env
+**/.env.*
+.vercel/
+**/.vercel/
+
+# Repository and editor metadata
+.git/
+.github/
+.vscode/
+.idea/

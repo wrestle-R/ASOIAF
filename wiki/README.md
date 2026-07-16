@@ -1,9 +1,9 @@
-# Wiki of Ice and Fire
+# Map of Ice and Fire
 
-An atmospheric React archive backed directly by the local SQLite artifact. `/` is an
-autoplaying nine-realm tour, `/wiki` is the searchable editorial archive, and `/danerys`
-preserves the television journey animation. Unknown paths, including the retired `/map`
-route, use the editorial not-found page.
+An atmospheric, map-led React experience for exploring character journeys across the
+known world. `/` is the autoplaying nine-realm tour, `/home` is the character catalogue,
+and `/journeys/:seriesSlug/:characterSlug` opens an individual journey. Compatibility
+routes redirect older links to their canonical destinations.
 
 ## Run locally
 
@@ -16,7 +16,7 @@ npm run dev
 ```
 
 Open `http://127.0.0.1:5173`. The Vite development server proxies `/api` to the read-only
-archive server on port `4174`.
+character service on port `4174`.
 
 For a production build:
 
@@ -25,38 +25,36 @@ npm run build
 NODE_ENV=production npm start
 ```
 
-## SQLite access
+## Character data and media
 
-For local development, the server finds `../dataset/asoiaf.sqlite`. For hosted builds,
-`npm run prepare:db` downloads the verified v2.0.0 database from GitHub Releases into the
-ignored `wiki/.data/` directory. The server opens that file with `readonly` and
-`fileMustExist` enabled, then sets SQLite's `query_only` pragma. Lore data is never copied
-into frontend JSON.
+For local development, the build can derive a web database from `../dataset/asoiaf.sqlite`.
+Hosted builds prepare the verified metadata-only database in the ignored `.data/` directory.
+The server opens that file with `readonly` and `fileMustExist` enabled, then enables SQLite's
+`query_only` pragma. Character records remain server-side.
 
-The release URL, expected file size, and SHA-256 live in `database-manifest.json`. The build
-fails if the downloaded asset does not match the manifest.
+Character portraits, maps, and sigils use content-addressed public objects in Vercel Blob.
+The tracked asset manifest connects stable character and map keys to immutable object URLs;
+the web database stores media metadata and URLs, never image bytes. The database manifest
+records the hosted database URL, expected file size, and SHA-256 so preparation fails on a
+mismatch.
 
-The database is deliberately kept server-side because it contains hundreds of image BLOBs.
+The current manifest covers 199 source-backed portraits, two responsive maps, and nine
+house sigils. The compact v3 SQLite artifact contains all 203 character records and 199
+`media_assets` rows, with no image or BLOB table.
+
+The source SQLite dataset stays local and is never included in the frontend bundle or hosted
+function.
 
 ## Deploy on Vercel
 
 1. Import `wrestle-R/ASOIAF` into Vercel.
 2. Set the project **Root Directory** to `wiki`.
 3. Keep the detected framework as Vite and deploy.
-4. Ensure Fluid Compute is enabled. New projects created after June 30, 2026 are enrolled
-   in Large Functions automatically. For an older Vercel project, add
-   `VERCEL_SUPPORT_LARGE_FUNCTIONS=1` to the project environment variables and redeploy.
+4. Deploy. The build downloads the verified metadata database from its public Blob URL.
 
-The build downloads:
-
-```text
-https://github.com/wrestle-R/ASOIAF/releases/download/v2.0.0/asoiaf.sqlite
-```
-
-The database is included only in the Node API function, not in the static site and not in
-the browser bundle. `vercel.json` configures the function for a 300-second maximum duration
-and includes the verified `.data/asoiaf.sqlite` artifact. Embedded media is sent in chunks
-through the function's streaming response path.
+The prepared database is included only in the Node API function, not in the static site or
+browser bundle. `vercel.json` includes the verified `.data/asoiaf.sqlite` artifact. Browser
+media loads directly from Vercel Blob rather than passing through the API function.
 
 To test the hosted build process locally:
 
@@ -70,18 +68,30 @@ npm run check
 
 - The original generated map is `1484 × 1060` (`1.40:1`) and is rendered with a fixed
   intrinsic aspect ratio. It is never stretched.
-- Embedded database images were audited before layout work: the archive contains square,
-  portrait, and landscape files. Cards receive their recorded intrinsic ratio and use
-  media-specific `object-fit` behavior.
-- The realm tour reuses the retained canonical house sigils and never changes map geography.
+- Character images were audited before layout work: the source data contains square,
+  portrait, and landscape files. Cards preserve recorded dimensions, use a consistent
+  portrait crop, and fall back to a monogram when no source-backed portrait exists.
+- The realm tour reuses the canonical Blob-hosted house sigils and never changes map geography.
 - The supplied reference map was used only for broad composition. The project map is an
   original generated asset without copied labels, logos, or line work.
 
-## Realm-tour assets
+## Asset updates
 
-Realm metadata and camera framing live in `src/data/realmTour.js`. Regenerate all nine
-archival posters deterministically with `npm run render:realm-assets`; each poster uses the
-exact map, a restrained parchment spotlight, and the corresponding retained sigil.
+Realm metadata and camera framing live in `src/data/realmTour.js`. When source portraits,
+maps, or sigils change, pull `BLOB_READ_WRITE_TOKEN` into the ignored `.env.local` file and
+run `npm run sync:blob`. Deployment reads the tracked content-addressed manifest and does not
+need the write token.
+
+Portrait sources come from the local dataset. To publish replacement map or sigil artwork,
+point `ASOIAF_STATIC_ASSET_ROOT` at a local directory containing the same `world-map-*.webp`
+and `houses/house-*.webp` layout. When those files are absent, sync safely reuses the immutable
+objects already recorded in the manifest.
+
+```bash
+npm run sync:blob
+npm run build:web-db
+npm run prepare:db
+```
 
 ## Checks
 
@@ -90,5 +100,5 @@ npm run check
 ```
 
 This runs the unit tests and production Vite build. With the development server running,
-`npm run verify:map`, `npm run verify:wiki`, and `npm run verify:journey` exercise the three
-browser experiences.
+`npm run verify:map`, `npm run verify:catalog`, and `npm run verify:journeys` exercise the
+realm tour, all-character catalogue, and character journey experiences.

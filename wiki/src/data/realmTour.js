@@ -1,18 +1,17 @@
+import { maps } from "./blobAssets.json";
+
 export const REALM_MAPS = Object.freeze({
   desktop: Object.freeze({
     width: 1484,
     height: 1060,
-    image: "/assets/world-map-houses.webp",
+    image: maps.world.url,
   }),
   mobile: Object.freeze({
     width: 941,
     height: 1671,
-    image: "/assets/world-map-realms-mobile-capitals.webp",
+    image: maps.mobile.url,
   }),
 });
-
-const poster = (order, id) =>
-  `/assets/nine-realms/realm-${String(order).padStart(2, "0")}-${id}.webp`;
 
 const realm = ({ order, id, name, houseId, house, seat, color, desktop, mobile, capital, sigil }) =>
   Object.freeze({
@@ -24,7 +23,6 @@ const realm = ({ order, id, name, houseId, house, seat, color, desktop, mobile, 
     seat,
     color,
     duration: 3000,
-    poster: poster(order, id),
     camera: Object.freeze({
       desktop: Object.freeze(desktop),
       mobile: Object.freeze(mobile),

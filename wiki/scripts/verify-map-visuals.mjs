@@ -1,8 +1,22 @@
 import { mkdir } from "node:fs/promises";
 import { chromium } from "playwright";
-import { REALM_TOUR } from "../src/data/realmTour.js";
+import blobAssets from "../src/data/blobAssets.json" with { type: "json" };
 
-const baseUrl = process.env.MAP_VERIFY_URL || "http://127.0.0.1:5174/";
+const REALM_NAMES = [
+  "The North",
+  "The Vale",
+  "The Riverlands",
+  "Iron Islands",
+  "The Westerlands",
+  "The Crownlands",
+  "The Stormlands",
+  "The Reach",
+  "Dorne",
+];
+
+const baseUrl = process.env.MAP_VERIFY_URL
+  || process.env.VERIFY_BASE_URL
+  || "http://127.0.0.1:5173/";
 const outputDir = new URL("../../artifacts/screenshots/map-verification/", import.meta.url);
 const failures = [];
 
@@ -53,8 +67,8 @@ async function assertCompleteMap(page, label) {
   if (await page.locator(".realm-copy, .realm-capital-link, .realm-spotlight, .realm-vignette, .realm-progress").count()) {
     failures.push(`${label}: realm overlays remain over the complete map`);
   }
-  const wikiHref = await page.getByRole("link", { name: "Explore the Wiki", exact: true }).getAttribute("href");
-  if (wikiHref !== "/wiki") failures.push(`${label}: complete-map wiki action targets ${wikiHref}`);
+  const charactersHref = await page.getByRole("link", { name: "Explore Characters", exact: true }).getAttribute("href");
+  if (charactersHref !== "/home") failures.push(`${label}: complete-map character action targets ${charactersHref}`);
   const geometry = await mapGeometry(page);
   const tolerance = 1.5;
   if (
@@ -103,7 +117,7 @@ try {
       failures.push("tour-desktop: live tour does not use one persistent map image");
     }
     const source = await page.locator(".realm-map-image").getAttribute("src");
-    if (!source?.endsWith("world-map-houses.webp")) failures.push(`tour-desktop: wrong map source ${source}`);
+    if (source !== blobAssets.maps.world.url) failures.push(`tour-desktop: wrong map source ${source}`);
     await assertHighlight(page, "tour-desktop", 76);
 
     await page.keyboard.press("ArrowRight");
@@ -153,7 +167,7 @@ try {
     await page.locator(".realm-stage").waitFor();
     await assertViewportLocked(page, viewport.name);
     const source = await page.locator(".realm-map-image").getAttribute("src");
-    if (!source?.endsWith("world-map-realms-mobile-capitals.webp")) {
+    if (source !== blobAssets.maps.mobile.url) {
       failures.push(`${viewport.name}: wrong portrait map source ${source}`);
     }
     await assertHighlight(page, viewport.name, 59);
@@ -177,11 +191,11 @@ try {
     }
     await page.screenshot({ path: new URL(`${viewport.name}-north.png`, outputDir).pathname });
     if (viewport.verifyComplete) {
-      for (const realm of REALM_TOUR) {
-        await page.getByRole("heading", { name: realm.name, exact: true }).waitFor({ timeout: 5500 });
+      for (const [index, realmName] of REALM_NAMES.entries()) {
+        await page.getByRole("heading", { name: realmName, exact: true }).waitFor({ timeout: 5500 });
         await page.waitForTimeout(900);
         await page.screenshot({
-          path: new URL(`${viewport.name}-realm-${String(realm.order).padStart(2, "0")}.png`, outputDir).pathname,
+          path: new URL(`${viewport.name}-realm-${String(index + 1).padStart(2, "0")}.png`, outputDir).pathname,
         });
       }
       await assertCompleteMap(page, viewport.name);
@@ -199,9 +213,9 @@ try {
     await page.goto(new URL(path, baseUrl).href, { waitUntil: "networkidle" });
     await page.getByRole("heading", { name: "This page has been lost to history.", exact: true }).waitFor();
     if (new URL(page.url()).pathname !== path) failures.push(`${label}: URL redirected unexpectedly`);
-    const returnHref = await page.getByRole("link", { name: "Return to the Map", exact: true }).getAttribute("href");
-    const wikiHref = await page.getByRole("link", { name: "Explore the Wiki", exact: true }).getAttribute("href");
-    if (returnHref !== "/" || wikiHref !== "/wiki") failures.push(`${label}: 404 actions are incorrect`);
+    const returnHref = await page.getByRole("link", { name: "Realm Map", exact: true }).getAttribute("href");
+    const charactersHref = await page.getByRole("link", { name: "Explore Characters", exact: true }).getAttribute("href");
+    if (returnHref !== "/" || charactersHref !== "/home") failures.push(`${label}: 404 actions are incorrect`);
     await page.screenshot({ path: new URL(`${label}.png`, outputDir).pathname });
     reportErrors();
     await context.close();

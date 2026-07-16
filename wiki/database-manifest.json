@@ -1,7 +1,8 @@
 {
-  "version": "2.0.0",
+  "version": "3.0.0",
   "assetName": "asoiaf.sqlite",
-  "url": "https://github.com/wrestle-R/ASOIAF/releases/download/v2.0.0/asoiaf.sqlite",
-  "size": 280997888,
-  "sha256": "d4c185632590eb96cd8d5c987f479d8337b330f36c83eea65b50e02b53214e1c"
+  "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/data/asoiaf-web/9c26b4c1473a86ce.sqlite",
+  "objectKey": "data/asoiaf-web/9c26b4c1473a86ce.sqlite",
+  "size": 757760,
+  "sha256": "9c26b4c1473a86ce1c2c4daacf41d9d998ff4c1c03b91c7aa4c4fca54d2f074e"
 }

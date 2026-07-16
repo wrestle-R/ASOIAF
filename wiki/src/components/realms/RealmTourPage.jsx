@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { BookOpenIcon, PauseIcon, PlayIcon, RotateCcwIcon } from "lucide-react";
+import { PauseIcon, PlayIcon, RotateCcwIcon, UsersIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SigilIcon } from "../intro/SigilIcon.jsx";
 import { Button, buttonVariants } from "../ui/button.jsx";
@@ -28,6 +28,10 @@ export function RealmTourPage() {
   const camera = realm.camera[layout];
   const capital = realm.capital[layout];
   const sigilPosition = realm.sigil[layout];
+
+  useEffect(() => {
+    document.title = "Map of Ice and Fire";
+  }, []);
 
   useEffect(() => {
     pausedRef.current = paused;
@@ -237,11 +241,11 @@ export function RealmTourPage() {
                 Replay
               </Button>
               <Link
-                to="/wiki"
+                to="/home"
                 className={buttonVariants({ size: "lg", className: "realm-control" })}
               >
-                <BookOpenIcon data-icon="inline-start" aria-hidden="true" />
-                Explore the Wiki
+                <UsersIcon data-icon="inline-start" aria-hidden="true" />
+                Explore Characters
               </Link>
             </>
           ) : (

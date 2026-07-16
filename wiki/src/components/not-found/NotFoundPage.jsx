@@ -1,30 +1,36 @@
-import { ArrowLeftIcon, BookOpenIcon } from "lucide-react";
+import { useEffect } from "react";
+import { ArrowLeftIcon, UsersIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "../ui/button.jsx";
-import { useWikiTheme } from "../../hooks/useWikiTheme.js";
+import { useSiteTheme } from "../../hooks/useSiteTheme.js";
+import { BrandMark } from "../brand/BrandMark.jsx";
 
 export function NotFoundPage() {
-  const { theme } = useWikiTheme();
+  const { theme } = useSiteTheme();
+
+  useEffect(() => {
+    document.title = "Page Not Found | Map of Ice and Fire";
+  }, []);
 
   return (
-    <main className={`not-found-page wiki-theme wiki-theme-${theme}`} data-theme={theme}>
+    <main className={`not-found-page site-theme site-theme-${theme}`} data-theme={theme}>
       <section className="not-found-card" aria-labelledby="not-found-title">
-        <div className="not-found-mark" aria-hidden="true">W</div>
-        <p className="eyebrow">The archive has no record</p>
+        <BrandMark className="not-found-mark" />
+        <p className="eyebrow">No journey is charted here</p>
         <strong className="not-found-code" aria-hidden="true">404</strong>
         <h1 id="not-found-title">This page has been lost to history.</h1>
         <p className="not-found-copy">
-          The path you followed does not appear in the known record. Return to the map or
-          continue your search in the archive.
+          The path you followed does not cross the known world. Return to the realm map or
+          choose another character journey.
         </p>
         <nav className="not-found-actions" aria-label="Page not found navigation">
           <Link to="/" className={buttonVariants({ variant: "outline", size: "lg" })}>
             <ArrowLeftIcon data-icon="inline-start" aria-hidden="true" />
-            Return to the Map
+            Realm Map
           </Link>
-          <Link to="/wiki" className={buttonVariants({ size: "lg" })}>
-            <BookOpenIcon data-icon="inline-start" aria-hidden="true" />
-            Explore the Wiki
+          <Link to="/home" className={buttonVariants({ size: "lg" })}>
+            <UsersIcon data-icon="inline-start" aria-hidden="true" />
+            Explore Characters
           </Link>
         </nav>
       </section>

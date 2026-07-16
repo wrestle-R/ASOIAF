@@ -1,6 +1,5 @@
-import { accessSync } from "node:fs";
-import path from "node:path";
 import { describe, expect, it } from "vitest";
+import blobAssets from "../src/data/blobAssets.json";
 import { getRealmCameraFrame, REALM_MAPS, REALM_TOUR } from "../src/data/realmTour.js";
 
 const expected = [
@@ -22,14 +21,25 @@ describe("REALM_TOUR", () => {
     expect(REALM_TOUR.map(({ order }) => order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
-  it("has complete, unique poster and sigil metadata", () => {
-    expect(new Set(REALM_TOUR.map(({ poster }) => poster)).size).toBe(9);
+  it("uses complete content-addressed sigil metadata without unused posters", () => {
     for (const realm of REALM_TOUR) {
       expect(realm.duration).toBeGreaterThan(0);
-      expect(realm.poster).toMatch(/^\/assets\/nine-realms\/realm-\d{2}-[a-z-]+\.webp$/);
+      expect(realm).not.toHaveProperty("poster");
       expect(realm.houseId).toMatch(/^house-/);
-      accessSync(path.resolve("public/assets/houses", `${realm.houseId}.webp`));
+      expect(blobAssets.sigils[realm.houseId]).toMatchObject({
+        width: 1200,
+        height: 1320,
+        mimeType: "image/webp",
+      });
+      expect(blobAssets.sigils[realm.houseId].url).toMatch(/^https:\/\/.+\.public\.blob\.vercel-storage\.com\/sigils\//);
     }
+  });
+
+  it("uses the two immutable map objects from the asset manifest", () => {
+    expect(REALM_MAPS.desktop.image).toBe(blobAssets.maps.world.url);
+    expect(REALM_MAPS.mobile.image).toBe(blobAssets.maps.mobile.url);
+    expect(REALM_MAPS.desktop).toMatchObject({ width: 1484, height: 1060 });
+    expect(REALM_MAPS.mobile).toMatchObject({ width: 941, height: 1671 });
   });
 
   it("keeps every desktop and mobile camera focus in map bounds", () => {

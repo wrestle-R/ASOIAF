@@ -9,6 +9,18 @@
       "maxDuration": 300
     }
   },
+  "redirects": [
+    {
+      "source": "/wiki",
+      "destination": "/home",
+      "permanent": true
+    },
+    {
+      "source": "/danerys",
+      "destination": "/journeys/game-of-thrones/daenerys-targaryen",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",

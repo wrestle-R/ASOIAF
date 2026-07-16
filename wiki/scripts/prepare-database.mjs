@@ -1,11 +1,15 @@
 import { createHash } from "node:crypto";
+import { execFile } from "node:child_process";
 import { createReadStream, createWriteStream } from "node:fs";
-import { access, copyFile, mkdir, rename, rm, stat } from "node:fs/promises";
+import { access, mkdir, rename, rm, stat } from "node:fs/promises";
 import path from "node:path";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
+import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import manifest from "../database-manifest.json" with { type: "json" };
+
+const execFileAsync = promisify(execFile);
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const wikiRoot = path.resolve(here, "..");
@@ -13,6 +17,7 @@ const outputDirectory = path.join(wikiRoot, ".data");
 const outputPath = path.join(outputDirectory, manifest.assetName);
 const temporaryPath = `${outputPath}.download`;
 const localSourcePath = path.resolve(wikiRoot, "../dataset/asoiaf.sqlite");
+const buildScriptPath = path.resolve(here, "build-web-database.mjs");
 const downloadUrl = process.env.ASOIAF_DB_URL || manifest.url;
 
 async function exists(filePath) {
@@ -38,7 +43,7 @@ async function verify(filePath) {
 
 async function download() {
   const response = await fetch(downloadUrl, {
-    headers: { "user-agent": "wiki-of-ice-and-fire-vercel-build/2.0" },
+    headers: { "user-agent": "map-of-ice-and-fire-vercel-build/2.0" },
     redirect: "follow",
   });
 
@@ -54,7 +59,7 @@ await mkdir(outputDirectory, { recursive: true });
 
 if (await exists(outputPath)) {
   if (await verify(outputPath)) {
-    console.log(`SQLite archive ready: ${outputPath}`);
+    console.log(`SQLite web database ready: ${outputPath}`);
     process.exit(0);
   }
   await rm(outputPath, { force: true });
@@ -62,10 +67,16 @@ if (await exists(outputPath)) {
 
 try {
   if (await exists(localSourcePath)) {
-    console.log("Preparing SQLite archive from the local repository dataset…");
-    await copyFile(localSourcePath, outputPath);
+    console.log("Building the metadata-only SQLite database from the local dataset…");
+    await execFileAsync(process.execPath, [
+      buildScriptPath,
+      "--source",
+      localSourcePath,
+      "--output",
+      outputPath,
+    ]);
   } else {
-    console.log(`Downloading SQLite archive ${manifest.version} from GitHub Releases…`);
+    console.log(`Downloading metadata database ${manifest.version} from Vercel Blob…`);
     await download();
   }
 
@@ -73,7 +84,7 @@ try {
     throw new Error("Database size or SHA-256 did not match database-manifest.json");
   }
 
-  console.log(`SQLite archive verified: ${manifest.sha256}`);
+  console.log(`SQLite metadata database verified: ${manifest.sha256}`);
 } catch (error) {
   await rm(temporaryPath, { force: true });
   await rm(outputPath, { force: true });

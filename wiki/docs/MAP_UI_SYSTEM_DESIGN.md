@@ -1,50 +1,55 @@
-# Map-first UI system design
+# Map of Ice and Fire UI system
 
-## Product direction
+## Product structure
 
-The home route is an atlas, not a landing-page campaign. It should paint the map immediately, keep the interface quiet, and let the cartography and house sigils do the work. There is no hero section, blocking loader, or decorative point marker layered over the map.
+The experience has three connected surfaces:
 
-## Rendering responsibilities
+- `/` is the autoplaying nine-realm map tour.
+- `/home` is the canonical catalogue for all 203 characters.
+- `/journeys/:seriesSlug/:characterSlug` is the permanent destination for one character.
 
-| Layer | Owns | Must not own |
-| --- | --- | --- |
-| Map artwork | coastlines, realm boundaries, realm names, capital-city rings | interactive behavior or house state |
-| Marker data | one desktop and one mobile percentage coordinate per house | city-point coordinates |
-| React map layer | sigils, focus/hover labels, selected-house state | duplicate pins or geographic labels |
-| shadcn UI layer | buttons, the responsive details sheet, semantic tokens | map geometry |
-| API layer | house names, seats, words, arms, and sigil metadata | first paint of the map |
+The catalogue contains characters only. Houses remain part of the realm-map presentation
+and are not mixed into the character index.
 
-This split means a slow or failed API request never replaces the atlas with a full-screen loader. The map renders first; house controls appear when the nine house records arrive. Errors stay inside a small status surface with a retry action.
+## Shared cartography
 
-## Responsive model
+The realm tour and character journeys use the same original map family. Desktop uses the
+`1484 × 1060` world map, while the realm tour uses a dedicated `941 × 1671` portrait map on
+phone-sized viewports. Both maps and the nine house sigils are immutable Vercel Blob objects
+read from `src/data/blobAssets.json`; no runtime map artwork is shipped from `public/`.
 
-- Desktop (`881px` and wider) uses `world-map-houses.webp` at `1484:1060`.
-- Phone and tablet (`880px` and narrower) use `world-map-realms-mobile-capitals.webp` at `941:1671`.
-- Each layout has independent sigil coordinates and label directions. A correction for one map must not silently alter the other.
-- The selected-house sheet opens from the right on desktop and from the bottom on phone/tablet.
-- The Eyrie uses a desktop-only vertical correction so the falcon clears the embedded House Arryn text at every desktop aspect ratio.
+Journey coordinates and SVG curves are presentation overlays. They preserve the underlying
+cartography, and the data layer labels the connecting curves as schematic rather than exact
+roads or sea lanes.
 
-## Interaction and accessibility
+## Journey states
 
-- Every sigil is a real button with a house-and-region accessible name.
-- Hover and keyboard focus reveal the same compact label on desktop.
-- Touch focus reveals the label on mobile; activation opens the house sheet.
-- Escape and the sheet close control return focus to the opening sigil.
-- Reduced-motion mode removes marker entrance motion.
+The six published journeys share one React engine and one visual contract: map camera,
+dotted route reveal, moving marker, vignette, season copy, pause/replay, completion overview,
+and Back to Home action. Reduced-motion users receive the full map plus explicit season
+selection instead of autoplay animation.
 
-## Playwright correction plan
+Characters whose routes have not yet been sourced still receive their permanent URL. Their
+page shows the shared map and an honest charting state without inventing locations or route
+segments.
 
-The `npm run verify:map` suite checks 18 viewports: ultrawide, wide, standard, tall, breakpoint, tablet, modern phones, and a 320px small phone. For each viewport it captures the default map and all nine focused house states.
+## Responsive behavior
 
-Automated checks cover:
+Journey and realm-tour pages are locked to the dynamic viewport on phone-sized screens, with
+overscroll disabled and safe-area-aware controls. Edge-touch progression is available without
+adding instructional copy over the map. Desktop progression remains keyboard-accessible.
 
-1. the correct desktop/mobile source image;
-2. absence of legacy HTML point markers;
-3. every sigil staying inside the rendered map;
-4. every visible floating label staying inside the viewport;
-5. no collision between a floating label and its sigil;
-6. the details sheet opening and closing on representative desktop and mobile sizes;
-7. no page or console errors; and
-8. reduced-motion behavior.
+The catalogue is intentionally scrollable and uses a two-column phone grid, fluid desktop
+columns, URL-backed search and series filters, and a persistent light/dark preference.
 
-The final correction loop is: run the full matrix, build desktop/mobile contact sheets, inspect sigils against embedded realm text and capital rings, adjust only the affected layout coordinate or label direction, rerun the full matrix, then finish with unit tests and a production build.
+## Verification
+
+With the development server running:
+
+- `npm run verify:map` checks the realm tour, mobile viewport lock, completion, replay, and 404.
+- `npm run verify:catalog` checks all 203 unique cards, filters, themes, and responsive layout.
+- `npm run verify:journeys` opens all 203 destinations and exercises every published journey
+  on desktop, phone, and reduced-motion settings.
+
+Unit tests also enforce the 203/199 database shape, the exact six published characters,
+source metadata for every depicted stop, map bounds, and collision-safe canonical URLs.

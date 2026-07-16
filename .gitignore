@@ -1,8 +1,17 @@
+# Generated datasets and verification artifacts
 dataset/
+wiki/.data/
+artifacts/screenshots/
+
+# Dependencies, builds, and test output
 node_modules/
 dist/
 .vite/
 coverage/
-wiki/.data/
-wiki/.vercel/
-artifacts/screenshots/
+
+# Local Vercel metadata and environment secrets
+.vercel/
+.env
+.env.*
+!.env.example
+!.env.*.example

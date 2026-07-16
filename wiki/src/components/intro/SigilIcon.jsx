@@ -1,3 +1,5 @@
+import { sigils } from "../../data/blobAssets.json";
+
 function Motif({ type }) {
   switch (type) {
     case "wolf":
@@ -38,15 +40,15 @@ function motifFromText(text = "") {
 }
 
 const CANONICAL_SIGILS = Object.freeze({
-  "house-stark": "/assets/houses/house-stark.webp",
-  "house-arryn": "/assets/houses/house-arryn.webp",
-  "house-tully": "/assets/houses/house-tully.webp",
-  "house-greyjoy": "/assets/houses/house-greyjoy.webp",
-  "house-lannister": "/assets/houses/house-lannister.webp",
-  "house-tyrell": "/assets/houses/house-tyrell.webp",
-  "house-baratheon": "/assets/houses/house-baratheon.webp",
-  "house-martell": "/assets/houses/house-martell.webp",
-  "house-targaryen": "/assets/houses/house-targaryen.webp",
+  "house-stark": sigils["house-stark"].url,
+  "house-arryn": sigils["house-arryn"].url,
+  "house-tully": sigils["house-tully"].url,
+  "house-greyjoy": sigils["house-greyjoy"].url,
+  "house-lannister": sigils["house-lannister"].url,
+  "house-tyrell": sigils["house-tyrell"].url,
+  "house-baratheon": sigils["house-baratheon"].url,
+  "house-martell": sigils["house-martell"].url,
+  "house-targaryen": sigils["house-targaryen"].url,
 });
 
 export function SigilIcon({ house, size = 38, className = "" }) {
