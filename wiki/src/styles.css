@@ -198,18 +198,29 @@ button {
 /* Character journeys */
 
 .journey-page {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 100svh;
+  height: 100dvh;
   min-height: 100svh;
   overflow: hidden;
+  overflow: clip;
   background: #0c1113;
   color: #f4ead5;
+  isolation: isolate;
 }
 
 .journey-stage {
   position: relative;
   display: grid;
-  width: 100vw;
-  height: 100svh;
+  width: 100%;
+  max-width: 100dvw;
+  height: 100%;
+  min-height: 100svh;
+  min-height: 100dvh;
   overflow: hidden;
+  overflow: clip;
   place-items: center;
 }
 
@@ -227,6 +238,28 @@ button {
   width: min(94vw, calc(92svh * 1.4));
   transform: scale(1);
   transform-origin: 50% 50%;
+}
+
+.journey-camera.is-zoomable-overview {
+  cursor: grab;
+  touch-action: none;
+  transform: translate3d(
+      var(--overview-x, 0px),
+      var(--overview-y, 0px),
+      0
+    )
+    scale(var(--overview-scale, 1));
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.journey-camera.is-zoomable-overview:active {
+  cursor: grabbing;
+  transition: none;
+}
+
+.journey-camera.is-zoomable-overview:focus-visible {
+  outline: 3px solid var(--ice);
+  outline-offset: 4px;
 }
 
 .journey-map-image,
@@ -275,6 +308,14 @@ button {
   stroke-width: 4;
   stroke-dasharray: 2 6;
   stroke-linecap: round;
+}
+
+.journey-origin {
+  fill: rgba(12, 17, 19, 0.7);
+  stroke: #f0d69f;
+  stroke-width: 4;
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 5px rgba(240, 214, 159, 0.82));
 }
 
 .journey-marker circle {
@@ -366,15 +407,17 @@ button {
 .journey-controls {
   position: absolute;
   z-index: 20;
-  right: clamp(1rem, 3vw, 2.5rem);
-  bottom: 2rem;
+  right: max(clamp(1rem, 3vw, 2.5rem), env(safe-area-inset-right));
+  bottom: max(2rem, env(safe-area-inset-bottom));
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 0.55rem;
+  max-width: calc(100% - 2rem);
 }
 
-.journey-controls .journey-control {
+.journey-controls .journey-control,
+.journey-back-control {
   display: inline-flex;
   min-width: 7.4rem;
   align-items: center;
@@ -392,7 +435,8 @@ button {
   backdrop-filter: blur(12px);
 }
 
-.journey-controls .journey-control:hover {
+.journey-controls .journey-control:hover,
+.journey-back-control:hover {
   border-color: rgba(232, 205, 147, 0.65);
   color: #f1e2c4;
   background: rgba(34, 24, 21, 0.86);
@@ -403,9 +447,59 @@ button {
   opacity: 0.68;
 }
 
-.journey-controls svg {
+.journey-controls svg,
+.journey-back-control svg,
+.journey-zoom-controls svg {
   width: 0.9rem;
   height: 0.9rem;
+}
+
+.journey-back-control {
+  position: absolute;
+  z-index: 30;
+  top: max(1.25rem, env(safe-area-inset-top));
+  left: max(1.25rem, env(safe-area-inset-left));
+  min-height: 2.75rem;
+  white-space: nowrap;
+}
+
+.journey-zoom-controls {
+  position: absolute;
+  z-index: 30;
+  top: 50%;
+  right: max(1.25rem, env(safe-area-inset-right));
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border: 1px solid rgba(232, 205, 147, 0.28);
+  border-radius: 999px;
+  background: rgba(9, 13, 15, 0.78);
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+  transform: translateY(-50%);
+}
+
+.journey-zoom-control {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #f1e2c4;
+  background: transparent;
+  cursor: pointer;
+  place-items: center;
+}
+
+.journey-zoom-control:hover:not(:disabled) {
+  color: #fff6e2;
+  background: rgba(232, 205, 147, 0.14);
+}
+
+.journey-zoom-control:disabled {
+  cursor: default;
+  opacity: 0.38;
 }
 
 .journey-complete-controls {
@@ -438,6 +532,7 @@ button {
 }
 
 .journey-page-static {
+  height: auto;
   min-height: 100svh;
   overflow: auto;
 }
@@ -560,11 +655,21 @@ button {
   .journey-stage,
   .realm-tour,
   .realm-stage {
-    width: 100dvw;
     height: 100dvh;
     min-height: 0;
     overscroll-behavior: none;
     touch-action: manipulation;
+  }
+
+  .journey-page,
+  .journey-stage {
+    width: 100%;
+    max-width: 100dvw;
+  }
+
+  .realm-tour,
+  .realm-stage {
+    width: 100dvw;
   }
 
   .journey-stage {
@@ -606,6 +711,21 @@ button {
     left: 50%;
     width: min(100dvw, calc(100dvh * 1.4));
     transform: translate3d(-50%, -50%, 0) scale(0.96);
+    transform-origin: 50% 50%;
+  }
+
+  .journey-camera.is-zoomable-overview {
+    transition-duration: 180ms;
+  }
+
+  .journey-camera.is-overview.is-zoomable-overview {
+    transform: translate3d(
+        calc(-50% + var(--overview-x, 0px)),
+        calc(-50% + var(--overview-y, 0px)),
+        0
+      )
+      scale(0.96)
+      scale(var(--overview-scale, 1));
   }
 
   .journey-vignette {
@@ -616,7 +736,7 @@ button {
   }
 
   .journey-copy {
-    top: calc(1rem + env(safe-area-inset-top));
+    top: calc(4.75rem + env(safe-area-inset-top));
     bottom: auto;
     left: calc(1rem + env(safe-area-inset-left));
     width: min(74vw, 19rem);
@@ -627,7 +747,7 @@ button {
 
   .journey-complete-copy,
   .pending-journey-copy {
-    top: calc(1rem + env(safe-area-inset-top));
+    top: calc(4.75rem + env(safe-area-inset-top));
     animation: journey-complete-arrive 620ms 760ms ease-out both;
   }
 
@@ -653,20 +773,41 @@ button {
 
   .journey-progress {
     right: auto;
-    bottom: calc(1.85rem + env(safe-area-inset-bottom));
+    bottom: calc(4.45rem + env(safe-area-inset-bottom));
     left: calc(1rem + env(safe-area-inset-left));
   }
 
   .journey-controls {
     right: calc(1rem + env(safe-area-inset-right));
     bottom: calc(1rem + env(safe-area-inset-bottom));
+    max-width: calc(100dvw - 2rem - env(safe-area-inset-left) - env(safe-area-inset-right));
+  }
+
+  .journey-controls .journey-control,
+  .journey-back-control,
+  .journey-zoom-control {
+    min-height: 2.75rem;
+  }
+
+  .journey-back-control {
+    top: calc(1rem + env(safe-area-inset-top));
+    left: calc(1rem + env(safe-area-inset-left));
+  }
+
+  .journey-zoom-controls {
+    right: calc(0.75rem + env(safe-area-inset-right));
   }
 
   .journey-season-picker-overlay {
     top: auto;
     right: calc(1rem + env(safe-area-inset-right));
-    bottom: calc(4.8rem + env(safe-area-inset-bottom));
-    max-width: calc(100vw - 2rem);
+    bottom: calc(5.25rem + env(safe-area-inset-bottom));
+    max-width: calc(100dvw - 2rem - env(safe-area-inset-left) - env(safe-area-inset-right));
+  }
+
+  .journey-season-picker button {
+    width: 2.75rem;
+    height: 2.75rem;
   }
 }
 
@@ -677,6 +818,40 @@ button {
 
   .journey-copy h1 {
     font-size: clamp(1.45rem, 4.2vw, 2.1rem);
+  }
+}
+
+@media (max-width: 880px) and (max-height: 500px) {
+  .journey-back-control {
+    top: calc(0.75rem + env(safe-area-inset-top));
+    left: calc(0.75rem + env(safe-area-inset-left));
+    min-height: 2.5rem;
+    padding-inline: 0.75rem;
+  }
+
+  .journey-copy,
+  .journey-complete-copy,
+  .pending-journey-copy {
+    top: calc(4rem + env(safe-area-inset-top));
+  }
+
+  .journey-controls {
+    right: calc(0.75rem + env(safe-area-inset-right));
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  }
+
+  .journey-progress {
+    bottom: calc(4rem + env(safe-area-inset-bottom));
+    left: calc(0.75rem + env(safe-area-inset-left));
+  }
+
+  .journey-zoom-controls {
+    right: calc(0.5rem + env(safe-area-inset-right));
+  }
+
+  .journey-season-picker-overlay {
+    right: calc(0.75rem + env(safe-area-inset-right));
+    bottom: calc(4.5rem + env(safe-area-inset-bottom));
   }
 }
 

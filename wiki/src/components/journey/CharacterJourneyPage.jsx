@@ -6,18 +6,27 @@ import {
   useRef,
   useState,
 } from "react";
-import { ArrowLeftIcon, PauseIcon, PlayIcon, RotateCcwIcon } from "lucide-react";
+import {
+  ArrowLeftIcon,
+  MinusIcon,
+  PauseIcon,
+  PlayIcon,
+  PlusIcon,
+  RotateCcwIcon,
+} from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { fetchCharacter } from "../../data/characterApi.js";
 import {
   getJourney,
+  getSeasonOrigin,
   getSeasonWaypoints,
   JOURNEY_MAP,
 } from "../../data/journeys/publishedJourneys.js";
 import { useCinematicViewport } from "../../hooks/useCinematicViewport.js";
 import { useMediaQuery } from "../../hooks/useMediaQuery.js";
+import { useCinematicLoadReady } from "../../hooks/usePageLoadReady.js";
 import { useReducedMotion } from "../../hooks/useReducedMotion.js";
 
 const SEASON_HOLD_MS = 650;
@@ -26,6 +35,12 @@ const SEASON_CARRY_MAX_MS = 1500;
 const SEASON_CARRY_PX_PER_MS = 0.72;
 const MOBILE_CAMERA_QUERY = "(max-width: 880px)";
 const MOBILE_CAMERA_EASING_MS = 140;
+const MOBILE_OVERVIEW_BASE_SCALE = 0.96;
+const OVERVIEW_MIN_SCALE = 1;
+const OVERVIEW_MAX_SCALE = 4;
+const OVERVIEW_ZOOM_STEP = 0.4;
+const OVERVIEW_KEYBOARD_PAN_PX = 56;
+const DEFAULT_OVERVIEW_VIEW = Object.freeze({ scale: 1, x: 0, y: 0 });
 
 function clamp(value, minimum, maximum) {
   return Math.min(Math.max(value, minimum), maximum);
@@ -52,12 +67,38 @@ function pointTransform(point) {
   return point ? `translate(${point.x} ${point.y})` : undefined;
 }
 
+function getUniqueSeasonWaypoints(season) {
+  const pointsByPlace = new Map();
+
+  getSeasonWaypoints(season).forEach((place, index) => {
+    const placeId = season.stops[index]?.placeId ?? `${place.x}:${place.y}`;
+    if (!pointsByPlace.has(placeId)) pointsByPlace.set(placeId, { ...place, id: placeId });
+  });
+
+  return [...pointsByPlace.values()];
+}
+
 function titleFromSlug(slug) {
   return slug
     .split("-")
     .filter(Boolean)
     .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
     .join(" ");
+}
+
+function JourneyBackLink() {
+  return (
+    <Link
+      to="/home"
+      className={cn(
+        buttonVariants({ variant: "outline", size: "lg" }),
+        "journey-back-control",
+      )}
+    >
+      <ArrowLeftIcon data-icon="inline-start" aria-hidden="true" />
+      Back to Home
+    </Link>
+  );
 }
 
 function PendingJourneyPage({ characterSlug, seriesSlug }) {
@@ -114,15 +155,7 @@ function PendingJourneyPage({ characterSlug, seriesSlug }) {
             {error ? "Journey unavailable" : character ? "Journey being charted" : "Opening the map room…"}
           </span>
         </div>
-        <div className="journey-controls is-visible">
-          <Link
-            to="/home"
-            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "journey-control")}
-          >
-            <ArrowLeftIcon data-icon="inline-start" aria-hidden="true" />
-            Back to Home
-          </Link>
-        </div>
+        <JourneyBackLink />
       </section>
     </main>
   );
@@ -131,17 +164,29 @@ function PendingJourneyPage({ characterSlug, seriesSlug }) {
 function JourneyExperience({ journey }) {
   const reducedMotion = useReducedMotion();
   const phone = useMediaQuery(MOBILE_CAMERA_QUERY);
+  const {
+    imageRef: mapImageRef,
+    onImageError: handleMapImageError,
+    onImageLoad: handleMapImageLoad,
+    ready: autoplayReady,
+  } = useCinematicLoadReady(JOURNEY_MAP.image);
   const maskId = useId().replaceAll(":", "");
+  const mapInstructionsId = useId().replaceAll(":", "");
   const [seasonIndex, setSeasonIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [complete, setComplete] = useState(false);
   const [run, setRun] = useState(0);
+  const [overviewView, setOverviewView] = useState(DEFAULT_OVERVIEW_VIEW);
   const pausedRef = useRef(false);
+  const stageRef = useRef(null);
   const cameraRef = useRef(null);
   const pathRef = useRef(null);
   const markerRef = useRef(null);
   const markerPositionRef = useRef(null);
   const renderedSeasonRef = useRef(null);
+  const overviewViewRef = useRef(DEFAULT_OVERVIEW_VIEW);
+  const overviewPointersRef = useRef(new Map());
+  const overviewGestureRef = useRef(null);
   const mobileCameraRef = useRef({
     cameraHeight: 0,
     cameraWidth: 0,
@@ -156,8 +201,17 @@ function JourneyExperience({ journey }) {
 
   const season = journey.seasons[seasonIndex];
   const waypoints = getSeasonWaypoints(season);
+  const visibleSeasonStops = getUniqueSeasonWaypoints(season);
   const lastWaypoint = waypoints.at(-1) ?? waypoints[0];
-  const overviewStops = journey.seasons.flatMap((item) => getSeasonWaypoints(item));
+  const overviewStops = [...new Map(
+    journey.seasons
+      .flatMap((item) => getUniqueSeasonWaypoints(item))
+      .map((place) => [place.id, place]),
+  ).values()];
+  const originSeason = complete ? journey.seasons[0] : season;
+  const originPlace = getSeasonOrigin(originSeason);
+  const originPlaceId = originSeason.continuity?.originPlaceId
+    ?? originSeason.stops[0]?.placeId;
 
   useEffect(() => {
     document.title = `${journey.characterName}'s Journey | Map of Ice and Fire`;
@@ -166,6 +220,255 @@ function JourneyExperience({ journey }) {
   useEffect(() => {
     pausedRef.current = paused;
   }, [paused]);
+
+  const constrainOverviewView = useCallback((candidate) => {
+    const scale = clamp(
+      Number.isFinite(candidate.scale) ? candidate.scale : OVERVIEW_MIN_SCALE,
+      OVERVIEW_MIN_SCALE,
+      OVERVIEW_MAX_SCALE,
+    );
+    const camera = cameraRef.current;
+    const stage = stageRef.current;
+
+    if (!camera || !stage) {
+      return {
+        scale,
+        x: scale === OVERVIEW_MIN_SCALE ? 0 : (Number.isFinite(candidate.x) ? candidate.x : 0),
+        y: scale === OVERVIEW_MIN_SCALE ? 0 : (Number.isFinite(candidate.y) ? candidate.y : 0),
+      };
+    }
+
+    const baseScale = phone ? MOBILE_OVERVIEW_BASE_SCALE : 1;
+    const scaledWidth = camera.offsetWidth * baseScale * scale;
+    const scaledHeight = camera.offsetHeight * baseScale * scale;
+    const maximumX = Math.max(0, (scaledWidth - stage.clientWidth) / 2);
+    const maximumY = Math.max(0, (scaledHeight - stage.clientHeight) / 2);
+
+    return {
+      scale,
+      x: clamp(Number.isFinite(candidate.x) ? candidate.x : 0, -maximumX, maximumX),
+      y: clamp(Number.isFinite(candidate.y) ? candidate.y : 0, -maximumY, maximumY),
+    };
+  }, [phone]);
+
+  const commitOverviewView = useCallback((candidate) => {
+    const next = constrainOverviewView(candidate);
+    const current = overviewViewRef.current;
+
+    if (
+      Math.abs(next.scale - current.scale) < 0.001
+      && Math.abs(next.x - current.x) < 0.1
+      && Math.abs(next.y - current.y) < 0.1
+    ) return current;
+
+    overviewViewRef.current = next;
+    setOverviewView(next);
+    return next;
+  }, [constrainOverviewView]);
+
+  const resetOverviewView = useCallback(() => {
+    overviewPointersRef.current.clear();
+    overviewGestureRef.current = null;
+    overviewViewRef.current = DEFAULT_OVERVIEW_VIEW;
+    setOverviewView(DEFAULT_OVERVIEW_VIEW);
+  }, []);
+
+  const setOverviewScale = useCallback((requestedScale, anchor) => {
+    const current = overviewViewRef.current;
+    const nextScale = clamp(requestedScale, OVERVIEW_MIN_SCALE, OVERVIEW_MAX_SCALE);
+    const stage = stageRef.current;
+
+    if (!stage || Math.abs(nextScale - current.scale) < 0.001) return;
+
+    const stageBounds = stage.getBoundingClientRect();
+    const stageCenterX = stageBounds.left + stageBounds.width / 2;
+    const stageCenterY = stageBounds.top + stageBounds.height / 2;
+    const anchorX = anchor?.x ?? stageCenterX;
+    const anchorY = anchor?.y ?? stageCenterY;
+    const scaleRatio = nextScale / current.scale;
+
+    commitOverviewView({
+      scale: nextScale,
+      x: current.x + (1 - scaleRatio) * (anchorX - stageCenterX - current.x),
+      y: current.y + (1 - scaleRatio) * (anchorY - stageCenterY - current.y),
+    });
+  }, [commitOverviewView]);
+
+  const seedOverviewGesture = useCallback(() => {
+    const pointers = [...overviewPointersRef.current.values()];
+    const current = overviewViewRef.current;
+
+    if (pointers.length === 0) {
+      overviewGestureRef.current = null;
+      return;
+    }
+
+    if (pointers.length === 1) {
+      overviewGestureRef.current = {
+        kind: "pan",
+        pointerId: pointers[0].id,
+        startPointerX: pointers[0].x,
+        startPointerY: pointers[0].y,
+        startX: current.x,
+        startY: current.y,
+      };
+      return;
+    }
+
+    const [first, second] = pointers;
+    overviewGestureRef.current = {
+      kind: "pinch",
+      startCenterX: (first.x + second.x) / 2,
+      startCenterY: (first.y + second.y) / 2,
+      startDistance: Math.max(Math.hypot(second.x - first.x, second.y - first.y), 1),
+      startScale: current.scale,
+      startX: current.x,
+      startY: current.y,
+    };
+  }, []);
+
+  const handleOverviewPointerDown = useCallback((event) => {
+    if (!complete || (event.pointerType === "mouse" && event.button !== 0)) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    event.currentTarget.focus({ preventScroll: true });
+    event.currentTarget.setPointerCapture(event.pointerId);
+    overviewPointersRef.current.set(event.pointerId, {
+      id: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+    });
+    seedOverviewGesture();
+  }, [complete, seedOverviewGesture]);
+
+  const handleOverviewPointerMove = useCallback((event) => {
+    if (!complete || !overviewPointersRef.current.has(event.pointerId)) return;
+
+    event.preventDefault();
+    overviewPointersRef.current.set(event.pointerId, {
+      id: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+    });
+
+    const gesture = overviewGestureRef.current;
+    if (!gesture) return;
+
+    if (gesture.kind === "pan") {
+      const pointer = overviewPointersRef.current.get(gesture.pointerId);
+      if (!pointer) {
+        seedOverviewGesture();
+        return;
+      }
+
+      commitOverviewView({
+        scale: overviewViewRef.current.scale,
+        x: gesture.startX + pointer.x - gesture.startPointerX,
+        y: gesture.startY + pointer.y - gesture.startPointerY,
+      });
+      return;
+    }
+
+    const [first, second] = [...overviewPointersRef.current.values()];
+    const stage = stageRef.current;
+    if (!first || !second || !stage) return;
+
+    const centerX = (first.x + second.x) / 2;
+    const centerY = (first.y + second.y) / 2;
+    const distance = Math.max(Math.hypot(second.x - first.x, second.y - first.y), 1);
+    const nextScale = clamp(
+      gesture.startScale * (distance / gesture.startDistance),
+      OVERVIEW_MIN_SCALE,
+      OVERVIEW_MAX_SCALE,
+    );
+    const scaleRatio = nextScale / gesture.startScale;
+    const stageBounds = stage.getBoundingClientRect();
+    const stageCenterX = stageBounds.left + stageBounds.width / 2;
+    const stageCenterY = stageBounds.top + stageBounds.height / 2;
+
+    commitOverviewView({
+      scale: nextScale,
+      x: centerX - stageCenterX
+        - scaleRatio * (gesture.startCenterX - stageCenterX - gesture.startX),
+      y: centerY - stageCenterY
+        - scaleRatio * (gesture.startCenterY - stageCenterY - gesture.startY),
+    });
+  }, [commitOverviewView, complete, seedOverviewGesture]);
+
+  const finishOverviewPointer = useCallback((event) => {
+    if (!overviewPointersRef.current.has(event.pointerId)) return;
+
+    overviewPointersRef.current.delete(event.pointerId);
+    seedOverviewGesture();
+  }, [seedOverviewGesture]);
+
+  const handleOverviewWheel = useCallback((event) => {
+    if (!complete) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    const zoomFactor = Math.exp(-event.deltaY * 0.0015);
+    setOverviewScale(overviewViewRef.current.scale * zoomFactor, {
+      x: event.clientX,
+      y: event.clientY,
+    });
+  }, [complete, setOverviewScale]);
+
+  const handleOverviewKeyDown = useCallback((event) => {
+    if (!complete) return;
+
+    let handled = true;
+    const current = overviewViewRef.current;
+
+    switch (event.key) {
+      case "+":
+      case "=":
+        setOverviewScale(current.scale + OVERVIEW_ZOOM_STEP);
+        break;
+      case "-":
+      case "_":
+        setOverviewScale(current.scale - OVERVIEW_ZOOM_STEP);
+        break;
+      case "0":
+        resetOverviewView();
+        break;
+      case "ArrowLeft":
+        commitOverviewView({ ...current, x: current.x - OVERVIEW_KEYBOARD_PAN_PX });
+        break;
+      case "ArrowRight":
+        commitOverviewView({ ...current, x: current.x + OVERVIEW_KEYBOARD_PAN_PX });
+        break;
+      case "ArrowUp":
+        commitOverviewView({ ...current, y: current.y - OVERVIEW_KEYBOARD_PAN_PX });
+        break;
+      case "ArrowDown":
+        commitOverviewView({ ...current, y: current.y + OVERVIEW_KEYBOARD_PAN_PX });
+        break;
+      default:
+        handled = false;
+    }
+
+    if (handled) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, [commitOverviewView, complete, resetOverviewView, setOverviewScale]);
+
+  const handleOverviewDoubleClick = useCallback((event) => {
+    // Repeated edge taps used for phone progression can synthesize a dblclick
+    // after the final tap switches the page into its interactive overview.
+    // Touch already has explicit pinch controls, so reserve this shortcut for
+    // mouse/trackpad input and never let completion inherit an accidental zoom.
+    if (phone || !complete || event.nativeEvent.sourceCapabilities?.firesTouchEvents) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    setOverviewScale(overviewViewRef.current.scale + OVERVIEW_ZOOM_STEP, {
+      x: event.clientX,
+      y: event.clientY,
+    });
+  }, [complete, phone, setOverviewScale]);
 
   const goToNext = useCallback(() => {
     if (complete) return;
@@ -190,6 +493,17 @@ function JourneyExperience({ journey }) {
     onNext: goToNext,
     onPrevious: goToPrevious,
   });
+
+  useEffect(() => {
+    if (complete) return;
+
+    const current = overviewViewRef.current;
+    if (
+      current.scale !== DEFAULT_OVERVIEW_VIEW.scale
+      || current.x !== DEFAULT_OVERVIEW_VIEW.x
+      || current.y !== DEFAULT_OVERVIEW_VIEW.y
+    ) resetOverviewView();
+  }, [complete, resetOverviewView]);
 
   useLayoutEffect(() => {
     const camera = cameraRef.current;
@@ -227,6 +541,46 @@ function JourneyExperience({ journey }) {
     };
   }, [complete, reducedMotion]);
 
+  useLayoutEffect(() => {
+    const camera = cameraRef.current;
+    const stage = stageRef.current;
+    if (!complete || !camera || !stage) return undefined;
+
+    const keepMapWithinBounds = () => {
+      commitOverviewView(overviewViewRef.current);
+    };
+
+    keepMapWithinBounds();
+    const resizeObserver = new ResizeObserver(keepMapWithinBounds);
+    resizeObserver.observe(camera);
+    resizeObserver.observe(stage);
+    window.addEventListener("resize", keepMapWithinBounds);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", keepMapWithinBounds);
+    };
+  }, [commitOverviewView, complete]);
+
+  useEffect(() => {
+    const camera = cameraRef.current;
+    if (!complete || !camera) return undefined;
+
+    camera.addEventListener("wheel", handleOverviewWheel, { passive: false });
+    return () => camera.removeEventListener("wheel", handleOverviewWheel);
+  }, [complete, handleOverviewWheel]);
+
+  useLayoutEffect(() => {
+    if (autoplayReady || reducedMotion || complete) return;
+
+    const path = pathRef.current;
+    if (!path) return;
+
+    const pathLength = Math.max(path.getTotalLength(), 0.01);
+    path.style.strokeDasharray = `${pathLength}`;
+    path.style.strokeDashoffset = `${pathLength}`;
+  }, [autoplayReady, complete, reducedMotion, seasonIndex]);
+
   useEffect(() => {
     const handleArrowNavigation = (event) => {
       const target = event.target;
@@ -237,6 +591,8 @@ function JourneyExperience({ journey }) {
         || event.ctrlKey
         || event.metaKey
         || event.shiftKey
+        || target instanceof HTMLAnchorElement
+        || target instanceof HTMLButtonElement
         || target instanceof HTMLInputElement
         || target instanceof HTMLTextAreaElement
         || target instanceof HTMLSelectElement
@@ -259,7 +615,7 @@ function JourneyExperience({ journey }) {
   }, [complete, goToNext, goToPrevious, seasonIndex]);
 
   useEffect(() => {
-    if (reducedMotion || complete) return undefined;
+    if (!autoplayReady || reducedMotion || complete) return undefined;
 
     const path = pathRef.current;
     const marker = markerRef.current;
@@ -361,30 +717,38 @@ function JourneyExperience({ journey }) {
       cancelled = true;
       cancelAnimationFrame(animationFrame);
     };
-  }, [complete, journey.seasons.length, reducedMotion, run, season.duration, seasonIndex]);
+  }, [autoplayReady, complete, journey.seasons.length, reducedMotion, run, season.duration, seasonIndex]);
 
   const replay = useCallback(() => {
     setPaused(false);
     setComplete(false);
     setSeasonIndex(0);
+    resetOverviewView();
     markerPositionRef.current = null;
     renderedSeasonRef.current = null;
     mobileCameraRef.current.initialized = false;
     mobileCameraRef.current.needsPosition = true;
     setRun((value) => value + 1);
-  }, []);
+  }, [resetOverviewView]);
 
   const selectSeason = useCallback((index) => {
     setPaused(false);
     setComplete(false);
     setSeasonIndex(index);
+    resetOverviewView();
     setRun((value) => value + 1);
-  }, []);
+  }, [resetOverviewView]);
 
   const cameraStyle = {
     "--camera-x": `${season.camera.x}%`,
     "--camera-y": `${season.camera.y}%`,
     "--camera-scale": season.camera.scale,
+    ...(complete ? {
+      "--overview-scale": overviewView.scale,
+      "--overview-x": `${overviewView.x}px`,
+      "--overview-y": `${overviewView.y}px`,
+      touchAction: "none",
+    } : {}),
   };
   const markerTransform = reducedMotion
     ? pointTransform(lastWaypoint)
@@ -393,20 +757,38 @@ function JourneyExperience({ journey }) {
   return (
     <main className="journey-page">
       <section
+        ref={stageRef}
         className={cn(
           "journey-stage",
           complete && "is-complete",
           reducedMotion && "is-reduced-motion",
         )}
         aria-labelledby="journey-title"
-        {...stagePointerHandlers}
+        {...(complete ? {} : stagePointerHandlers)}
       >
         <div
           ref={cameraRef}
-          className={cn("journey-camera", (complete || reducedMotion) && "is-overview")}
+          className={cn(
+            "journey-camera",
+            (complete || reducedMotion) && "is-overview",
+            complete && "is-zoomable-overview",
+          )}
           style={cameraStyle}
+          data-map-scale={complete ? overviewView.scale.toFixed(2) : undefined}
+          role={complete ? "region" : undefined}
+          aria-label={complete ? `${journey.characterName}'s completed journey map` : undefined}
+          aria-describedby={complete ? mapInstructionsId : undefined}
+          tabIndex={complete ? 0 : undefined}
+          onDoubleClick={complete ? handleOverviewDoubleClick : undefined}
+          onKeyDown={complete ? handleOverviewKeyDown : undefined}
+          onPointerCancel={complete ? finishOverviewPointer : undefined}
+          onPointerDown={complete ? handleOverviewPointerDown : undefined}
+          onPointerMove={complete ? handleOverviewPointerMove : undefined}
+          onPointerUp={complete ? finishOverviewPointer : undefined}
+          onLostPointerCapture={complete ? finishOverviewPointer : undefined}
         >
           <img
+            ref={mapImageRef}
             className="journey-map-image"
             src={JOURNEY_MAP.image}
             alt="Illustrated map of Westeros and Essos"
@@ -414,6 +796,8 @@ function JourneyExperience({ journey }) {
             height={JOURNEY_MAP.height}
             fetchPriority="high"
             draggable="false"
+            onError={handleMapImageError}
+            onLoad={handleMapImageLoad}
           />
           <svg
             className="journey-route-layer"
@@ -442,15 +826,27 @@ function JourneyExperience({ journey }) {
               />
             )}
 
-            {(complete ? overviewStops : waypoints).map((place, index) => (
+            {(complete ? overviewStops : visibleSeasonStops).map((place, index) => (
               <circle
                 className="journey-stop"
                 key={`${complete ? "all" : season.season}-${index}-${place.id ?? place.name}`}
+                data-place-id={place.id}
                 cx={place.x}
                 cy={place.y}
                 r="13"
               />
             ))}
+
+            {originPlace && (
+              <circle
+                className="journey-stop journey-origin"
+                data-journey-origin=""
+                data-place-id={originPlaceId}
+                cx={originPlace.x}
+                cy={originPlace.y}
+                r="19"
+              />
+            )}
 
             {!complete && (
               <g ref={markerRef} className="journey-marker" transform={markerTransform}>
@@ -461,6 +857,7 @@ function JourneyExperience({ journey }) {
         </div>
 
         <div className="journey-vignette" aria-hidden="true" />
+        <JourneyBackLink />
         <div className={cn("journey-copy", complete && "journey-complete-copy")} key={`copy-${complete ? "complete" : season.season}`}>
           <p className="journey-kicker">
             {complete
@@ -480,19 +877,10 @@ function JourneyExperience({ journey }) {
 
         <div className={cn("journey-controls", complete && "journey-complete-controls")}>
           {complete ? (
-            <>
-              <Button type="button" variant="outline" size="lg" className="journey-control" onClick={replay}>
-                <RotateCcwIcon data-icon="inline-start" aria-hidden="true" />
-                Replay
-              </Button>
-              <Link
-                to="/home"
-                className={cn(buttonVariants({ variant: "outline", size: "lg" }), "journey-control")}
-              >
-                <ArrowLeftIcon data-icon="inline-start" aria-hidden="true" />
-                Back to Home
-              </Link>
-            </>
+            <Button type="button" variant="outline" size="lg" className="journey-control" onClick={replay}>
+              <RotateCcwIcon data-icon="inline-start" aria-hidden="true" />
+              Replay
+            </Button>
           ) : (
             <Button
               type="button"
@@ -509,6 +897,54 @@ function JourneyExperience({ journey }) {
             </Button>
           )}
         </div>
+
+        {complete && (
+          <div className="journey-zoom-controls" role="group" aria-label="Map zoom controls">
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              className="journey-zoom-control"
+              aria-label="Zoom out"
+              title="Zoom out"
+              data-map-action="zoom-out"
+              disabled={overviewView.scale <= OVERVIEW_MIN_SCALE}
+              onClick={() => setOverviewScale(overviewViewRef.current.scale - OVERVIEW_ZOOM_STEP)}
+            >
+              <MinusIcon aria-hidden="true" />
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              className="journey-zoom-control"
+              aria-label="Reset map view"
+              title="Reset map view"
+              data-map-action="reset"
+              disabled={
+                overviewView.scale === DEFAULT_OVERVIEW_VIEW.scale
+                && overviewView.x === DEFAULT_OVERVIEW_VIEW.x
+                && overviewView.y === DEFAULT_OVERVIEW_VIEW.y
+              }
+              onClick={resetOverviewView}
+            >
+              <RotateCcwIcon aria-hidden="true" />
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              className="journey-zoom-control"
+              aria-label="Zoom in"
+              title="Zoom in"
+              data-map-action="zoom-in"
+              disabled={overviewView.scale >= OVERVIEW_MAX_SCALE}
+              onClick={() => setOverviewScale(overviewViewRef.current.scale + OVERVIEW_ZOOM_STEP)}
+            >
+              <PlusIcon aria-hidden="true" />
+            </Button>
+          </div>
+        )}
 
         <div className="journey-progress" aria-hidden="true">
           {journey.seasons.map((item, index) => (
@@ -540,9 +976,15 @@ function JourneyExperience({ journey }) {
 
         <p className="sr-only" aria-live="polite">
           {complete
-            ? `${journey.characterName}'s complete mapped journey is displayed.`
+            ? `${journey.characterName}'s complete mapped journey is displayed. Map zoom ${Math.round(overviewView.scale * 100)} percent.`
             : `Season ${season.season}: ${season.summary}`}
         </p>
+        {complete && (
+          <p id={mapInstructionsId} className="sr-only">
+            Zoom with the controls, plus and minus keys, a mouse wheel, or a pinch.
+            Drag the map or use the arrow keys to pan. Press zero to reset the map view.
+          </p>
+        )}
       </section>
     </main>
   );

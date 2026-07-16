@@ -19,9 +19,52 @@ const baseUrl = process.env.MAP_VERIFY_URL
   || "http://127.0.0.1:5173/";
 const outputDir = new URL("../../artifacts/screenshots/map-verification/", import.meta.url);
 const failures = [];
+const blobAssetCache = new Map();
 
 await mkdir(outputDir, { recursive: true });
 const browser = await chromium.launch({ headless: true });
+
+async function newVerifiedContext(options) {
+  const context = await browser.newContext(options);
+
+  // Chromium's Opaque Response Blocking can reject otherwise valid public Blob
+  // images while a local development origin is under test. Node's request
+  // layer still verifies the real URL and response, then fulfils it as a test
+  // resource so the browser can decode and visually exercise the actual asset.
+  await context.route("https://*.public.blob.vercel-storage.com/**", async (route) => {
+    try {
+      const url = route.request().url();
+      let asset = blobAssetCache.get(url);
+      if (!asset) {
+        asset = fetch(url, { headers: { "user-agent": "ASOIAF-visual-verifier/1.0" } })
+          .then(async (response) => {
+            if (!response.ok) throw new Error(`Blob asset returned ${response.status}: ${url}`);
+            return {
+              status: response.status,
+              headers: Object.fromEntries(response.headers.entries()),
+              body: Buffer.from(await response.arrayBuffer()),
+            };
+          })
+          .catch((error) => {
+            blobAssetCache.delete(url);
+            throw error;
+          });
+        blobAssetCache.set(url, asset);
+      }
+      await route.fulfill(await asset);
+    } catch (error) {
+      // Rapid realm changes intentionally cancel the previous image/preload.
+      if (!/Route is already handled|Request context disposed/.test(error.message)) throw error;
+    }
+  });
+
+  return context;
+}
+
+async function closeVerifiedContext(context) {
+  await context.unrouteAll({ behavior: "ignoreErrors" });
+  await context.close();
+}
 
 async function collectErrors(page, label) {
   const errors = [];
@@ -105,9 +148,73 @@ async function assertViewportLocked(page, label) {
   if (await page.evaluate(() => window.scrollY) !== 0) failures.push(`${label}: wheel input scrolled the page`);
 }
 
+async function tapRealmEdge(page, viewport, direction, expectedRealm, label) {
+  const x = viewport.width * (direction === "next" ? 0.82 : 0.18);
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    await page.touchscreen.tap(x, viewport.height * 0.5);
+    try {
+      await page.getByRole("heading", { name: expectedRealm, exact: true }).waitFor({ timeout: 4_000 });
+      return;
+    } catch (error) {
+      if (attempt === 1) {
+        failures.push(`${label}: ${direction} edge tap did not reach ${expectedRealm}`);
+        return;
+      }
+    }
+  }
+}
+
+async function verifyAutoplayLoadGate() {
+  const label = "tour-load-gate";
+  const context = await newVerifiedContext({ viewport: { width: 1440, height: 900 } });
+  let releaseMap;
+  const mapGate = new Promise((resolve) => {
+    releaseMap = resolve;
+  });
+
+  await context.route(blobAssets.maps.realms.north.desktop.url, async (route) => {
+    await mapGate;
+    await route.fallback();
+  });
+
+  const page = await context.newPage();
+  const reportErrors = await collectErrors(page, label);
+
+  try {
+    await page.goto(new URL("/", baseUrl).href, { waitUntil: "domcontentloaded" });
+    await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
+
+    const heldMapWidth = await page.locator(".realm-map-image").evaluate((image) => image.naturalWidth);
+    if (heldMapWidth !== 0) {
+      failures.push(`${label}: critical map decoded before the test released it`);
+    }
+
+    // This is longer than the 3,000ms realm duration plus its 420ms hold.
+    await page.waitForTimeout(3_650);
+    if (!await page.getByRole("heading", { name: "The North", exact: true }).count()) {
+      failures.push(`${label}: autoplay advanced before the full page and critical map loaded`);
+    }
+
+    releaseMap();
+    await page.waitForLoadState("load");
+    await page.waitForFunction(() => {
+      const image = document.querySelector(".realm-map-image");
+      return image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
+    });
+    await page.getByRole("heading", { name: "The Vale", exact: true }).waitFor({ timeout: 5_500 });
+  } finally {
+    releaseMap();
+    reportErrors();
+    await closeVerifiedContext(context);
+  }
+}
+
 try {
+  await verifyAutoplayLoadGate();
+
   {
-    const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const context = await newVerifiedContext({ viewport: { width: 1440, height: 900 } });
     const page = await context.newPage();
     const reportErrors = await collectErrors(page, "tour-desktop");
     await page.goto(new URL("/", baseUrl).href, { waitUntil: "networkidle" });
@@ -155,14 +262,14 @@ try {
     await page.getByRole("button", { name: "Replay", exact: true }).click();
     await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
     reportErrors();
-    await context.close();
+    await closeVerifiedContext(context);
   }
 
   for (const viewport of [
     { name: "phone-portrait", width: 390, height: 844, verifyComplete: true },
     { name: "phone-landscape", width: 844, height: 390, verifyComplete: false },
   ]) {
-    const context = await browser.newContext({
+    const context = await newVerifiedContext({
       viewport: { width: viewport.width, height: viewport.height },
       hasTouch: true,
     });
@@ -185,10 +292,8 @@ try {
     if (!await page.getByRole("heading", { name: "The North", exact: true }).count()) {
       failures.push(`${viewport.name}: pause control advanced the realm`);
     }
-    await page.touchscreen.tap(viewport.width * 0.82, viewport.height * 0.5);
-    await page.getByRole("heading", { name: "The Vale", exact: true }).waitFor();
-    await page.touchscreen.tap(viewport.width * 0.18, viewport.height * 0.5);
-    await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
+    await tapRealmEdge(page, viewport, "next", "The Vale", viewport.name);
+    await tapRealmEdge(page, viewport, "previous", "The North", viewport.name);
     await page.getByRole("button", { name: "Continue", exact: true }).click();
     const geometry = await mapGeometry(page);
     if (geometry.left > 0 || geometry.right < geometry.width || geometry.top > 0 || geometry.bottom < geometry.height) {
@@ -207,12 +312,12 @@ try {
       await page.screenshot({ path: new URL(`${viewport.name}-complete.png`, outputDir).pathname });
     }
     reportErrors();
-    await context.close();
+    await closeVerifiedContext(context);
   }
 
   for (const path of ["/map", "/the-page-that-was-promised"]) {
     const label = path === "/map" ? "retired-map-route" : "unknown-route";
-    const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const context = await newVerifiedContext({ viewport: { width: 1440, height: 900 } });
     const page = await context.newPage();
     const reportErrors = await collectErrors(page, label);
     await page.goto(new URL(path, baseUrl).href, { waitUntil: "networkidle" });
@@ -223,7 +328,7 @@ try {
     if (returnHref !== "/" || charactersHref !== "/home") failures.push(`${label}: 404 actions are incorrect`);
     await page.screenshot({ path: new URL(`${label}.png`, outputDir).pathname });
     reportErrors();
-    await context.close();
+    await closeVerifiedContext(context);
   }
 } finally {
   await browser.close();
@@ -233,5 +338,5 @@ if (failures.length) {
   console.error(`Map tour verification failed:\n${failures.join("\n")}`);
   process.exitCode = 1;
 } else {
-  console.log("Root tour, complete map, responsive sigils, and 404 verification passed.");
+  console.log("Root tour verification passed: load-gated autoplay, complete map, responsive sigils, and 404 routes.");
 }

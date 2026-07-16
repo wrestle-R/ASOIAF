@@ -272,7 +272,7 @@ const daenerys = journey("daenerys-targaryen", "Daenerys Targaryen", [
     summary: "Daenerys landed at Dragonstone, struck the Lannister army, rescued Jon beyond the Wall, and faced Cersei at the Dragonpit.",
     places: ["dragonstone", "roseroad", "dragonstone", "beyond-the-wall", "kings-landing"],
     evidence: [EPISODES.s7e1, EPISODES.s7e4, EPISODES.s7e5, EPISODES.s7e6, EPISODES.s7e7],
-    path: "M 604 625 C 520 670 420 720 330 735 C 430 710 535 670 604 625 C 500 430 380 220 304 38 C 345 290 390 570 405 717",
+    path: "M 602 605 C 520 670 420 720 330 735 C 430 710 535 670 602 605 C 500 430 380 220 304 38 C 345 290 390 570 403 719",
     camera: { x: 32, y: 48, scale: 1.04 },
     duration: 4400,
   }),
@@ -282,7 +282,7 @@ const daenerys = journey("daenerys-targaryen", "Daenerys Targaryen", [
     summary: "She fought the dead at Winterfell, returned to Dragonstone, conquered King's Landing, and died beneath the Iron Throne.",
     places: ["winterfell", "dragonstone", "kings-landing"],
     evidence: [EPISODES.s8e1, EPISODES.s8e4, EPISODES.s8e5],
-    path: "M 297 255 C 380 360 505 510 604 625 C 535 655 465 690 405 717",
+    path: "M 299 272 C 380 360 505 510 602 605 C 535 655 465 690 403 719",
     camera: { x: 31, y: 53, scale: 1.09 },
     duration: 3600,
   }),
@@ -591,4 +591,10 @@ export function getJourney(seriesSlug, characterSlug) {
   return PUBLISHED_JOURNEYS[`${seriesSlug}/${characterSlug}`] ?? null;
 }
 
-export { JOURNEY_MAP, PLACES, getSeasonWaypoints } from "./places.js";
+export {
+  JOURNEY_MAP,
+  PLACES,
+  REALM_SEAT_PLACE_IDS,
+  getSeasonOrigin,
+  getSeasonWaypoints,
+} from "./places.js";

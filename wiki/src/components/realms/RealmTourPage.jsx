@@ -5,6 +5,7 @@ import { SigilIcon } from "../intro/SigilIcon.jsx";
 import { Button, buttonVariants } from "../ui/button.jsx";
 import { useCinematicViewport } from "../../hooks/useCinematicViewport.js";
 import { useMediaQuery } from "../../hooks/useMediaQuery.js";
+import { useCinematicLoadReady } from "../../hooks/usePageLoadReady.js";
 import { getRealmCameraFrame, REALM_MAPS, REALM_TOUR } from "../../data/realmTour.js";
 import { cn } from "../../lib/utils.js";
 
@@ -27,6 +28,13 @@ export function RealmTourPage() {
   const map = REALM_MAPS[layout];
   const camera = realm.camera[layout];
   const sigilPosition = realm.sigil[layout];
+  const mapSource = complete ? map.image : realm.map[layout];
+  const {
+    imageRef: mapImageRef,
+    onImageError: handleMapImageError,
+    onImageLoad: handleMapImageLoad,
+    ready: autoplayReady,
+  } = useCinematicLoadReady(mapSource, { fallbackSource: map.image });
 
   useEffect(() => {
     document.title = "Map of Ice and Fire";
@@ -105,7 +113,7 @@ export function RealmTourPage() {
   }, [complete, goToNext, goToPrevious, phone, realmIndex]);
 
   useEffect(() => {
-    if (complete) return undefined;
+    if (!autoplayReady || complete) return undefined;
 
     let animationFrame;
     let previousTime;
@@ -133,7 +141,7 @@ export function RealmTourPage() {
       cancelled = true;
       cancelAnimationFrame(animationFrame);
     };
-  }, [complete, realm.duration, realmIndex, run]);
+  }, [autoplayReady, complete, realm.duration, realmIndex, run]);
 
   useEffect(() => {
     if (complete) return undefined;
@@ -192,16 +200,16 @@ export function RealmTourPage() {
       >
         <div className="realm-map-frame" style={frameStyle}>
           <img
+            ref={mapImageRef}
             className="realm-map-image"
-            src={complete ? map.image : realm.map[layout]}
+            src={mapSource}
             alt="Political map of the nine realms of Westeros"
             width={map.width}
             height={map.height}
             fetchPriority="high"
             draggable="false"
-            onError={(event) => {
-              if (event.currentTarget.src !== map.image) event.currentTarget.src = map.image;
-            }}
+            onError={handleMapImageError}
+            onLoad={handleMapImageLoad}
           />
           <div className="realm-map-toning" aria-hidden="true" />
           {!complete && (

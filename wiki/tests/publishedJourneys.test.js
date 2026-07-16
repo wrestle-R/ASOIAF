@@ -2,27 +2,63 @@ import { describe, expect, it } from "vitest";
 import blobAssets from "../src/data/blobAssets.json";
 import {
   getJourney,
+  getSeasonOrigin,
   getSeasonWaypoints,
   JOURNEY_MAP,
   PLACES,
   PUBLISHED_JOURNEYS,
   PUBLISHED_JOURNEY_KEYS,
+  REALM_SEAT_PLACE_IDS,
 } from "../src/data/journeys/publishedJourneys.js";
 
 const journeys = Object.values(PUBLISHED_JOURNEYS);
+const STOP_RADIUS = 13;
+const AUDITED_WORLD_MAP_SHA256 = "a542e54376945bcb94670d8d2d20b79ee557fbe270df61653948a6905b98c025";
+
+// These are the centres of the ring/star symbols printed on the immutable map.
+const REALM_SEAT_ANCHORS = Object.freeze({
+  winterfell: { name: "Winterfell", x: 299, y: 272 },
+  eyrie: { name: "The Eyrie", x: 336, y: 396 },
+  riverrun: { name: "Riverrun", x: 265, y: 504 },
+  pyke: { name: "Pyke", x: 109, y: 520 },
+  "casterly-rock": { name: "Casterly Rock", x: 78, y: 673 },
+  "kings-landing": { name: "King's Landing", x: 403, y: 719 },
+  dragonstone: { name: "Dragonstone", x: 602, y: 605 },
+  "storms-end": { name: "Storm's End", x: 454, y: 759 },
+  highgarden: { name: "Highgarden", x: 123, y: 832 },
+  sunspear: { name: "Sunspear", x: 470, y: 919 },
+});
+
+// These source-located anchors have no printed city symbol, so each one is
+// locked to the visible landform that depicts its geography on this map.
+const VISIBLE_GEOGRAPHIC_ANCHORS = Object.freeze({
+  braavos: { name: "Braavos", x: 720, y: 280 },
+  hardhome: { name: "Hardhome", x: 465, y: 84 },
+  valyria: { name: "Valyria", x: 1015, y: 975 },
+  volantis: { name: "Volantis", x: 910, y: 825 },
+});
 
 function distance(left, right) {
   return Math.hypot(left.x - right.x, left.y - right.y);
 }
 
 function pathEndpoints(path) {
-  const numbers = path.match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
+  const points = pathCoordinates(path);
 
   return {
-    count: numbers.length,
-    first: { x: numbers[0], y: numbers[1] },
-    last: { x: numbers.at(-2), y: numbers.at(-1) },
+    count: points.length * 2,
+    first: points[0],
+    last: points.at(-1),
   };
+}
+
+function pathCoordinates(path) {
+  const numbers = path.match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
+
+  return Array.from({ length: numbers.length / 2 }, (_, index) => ({
+    x: numbers[index * 2],
+    y: numbers[index * 2 + 1],
+  }));
 }
 
 describe("published character journeys", () => {
@@ -82,6 +118,7 @@ describe("published character journeys", () => {
   });
 
   it("resolves every stop to a bounded point on the shared map", () => {
+    expect(blobAssets.maps.world.sha256).toBe(AUDITED_WORLD_MAP_SHA256);
     expect(JOURNEY_MAP).toEqual({
       width: 1484,
       height: 1060,
@@ -90,10 +127,10 @@ describe("published character journeys", () => {
 
     for (const place of Object.values(PLACES)) {
       expect(place.name.length).toBeGreaterThan(1);
-      expect(place.x).toBeGreaterThan(0);
-      expect(place.x).toBeLessThan(JOURNEY_MAP.width);
-      expect(place.y).toBeGreaterThan(0);
-      expect(place.y).toBeLessThan(JOURNEY_MAP.height);
+      expect(place.x).toBeGreaterThanOrEqual(STOP_RADIUS);
+      expect(place.x).toBeLessThanOrEqual(JOURNEY_MAP.width - STOP_RADIUS);
+      expect(place.y).toBeGreaterThanOrEqual(STOP_RADIUS);
+      expect(place.y).toBeLessThanOrEqual(JOURNEY_MAP.height - STOP_RADIUS);
     }
 
     for (const journey of journeys) {
@@ -105,21 +142,41 @@ describe("published character journeys", () => {
     }
   });
 
+  it("locks every printed realm seat to its audited symbol centre", () => {
+    expect(REALM_SEAT_PLACE_IDS).toEqual(Object.keys(REALM_SEAT_ANCHORS));
+
+    for (const [placeId, expectedAnchor] of Object.entries(REALM_SEAT_ANCHORS)) {
+      expect(PLACES[placeId], placeId).toEqual(expectedAnchor);
+    }
+  });
+
+  it("keeps formerly water-bound locations on their audited visible landforms", () => {
+    for (const [placeId, expectedAnchor] of Object.entries(VISIBLE_GEOGRAPHIC_ANCHORS)) {
+      expect(PLACES[placeId], placeId).toEqual(expectedAnchor);
+    }
+  });
+
   it("provides valid schematic SVG paths whose endpoints meet their season boundaries", () => {
     for (const journey of journeys) {
-      for (const [index, item] of journey.seasons.entries()) {
+      for (const item of journey.seasons) {
         expect(item.path).toMatch(/^M\s+-?\d/);
         expect(item.path).not.toMatch(/(?:NaN|undefined|null)/);
-        expect(item.path).toMatch(/^[\d\s.,MCLSQTAHVZ-]+$/i);
+        expect(item.path).toMatch(/^[\d\s.,MCS-]+$/i);
 
         const endpoints = pathEndpoints(item.path);
         const waypoints = getSeasonWaypoints(item);
-        const expectedOrigin = index === 0
-          ? waypoints[0]
-          : getSeasonWaypoints(journey.seasons[index - 1]).at(-1);
+        const expectedOrigin = getSeasonOrigin(item);
+        const pathPoints = pathCoordinates(item.path);
         expect(endpoints.count).toBeGreaterThanOrEqual(4);
         expect(distance(endpoints.first, expectedOrigin)).toBe(0);
         expect(distance(endpoints.last, waypoints.at(-1))).toBe(0);
+
+        for (const point of pathPoints) {
+          expect(point.x, `${journey.characterName} season ${item.season} path x`).toBeGreaterThanOrEqual(0);
+          expect(point.x, `${journey.characterName} season ${item.season} path x`).toBeLessThanOrEqual(JOURNEY_MAP.width);
+          expect(point.y, `${journey.characterName} season ${item.season} path y`).toBeGreaterThanOrEqual(0);
+          expect(point.y, `${journey.characterName} season ${item.season} path y`).toBeLessThanOrEqual(JOURNEY_MAP.height);
+        }
       }
     }
   });
@@ -129,6 +186,9 @@ describe("published character journeys", () => {
     let bridgedTransitionCount = 0;
 
     for (const journey of journeys) {
+      const firstSeason = journey.seasons[0];
+      expect(getSeasonOrigin(firstSeason)).toBe(PLACES[firstSeason.stops[0].placeId]);
+
       for (let index = 1; index < journey.seasons.length; index += 1) {
         const previousSeason = journey.seasons[index - 1];
         const currentSeason = journey.seasons[index];
@@ -143,6 +203,7 @@ describe("published character journeys", () => {
         }
 
         expect(currentEndpoints.first).toEqual(previousEndpoints.last);
+        expect(getSeasonOrigin(currentSeason)).toBe(PLACES[previousFinalStop.placeId]);
         expect(currentSeason.continuity).toEqual({
           originPlaceId: previousFinalStop.placeId,
           inheritedFromSeason: previousSeason.season,
