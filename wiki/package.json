@@ -8,6 +8,7 @@
     "start": "node server/index.js",
     "prepare:db": "node scripts/prepare-database.mjs",
     "build:web-db": "node scripts/build-web-database.mjs",
+    "generate:journeys": "node scripts/generate-character-journeys.mjs",
     "sync:blob": "node scripts/sync-blob-assets.mjs",
     "pretest": "npm run prepare:db",
     "prebuild": "npm run prepare:db",

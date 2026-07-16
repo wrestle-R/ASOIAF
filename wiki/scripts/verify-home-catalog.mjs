@@ -49,8 +49,8 @@ async function assertInitialCatalogue(page, label) {
   if (await page.locator(".character-card").count() !== 30) {
     fail(label, `first page should contain 30 cards, found ${await page.locator(".character-card").count()}`);
   }
-  if (await page.locator('[data-journey-status="published"]').count() !== 6) {
-    fail(label, "the six published journeys are not presented first");
+  if (await page.locator('[data-journey-status="published"]').count() !== 30) {
+    fail(label, "published journeys are not presented first");
   }
 
   const initialHrefs = await page.locator(".character-card > a").evaluateAll((links) => (
@@ -131,8 +131,11 @@ async function assertFiltersAndAllCharacters(page, label) {
     fail(label, "one or more cards has a non-canonical journey URL");
   }
   const mappedCount = await cards.filter({ has: page.locator('[data-status="published"]') }).count();
-  if (mappedCount !== 6) fail(label, `expected 6 mapped cards, found ${mappedCount}`);
-  if (hrefs.length - mappedCount !== 197) fail(label, "pending character count is not 197");
+  const deferredCount = await cards.filter({ has: page.locator('[data-status="deferred"]') }).count();
+  const pendingCount = await cards.filter({ has: page.locator('[data-status="pending"]') }).count();
+  if (mappedCount !== 126) fail(label, `expected 126 mapped cards, found ${mappedCount}`);
+  if (deferredCount !== 77) fail(label, `expected 77 ongoing cards, found ${deferredCount}`);
+  if (pendingCount !== 0) fail(label, `expected no pending cards, found ${pendingCount}`);
 }
 
 async function assertCardDestinations(page, label) {
@@ -144,19 +147,19 @@ async function assertCardDestinations(page, label) {
     fail(label, `mapped card navigated to ${new URL(page.url()).pathname}`);
   }
 
-  await page.goto(new URL("/home", baseUrl).href, { waitUntil: "networkidle" });
+  await page.goto(new URL("/home?series=house-of-the-dragon", baseUrl).href, { waitUntil: "networkidle" });
   await waitForCatalogue(page);
-  const pendingCard = page.locator('[data-journey-status="pending"]').first();
+  const pendingCard = page.locator('[data-journey-status="deferred"]').first();
   const pendingHref = await pendingCard.locator(":scope > a").getAttribute("href");
   await pendingCard.locator(":scope > a").click();
   await page.locator(".pending-journey-stage").waitFor();
   if (new URL(page.url()).pathname !== pendingHref) {
-    fail(label, `pending card navigated to ${new URL(page.url()).pathname}`);
+    fail(label, `ongoing card navigated to ${new URL(page.url()).pathname}`);
   }
-  await page.getByText("Journey being charted", { exact: true }).waitFor({ timeout: 10_000 })
-    .catch(() => fail(label, "pending card does not open an honest pending state"));
+  await page.getByText("Ongoing Story", { exact: true }).waitFor({ timeout: 10_000 })
+    .catch(() => fail(label, "ongoing card does not open an honest deferred state"));
   if (await page.getByRole("link", { name: "Back to Home", exact: true }).getAttribute("href") !== "/home") {
-    fail(label, "pending journey does not return to the catalogue");
+    fail(label, "ongoing journey does not return to the catalogue");
   }
 }
 

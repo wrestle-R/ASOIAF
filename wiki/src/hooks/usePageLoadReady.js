@@ -48,9 +48,18 @@ export function useCinematicLoadReady(source, { fallbackSource } = {}) {
     ));
   }, [source]);
 
-  const handleImageLoad = useCallback(() => {
-    markImageReady();
+  const decodeThenMarkReady = useCallback((image) => {
+    if (typeof image?.decode !== "function") {
+      markImageReady();
+      return;
+    }
+
+    image.decode().catch(() => undefined).then(markImageReady);
   }, [markImageReady]);
+
+  const handleImageLoad = useCallback((event) => {
+    decodeThenMarkReady(event.currentTarget);
+  }, [decodeThenMarkReady]);
 
   const handleImageError = useCallback((event) => {
     const image = event.currentTarget;
@@ -78,13 +87,13 @@ export function useCinematicLoadReady(source, { fallbackSource } = {}) {
     if (!image?.complete) return;
 
     if (image.naturalWidth > 0) {
-      markImageReady();
+      decodeThenMarkReady(image);
     } else if (fallbackSource && !sameAsset(image.currentSrc || image.src, fallbackSource)) {
       image.src = fallbackSource;
     } else {
       markImageReady();
     }
-  }, [fallbackSource, markImageReady, source]);
+  }, [decodeThenMarkReady, fallbackSource, markImageReady, source]);
 
   return {
     imageRef,

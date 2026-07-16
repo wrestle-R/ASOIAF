@@ -1,0 +1,175 @@
+import { createJourney } from "../../builders.js";
+
+export default createJourney({
+  "seriesSlug": "game-of-thrones",
+  "seriesName": "Game of Thrones",
+  "characterSlug": "edmure-tully",
+  "characterName": "Edmure Tully",
+  "totalSeasons": 8,
+  "coverage": {
+    "throughEpisode": "S8E6",
+    "throughDate": "2019-05-19",
+    "completionReason": "series-complete"
+  },
+  "seasons": [
+    {
+      "season": 3,
+      "title": "Season 3: 2 mapped moves",
+      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "stops": [
+        {
+          "placeId": "riverrun",
+          "appearances": [
+            {
+              "episode": "S3E3",
+              "scene": "The Riverlands — Riverrun; scene begins 0:01:55.",
+              "source": {
+                "title": "Game of Thrones S3E3: “Walk of Punishment” — HBO",
+                "url": "https://www.hbo.com/game-of-thrones/season-3/3-walk-of-punishment"
+              },
+              "evidence": {
+                "title": "Scene-level location index for S3E3",
+                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
+              }
+            },
+            {
+              "episode": "S3E5",
+              "scene": "The Riverlands — Riverrun; scene begins 0:21:07.",
+              "source": {
+                "title": "Game of Thrones S3E5: “Kissed by Fire” — HBO",
+                "url": "https://www.hbo.com/game-of-thrones/season-3/5-kissed-by-fire"
+              },
+              "evidence": {
+                "title": "Scene-level location index for S3E5",
+                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
+              }
+            },
+            {
+              "episode": "S3E6",
+              "scene": "The Riverlands — Riverrun; scene begins 0:27:39.",
+              "source": {
+                "title": "Game of Thrones S3E6: “The Climb” — HBO",
+                "url": "https://www.hbo.com/game-of-thrones/season-3/6-the-climb"
+              },
+              "evidence": {
+                "title": "Scene-level location index for S3E6",
+                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
+              }
+            }
+          ]
+        },
+        {
+          "placeId": "riverlands",
+          "appearances": [
+            {
+              "episode": "S3E7",
+              "scene": "The Riverlands — Camp of the North; scene begins 0:04:14.",
+              "source": {
+                "title": "Game of Thrones S3E7: “The Bear and the Maiden Fair” — HBO",
+                "url": "https://www.hbo.com/game-of-thrones/season-3/7-the-bear-and-the-maiden-fair"
+              },
+              "evidence": {
+                "title": "Scene-level location index for S3E7",
+                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
+              }
+            }
+          ]
+        },
+        {
+          "placeId": "the-twins",
+          "appearances": [
+            {
+              "episode": "S3E9",
+              "scene": "The Riverlands — The Twins; scene begins 0:04:12.",
+              "source": {
+                "title": "Game of Thrones S3E9: “The Rains of Castamere” — HBO",
+                "url": "https://www.hbo.com/game-of-thrones/season-3/9-the-rains-of-castamere"
+              },
+              "evidence": {
+                "title": "Scene-level location index for S3E9",
+                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "season": 6,
+      "title": "Season 6: 1 mapped moves",
+      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "stops": [
+        {
+          "placeId": "the-twins",
+          "appearances": [
+            {
+              "episode": "S6E6",
+              "scene": "The Riverlands — The Twins; scene begins 0:44:20.",
+              "source": {
+                "title": "Game of Thrones S6E6: “Blood of My Blood” — HBO",
+                "url": "https://www.hbo.com/game-of-thrones/season-6/6-blood-of-my-blood"
+              },
+              "evidence": {
+                "title": "Scene-level location index for S6E6",
+                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
+              }
+            }
+          ]
+        },
+        {
+          "placeId": "riverrun",
+          "appearances": [
+            {
+              "episode": "S6E7",
+              "scene": "The Riverlands — Riverrun; scene begins 0:22:20.",
+              "source": {
+                "title": "Game of Thrones S6E7: “The Broken Man” — HBO",
+                "url": "https://www.hbo.com/game-of-thrones/season-6/7-the-broken-man"
+              },
+              "evidence": {
+                "title": "Scene-level location index for S6E7",
+                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
+              }
+            },
+            {
+              "episode": "S6E8",
+              "scene": "The Riverlands — Riverrun; scene begins 0:34:19.",
+              "source": {
+                "title": "Game of Thrones S6E8: “No One” — HBO",
+                "url": "https://www.hbo.com/game-of-thrones/season-6/8-no-one"
+              },
+              "evidence": {
+                "title": "Scene-level location index for S6E8",
+                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "season": 8,
+      "title": "Season 8: one verified place",
+      "summary": "The screen record remains at one verified map location for this season.",
+      "stops": [
+        {
+          "placeId": "outside-kings-landing",
+          "appearances": [
+            {
+              "episode": "S8E6",
+              "scene": "The Crownlands — Outside King's Landing; scene begins 0:45:58.",
+              "source": {
+                "title": "Game of Thrones S8E6: “The Iron Throne” — HBO",
+                "url": "https://www.hbo.com/game-of-thrones/season-8/6-the-iron-throne"
+              },
+              "evidence": {
+                "title": "Scene-level location index for S8E6",
+                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+});

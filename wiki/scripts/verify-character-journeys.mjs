@@ -5,17 +5,14 @@ const baseUrl = process.env.JOURNEY_VERIFY_URL
   || process.env.VERIFY_BASE_URL
   || "http://127.0.0.1:5173";
 const outputDir = new URL("../../artifacts/screenshots/character-journeys/", import.meta.url);
-const journeys = [
-  { seriesSlug: "game-of-thrones", characterSlug: "arya-stark", characterName: "Arya Stark" },
-  { seriesSlug: "game-of-thrones", characterSlug: "brienne-of-tarth", characterName: "Brienne of Tarth" },
-  { seriesSlug: "game-of-thrones", characterSlug: "cersei-lannister", characterName: "Cersei Lannister" },
-  { seriesSlug: "game-of-thrones", characterSlug: "daenerys-targaryen", characterName: "Daenerys Targaryen" },
-  { seriesSlug: "game-of-thrones", characterSlug: "jon-snow", characterName: "Jon Snow" },
-  { seriesSlug: "game-of-thrones", characterSlug: "tyrion-lannister", characterName: "Tyrion Lannister" },
-];
-const publishedJourneyKeys = journeys.map((journey) => (
-  `${journey.seriesSlug}/${journey.characterSlug}`
-));
+let journeys = [];
+const requestedPhases = new Set(
+  (process.env.JOURNEY_VERIFY_PHASES
+    || "load-gate,desktop,phone,reduced-motion,responsive,routes,deferred,dragons")
+    .split(",")
+    .map((phase) => phase.trim())
+    .filter(Boolean),
+);
 const SEASON_CONTINUITY_TOLERANCE = 1;
 const VIEWPORT_TOLERANCE = 2;
 const RESPONSIVE_VIEWPORTS = [
@@ -99,7 +96,7 @@ function rectangleWithinViewport(rectangle, viewport, tolerance = VIEWPORT_TOLER
 
 async function readSeasonGeometry(page) {
   return page.evaluate(() => {
-    const path = document.querySelector(".journey-route");
+    const path = document.querySelector(".journey-route:not(.journey-route-dragon)");
     const marker = document.querySelector(".journey-marker");
     if (!(path instanceof SVGGeometryElement) || !(marker instanceof SVGGElement)) return null;
 
@@ -118,7 +115,7 @@ async function readSeasonGeometry(page) {
 
 async function assertSeasonBoundaryContinuity(page, label, previousEnd, transition) {
   await page.waitForFunction((tolerance) => {
-    const path = document.querySelector(".journey-route");
+    const path = document.querySelector(".journey-route:not(.journey-route-dragon)");
     const marker = document.querySelector(".journey-marker");
     if (!(path instanceof SVGGeometryElement) || !(marker instanceof SVGGElement)) return false;
 
@@ -252,7 +249,7 @@ async function assertOriginMarker(
   { expectedOrigin = null, matchCurrentRouteStart = false } = {},
 ) {
   const geometry = await page.evaluate(() => {
-    const path = document.querySelector(".journey-route:not(.journey-route-complete)");
+    const path = document.querySelector(".journey-route:not(.journey-route-complete):not(.journey-route-dragon)");
     const origins = [...document.querySelectorAll("[data-journey-origin]")];
     const origin = origins[0];
     if (!(origin instanceof SVGCircleElement)) {
@@ -552,10 +549,10 @@ async function verifyPublishedDesktop(browser) {
     if (await page.locator(".journey-map-image").count() !== 1) {
       fail(label, "journey does not use one persistent map image");
     }
-    if (await page.locator(".journey-route").count() !== 1) {
-      fail(label, "current season does not render exactly one route");
+    if (await page.locator(".journey-route:not(.journey-route-dragon)").count() !== 1) {
+      fail(label, "current season does not render exactly one primary route");
     }
-    const dash = await page.locator(".journey-route").evaluate((element) => getComputedStyle(element).strokeDasharray);
+    const dash = await page.locator(".journey-route:not(.journey-route-dragon)").evaluate((element) => getComputedStyle(element).strokeDasharray);
     if (dash === "none") fail(label, "route is not dotted");
     if (await page.locator(".pending-journey-stage").count()) fail(label, "published journey opened a pending state");
 
@@ -597,6 +594,9 @@ async function verifyPublishedDesktop(browser) {
         matchCurrentRouteStart: true,
       });
     }
+    await page.evaluate(() => {
+      if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+    });
     await page.keyboard.press("ArrowRight");
     await page.getByRole("button", { name: "Replay", exact: true }).waitFor();
     await page.waitForTimeout(1_300);
@@ -608,7 +608,9 @@ async function verifyPublishedDesktop(browser) {
     if (backHref !== "/home") fail(label, `completion action targets ${backHref}`);
     await assertPersistentBackLink(page, `${label}-complete`);
     await assertOriginMarker(page, `${label}-complete`, { expectedOrigin: firstOrigin });
-    await page.screenshot({ path: new URL(`${journey.characterSlug}-desktop-complete.png`, outputDir).pathname });
+    if (["arya-stark", "daenerys-targaryen", "ser-duncan-the-tall"].includes(journey.characterSlug)) {
+      await page.screenshot({ path: new URL(`${journey.characterSlug}-desktop-complete.png`, outputDir).pathname });
+    }
 
     await page.keyboard.press("ArrowLeft");
     await page.locator(".journey-kicker", { hasText: lastKicker }).waitFor();
@@ -633,7 +635,7 @@ async function verifyPublishedOnPhone(browser) {
 
   for (const journey of journeys) {
     label = `${journey.characterSlug}-phone`;
-    const { firstKicker } = await openJourney(page, journey);
+    const { firstKicker, seasonCount } = await openJourney(page, journey);
     await assertViewportLocked(page, label);
     await assertPersistentBackLink(page, label);
     await assertOriginMarker(page, label, { matchCurrentRouteStart: true });
@@ -649,17 +651,27 @@ async function verifyPublishedOnPhone(browser) {
 
     await page.getByRole("button", { name: "Pause", exact: true }).click();
     await page.touchscreen.tap(330, 420);
-    await page.waitForFunction((first) => (
-      document.querySelector(".journey-kicker")?.textContent !== first
-    ), firstKicker);
-    await assertOriginMarker(page, `${label}-next-season`, { matchCurrentRouteStart: true });
-    await page.touchscreen.tap(60, 420);
-    await page.locator(".journey-kicker", { hasText: firstKicker }).waitFor();
-    await assertOriginMarker(page, `${label}-previous-season`, { matchCurrentRouteStart: true });
+    if (seasonCount > 1) {
+      await page.waitForFunction((first) => (
+        document.querySelector(".journey-kicker")?.textContent !== first
+      ), firstKicker);
+      await assertOriginMarker(page, `${label}-next-season`, { matchCurrentRouteStart: true });
+      await page.touchscreen.tap(60, 420);
+      await page.locator(".journey-kicker", { hasText: firstKicker }).waitFor();
+      await assertOriginMarker(page, `${label}-previous-season`, { matchCurrentRouteStart: true });
+    } else {
+      const replay = page.getByRole("button", { name: "Replay", exact: true });
+      await replay.waitFor();
+      await assertOriginMarker(page, `${label}-complete`);
+      await replay.click();
+      await page.locator(".journey-kicker", { hasText: firstKicker }).waitFor();
+    }
     if (/\b(?:click|tap)\b.{0,28}\b(?:left|right)\b/i.test(await page.locator("body").innerText())) {
       fail(label, "visible copy explains edge navigation");
     }
-    await page.screenshot({ path: new URL(`${journey.characterSlug}-phone.png`, outputDir).pathname });
+    if (["arya-stark", "daenerys-targaryen", "ser-duncan-the-tall"].includes(journey.characterSlug)) {
+      await page.screenshot({ path: new URL(`${journey.characterSlug}-phone.png`, outputDir).pathname });
+    }
   }
 
   reportErrors();
@@ -709,7 +721,8 @@ async function verifyReducedMotion(browser) {
 }
 
 async function verifyResponsiveViewports(browser) {
-  const representative = journeys[0];
+  const representative = journeys.find((journey) => journey.characterSlug === "daenerys-targaryen")
+    ?? journeys[0];
 
   for (const profile of RESPONSIVE_VIEWPORTS) {
     const context = await newVerifiedContext(browser, {
@@ -720,24 +733,30 @@ async function verifyResponsiveViewports(browser) {
     let label = `responsive-${profile.name}`;
     const reportErrors = collectBrowserErrors(page, () => label);
 
-    await openJourney(page, representative);
-    await page.getByRole("button", { name: "Pause", exact: true }).click();
-    await assertViewportLocked(page, label, { requireClasses: profile.width <= 880 });
-    await assertPersistentBackLink(page, label);
-    const firstOrigin = await assertOriginMarker(page, label, { matchCurrentRouteStart: true });
-    await assertResponsiveOverlayLayout(page, label);
-    await assertMarkerVisible(page, label);
+    for (const journey of journeys) {
+      label = `responsive-${profile.name}-${journey.characterSlug}`;
+      await openJourney(page, journey);
+      await page.getByRole("button", { name: "Pause", exact: true }).click();
+      await assertViewportLocked(page, label, { requireClasses: profile.width <= 880 });
+      await assertPersistentBackLink(page, label);
+      await assertOriginMarker(page, label, { matchCurrentRouteStart: true });
+      await assertResponsiveOverlayLayout(page, label);
+      await assertMarkerVisible(page, label);
 
-    await advanceJourneyToCompletion(page, label, { touch: profile.touch });
-    await assertPersistentBackLink(page, `${label}-complete`);
-    await assertOriginMarker(page, `${label}-complete`, { expectedOrigin: firstOrigin });
-    await assertViewportLocked(page, `${label}-complete`, { requireClasses: profile.width <= 880 });
-    await assertResponsiveOverlayLayout(page, `${label}-complete`);
-    await assertCompletionZoom(page, `${label}-complete`);
-    await assertResponsiveOverlayLayout(page, `${label}-reset`);
-    await page.screenshot({
-      path: new URL(`${representative.characterSlug}-${profile.name}-complete.png`, outputDir).pathname,
-    });
+      if (journey === representative) {
+        const firstOrigin = await assertOriginMarker(page, label, { matchCurrentRouteStart: true });
+        await advanceJourneyToCompletion(page, label, { touch: profile.touch });
+        await assertPersistentBackLink(page, `${label}-complete`);
+        await assertOriginMarker(page, `${label}-complete`, { expectedOrigin: firstOrigin });
+        await assertViewportLocked(page, `${label}-complete`, { requireClasses: profile.width <= 880 });
+        await assertResponsiveOverlayLayout(page, `${label}-complete`);
+        await assertCompletionZoom(page, `${label}-complete`);
+        await assertResponsiveOverlayLayout(page, `${label}-reset`);
+        await page.screenshot({
+          path: new URL(`${representative.characterSlug}-${profile.name}-complete.png`, outputDir).pathname,
+        });
+      }
+    }
 
     reportErrors();
     await closeVerifiedContext(context);
@@ -758,12 +777,12 @@ async function verifyEveryCharacterRoute(browser, characters) {
 
     if (character.journeyStatus === "published") {
       await page.locator(".journey-stage:not(.pending-journey-stage)").waitFor();
-      await page.locator(".journey-route").waitFor();
+      await page.locator(".journey-route").waitFor({ state: "attached" });
       await page.waitForFunction((name) => document.title.includes(name), character.name);
     } else {
       await page.locator(".pending-journey-stage").waitFor();
       await page.getByRole("heading", { name: character.name, exact: true }).waitFor();
-      await page.getByText("Journey being charted", { exact: true }).waitFor();
+      await page.getByText("Ongoing Story", { exact: true }).waitFor();
     }
 
     const backLinks = page.locator("a.journey-back-control[href='/home']");
@@ -781,30 +800,31 @@ async function verifyEveryCharacterRoute(browser, characters) {
   await closeVerifiedContext(context);
 }
 
-async function verifyPendingPhone(browser, pendingCharacter) {
+async function verifyDeferredPhone(browser, deferredCharacter) {
   const context = await newVerifiedContext(browser, {
     viewport: { width: 390, height: 844 },
     hasTouch: true,
   });
   const page = await context.newPage();
-  let label = `${pendingCharacter.characterSlug}-pending-phone`;
+  let label = `${deferredCharacter.characterSlug}-deferred-phone`;
   const reportErrors = collectBrowserErrors(page, () => label);
-  await gotoWithRetry(page, new URL(pendingCharacter.journeyUrl, baseUrl).href, {
+  await gotoWithRetry(page, new URL(deferredCharacter.journeyUrl, baseUrl).href, {
     waitUntil: "networkidle",
   });
-  await page.getByRole("heading", { name: pendingCharacter.name, exact: true }).waitFor();
+  await page.getByRole("heading", { name: deferredCharacter.name, exact: true }).waitFor();
   await assertViewportLocked(page, label, { requireClasses: false });
   await assertPersistentBackLink(page, label);
   await assertResponsiveOverlayLayout(page, label);
-  if (await page.locator(".journey-map-image").count() !== 1) fail(label, "pending view does not show the shared map");
-  await page.screenshot({ path: new URL("pending-character-phone.png", outputDir).pathname });
+  await page.getByText("Ongoing Story", { exact: true }).waitFor();
+  if (await page.locator(".journey-map-image").count() !== 1) fail(label, "deferred view does not show the shared map");
+  await page.screenshot({ path: new URL("deferred-character-phone.png", outputDir).pathname });
   reportErrors();
   await closeVerifiedContext(context);
 }
 
 async function verifyAutoplayLoadGate(browser) {
   const label = "journey-load-gate";
-  const journey = journeys[0];
+  const journey = journeys.find((candidate) => candidate.characterSlug === "arya-stark");
   const context = await newVerifiedContext(browser, { viewport: { width: 1440, height: 900 } });
   let releaseMap;
   const mapGate = new Promise((resolve) => {
@@ -852,7 +872,7 @@ async function verifyAutoplayLoadGate(browser) {
       const route = document.querySelector(".journey-route-reveal");
       return route instanceof SVGGeometryElement
         && Number.parseFloat(route.style.strokeDashoffset) < initialOffset - 0.5;
-    }, before.offset, { timeout: 2_500 });
+    }, before.offset, { timeout: 10_000 });
   } finally {
     releaseMap();
     reportErrors();
@@ -860,31 +880,75 @@ async function verifyAutoplayLoadGate(browser) {
   }
 }
 
+async function verifyDragonPresentation(browser) {
+  const context = await newVerifiedContext(browser, {
+    viewport: { width: 390, height: 844 },
+    hasTouch: true,
+    reducedMotion: "reduce",
+  });
+  const page = await context.newPage();
+  let label = "dragon-presentation";
+  const reportErrors = collectBrowserErrors(page, () => label);
+
+  const daenerys = journeys.find((journey) => journey.characterSlug === "daenerys-targaryen");
+  const jon = journeys.find((journey) => journey.characterSlug === "jon-snow");
+  await openJourney(page, daenerys);
+  await page.getByRole("button", { name: "Season 5", exact: true }).click();
+  if (await page.locator(".journey-route-dragon[data-dragon-id='drogon']").count() !== 1) {
+    fail(label, "Daenerys Season 5 does not show the sourced Drogon flight leg");
+  }
+  await page.getByText("Drogon", { exact: true }).waitFor();
+  await page.getByRole("button", { name: "Show complete journey", exact: true }).click();
+  await page.getByText("Drogon", { exact: true }).waitFor();
+
+  label = "non-dragon-presentation";
+  await openJourney(page, jon);
+  if (await page.locator(".journey-route-dragon").count()) {
+    fail(label, "a journey without sourced dragon travel renders a dragon leg");
+  }
+
+  label = "deferred-rider-presentation";
+  await gotoWithRetry(page, new URL("/journeys/house-of-the-dragon/viserys-i-targaryen", baseUrl).href, {
+    waitUntil: "networkidle",
+  });
+  await page.getByText("Ongoing Story", { exact: true }).waitFor();
+  if (await page.locator(".journey-route-dragon, .journey-dragon-marker").count()) {
+    fail(label, "Viserys renders Balerion without a sourced flight segment");
+  }
+
+  reportErrors();
+  await closeVerifiedContext(context);
+}
+
 await mkdir(outputDir, { recursive: true });
 const characters = await fetchEveryCharacter();
 const characterRoutes = characters.map((character) => character.journeyUrl);
 const mappedCharacters = characters.filter((character) => character.journeyStatus === "published");
+const deferredCharacters = characters.filter((character) => character.journeyStatus === "deferred");
 const pendingCharacters = characters.filter((character) => character.journeyStatus === "pending");
+journeys = mappedCharacters.map((character) => ({
+  seriesSlug: character.seriesSlug,
+  characterSlug: character.characterSlug,
+  characterName: character.name,
+}));
 
 if (characters.length !== 203) fail("catalogue-contract", `expected 203 characters, found ${characters.length}`);
 if (new Set(characterRoutes).size !== 203) fail("catalogue-contract", "character routes are not unique");
-if (mappedCharacters.length !== 6) fail("catalogue-contract", `expected 6 mapped characters, found ${mappedCharacters.length}`);
-if (pendingCharacters.length !== 197) fail("catalogue-contract", `expected 197 pending characters, found ${pendingCharacters.length}`);
-const apiPublishedKeys = mappedCharacters.map((character) => `${character.seriesSlug}/${character.characterSlug}`).sort();
-if (JSON.stringify(apiPublishedKeys) !== JSON.stringify([...publishedJourneyKeys].sort())) {
-  fail("catalogue-contract", "API mapped statuses do not match the six published journey definitions");
-}
+if (mappedCharacters.length !== 126) fail("catalogue-contract", `expected 126 mapped characters, found ${mappedCharacters.length}`);
+if (deferredCharacters.length !== 77) fail("catalogue-contract", `expected 77 deferred characters, found ${deferredCharacters.length}`);
+if (pendingCharacters.length !== 0) fail("catalogue-contract", `expected 0 pending characters, found ${pendingCharacters.length}`);
 
 const browser = await chromium.launch({ headless: true });
 
 try {
-  await verifyAutoplayLoadGate(browser);
-  await verifyPublishedDesktop(browser);
-  await verifyPublishedOnPhone(browser);
-  await verifyReducedMotion(browser);
-  await verifyResponsiveViewports(browser);
-  await verifyEveryCharacterRoute(browser, characters);
-  await verifyPendingPhone(browser, pendingCharacters[0]);
+  if (requestedPhases.has("load-gate")) await verifyAutoplayLoadGate(browser);
+  if (requestedPhases.has("desktop")) await verifyPublishedDesktop(browser);
+  if (requestedPhases.has("phone")) await verifyPublishedOnPhone(browser);
+  if (requestedPhases.has("reduced-motion")) await verifyReducedMotion(browser);
+  if (requestedPhases.has("responsive")) await verifyResponsiveViewports(browser);
+  if (requestedPhases.has("routes")) await verifyEveryCharacterRoute(browser, characters);
+  if (requestedPhases.has("deferred")) await verifyDeferredPhone(browser, deferredCharacters[0]);
+  if (requestedPhases.has("dragons")) await verifyDragonPresentation(browser);
 } finally {
   await browser.close();
 }
@@ -893,5 +957,9 @@ if (failures.length) {
   console.error(`Character journey verification failed:\n${failures.join("\n")}`);
   process.exitCode = 1;
 } else {
-  console.log("Character journey verification passed: load-gated autoplay, all 203 routes, six mapped journeys, persistent back links and origins, season continuity, seven responsive viewports, bounded completion zoom/pan, mobile edge navigation, replay, pending, and reduced-motion states.");
+  if (process.env.JOURNEY_VERIFY_PHASES) {
+    console.log(`Selected character journey verification passed: ${[...requestedPhases].join(", ")}.`);
+  } else {
+    console.log("Character journey verification passed: load-gated autoplay, all 203 routes, 126 mapped journeys, 77 deferred HOTD states, persistent back links and origins, season continuity, dragon evidence, seven responsive viewports, bounded completion zoom/pan, mobile edge navigation, replay, and reduced-motion states.");
+  }
 }

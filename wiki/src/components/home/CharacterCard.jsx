@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 export function CharacterCard({ character, index }) {
   const [imageFailed, setImageFailed] = useState(false);
   const mapped = character.journeyStatus === "published";
+  const deferred = character.journeyStatus === "deferred";
   const showImage = character.portrait?.url && !imageFailed;
+  const actionLabel = mapped
+    ? `Open ${character.name}'s season journey`
+    : deferred
+      ? `View ${character.name}'s journey status`
+      : `Preview ${character.name}'s journey status`;
 
   return (
     <article
@@ -12,7 +18,7 @@ export function CharacterCard({ character, index }) {
       data-journey-status={character.journeyStatus}
       style={{ "--entry-delay": `${Math.min(index, 12) * 45}ms` }}
     >
-      <Link to={character.journeyUrl} aria-label={`Open ${character.name}'s season journey`}>
+      <Link to={character.journeyUrl} aria-label={actionLabel}>
         <figure>
           {showImage ? (
             <img
@@ -30,7 +36,7 @@ export function CharacterCard({ character, index }) {
           )}
           <figcaption>{character.seriesName}</figcaption>
           <span className="journey-status" data-status={character.journeyStatus}>
-            {mapped ? "Journey mapped" : "Being charted"}
+            {mapped ? "Journey mapped" : deferred ? "Ongoing story" : "Being charted"}
           </span>
         </figure>
         <div className="character-card-copy">
@@ -39,7 +45,7 @@ export function CharacterCard({ character, index }) {
             <p>{character.title || character.family || "Season journey"}</p>
           </div>
           <span className="character-card-arrow" aria-hidden="true">
-            {mapped ? "Trace ↗" : "Preview ↗"}
+            {mapped ? "Trace ↗" : deferred ? "View status ↗" : "Preview ↗"}
           </span>
         </div>
       </Link>

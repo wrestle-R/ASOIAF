@@ -46,20 +46,21 @@ describe("character catalogue queries", () => {
     );
   });
 
-  it("publishes exactly the six approved journeys and orders them first", () => {
+  it("publishes the exact Stage 1 split and orders mapped characters first", () => {
     const result = getCharacters(database, { limit: 60 });
 
-    expect(result.published).toBe(6);
-    expect(result.pending).toBe(197);
+    expect(result.published).toBe(126);
+    expect(result.deferred).toBe(77);
+    expect(result.pending).toBe(0);
     expect(
       result.characters.slice(0, 6).map((character) => character.name),
     ).toEqual([
+      "Aeron Greyjoy",
+      "Alliser Thorne",
+      "Archmaester Ebrose",
       "Arya Stark",
-      "Brienne of Tarth",
-      "Cersei Lannister",
-      "Daenerys Targaryen",
-      "Jon Snow",
-      "Tyrion Lannister",
+      "Balon Greyjoy",
+      "Barristan Selmy",
     ]);
     expect(
       result.characters.slice(0, 6).every(
@@ -84,11 +85,13 @@ describe("character catalogue queries", () => {
     const stark = getCharacters(database, { search: "stark", limit: 2 });
 
     expect(gameOfThrones.total).toBe(100);
-    expect(gameOfThrones.published).toBe(6);
+    expect(gameOfThrones.published).toBe(100);
+    expect(gameOfThrones.pending).toBe(0);
     expect(houseOfTheDragon.total).toBe(77);
     expect(houseOfTheDragon.published).toBe(0);
+    expect(houseOfTheDragon.deferred).toBe(77);
     expect(knight.total).toBe(26);
-    expect(knight.published).toBe(0);
+    expect(knight.published).toBe(26);
     expect(stark.total).toBeGreaterThan(2);
     expect(stark.characters).toHaveLength(2);
     expect(
@@ -154,6 +157,7 @@ describe("character catalogue queries", () => {
       "aliases",
       "portrait",
       "journeyStatus",
+      "journeyCoverage",
       "journeyUrl",
     ];
 
@@ -173,6 +177,11 @@ describe("character catalogue queries", () => {
     );
     expect(daenerys.portrait.width).toBeGreaterThan(0);
     expect(daenerys.portrait.height).toBeGreaterThan(0);
+    expect(daenerys.journeyCoverage).toEqual({
+      throughEpisode: "S8E6",
+      throughDate: "2019-05-19",
+      completionReason: "series-complete",
+    });
     for (const character of characters) {
       expect(character).not.toHaveProperty("image");
       expect(character).not.toHaveProperty("imageUrl");

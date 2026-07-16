@@ -1,3 +1,5 @@
+import { getJourneyCatalogEntry } from "../src/data/journeys/journeyCatalog.js";
+
 const SERIES = Object.freeze([
   Object.freeze({
     documentPath: "gameofthrone.json",
@@ -22,15 +24,6 @@ const SERIES_BY_DOCUMENT = new Map(
   SERIES.map((series) => [series.documentPath, series]),
 );
 const SERIES_BY_SLUG = new Map(SERIES.map((series) => [series.slug, series]));
-
-const PUBLISHED_GAME_OF_THRONES_JOURNEYS = new Set([
-  "Daenerys Targaryen",
-  "Jon Snow",
-  "Cersei Lannister",
-  "Arya Stark",
-  "Tyrion Lannister",
-  "Brienne of Tarth",
-]);
 
 const CHARACTER_SELECT = `
   SELECT r.id,
@@ -111,12 +104,6 @@ function mapCharacterRow(row) {
   const name = cleanText(raw.fullName ?? raw.name ?? row.full_name);
   if (!name) return null;
 
-  const journeyStatus =
-    series.slug === "game-of-thrones" &&
-    PUBLISHED_GAME_OF_THRONES_JOURNEYS.has(name)
-      ? "published"
-      : "pending";
-
   return {
     recordId: row.id,
     id: raw.id ?? row.source_id ?? row.id,
@@ -128,7 +115,8 @@ function mapCharacterRow(row) {
     family: cleanText(raw.family),
     aliases: cleanAliases(raw.aliases),
     portrait: portraitFromRow(row),
-    journeyStatus,
+    journeyStatus: "pending",
+    journeyCoverage: null,
     journeyUrl: "",
   };
 }
@@ -162,10 +150,27 @@ function assignCollisionSafeUrls(characters) {
   });
 }
 
+function applyJourneyCatalog(character) {
+  const entry = getJourneyCatalogEntry(
+    character.seriesSlug,
+    character.characterSlug,
+  );
+
+  if (!entry) return character;
+
+  return {
+    ...character,
+    journeyStatus: entry.journeyStatus,
+    journeyCoverage: entry.journeyCoverage,
+  };
+}
+
 function sortCharacters(characters) {
+  const statusOrder = Object.freeze({ published: 0, deferred: 1, pending: 2 });
+
   return characters.sort((left, right) => {
     if (left.journeyStatus !== right.journeyStatus) {
-      return left.journeyStatus === "published" ? -1 : 1;
+      return statusOrder[left.journeyStatus] - statusOrder[right.journeyStatus];
     }
 
     return (
@@ -181,7 +186,7 @@ function loadCharacters(database) {
     .map(mapCharacterRow)
     .filter(Boolean);
 
-  return sortCharacters(assignCollisionSafeUrls(characters));
+  return sortCharacters(assignCollisionSafeUrls(characters).map(applyJourneyCatalog));
 }
 
 function parseTextFilter(value, name, maxLength) {
@@ -254,11 +259,18 @@ export function getCharacters(database, options = {}) {
   const published = characters.filter(
     (character) => character.journeyStatus === "published",
   ).length;
+  const deferred = characters.filter(
+    (character) => character.journeyStatus === "deferred",
+  ).length;
+  const pending = characters.filter(
+    (character) => character.journeyStatus === "pending",
+  ).length;
 
   return {
     total: characters.length,
     published,
-    pending: characters.length - published,
+    deferred,
+    pending,
     limit: filters.limit,
     offset: filters.offset,
     characters: characters.slice(

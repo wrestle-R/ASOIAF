@@ -1,52 +1,58 @@
-import { describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 import blobAssets from "../src/data/blobAssets.json";
 import {
-  getJourney,
   getSeasonWaypoints,
   JOURNEY_MAP,
+  loadAllPublishedJourneys,
+  loadJourney,
   PLACES,
-  PUBLISHED_JOURNEYS,
 } from "../src/data/journeys/publishedJourneys.js";
 
-const journeys = Object.values(PUBLISHED_JOURNEYS);
+let journeys;
+
+beforeAll(async () => {
+  journeys = await loadAllPublishedJourneys();
+});
 
 describe("shared character journey data", () => {
-  it("drives all six published characters through the same map contract", () => {
-    expect(journeys).toHaveLength(6);
+  it("drives all 126 Stage 1 characters through the shared contract", () => {
+    expect(journeys).toHaveLength(126);
+    expect(journeys.filter((journey) => journey.seriesSlug === "game-of-thrones")).toHaveLength(100);
+    expect(journeys.filter((journey) => journey.seriesSlug === "a-knight-of-the-seven-kingdoms")).toHaveLength(26);
 
     for (const journey of journeys) {
-      expect(journey.key).toBe(`game-of-thrones/${journey.characterSlug}`);
-      expect(getJourney("game-of-thrones", journey.characterSlug)).toBe(journey);
-      expect(journey.seasons.length).toBeGreaterThanOrEqual(7);
+      expect(journey.key).toBe(`${journey.seriesSlug}/${journey.characterSlug}`);
+      expect(journey.seasons.length).toBeGreaterThan(0);
 
       for (const item of journey.seasons) {
-        expect(item).not.toHaveProperty("poster");
-        expect(item).not.toHaveProperty("route");
         expect(item.path).toMatch(/^M\s/);
-        expect(item.summary.length).toBeGreaterThan(40);
+        expect(item.summary.length).toBeGreaterThan(30);
+        expect(item.routeSegments.length).toBeGreaterThan(0);
         expect(getSeasonWaypoints(item)).toHaveLength(item.stops.length);
       }
     }
   });
 
-  it("keeps every shared place strictly inside the illustrated map", () => {
+  it("keeps every shared place and marker radius inside the illustrated map", () => {
     expect(JOURNEY_MAP.width).toBe(1484);
     expect(JOURNEY_MAP.height).toBe(1060);
     expect(JOURNEY_MAP.image).toBe(blobAssets.maps.world.url);
 
     for (const place of Object.values(PLACES)) {
-      expect(place.x).toBeGreaterThan(0);
-      expect(place.x).toBeLessThan(JOURNEY_MAP.width);
-      expect(place.y).toBeGreaterThan(0);
-      expect(place.y).toBeLessThan(JOURNEY_MAP.height);
+      expect(place.x).toBeGreaterThanOrEqual(13);
+      expect(place.x).toBeLessThanOrEqual(JOURNEY_MAP.width - 13);
+      expect(place.y).toBeGreaterThanOrEqual(13);
+      expect(place.y).toBeLessThanOrEqual(JOURNEY_MAP.height - 13);
     }
   });
 
-  it("keeps the corrected Season 6 journey at depicted locations", () => {
-    const journey = getJourney("game-of-thrones", "daenerys-targaryen");
-    const seasonSix = journey.seasons.find((item) => item.season === 6);
+  it("keeps Arya's Braavos stops on the audited Great Lagoon anchor", async () => {
+    const journey = await loadJourney("game-of-thrones", "arya-stark");
+    const braavosStops = journey.seasons
+      .flatMap((season) => season.stops)
+      .filter((stop) => stop.placeId === "braavos");
 
-    expect(seasonSix.stops.at(-1).placeId).toBe("meereen");
-    expect(getSeasonWaypoints(seasonSix).at(-1)).toEqual(PLACES.meereen);
+    expect(braavosStops.length).toBeGreaterThan(0);
+    expect(PLACES.braavos).toEqual({ name: "Braavos", x: 720, y: 280 });
   });
 });

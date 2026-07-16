@@ -24,6 +24,7 @@ export function HomePage() {
   const [characters, setCharacters] = useState([]);
   const [total, setTotal] = useState(0);
   const [published, setPublished] = useState(0);
+  const [deferred, setDeferred] = useState(0);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState(null);
@@ -60,6 +61,7 @@ export function HomePage() {
         : (payload.characters ?? []));
       setTotal(payload.total ?? 0);
       setPublished(payload.published ?? 0);
+      setDeferred(payload.deferred ?? 0);
     } catch (reason) {
       if (reason.name !== "AbortError") setError(reason.message);
     } finally {
@@ -122,7 +124,11 @@ export function HomePage() {
           <div className="catalog-count" aria-label={`${total} matching characters`}>
             <strong>{loading ? "—" : total}</strong>
             <span>characters</span>
-            {!loading && <small>{published} mapped</small>}
+            {!loading && (
+              <small>
+                {published} mapped{deferred ? ` · ${deferred} ongoing` : ""}
+              </small>
+            )}
           </div>
         </div>
 

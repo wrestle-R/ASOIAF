@@ -19,10 +19,11 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { fetchCharacter } from "../../data/characterApi.js";
 import {
-  getJourney,
+  getJourneyCatalogEntry,
   getSeasonOrigin,
   getSeasonWaypoints,
   JOURNEY_MAP,
+  loadJourney,
 } from "../../data/journeys/publishedJourneys.js";
 import { useCinematicViewport } from "../../hooks/useCinematicViewport.js";
 import { useMediaQuery } from "../../hooks/useMediaQuery.js";
@@ -67,6 +68,31 @@ function pointTransform(point) {
   return point ? `translate(${point.x} ${point.y})` : undefined;
 }
 
+function segmentAtProgress(season, progress) {
+  const totalWeight = season.routeSegments.reduce(
+    (total, segment) => total + segment.weight,
+    0,
+  );
+  let remaining = totalWeight * Math.min(Math.max(progress, 0), 0.999999);
+
+  for (const segment of season.routeSegments) {
+    if (remaining <= segment.weight) return segment;
+    remaining -= segment.weight;
+  }
+
+  return season.routeSegments.at(-1) ?? null;
+}
+
+function completionCopy(journey) {
+  if (journey.coverage.completionReason === "season-complete") {
+    return `Season 1 coverage is mapped through ${journey.coverage.throughEpisode}. The series is ongoing.`;
+  }
+  if (journey.coverage.completionReason === "character-death") {
+    return `Their closed television journey is mapped and verified through ${journey.coverage.throughEpisode}.`;
+  }
+  return "Their complete television journey across the known world is mapped.";
+}
+
 function getUniqueSeasonWaypoints(season) {
   const pointsByPlace = new Map();
 
@@ -90,25 +116,39 @@ function JourneyBackLink() {
   return (
     <Link
       to="/home"
+      aria-label="Back to Home"
+      title="Back to Home"
       className={cn(
         buttonVariants({ variant: "outline", size: "lg" }),
         "journey-back-control",
       )}
     >
       <ArrowLeftIcon data-icon="inline-start" aria-hidden="true" />
-      Back to Home
+      <span>Back to Home</span>
     </Link>
   );
 }
 
-function PendingJourneyPage({ characterSlug, seriesSlug }) {
+function PendingJourneyPage({ catalogEntry, characterSlug, loadError, loading, seriesSlug }) {
   const phone = useMediaQuery(MOBILE_CAMERA_QUERY);
-  const [character, setCharacter] = useState(null);
+  const [character, setCharacter] = useState(() => catalogEntry ? {
+    name: catalogEntry.characterName,
+    seriesName: catalogEntry.seriesName,
+  } : null);
   const [error, setError] = useState(null);
 
   useCinematicViewport({ enabled: phone });
 
   useEffect(() => {
+    if (catalogEntry) {
+      setCharacter({
+        name: catalogEntry.characterName,
+        seriesName: catalogEntry.seriesName,
+      });
+      setError(null);
+      return undefined;
+    }
+
     const controller = new AbortController();
     setCharacter(null);
     setError(null);
@@ -120,9 +160,20 @@ function PendingJourneyPage({ characterSlug, seriesSlug }) {
       });
 
     return () => controller.abort();
-  }, [characterSlug, seriesSlug]);
+  }, [catalogEntry, characterSlug, seriesSlug]);
 
   const name = character?.name ?? titleFromSlug(characterSlug);
+  const deferred = catalogEntry?.journeyStatus === "deferred";
+  const statusCopy = deferred
+    ? `This journey is held until House of the Dragon Season 3 concludes. Status is verified through ${catalogEntry.journeyCoverage.throughEpisode}.`
+    : loading
+      ? "The verified journey data is loading before the map can begin."
+      : "This season-by-season journey is being charted from verified appearances.";
+  const statusLabel = deferred
+    ? "Ongoing Story"
+    : loading
+      ? "Opening the map room…"
+      : "Journey being charted";
 
   useEffect(() => {
     document.title = `${name} | Map of Ice and Fire`;
@@ -147,12 +198,12 @@ function PendingJourneyPage({ characterSlug, seriesSlug }) {
           <p className="journey-kicker">{character?.seriesName ?? "Character journey"}</p>
           <h1 id="pending-journey-title">{name}</h1>
           <p>
-            {error
+            {error || loadError
               ? "This character could not be read from the map room."
-              : "This season-by-season journey is being charted from verified appearances."}
+              : statusCopy}
           </p>
           <span className="pending-journey-status" role="status" aria-live="polite">
-            {error ? "Journey unavailable" : character ? "Journey being charted" : "Opening the map room…"}
+            {error || loadError ? "Journey unavailable" : statusLabel}
           </span>
         </div>
         <JourneyBackLink />
@@ -175,6 +226,7 @@ function JourneyExperience({ journey }) {
   const [seasonIndex, setSeasonIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [complete, setComplete] = useState(false);
+  const [activeTravel, setActiveTravel] = useState(null);
   const [run, setRun] = useState(0);
   const [overviewView, setOverviewView] = useState(DEFAULT_OVERVIEW_VIEW);
   const pausedRef = useRef(false);
@@ -208,6 +260,17 @@ function JourneyExperience({ journey }) {
       .flatMap((item) => getUniqueSeasonWaypoints(item))
       .map((place) => [place.id, place]),
   ).values()];
+  const journeyDragonFlights = [...new Map(
+    journey.seasons
+      .flatMap((item) => item.routeSegments)
+      .filter((segment) => segment.travel?.mode === "dragon")
+      .map((segment) => [segment.travel.dragonId, segment.travel]),
+  ).values()];
+  const seasonDragonFlights = [...new Map(
+    season.routeSegments
+      .filter((segment) => segment.travel?.mode === "dragon")
+      .map((segment) => [segment.travel.dragonId, segment.travel]),
+  ).values()];
   const originSeason = complete ? journey.seasons[0] : season;
   const originPlace = getSeasonOrigin(originSeason);
   const originPlaceId = originSeason.continuity?.originPlaceId
@@ -220,6 +283,10 @@ function JourneyExperience({ journey }) {
   useEffect(() => {
     pausedRef.current = paused;
   }, [paused]);
+
+  useEffect(() => {
+    setActiveTravel(null);
+  }, [complete, seasonIndex]);
 
   const constrainOverviewView = useCallback((candidate) => {
     const scale = clamp(
@@ -664,6 +731,14 @@ function JourneyExperience({ journey }) {
 
       const carrying = carryElapsed < carryDuration;
       const progress = Math.min(elapsed / season.duration, 1);
+      const activeSegment = carrying ? null : segmentAtProgress(season, progress);
+      const nextTravel = activeSegment?.travel ?? null;
+      setActiveTravel((current) => (
+        current?.dragonId === nextTravel?.dragonId
+        && current?.episode === nextTravel?.episode
+          ? current
+          : nextTravel
+      ));
       const point = carrying
         ? interpolatePoint(
           carryFrom,
@@ -717,7 +792,7 @@ function JourneyExperience({ journey }) {
       cancelled = true;
       cancelAnimationFrame(animationFrame);
     };
-  }, [autoplayReady, complete, journey.seasons.length, reducedMotion, run, season.duration, seasonIndex]);
+  }, [autoplayReady, complete, journey.seasons.length, reducedMotion, run, season, seasonIndex]);
 
   const replay = useCallback(() => {
     setPaused(false);
@@ -826,6 +901,22 @@ function JourneyExperience({ journey }) {
               />
             )}
 
+            {(complete ? journey.seasons : [season]).flatMap((item) => (
+              item.routeSegments
+                .filter((segment) => segment.travel?.mode === "dragon")
+                .map((segment, index) => (
+                  <path
+                    className="journey-route journey-route-dragon"
+                    d={segment.path}
+                    data-dragon-id={segment.travel.dragonId}
+                    key={`${item.season}-${segment.travel.dragonId}-${index}`}
+                    mask={complete || reducedMotion
+                      ? undefined
+                      : `url(#${maskId}-season-${season.season})`}
+                  />
+                ))
+            ))}
+
             {(complete ? overviewStops : visibleSeasonStops).map((place, index) => (
               <circle
                 className="journey-stop"
@@ -851,6 +942,15 @@ function JourneyExperience({ journey }) {
             {!complete && (
               <g ref={markerRef} className="journey-marker" transform={markerTransform}>
                 <circle r="8" />
+                {activeTravel && (
+                  <g className="journey-dragon-marker" transform="translate(14 -22)">
+                    <circle r="11" />
+                    <path
+                      d="M5 18c3-1 4-4 3-7l3 1-1-5 4 3 4-2-1 5 3 2-5 1-2 4-3-3-5 1Z"
+                      transform="translate(-12 -12)"
+                    />
+                  </g>
+                )}
               </g>
             )}
           </svg>
@@ -861,11 +961,11 @@ function JourneyExperience({ journey }) {
         <div className={cn("journey-copy", complete && "journey-complete-copy")} key={`copy-${complete ? "complete" : season.season}`}>
           <p className="journey-kicker">
             {complete
-              ? `${journey.seasons.length} mapped seasons`
+              ? `${journey.seasons.length} mapped ${journey.seasons.length === 1 ? "season" : "seasons"} · through ${journey.coverage.throughEpisode}`
               : `Season ${season.season} of ${journey.totalSeasons}`}
           </p>
           <h1 id="journey-title">{complete ? journey.characterName : season.title}</h1>
-          <p>{complete ? "Their complete mapped journey across the known world." : season.summary}</p>
+          <p>{complete ? completionCopy(journey) : season.summary}</p>
           {!complete && (
             <ol aria-label={`Season ${season.season} route`}>
               {waypoints.map((place, index) => (
@@ -873,7 +973,21 @@ function JourneyExperience({ journey }) {
               ))}
             </ol>
           )}
+          {(complete ? journeyDragonFlights : reducedMotion ? seasonDragonFlights : []).length > 0 && (
+            <div className="journey-dragon-legend" aria-label="Verified dragon flights">
+              <span>Verified Dragon Flight</span>
+              {(complete ? journeyDragonFlights : seasonDragonFlights).map((travel) => (
+                <strong key={travel.dragonId}>{travel.dragonName}</strong>
+              ))}
+            </div>
+          )}
         </div>
+
+        {!complete && activeTravel && (
+          <p className="journey-travel-status" role="status" aria-live="polite">
+            Traveling with <strong>{activeTravel.dragonName}</strong>
+          </p>
+        )}
 
         <div className={cn("journey-controls", complete && "journey-complete-controls")}>
           {complete ? (
@@ -992,10 +1106,52 @@ function JourneyExperience({ journey }) {
 
 export function CharacterJourneyPage() {
   const { characterSlug = "", seriesSlug = "" } = useParams();
-  const journey = getJourney(seriesSlug, characterSlug);
+  const catalogEntry = getJourneyCatalogEntry(seriesSlug, characterSlug);
+  const [journey, setJourney] = useState(null);
+  const [loading, setLoading] = useState(catalogEntry?.journeyStatus === "published");
+  const [loadError, setLoadError] = useState(null);
+
+  useEffect(() => {
+    let active = true;
+    setJourney(null);
+    setLoadError(null);
+
+    if (catalogEntry?.journeyStatus !== "published") {
+      setLoading(false);
+      return () => {
+        active = false;
+      };
+    }
+
+    setLoading(true);
+    loadJourney(seriesSlug, characterSlug)
+      .then((loadedJourney) => {
+        if (!active) return;
+        if (!loadedJourney) throw new Error("Published journey module is missing");
+        setJourney(loadedJourney);
+      })
+      .catch((reason) => {
+        if (active) setLoadError(reason);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [catalogEntry, characterSlug, seriesSlug]);
 
   if (!journey) {
-    return <PendingJourneyPage characterSlug={characterSlug} seriesSlug={seriesSlug} />;
+    return (
+      <PendingJourneyPage
+        catalogEntry={catalogEntry}
+        characterSlug={characterSlug}
+        loadError={loadError}
+        loading={loading}
+        seriesSlug={seriesSlug}
+      />
+    );
   }
 
   return <JourneyExperience key={journey.key} journey={journey} />;
