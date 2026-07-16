@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-16T04:17:43.049Z",
+  "generatedAt": "2026-07-16T10:27:12.175Z",
   "maps": {
     "world": {
       "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/world/a542e54376945bcb.webp",
@@ -19,6 +19,188 @@
       "height": 1671,
       "mimeType": "image/webp",
       "bytes": 494486
+    },
+    "realms": {
+      "north": {
+        "desktop": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/desktop/north/2acb9163c16290b6.webp",
+          "pathname": "maps/realms/desktop/north/2acb9163c16290b6.webp",
+          "sha256": "2acb9163c16290b61955b54446622a4d10a66293a1da30208a135dde71dc867f",
+          "width": 1484,
+          "height": 1060,
+          "mimeType": "image/webp",
+          "bytes": 258654
+        },
+        "mobile": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/mobile/north/3108a6b9057487d4.webp",
+          "pathname": "maps/realms/mobile/north/3108a6b9057487d4.webp",
+          "sha256": "3108a6b9057487d4407ead8874706a24f3e47e6edb3213995695873dab769398",
+          "width": 941,
+          "height": 1671,
+          "mimeType": "image/webp",
+          "bytes": 392362
+        }
+      },
+      "vale": {
+        "desktop": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/desktop/vale/196ad0e4523599de.webp",
+          "pathname": "maps/realms/desktop/vale/196ad0e4523599de.webp",
+          "sha256": "196ad0e4523599de2d8a6ede89a4085b986bd364d8f7f732cecb9486e1327f59",
+          "width": 1484,
+          "height": 1060,
+          "mimeType": "image/webp",
+          "bytes": 300704
+        },
+        "mobile": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/mobile/vale/72f46185dd778947.webp",
+          "pathname": "maps/realms/mobile/vale/72f46185dd778947.webp",
+          "sha256": "72f46185dd7789478c77dd7e2089269b0e646368ceb39d38b290c4b0125e0003",
+          "width": 941,
+          "height": 1671,
+          "mimeType": "image/webp",
+          "bytes": 251530
+        }
+      },
+      "riverlands": {
+        "desktop": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/desktop/riverlands/35b729020806f054.webp",
+          "pathname": "maps/realms/desktop/riverlands/35b729020806f054.webp",
+          "sha256": "35b729020806f05495230d344a19f2dc95632eaba501e45eb347ed6b6664f7d3",
+          "width": 1484,
+          "height": 1060,
+          "mimeType": "image/webp",
+          "bytes": 205228
+        },
+        "mobile": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/mobile/riverlands/f729ef2b3167a9ab.webp",
+          "pathname": "maps/realms/mobile/riverlands/f729ef2b3167a9ab.webp",
+          "sha256": "f729ef2b3167a9ab2f51eada718823617f01b0f30d615a38636820f89f706d76",
+          "width": 941,
+          "height": 1671,
+          "mimeType": "image/webp",
+          "bytes": 289446
+        }
+      },
+      "iron-islands": {
+        "desktop": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/desktop/iron-islands/d30c2c62d6c60f0c.webp",
+          "pathname": "maps/realms/desktop/iron-islands/d30c2c62d6c60f0c.webp",
+          "sha256": "d30c2c62d6c60f0cd562834c1e1e6eb817d454a1f807c7ae166593a3bfad74b0",
+          "width": 1484,
+          "height": 1060,
+          "mimeType": "image/webp",
+          "bytes": 245922
+        },
+        "mobile": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/mobile/iron-islands/467aad493330802f.webp",
+          "pathname": "maps/realms/mobile/iron-islands/467aad493330802f.webp",
+          "sha256": "467aad493330802fb4530c8274ccac8eacd21cf16aabf4faecceeff2e5764658",
+          "width": 941,
+          "height": 1671,
+          "mimeType": "image/webp",
+          "bytes": 321524
+        }
+      },
+      "westerlands": {
+        "desktop": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/desktop/westerlands/d6cf2f4a2e49e5a5.webp",
+          "pathname": "maps/realms/desktop/westerlands/d6cf2f4a2e49e5a5.webp",
+          "sha256": "d6cf2f4a2e49e5a556dbaa0664fa867a890885370daf54e17df72e570dfbb9f2",
+          "width": 1484,
+          "height": 1060,
+          "mimeType": "image/webp",
+          "bytes": 216486
+        },
+        "mobile": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/mobile/westerlands/c8347d4334974644.webp",
+          "pathname": "maps/realms/mobile/westerlands/c8347d4334974644.webp",
+          "sha256": "c8347d4334974644bfbcd27ebab32607571f1f444edf3061553db71b1a0d9cf8",
+          "width": 941,
+          "height": 1671,
+          "mimeType": "image/webp",
+          "bytes": 278914
+        }
+      },
+      "crownlands": {
+        "desktop": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/desktop/crownlands/0925b60545d694ad.webp",
+          "pathname": "maps/realms/desktop/crownlands/0925b60545d694ad.webp",
+          "sha256": "0925b60545d694ad7fbc658718ddce4e78307e3cd1bba050471435a51b84c356",
+          "width": 1484,
+          "height": 1060,
+          "mimeType": "image/webp",
+          "bytes": 369044
+        },
+        "mobile": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/mobile/crownlands/ef49c44a055af41f.webp",
+          "pathname": "maps/realms/mobile/crownlands/ef49c44a055af41f.webp",
+          "sha256": "ef49c44a055af41f16eb333b7e3700d3d0cf2702ecf38ac9497bf8121547208c",
+          "width": 941,
+          "height": 1671,
+          "mimeType": "image/webp",
+          "bytes": 270994
+        }
+      },
+      "stormlands": {
+        "desktop": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/desktop/stormlands/26e6cf9c8ed958b2.webp",
+          "pathname": "maps/realms/desktop/stormlands/26e6cf9c8ed958b2.webp",
+          "sha256": "26e6cf9c8ed958b2abb3a53f4fe4027a530dd98ed223488d18431f9f40407a29",
+          "width": 1484,
+          "height": 1060,
+          "mimeType": "image/webp",
+          "bytes": 246522
+        },
+        "mobile": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/mobile/stormlands/56940aa6fa5afb1a.webp",
+          "pathname": "maps/realms/mobile/stormlands/56940aa6fa5afb1a.webp",
+          "sha256": "56940aa6fa5afb1a4a777f1b1878ecc374bd382fd5149b3887d6bd77aafcc36f",
+          "width": 941,
+          "height": 1671,
+          "mimeType": "image/webp",
+          "bytes": 260516
+        }
+      },
+      "reach": {
+        "desktop": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/desktop/reach/7c5d737aa76f0756.webp",
+          "pathname": "maps/realms/desktop/reach/7c5d737aa76f0756.webp",
+          "sha256": "7c5d737aa76f0756f53f9ac18fba500724e9d90d8ac66c61ce49b1a4c9b0a615",
+          "width": 1484,
+          "height": 1060,
+          "mimeType": "image/webp",
+          "bytes": 193420
+        },
+        "mobile": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/mobile/reach/30954d1383523b65.webp",
+          "pathname": "maps/realms/mobile/reach/30954d1383523b65.webp",
+          "sha256": "30954d1383523b6506043e1280b46f590db780359f76c03d0bf5e4fa7aebf65b",
+          "width": 941,
+          "height": 1671,
+          "mimeType": "image/webp",
+          "bytes": 281222
+        }
+      },
+      "dorne": {
+        "desktop": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/desktop/dorne/0b585144ccccc1cb.webp",
+          "pathname": "maps/realms/desktop/dorne/0b585144ccccc1cb.webp",
+          "sha256": "0b585144ccccc1cbe821875eef44b5b488c994b0c80b3eecd2003c387ecbded2",
+          "width": 1484,
+          "height": 1060,
+          "mimeType": "image/webp",
+          "bytes": 203634
+        },
+        "mobile": {
+          "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/maps/realms/mobile/dorne/87d960e3ac5d4017.webp",
+          "pathname": "maps/realms/mobile/dorne/87d960e3ac5d4017.webp",
+          "sha256": "87d960e3ac5d401745a9a4e7c4491f3bacca6f828c39841fd98f1f5b5d5b9520",
+          "width": 941,
+          "height": 1671,
+          "mimeType": "image/webp",
+          "bytes": 292234
+        }
+      }
     }
   },
   "sigils": {
@@ -95,13 +277,13 @@
       "bytes": 67176
     },
     "house-targaryen": {
-      "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/sigils/house-targaryen/4506f6de0fe58858.webp",
-      "pathname": "sigils/house-targaryen/4506f6de0fe58858.webp",
-      "sha256": "4506f6de0fe58858c532d8b89fc942383a3c9ad1eef037cbef981981a0eedac4",
+      "url": "https://w1c55kj1lmzdmubj.public.blob.vercel-storage.com/sigils/house-targaryen/cf15f7bebdfb3319.webp",
+      "pathname": "sigils/house-targaryen/cf15f7bebdfb3319.webp",
+      "sha256": "cf15f7bebdfb3319efe88da8bee5d749089f3cc43b5633f96938db6912f49ee8",
       "width": 1200,
       "height": 1320,
       "mimeType": "image/webp",
-      "bytes": 120736
+      "bytes": 271396
     }
   },
   "characters": {

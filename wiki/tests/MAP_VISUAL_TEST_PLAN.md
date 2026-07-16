@@ -4,8 +4,8 @@
 `npm run verify:catalog` checks the responsive character catalogue, and
 `npm run verify:journeys` checks every character destination.
 
-- `/` renders one persistent map, no clickable markers, and the correct desktop or portrait artwork.
-- Every realm has one connector line and one prominent sigil, without an extra capital endpoint circle.
+- `/` renders the correct boundary-locked illuminated artwork for each realm and the correct desktop or portrait layout.
+- Every realm has one prominent sigil and no capital pointer, connector line, or endpoint circle.
 - Pause freezes the current realm and camera, resume advances the tour, and Dorne transitions to a clean complete map.
 - The complete map exposes Replay and Explore Characters; Replay returns to the North.
 - Portrait and landscape phone cameras cover the viewport without exposing empty map edges.

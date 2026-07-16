@@ -71,7 +71,8 @@ npm run check
 - Character images were audited before layout work: the source data contains square,
   portrait, and landscape files. Cards preserve recorded dimensions, use a consistent
   portrait crop, and fall back to a monogram when no source-backed portrait exists.
-- The realm tour reuses the canonical Blob-hosted house sigils and never changes map geography.
+- The realm tour uses eighteen boundary-locked Blob-hosted realm variants and canonical
+  transparent house sigils without changing the original map geography.
 - The supplied reference map was used only for broad composition. The project map is an
   original generated asset without copied labels, logos, or line work.
 
@@ -82,10 +83,11 @@ maps, or sigils change, pull `BLOB_READ_WRITE_TOKEN` into the ignored `.env.loca
 run `npm run sync:blob`. Deployment reads the tracked content-addressed manifest and does not
 need the write token.
 
-Portrait sources come from the local dataset. To publish replacement map or sigil artwork,
-point `ASOIAF_STATIC_ASSET_ROOT` at a local directory containing the same `world-map-*.webp`
-and `houses/house-*.webp` layout. When those files are absent, sync safely reuses the immutable
-objects already recorded in the manifest.
+Portrait sources come from the local dataset. Replacement artwork defaults to the ignored
+`.data/blob-assets` directory; `ASOIAF_STATIC_ASSET_ROOT` can point at another directory with
+the same base-map, `maps/realms/{desktop|mobile}/*.webp`, and `houses/house-*.webp` layout.
+When local files are absent, sync safely reuses the immutable objects already recorded in the
+manifest.
 
 ```bash
 npm run sync:blob

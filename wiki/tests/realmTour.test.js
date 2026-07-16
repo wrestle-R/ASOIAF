@@ -35,11 +35,26 @@ describe("REALM_TOUR", () => {
     }
   });
 
-  it("uses the two immutable map objects from the asset manifest", () => {
+  it("uses the base maps and all eighteen immutable realm map objects", () => {
     expect(REALM_MAPS.desktop.image).toBe(blobAssets.maps.world.url);
     expect(REALM_MAPS.mobile.image).toBe(blobAssets.maps.mobile.url);
     expect(REALM_MAPS.desktop).toMatchObject({ width: 1484, height: 1060 });
     expect(REALM_MAPS.mobile).toMatchObject({ width: 941, height: 1671 });
+
+    for (const realm of REALM_TOUR) {
+      expect(realm).not.toHaveProperty("capital");
+      for (const [layout, dimensions] of Object.entries({
+        desktop: { width: 1484, height: 1060 },
+        mobile: { width: 941, height: 1671 },
+      })) {
+        const asset = blobAssets.maps.realms[realm.id][layout];
+        expect(realm.map[layout]).toBe(asset.url);
+        expect(asset).toMatchObject({ ...dimensions, mimeType: "image/webp" });
+        expect(asset.url).toMatch(
+          new RegExp(`^https://.+\\.public\\.blob\\.vercel-storage\\.com/maps/realms/${layout}/${realm.id}/`),
+        );
+      }
+    }
   });
 
   it("keeps every desktop and mobile camera focus in map bounds", () => {
@@ -52,15 +67,10 @@ describe("REALM_TOUR", () => {
         expect(camera.y).toBeLessThanOrEqual(100);
         expect(camera.scale).toBeGreaterThanOrEqual(1);
         expect(camera.radius).toBeGreaterThan(0);
-        expect(realm.capital[layout].x).toBeGreaterThanOrEqual(0);
-        expect(realm.capital[layout].x).toBeLessThanOrEqual(100);
-        expect(realm.capital[layout].y).toBeGreaterThanOrEqual(0);
-        expect(realm.capital[layout].y).toBeLessThanOrEqual(100);
         expect(realm.sigil[layout].x).toBeGreaterThanOrEqual(0);
         expect(realm.sigil[layout].x).toBeLessThanOrEqual(100);
         expect(realm.sigil[layout].y).toBeGreaterThanOrEqual(0);
         expect(realm.sigil[layout].y).toBeLessThanOrEqual(100);
-        expect(realm.sigil[layout]).not.toEqual(realm.capital[layout]);
       }
     }
   });

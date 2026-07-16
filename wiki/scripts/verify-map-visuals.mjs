@@ -45,11 +45,8 @@ async function mapGeometry(page) {
 }
 
 async function assertHighlight(page, label, expectedSigilSize) {
-  if (await page.locator(".realm-capital-link line").count() !== 1) {
-    failures.push(`${label}: expected one capital-to-sigil connector`);
-  }
-  if (await page.locator(".realm-capital-link circle").count()) {
-    failures.push(`${label}: legacy capital endpoint circle remains`);
+  if (await page.locator(".realm-capital-link").count()) {
+    failures.push(`${label}: capital pointer remains`);
   }
   await page.waitForTimeout(1100);
   const sigilSize = await page.locator(".realm-sigil").evaluate((node) => {
@@ -69,6 +66,11 @@ async function assertCompleteMap(page, label) {
   }
   const charactersHref = await page.getByRole("link", { name: "Explore Characters", exact: true }).getAttribute("href");
   if (charactersHref !== "/home") failures.push(`${label}: complete-map character action targets ${charactersHref}`);
+  const layout = label === "tour-desktop" ? "world" : "mobile";
+  const source = await page.locator(".realm-map-image").getAttribute("src");
+  if (source !== blobAssets.maps[layout].url) {
+    failures.push(`${label}: complete map uses wrong source ${source}`);
+  }
   const geometry = await mapGeometry(page);
   const tolerance = 1.5;
   if (
@@ -117,11 +119,14 @@ try {
       failures.push("tour-desktop: live tour does not use one persistent map image");
     }
     const source = await page.locator(".realm-map-image").getAttribute("src");
-    if (source !== blobAssets.maps.world.url) failures.push(`tour-desktop: wrong map source ${source}`);
-    await assertHighlight(page, "tour-desktop", 76);
+    if (source !== blobAssets.maps.realms.north.desktop.url) failures.push(`tour-desktop: wrong North map source ${source}`);
+    await assertHighlight(page, "tour-desktop", 77.52);
 
     await page.keyboard.press("ArrowRight");
     await page.getByRole("heading", { name: "The Vale", exact: true }).waitFor();
+    if (await page.locator(".realm-map-image").getAttribute("src") !== blobAssets.maps.realms.vale.desktop.url) {
+      failures.push("tour-desktop: Vale artwork did not replace the North artwork");
+    }
     await page.keyboard.press("ArrowLeft");
     await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
     await page.waitForTimeout(1200);
@@ -167,7 +172,7 @@ try {
     await page.locator(".realm-stage").waitFor();
     await assertViewportLocked(page, viewport.name);
     const source = await page.locator(".realm-map-image").getAttribute("src");
-    if (source !== blobAssets.maps.mobile.url) {
+    if (source !== blobAssets.maps.realms.north.mobile.url) {
       failures.push(`${viewport.name}: wrong portrait map source ${source}`);
     }
     await assertHighlight(page, viewport.name, 59);

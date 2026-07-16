@@ -15,8 +15,12 @@ and are not mixed into the character index.
 
 The realm tour and character journeys use the same original map family. Desktop uses the
 `1484 × 1060` world map, while the realm tour uses a dedicated `941 × 1671` portrait map on
-phone-sized viewports. Both maps and the nine house sigils are immutable Vercel Blob objects
-read from `src/data/blobAssets.json`; no runtime map artwork is shipped from `public/`.
+phone-sized viewports. The tour has nine boundary-locked illuminated variants for each layout;
+every realm keeps the original coastlines, borders, labels, and camera geometry while receiving
+a distinct lighting treatment. The unhighlighted originals remain the completion-state maps.
+All maps and the nine transparent house sigils are immutable Vercel Blob objects read from
+`src/data/blobAssets.json`; no runtime map artwork is shipped from `public/`, and the realm
+presentation contains no capital pointer or connector line.
 
 Journey coordinates and SVG curves are presentation overlays. They preserve the underlying
 cartography, and the data layer labels the connecting curves as schematic rather than exact

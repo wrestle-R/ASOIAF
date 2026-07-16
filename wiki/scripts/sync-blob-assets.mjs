@@ -18,7 +18,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const wikiRoot = path.resolve(here, "..");
 const sourcePath = path.resolve(wikiRoot, "../dataset/asoiaf.sqlite");
 const assetsRoot = path.resolve(
-  process.env.ASOIAF_STATIC_ASSET_ROOT || path.resolve(wikiRoot, "public/assets"),
+  process.env.ASOIAF_STATIC_ASSET_ROOT || path.resolve(wikiRoot, ".data/blob-assets"),
 );
 const manifestPath = path.resolve(wikiRoot, "src/data/blobAssets.json");
 const databasePath = path.resolve(wikiRoot, ".data/asoiaf.sqlite");
@@ -220,6 +220,36 @@ const staticSpecs = [
     height: 1671,
   },
   ...[
+    "north",
+    "vale",
+    "riverlands",
+    "iron-islands",
+    "westerlands",
+    "crownlands",
+    "stormlands",
+    "reach",
+    "dorne",
+  ].flatMap((key) => [
+    {
+      kind: "realm-map",
+      key,
+      layout: "desktop",
+      source: `maps/realms/desktop/${key}.webp`,
+      prefix: `maps/realms/desktop/${key}`,
+      width: 1484,
+      height: 1060,
+    },
+    {
+      kind: "realm-map",
+      key,
+      layout: "mobile",
+      source: `maps/realms/mobile/${key}.webp`,
+      prefix: `maps/realms/mobile/${key}`,
+      width: 941,
+      height: 1671,
+    },
+  ]),
+  ...[
     "house-stark",
     "house-arryn",
     "house-tully",
@@ -248,8 +278,9 @@ const staticAssets = await Promise.all(
     } catch (error) {
       if (error.code !== "ENOENT") throw error;
 
-      const section = spec.kind === "map" ? "maps" : "sigils";
-      const previous = previousAssetManifest?.[section]?.[spec.key];
+      const previous = spec.kind === "realm-map"
+        ? previousAssetManifest?.maps?.realms?.[spec.key]?.[spec.layout]
+        : previousAssetManifest?.[spec.kind === "map" ? "maps" : "sigils"]?.[spec.key];
       if (!previous?.pathname || !previous?.sha256 || !previous?.bytes) {
         throw new Error(
           `Static source is missing and no published manifest entry exists: ${sourcePathname}`,
@@ -305,11 +336,33 @@ const publicAsset = (asset) => {
 const assetManifest = {
   version: "1.0.0",
   generatedAt: new Date().toISOString(),
-  maps: Object.fromEntries(
-    staticAssets
-      .filter((asset) => asset.kind === "map")
-      .map((asset) => [asset.key, publicAsset(asset)]),
-  ),
+  maps: {
+    ...Object.fromEntries(
+      staticAssets
+        .filter((asset) => asset.kind === "map")
+        .map((asset) => [asset.key, publicAsset(asset)]),
+    ),
+    realms: Object.fromEntries(
+      [
+        "north",
+        "vale",
+        "riverlands",
+        "iron-islands",
+        "westerlands",
+        "crownlands",
+        "stormlands",
+        "reach",
+        "dorne",
+      ].map((key) => [
+        key,
+        Object.fromEntries(
+          staticAssets
+            .filter((asset) => asset.kind === "realm-map" && asset.key === key)
+            .map((asset) => [asset.layout, publicAsset(asset)]),
+        ),
+      ]),
+    ),
+  },
   sigils: Object.fromEntries(
     staticAssets
       .filter((asset) => asset.kind === "sigil")

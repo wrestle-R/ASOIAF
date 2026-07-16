@@ -26,7 +26,6 @@ export function RealmTourPage() {
   const layout = phone ? "mobile" : "desktop";
   const map = REALM_MAPS[layout];
   const camera = realm.camera[layout];
-  const capital = realm.capital[layout];
   const sigilPosition = realm.sigil[layout];
 
   useEffect(() => {
@@ -136,6 +135,18 @@ export function RealmTourPage() {
     };
   }, [complete, realm.duration, realmIndex, run]);
 
+  useEffect(() => {
+    if (complete) return undefined;
+    const nextRealm = REALM_TOUR[realmIndex + 1];
+    if (!nextRealm) return undefined;
+
+    const preload = new Image();
+    preload.src = nextRealm.map[layout];
+    return () => {
+      preload.src = "";
+    };
+  }, [complete, layout, realmIndex]);
+
   const replay = useCallback(() => {
     setPaused(false);
     setComplete(false);
@@ -182,35 +193,22 @@ export function RealmTourPage() {
         <div className="realm-map-frame" style={frameStyle}>
           <img
             className="realm-map-image"
-            src={map.image}
+            src={complete ? map.image : realm.map[layout]}
             alt="Political map of the nine realms of Westeros"
             width={map.width}
             height={map.height}
             fetchPriority="high"
             draggable="false"
+            onError={(event) => {
+              if (event.currentTarget.src !== map.image) event.currentTarget.src = map.image;
+            }}
           />
           <div className="realm-map-toning" aria-hidden="true" />
-          {!complete && (
-            <svg
-              className="realm-capital-link"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <line
-                x1={capital.x}
-                y1={capital.y}
-                x2={sigilPosition.x}
-                y2={sigilPosition.y}
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
-          )}
           {!complete && (
             <div className="realm-spotlight" style={spotlightStyle} key={`spot-${realm.id}`}>
               <SigilIcon
                 house={sigilHouse}
-                size={(phone ? 59 : 76) / frame.scale}
+                size={(phone ? 59 : 77.52) / frame.scale}
                 className="realm-sigil"
               />
             </div>
