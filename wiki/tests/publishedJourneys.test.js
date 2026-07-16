@@ -105,18 +105,74 @@ describe("published character journeys", () => {
     }
   });
 
-  it("provides valid schematic SVG paths whose endpoints meet their first and last stops", () => {
+  it("provides valid schematic SVG paths whose endpoints meet their season boundaries", () => {
     for (const journey of journeys) {
-      for (const item of journey.seasons) {
+      for (const [index, item] of journey.seasons.entries()) {
         expect(item.path).toMatch(/^M\s+-?\d/);
         expect(item.path).not.toMatch(/(?:NaN|undefined|null)/);
         expect(item.path).toMatch(/^[\d\s.,MCLSQTAHVZ-]+$/i);
 
         const endpoints = pathEndpoints(item.path);
         const waypoints = getSeasonWaypoints(item);
+        const expectedOrigin = index === 0
+          ? waypoints[0]
+          : getSeasonWaypoints(journey.seasons[index - 1]).at(-1);
         expect(endpoints.count).toBeGreaterThanOrEqual(4);
-        expect(distance(endpoints.first, waypoints[0])).toBeLessThanOrEqual(1);
-        expect(distance(endpoints.last, waypoints.at(-1))).toBeLessThanOrEqual(1);
+        expect(distance(endpoints.first, expectedOrigin)).toBe(0);
+        expect(distance(endpoints.last, waypoints.at(-1))).toBe(0);
+      }
+    }
+  });
+
+  it("starts every new season exactly where the previous season path ended", () => {
+    let transitionCount = 0;
+    let bridgedTransitionCount = 0;
+
+    for (const journey of journeys) {
+      for (let index = 1; index < journey.seasons.length; index += 1) {
+        const previousSeason = journey.seasons[index - 1];
+        const currentSeason = journey.seasons[index];
+        const previousEndpoints = pathEndpoints(previousSeason.path);
+        const currentEndpoints = pathEndpoints(currentSeason.path);
+        const previousFinalStop = previousSeason.stops.at(-1);
+        const firstDepictedStop = currentSeason.stops[0];
+
+        transitionCount += 1;
+        if (previousFinalStop.placeId !== firstDepictedStop.placeId) {
+          bridgedTransitionCount += 1;
+        }
+
+        expect(currentEndpoints.first).toEqual(previousEndpoints.last);
+        expect(currentSeason.continuity).toEqual({
+          originPlaceId: previousFinalStop.placeId,
+          inheritedFromSeason: previousSeason.season,
+          joinsFirstDepictedPlaceId: firstDepictedStop.placeId,
+          kind: previousFinalStop.placeId === firstDepictedStop.placeId
+            ? "same-place"
+            : "schematic-bridge",
+        });
+      }
+    }
+
+    expect(transitionCount).toBe(41);
+    expect(bridgedTransitionCount).toBe(18);
+  });
+
+  it("keeps continuity origins out of the current season's depicted-stop evidence", () => {
+    for (const journey of journeys) {
+      for (let index = 1; index < journey.seasons.length; index += 1) {
+        const previousSeason = journey.seasons[index - 1];
+        const currentSeason = journey.seasons[index];
+        const originPlaceId = previousSeason.stops.at(-1).placeId;
+
+        expect(currentSeason.stops.every((stop) => (
+          stop.episode.startsWith(`S${currentSeason.season}E`)
+        ))).toBe(true);
+
+        if (originPlaceId !== currentSeason.stops[0].placeId) {
+          expect(currentSeason.continuity.kind).toBe("schematic-bridge");
+          expect(currentSeason.stops[0].placeId).not.toBe(originPlaceId);
+        }
       }
     }
   });

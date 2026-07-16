@@ -21,11 +21,35 @@ import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import { useReducedMotion } from "../../hooks/useReducedMotion.js";
 
 const SEASON_HOLD_MS = 650;
+const SEASON_CARRY_MIN_MS = 420;
+const SEASON_CARRY_MAX_MS = 1500;
+const SEASON_CARRY_PX_PER_MS = 0.72;
 const MOBILE_CAMERA_QUERY = "(max-width: 880px)";
 const MOBILE_CAMERA_EASING_MS = 140;
 
 function clamp(value, minimum, maximum) {
   return Math.min(Math.max(value, minimum), maximum);
+}
+
+function easeInOutCubic(value) {
+  return value < 0.5
+    ? 4 * value * value * value
+    : 1 - ((-2 * value + 2) ** 3) / 2;
+}
+
+function interpolatePoint(from, to, progress) {
+  return {
+    x: from.x + (to.x - from.x) * progress,
+    y: from.y + (to.y - from.y) * progress,
+  };
+}
+
+function pointDistance(from, to) {
+  return Math.hypot(to.x - from.x, to.y - from.y);
+}
+
+function pointTransform(point) {
+  return point ? `translate(${point.x} ${point.y})` : undefined;
 }
 
 function titleFromSlug(slug) {
@@ -116,6 +140,8 @@ function JourneyExperience({ journey }) {
   const cameraRef = useRef(null);
   const pathRef = useRef(null);
   const markerRef = useRef(null);
+  const markerPositionRef = useRef(null);
+  const renderedSeasonRef = useRef(null);
   const mobileCameraRef = useRef({
     cameraHeight: 0,
     cameraWidth: 0,
@@ -241,11 +267,27 @@ function JourneyExperience({ journey }) {
     if (!path || !marker || !camera) return undefined;
 
     const pathLength = Math.max(path.getTotalLength(), 0.01);
+    const pathStart = path.getPointAtLength(0);
+    const seasonKey = `${journey.key}:${season.season}`;
+    const changedSeason = renderedSeasonRef.current !== null
+      && renderedSeasonRef.current !== seasonKey;
+    const carryFrom = changedSeason ? markerPositionRef.current : null;
+    const carryDistance = carryFrom ? pointDistance(carryFrom, pathStart) : 0;
+    const carryDuration = carryDistance > 1
+      ? clamp(
+        carryDistance / SEASON_CARRY_PX_PER_MS,
+        SEASON_CARRY_MIN_MS,
+        SEASON_CARRY_MAX_MS,
+      )
+      : 0;
+
+    renderedSeasonRef.current = seasonKey;
     path.style.strokeDasharray = `${pathLength}`;
     path.style.strokeDashoffset = `${pathLength}`;
 
     let animationFrame;
     let previousTime;
+    let carryElapsed = 0;
     let elapsed = 0;
     let cancelled = false;
 
@@ -254,12 +296,30 @@ function JourneyExperience({ journey }) {
       if (previousTime === undefined) previousTime = time;
       const delta = time - previousTime;
       previousTime = time;
-      if (!pausedRef.current) elapsed += delta;
+      let carryDelta = 0;
 
+      if (carryElapsed < carryDuration) {
+        // A deliberate season change still completes its visual hand-off while
+        // route playback is paused; the new route itself remains frozen.
+        carryDelta = Math.min(delta, carryDuration - carryElapsed);
+        carryElapsed += carryDelta;
+      }
+      if (!pausedRef.current) elapsed += Math.max(0, delta - carryDelta);
+
+      const carrying = carryElapsed < carryDuration;
       const progress = Math.min(elapsed / season.duration, 1);
-      const point = path.getPointAtLength(pathLength * progress);
-      path.style.strokeDashoffset = `${pathLength * (1 - progress)}`;
+      const point = carrying
+        ? interpolatePoint(
+          carryFrom,
+          pathStart,
+          easeInOutCubic(carryElapsed / carryDuration),
+        )
+        : path.getPointAtLength(pathLength * progress);
+      path.style.strokeDashoffset = carrying
+        ? `${pathLength}`
+        : `${pathLength * (1 - progress)}`;
       marker.setAttribute("transform", `translate(${point.x} ${point.y})`);
+      markerPositionRef.current = point;
 
       const mobileCamera = mobileCameraRef.current;
       if (mobileCamera.isMobile && (!pausedRef.current || mobileCamera.needsPosition)) {
@@ -307,6 +367,8 @@ function JourneyExperience({ journey }) {
     setPaused(false);
     setComplete(false);
     setSeasonIndex(0);
+    markerPositionRef.current = null;
+    renderedSeasonRef.current = null;
     mobileCameraRef.current.initialized = false;
     mobileCameraRef.current.needsPosition = true;
     setRun((value) => value + 1);
@@ -324,9 +386,9 @@ function JourneyExperience({ journey }) {
     "--camera-y": `${season.camera.y}%`,
     "--camera-scale": season.camera.scale,
   };
-  const markerTransform = reducedMotion && lastWaypoint
-    ? `translate(${lastWaypoint.x} ${lastWaypoint.y})`
-    : undefined;
+  const markerTransform = reducedMotion
+    ? pointTransform(lastWaypoint)
+    : pointTransform(markerPositionRef.current ?? waypoints[0]);
 
   return (
     <main className="journey-page">

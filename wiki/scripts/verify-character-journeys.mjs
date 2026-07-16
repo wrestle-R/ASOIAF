@@ -16,6 +16,7 @@ const journeys = [
 const publishedJourneyKeys = journeys.map((journey) => (
   `${journey.seriesSlug}/${journey.characterSlug}`
 ));
+const SEASON_CONTINUITY_TOLERANCE = 1;
 const failures = [];
 
 function fail(label, message) {
@@ -31,6 +32,64 @@ function rectanglesOverlap(first, second) {
     && first.x + first.width > second.x
     && first.y < second.y + second.height
     && first.y + first.height > second.y;
+}
+
+function pointDistance(first, second) {
+  return Math.hypot(first.x - second.x, first.y - second.y);
+}
+
+async function readSeasonGeometry(page) {
+  return page.evaluate(() => {
+    const path = document.querySelector(".journey-route");
+    const marker = document.querySelector(".journey-marker");
+    if (!(path instanceof SVGGeometryElement) || !(marker instanceof SVGGElement)) return null;
+
+    const pathLength = path.getTotalLength();
+    const start = path.getPointAtLength(0);
+    const end = path.getPointAtLength(pathLength);
+    const markerMatrix = marker.transform.baseVal.consolidate()?.matrix;
+
+    return {
+      start: { x: start.x, y: start.y },
+      end: { x: end.x, y: end.y },
+      marker: markerMatrix ? { x: markerMatrix.e, y: markerMatrix.f } : null,
+    };
+  });
+}
+
+async function assertSeasonBoundaryContinuity(page, label, previousEnd, transition) {
+  await page.waitForFunction((tolerance) => {
+    const path = document.querySelector(".journey-route");
+    const marker = document.querySelector(".journey-marker");
+    if (!(path instanceof SVGGeometryElement) || !(marker instanceof SVGGElement)) return false;
+
+    const start = path.getPointAtLength(0);
+    const markerMatrix = marker.transform.baseVal.consolidate()?.matrix;
+    return markerMatrix
+      && Math.hypot(markerMatrix.e - start.x, markerMatrix.f - start.y) <= tolerance;
+  }, SEASON_CONTINUITY_TOLERANCE);
+
+  const geometry = await readSeasonGeometry(page);
+  if (!geometry?.marker) {
+    fail(label, `${transition} did not render measurable path and marker geometry`);
+    return;
+  }
+
+  const pathGap = pointDistance(previousEnd, geometry.start);
+  if (pathGap > SEASON_CONTINUITY_TOLERANCE) {
+    fail(
+      label,
+      `${transition} teleports ${pathGap.toFixed(2)} map units between seasons`,
+    );
+  }
+
+  const markerGap = pointDistance(geometry.start, geometry.marker);
+  if (markerGap > SEASON_CONTINUITY_TOLERANCE) {
+    fail(
+      label,
+      `${transition} marker begins ${markerGap.toFixed(2)} map units away from the new path start`,
+    );
+  }
 }
 
 function collectBrowserErrors(page, getLabel) {
@@ -174,11 +233,22 @@ async function verifyPublishedDesktop(browser) {
     let lastKicker = firstKicker;
     for (let index = 1; index < seasonCount; index += 1) {
       const previousKicker = await page.locator(".journey-kicker").textContent();
+      const previousGeometry = await readSeasonGeometry(page);
+      if (!previousGeometry) {
+        fail(label, `${previousKicker} did not expose measurable route geometry`);
+        break;
+      }
       await page.keyboard.press("ArrowRight");
       await page.waitForFunction((previous) => (
         document.querySelector(".journey-kicker")?.textContent !== previous
       ), previousKicker);
       lastKicker = await page.locator(".journey-kicker").textContent();
+      await assertSeasonBoundaryContinuity(
+        page,
+        label,
+        previousGeometry.end,
+        `${previousKicker} to ${lastKicker}`,
+      );
     }
     await page.keyboard.press("ArrowRight");
     await page.getByRole("button", { name: "Replay", exact: true }).waitFor();
@@ -357,5 +427,5 @@ if (failures.length) {
   console.error(`Character journey verification failed:\n${failures.join("\n")}`);
   process.exitCode = 1;
 } else {
-  console.log("Character journey verification passed: all 203 routes, six mapped journeys, mobile edge navigation, completion, replay, pending, and reduced-motion states.");
+  console.log("Character journey verification passed: all 203 routes, six mapped journeys, season-to-season continuity, mobile edge navigation, completion, replay, pending, and reduced-motion states.");
 }

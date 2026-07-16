@@ -86,7 +86,9 @@ function schematicPath(placeIds) {
   const first = points[0];
 
   if (points.length === 1) {
-    return `M ${first.x} ${first.y} L ${first.x + 0.5} ${first.y + 0.5}`;
+    // Keep a measurable path for the animation without letting a stationary
+    // season finish fractionally away from its only depicted location.
+    return `M ${first.x} ${first.y} C ${first.x + 0.5} ${first.y + 0.5} ${first.x + 0.5} ${first.y - 0.5} ${first.x} ${first.y}`;
   }
 
   return points.slice(1).reduce((path, point, index) => {
@@ -104,6 +106,21 @@ function schematicPath(placeIds) {
 
     return `${path} C ${round(controlOneX)} ${round(controlOneY)} ${round(controlTwoX)} ${round(controlTwoY)} ${point.x} ${point.y}`;
   }, `M ${first.x} ${first.y}`);
+}
+
+const INITIAL_MOVE = /^\s*M\s+-?\d+(?:\.\d+)?[\s,]+-?\d+(?:\.\d+)?/i;
+
+function pathWithContinuity(originPlaceId, item) {
+  const firstDepictedPlaceId = item.stops[0].placeId;
+
+  if (originPlaceId === firstDepictedPlaceId) return item.path;
+
+  // Only the bridge is generated. Everything after the season's initial move
+  // command remains the original hand-authored (or stop-derived) geometry.
+  const bridge = schematicPath([originPlaceId, firstDepictedPlaceId]);
+  const originalPathAfterMove = item.path.replace(INITIAL_MOVE, "").trim();
+
+  return originalPathAfterMove ? `${bridge} ${originalPathAfterMove}` : bridge;
 }
 
 function cameraFor(placeIds) {
@@ -150,6 +167,34 @@ function season({
 }
 
 function journey(characterSlug, characterName, seasons) {
+  const continuousSeasons = seasons.map((item, index) => {
+    if (index === 0) return item;
+
+    const previousSeason = seasons[index - 1];
+    const previousFinalStop = previousSeason.stops.at(-1);
+    const firstDepictedStop = item.stops[0];
+    const changesLocation = previousFinalStop.placeId !== firstDepictedStop.placeId;
+
+    return Object.freeze({
+      ...item,
+      // A continuity origin is inherited from the prior season's final
+      // source-backed stop. It is deliberately not added to `stops`, so the
+      // current season's depicted locations and episode evidence stay exact.
+      continuity: Object.freeze({
+        originPlaceId: previousFinalStop.placeId,
+        inheritedFromSeason: previousSeason.season,
+        joinsFirstDepictedPlaceId: firstDepictedStop.placeId,
+        kind: changesLocation ? "schematic-bridge" : "same-place",
+      }),
+      path: pathWithContinuity(previousFinalStop.placeId, item),
+      // Include the inherited origin in the frame whenever a bridge is
+      // necessary, otherwise its opening movement could begin off-screen.
+      camera: changesLocation
+        ? cameraFor([previousFinalStop.placeId, ...item.stops.map((stop) => stop.placeId)])
+        : item.camera,
+    });
+  });
+
   return Object.freeze({
     key: `game-of-thrones/${characterSlug}`,
     seriesSlug: "game-of-thrones",
@@ -157,7 +202,7 @@ function journey(characterSlug, characterName, seasons) {
     characterSlug,
     characterName,
     totalSeasons: 8,
-    seasons: Object.freeze(seasons),
+    seasons: Object.freeze(continuousSeasons),
   });
 }
 
