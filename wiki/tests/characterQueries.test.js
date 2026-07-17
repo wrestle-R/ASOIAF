@@ -46,7 +46,7 @@ describe("character catalogue queries", () => {
     );
   });
 
-  it("publishes the exact Stage 1 split and orders mapped characters first", () => {
+  it("publishes the exact Stage 1 split and orders available characters by prominence", () => {
     const result = getCharacters(database, { limit: 60 });
 
     expect(result.published).toBe(126);
@@ -55,12 +55,12 @@ describe("character catalogue queries", () => {
     expect(
       result.characters.slice(0, 6).map((character) => character.name),
     ).toEqual([
-      "Aeron Greyjoy",
-      "Alliser Thorne",
-      "Archmaester Ebrose",
+      "Daenerys Targaryen",
+      "Samwell Tarly",
+      "Jon Snow",
       "Arya Stark",
-      "Balon Greyjoy",
-      "Barristan Selmy",
+      "Sansa Stark",
+      "Brandon Stark",
     ]);
     expect(
       result.characters.slice(0, 6).every(

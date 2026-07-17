@@ -24,6 +24,7 @@ const SERIES_BY_DOCUMENT = new Map(
   SERIES.map((series) => [series.documentPath, series]),
 );
 const SERIES_BY_SLUG = new Map(SERIES.map((series) => [series.slug, series]));
+const SERIES_PROMINENCE = new Map(SERIES.map((series, index) => [series.slug, index]));
 
 const CHARACTER_SELECT = `
   SELECT r.id,
@@ -171,6 +172,17 @@ function sortCharacters(characters) {
   return characters.sort((left, right) => {
     if (left.journeyStatus !== right.journeyStatus) {
       return statusOrder[left.journeyStatus] - statusOrder[right.journeyStatus];
+    }
+
+    const seriesDifference = (
+      SERIES_PROMINENCE.get(left.seriesSlug) - SERIES_PROMINENCE.get(right.seriesSlug)
+    );
+    if (seriesDifference) return seriesDifference;
+
+    const leftRank = Number(left.id);
+    const rightRank = Number(right.id);
+    if (Number.isFinite(leftRank) && Number.isFinite(rightRank) && leftRank !== rightRank) {
+      return leftRank - rightRank;
     }
 
     return (
