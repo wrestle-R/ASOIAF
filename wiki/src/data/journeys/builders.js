@@ -14,6 +14,17 @@ function round(value) {
   return Math.round(value * 10) / 10;
 }
 
+function seasonTitle(item) {
+  const fallback = `Season ${item.season}`;
+  if (!item.title) return fallback;
+
+  const generatedTitle = item.title.match(/^Season (\d+): (\d+) mapped moves$/i);
+  if (!generatedTitle) return item.title;
+
+  const locationCount = Number(generatedTitle[2]);
+  return `Season ${generatedTitle[1]} · ${locationCount} ${locationCount === 1 ? "location" : "locations"}`;
+}
+
 function freezeSource(source, context) {
   if (!source?.title || !source?.url) {
     throw new Error(`${context} requires a titled source URL`);
@@ -218,7 +229,7 @@ function buildSeason(item, previousSeason, journeyKey) {
 
   return Object.freeze({
     season: item.season,
-    title: item.title || `Season ${item.season}`,
+    title: seasonTitle(item),
     summary: item.summary || `Verified screen locations for Season ${item.season}.`,
     stops: Object.freeze(stops),
     routeSegments: Object.freeze(routeSegments),

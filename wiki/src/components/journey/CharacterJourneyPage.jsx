@@ -85,12 +85,12 @@ function segmentAtProgress(season, progress) {
 
 function completionCopy(journey) {
   if (journey.coverage.completionReason === "season-complete") {
-    return `Season 1 coverage is mapped through ${journey.coverage.throughEpisode}. The series is ongoing.`;
+    return `Season 1 is verified through ${journey.coverage.throughEpisode}. The series is ongoing.`;
   }
   if (journey.coverage.completionReason === "character-death") {
-    return `Their closed television journey is mapped and verified through ${journey.coverage.throughEpisode}.`;
+    return `Their television journey is complete and verified through ${journey.coverage.throughEpisode}.`;
   }
-  return "Their complete television journey across the known world is mapped.";
+  return "Their complete television journey across the known world is ready to explore.";
 }
 
 function getUniqueSeasonWaypoints(season) {
@@ -129,13 +129,14 @@ function JourneyBackLink() {
   );
 }
 
-function PendingJourneyPage({ catalogEntry, characterSlug, loadError, loading, seriesSlug }) {
+function PendingJourneyPage({ catalogEntry, characterSlug, loadError, loading, onRetry, seriesSlug }) {
   const phone = useMediaQuery(MOBILE_CAMERA_QUERY);
   const [character, setCharacter] = useState(() => catalogEntry ? {
     name: catalogEntry.characterName,
     seriesName: catalogEntry.seriesName,
   } : null);
   const [error, setError] = useState(null);
+  const [characterLoadAttempt, setCharacterLoadAttempt] = useState(0);
 
   useCinematicViewport({ enabled: phone });
 
@@ -160,7 +161,7 @@ function PendingJourneyPage({ catalogEntry, characterSlug, loadError, loading, s
       });
 
     return () => controller.abort();
-  }, [catalogEntry, characterSlug, seriesSlug]);
+  }, [catalogEntry, characterLoadAttempt, characterSlug, seriesSlug]);
 
   const name = character?.name ?? titleFromSlug(characterSlug);
   const deferred = catalogEntry?.journeyStatus === "deferred";
@@ -168,12 +169,12 @@ function PendingJourneyPage({ catalogEntry, characterSlug, loadError, loading, s
     ? `This journey is held until House of the Dragon Season 3 concludes. Status is verified through ${catalogEntry.journeyCoverage.throughEpisode}.`
     : loading
       ? "The verified journey data is loading before the map can begin."
-      : "This season-by-season journey is being charted from verified appearances.";
+      : "This season-by-season journey is being prepared from verified appearances.";
   const statusLabel = deferred
     ? "Ongoing Story"
     : loading
       ? "Opening the map room…"
-      : "Journey being charted";
+      : "Journey coming soon";
 
   useEffect(() => {
     document.title = `${name} | Map of Ice and Fire`;
@@ -199,12 +200,25 @@ function PendingJourneyPage({ catalogEntry, characterSlug, loadError, loading, s
           <h1 id="pending-journey-title">{name}</h1>
           <p>
             {error || loadError
-              ? "This character could not be read from the map room."
+              ? "This journey could not be opened. Please try again."
               : statusCopy}
           </p>
           <span className="pending-journey-status" role="status" aria-live="polite">
             {error || loadError ? "Journey unavailable" : statusLabel}
           </span>
+          {(error || loadError) && (
+            <Button
+              type="button"
+              variant="outline"
+              className="journey-retry-control"
+              onClick={() => {
+                if (loadError && onRetry) onRetry();
+                else setCharacterLoadAttempt((attempt) => attempt + 1);
+              }}
+            >
+              Try again
+            </Button>
+          )}
         </div>
         <JourneyBackLink />
       </section>
@@ -227,6 +241,7 @@ function JourneyExperience({ journey }) {
   const [paused, setPaused] = useState(false);
   const [complete, setComplete] = useState(false);
   const [activeTravel, setActiveTravel] = useState(null);
+  const [mapFailed, setMapFailed] = useState(false);
   const [run, setRun] = useState(0);
   const [overviewView, setOverviewView] = useState(DEFAULT_OVERVIEW_VIEW);
   const pausedRef = useRef(false);
@@ -872,7 +887,11 @@ function JourneyExperience({ journey }) {
             fetchPriority="high"
             draggable="false"
             onError={handleMapImageError}
-            onLoad={handleMapImageLoad}
+            onLoad={(event) => {
+              setMapFailed(false);
+              handleMapImageLoad(event);
+            }}
+            onErrorCapture={() => setMapFailed(true)}
           />
           <svg
             className="journey-route-layer"
@@ -930,12 +949,12 @@ function JourneyExperience({ journey }) {
 
             {originPlace && (
               <circle
-                className="journey-stop journey-origin"
+                className="journey-stop"
                 data-journey-origin=""
                 data-place-id={originPlaceId}
                 cx={originPlace.x}
                 cy={originPlace.y}
-                r="19"
+                r="13"
               />
             )}
 
@@ -957,11 +976,20 @@ function JourneyExperience({ journey }) {
         </div>
 
         <div className="journey-vignette" aria-hidden="true" />
+        {mapFailed && (
+          <div className="journey-map-error" role="alert">
+            <strong>The map artwork did not load.</strong>
+            <span>The journey is safe. Refresh the artwork to continue.</span>
+            <Button type="button" variant="outline" onClick={() => window.location.reload()}>
+              Refresh map
+            </Button>
+          </div>
+        )}
         <JourneyBackLink />
         <div className={cn("journey-copy", complete && "journey-complete-copy")} key={`copy-${complete ? "complete" : season.season}`}>
           <p className="journey-kicker">
             {complete
-              ? `${journey.seasons.length} mapped ${journey.seasons.length === 1 ? "season" : "seasons"} · through ${journey.coverage.throughEpisode}`
+              ? `${journey.seasons.length} ${journey.seasons.length === 1 ? "season" : "seasons"} · verified through ${journey.coverage.throughEpisode}`
               : `Season ${season.season} of ${journey.totalSeasons}`}
           </p>
           <h1 id="journey-title">{complete ? journey.characterName : season.title}</h1>
@@ -1090,7 +1118,7 @@ function JourneyExperience({ journey }) {
 
         <p className="sr-only" aria-live="polite">
           {complete
-            ? `${journey.characterName}'s complete mapped journey is displayed. Map zoom ${Math.round(overviewView.scale * 100)} percent.`
+            ? `${journey.characterName}'s complete journey is displayed. Map zoom ${Math.round(overviewView.scale * 100)} percent.`
             : `Season ${season.season}: ${season.summary}`}
         </p>
         {complete && (
@@ -1110,6 +1138,7 @@ export function CharacterJourneyPage() {
   const [journey, setJourney] = useState(null);
   const [loading, setLoading] = useState(catalogEntry?.journeyStatus === "published");
   const [loadError, setLoadError] = useState(null);
+  const [loadAttempt, setLoadAttempt] = useState(0);
 
   useEffect(() => {
     let active = true;
@@ -1140,7 +1169,7 @@ export function CharacterJourneyPage() {
     return () => {
       active = false;
     };
-  }, [catalogEntry, characterSlug, seriesSlug]);
+  }, [catalogEntry, characterSlug, loadAttempt, seriesSlug]);
 
   if (!journey) {
     return (
@@ -1149,6 +1178,7 @@ export function CharacterJourneyPage() {
         characterSlug={characterSlug}
         loadError={loadError}
         loading={loading}
+        onRetry={loadError ? () => setLoadAttempt((attempt) => attempt + 1) : undefined}
         seriesSlug={seriesSlug}
       />
     );

@@ -25,6 +25,7 @@ describe("shared character journey data", () => {
       expect(journey.seasons.length).toBeGreaterThan(0);
 
       for (const item of journey.seasons) {
+        expect(item.title).not.toMatch(/mapped|mapping/i);
         expect(item.path).toMatch(/^M\s/);
         expect(item.summary.length).toBeGreaterThan(30);
         expect(item.routeSegments.length).toBeGreaterThan(0);

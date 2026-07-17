@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export function CharacterCard({ character, index }) {
   const [imageFailed, setImageFailed] = useState(false);
-  const mapped = character.journeyStatus === "published";
+  const available = character.journeyStatus === "published";
   const deferred = character.journeyStatus === "deferred";
   const showImage = character.portrait?.url && !imageFailed;
-  const actionLabel = mapped
+  const actionLabel = available
     ? `Open ${character.name}'s season journey`
     : deferred
       ? `View ${character.name}'s journey status`
@@ -36,7 +36,7 @@ export function CharacterCard({ character, index }) {
           )}
           <figcaption>{character.seriesName}</figcaption>
           <span className="journey-status" data-status={character.journeyStatus}>
-            {mapped ? "Journey mapped" : deferred ? "Ongoing story" : "Being charted"}
+            {available ? "Journey ready" : deferred ? "Ongoing story" : "Coming soon"}
           </span>
         </figure>
         <div className="character-card-copy">
@@ -45,7 +45,7 @@ export function CharacterCard({ character, index }) {
             <p>{character.title || character.family || "Season journey"}</p>
           </div>
           <span className="character-card-arrow" aria-hidden="true">
-            {mapped ? "Trace ↗" : deferred ? "View status ↗" : "Preview ↗"}
+            {available ? "Explore ↗" : deferred ? "View status ↗" : "Preview ↗"}
           </span>
         </div>
       </Link>

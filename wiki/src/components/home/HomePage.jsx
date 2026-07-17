@@ -118,7 +118,7 @@ export function HomePage() {
             <h1>Trace every character. Season by season.</h1>
             <p>
               Choose a character to follow their path across Westeros and Essos.
-              Verified journeys are published as they are charted.
+              Every available journey is built from verified on-screen appearances.
             </p>
           </div>
           <div className="catalog-count" aria-label={`${total} matching characters`}>
@@ -126,7 +126,7 @@ export function HomePage() {
             <span>characters</span>
             {!loading && (
               <small>
-                {published} mapped{deferred ? ` · ${deferred} ongoing` : ""}
+                {published} ready{deferred ? ` · ${deferred} ongoing` : ""}
               </small>
             )}
           </div>
@@ -177,7 +177,7 @@ export function HomePage() {
           <div className="catalog-error" role="alert">
             <p className="eyebrow">The map room is unavailable</p>
             <h2>Characters could not be loaded.</h2>
-            <p>{error}</p>
+            <p>Please check your connection and try again. Your filters will stay in place.</p>
             <Button type="button" variant="outline" onClick={() => loadCharacters()}>
               Try again
             </Button>
@@ -210,7 +210,7 @@ export function HomePage() {
                 disabled={loadingMore}
                 onClick={() => loadCharacters({ append: true, offset: characters.length })}
               >
-                {loadingMore ? "Charting more characters…" : "Show more characters"}
+                {loadingMore ? "Loading more characters…" : "Show more characters"}
               </Button>
             )}
           </>

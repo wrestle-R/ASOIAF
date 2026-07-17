@@ -2,7 +2,10 @@ async function readJson(response) {
   const payload = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(payload.message || payload.error || "Character request failed");
+    const error = new Error("We couldn't load the character archive. Please try again.");
+    error.status = response.status;
+    error.code = payload.error || "character-request-failed";
+    throw error;
   }
 
   return payload;

@@ -317,14 +317,6 @@ button {
   stroke-linecap: round;
 }
 
-.journey-origin {
-  fill: rgba(12, 17, 19, 0.7);
-  stroke: #f0d69f;
-  stroke-width: 4;
-  stroke-dasharray: none;
-  filter: drop-shadow(0 0 5px rgba(240, 214, 159, 0.82));
-}
-
 .journey-marker circle {
   fill: #0d0b09;
   stroke: rgba(245, 231, 203, 0.92);
@@ -707,6 +699,42 @@ button {
   letter-spacing: 0.09em;
   text-transform: uppercase;
   backdrop-filter: blur(10px);
+}
+
+.journey-retry-control {
+  display: flex;
+  width: fit-content;
+  margin-top: 0.75rem;
+  border-color: rgba(230, 201, 139, 0.42);
+  color: #f4ead5;
+  background: rgba(9, 13, 15, 0.72);
+}
+
+.journey-map-error {
+  position: absolute;
+  z-index: 40;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: min(28rem, calc(100% - 2rem));
+  gap: 0.55rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(230, 201, 139, 0.38);
+  border-radius: 1rem;
+  background: rgba(9, 13, 15, 0.92);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.46);
+  text-align: center;
+  backdrop-filter: blur(16px);
+  transform: translate(-50%, -50%);
+}
+
+.journey-map-error span {
+  color: rgba(244, 234, 213, 0.72);
+  font-size: 0.84rem;
+}
+
+.journey-map-error button {
+  margin: 0.25rem auto 0;
 }
 
 @keyframes journey-mobile-copy {
