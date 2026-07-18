@@ -40,16 +40,6 @@ const OVERVIEW_MAX_SCALE = 4;
 const OVERVIEW_ZOOM_STEP = 0.4;
 const OVERVIEW_KEYBOARD_PAN_PX = 56;
 const DEFAULT_OVERVIEW_VIEW = Object.freeze({ scale: 1, x: 0, y: 0 });
-const CITY_LABEL_OFFSETS = Object.freeze({
-  "kings-landing": Object.freeze({ x: 12, y: -12, anchor: "start" }),
-  oldtown: Object.freeze({ x: 12, y: -12, anchor: "start" }),
-  pentos: Object.freeze({ x: 12, y: 19, anchor: "start" }),
-  astapor: Object.freeze({ x: -12, y: -12, anchor: "end" }),
-  yunkai: Object.freeze({ x: 13, y: 20, anchor: "start" }),
-  meereen: Object.freeze({ x: 13, y: -14, anchor: "start" }),
-  qarth: Object.freeze({ x: -12, y: 21, anchor: "end" }),
-  "vaes-dothrak": Object.freeze({ x: -13, y: 20, anchor: "end" }),
-});
 
 function clamp(value, minimum, maximum) {
   return Math.min(Math.max(value, minimum), maximum);
@@ -66,7 +56,7 @@ function completionCopy(journey) {
   if (journey.coverage.completionReason === "character-death") {
     return `Their television journey is complete and verified through ${journey.coverage.throughEpisode}.`;
   }
-  return "Their complete television journey across the known world is ready to explore.";
+  return "Explore their complete television journey across the known world.";
 }
 
 function getUniqueSeasonWaypoints(season) {
@@ -144,20 +134,14 @@ function PendingJourneyPage({ catalogEntry, characterSlug, loadError, loading, o
   }, [catalogEntry, characterLoadAttempt, characterSlug, seriesSlug]);
 
   const name = character?.name ?? titleFromSlug(characterSlug);
-  const hotdDeferred = catalogEntry?.seriesSlug === "house-of-the-dragon"
-    && catalogEntry?.journeyStatus === "deferred";
-  const auditedOut = catalogEntry?.journeyStatus === "deferred" && !hotdDeferred;
-  const statusCopy = hotdDeferred
-    ? `This journey is held until House of the Dragon Season 3 concludes. Status is verified through ${catalogEntry.journeyCoverage.throughEpisode}.`
-    : auditedOut
-      ? "No route is published because the current evidence does not support a defensible mapped journey."
+  const unavailable = catalogEntry?.journeyStatus === "deferred";
+  const statusCopy = unavailable
+    ? "This journey will be available after House of the Dragon Season 4."
     : loading
       ? "The verified journey data is loading before the map can begin."
       : "This season-by-season journey is being prepared from verified appearances.";
-  const statusLabel = hotdDeferred
-    ? "Ongoing Story"
-    : auditedOut
-      ? "Held by the accuracy audit"
+  const statusLabel = unavailable
+    ? "After HOTD Season 4"
     : loading
       ? "Opening the map room…"
       : "Journey coming soon";
@@ -829,9 +813,7 @@ function JourneyExperience({ journey }) {
             aria-label="Journey route and major city reference layer"
           >
             <g className="journey-city-layer" aria-label="Major cities">
-              {MAJOR_CITIES.map((city) => {
-                const label = CITY_LABEL_OFFSETS[city.id];
-                return (
+              {MAJOR_CITIES.map((city) => (
                 <g
                   className="journey-city"
                   data-city-id={city.id}
@@ -841,16 +823,8 @@ function JourneyExperience({ journey }) {
                 >
                   <title>{city.name}</title>
                   <circle cx={city.x} cy={city.y} r="5" />
-                  <text
-                    x={city.x + label.x}
-                    y={city.y + label.y}
-                    textAnchor={label.anchor}
-                  >
-                    {city.name}
-                  </text>
                 </g>
-                );
-              })}
+              ))}
             </g>
 
             {!complete && !reducedMotion && (

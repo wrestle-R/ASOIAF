@@ -355,17 +355,6 @@ button {
   stroke-width: 2.5;
 }
 
-.journey-city text {
-  fill: currentColor;
-  font-family: var(--font-sans);
-  font-size: 15px;
-  font-weight: 700;
-  paint-order: stroke;
-  stroke: rgba(20, 15, 11, 0.92);
-  stroke-linejoin: round;
-  stroke-width: 5px;
-}
-
 .journey-city:focus {
   outline: none;
 }
@@ -376,17 +365,6 @@ button {
 }
 
 @media (max-width: 880px) {
-  .journey-city text {
-    display: none;
-  }
-
-  .journey-city:hover text,
-  .journey-city:focus text,
-  .journey-city:focus-within text {
-    display: block;
-    font-size: 22px;
-  }
-
   .journey-city circle {
     r: 7px;
   }

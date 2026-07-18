@@ -36,7 +36,7 @@ export function CharacterCard({ character, index }) {
           )}
           <figcaption>{character.seriesName}</figcaption>
           <span className="journey-status" data-status={character.journeyStatus}>
-            {available ? "Journey ready" : deferred ? "Ongoing story" : "Coming soon"}
+            {available ? "Explore journey" : "After HOTD Season 4"}
           </span>
         </figure>
         <div className="character-card-copy">

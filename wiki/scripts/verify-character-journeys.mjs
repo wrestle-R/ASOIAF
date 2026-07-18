@@ -776,7 +776,7 @@ async function verifyEveryCharacterRoute(browser, characters) {
     } else {
       await page.locator(".pending-journey-stage").waitFor();
       await page.getByRole("heading", { name: character.name, exact: true }).waitFor();
-      await page.getByText("Ongoing Story", { exact: true }).waitFor();
+      await page.getByText("After HOTD Season 4", { exact: true }).waitFor();
     }
 
     const backLinks = page.locator("a.journey-back-control[href='/home']");
@@ -809,7 +809,7 @@ async function verifyDeferredPhone(browser, deferredCharacter) {
   await assertViewportLocked(page, label, { requireClasses: false });
   await assertPersistentBackLink(page, label);
   await assertResponsiveOverlayLayout(page, label);
-  await page.getByText("Ongoing Story", { exact: true }).waitFor();
+  await page.getByText("After HOTD Season 4", { exact: true }).waitFor();
   if (await page.locator(".journey-map-image").count() !== 1) fail(label, "deferred view does not show the shared map");
   await page.screenshot({ path: new URL("deferred-character-phone.png", outputDir).pathname });
   reportErrors();

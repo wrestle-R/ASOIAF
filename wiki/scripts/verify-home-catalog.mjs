@@ -156,7 +156,7 @@ async function assertCardDestinations(page, label) {
   if (new URL(page.url()).pathname !== pendingHref) {
     fail(label, `ongoing card navigated to ${new URL(page.url()).pathname}`);
   }
-  await page.getByText("Ongoing Story", { exact: true }).waitFor({ timeout: 10_000 })
+  await page.getByText("After HOTD Season 4", { exact: true }).waitFor({ timeout: 10_000 })
     .catch(() => fail(label, "ongoing card does not open an honest deferred state"));
   if (await page.getByRole("link", { name: "Back to Home", exact: true }).getAttribute("href") !== "/home") {
     fail(label, "ongoing journey does not return to the catalogue");
