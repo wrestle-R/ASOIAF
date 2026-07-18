@@ -101,6 +101,54 @@ export const PLACES = Object.freeze({
   yunkai: Object.freeze({ name: "Yunkai", x: 1050, y: 742 }),
 });
 
+const AUDITED_RUNTIME_PLACE_IDS = new Set([
+  "ashford-meadow", "astapor", "bear-island", "blackwater-bay", "blackwater-rush",
+  "castle-black", "castle-stokeworth", "casterly-rock", "crasters-keep", "crossroads-inn",
+  "deepwood-motte", "dragonstone", "eastwatch", "eyrie", "hardhome", "harrenhal",
+  "highgarden", "hollow-hill", "horn-hill", "kings-landing", "kingswood",
+  "lands-of-always-winter", "last-hearth", "lhazar", "meereen", "moat-cailin",
+  "moles-town", "nightfort", "oldtown", "outside-winterfell", "oxcross", "pentos",
+  "pyke", "qarth", "red-waste", "riverrun", "runestone", "storms-end", "tarth",
+  "the-dreadfort", "the-fist", "the-frostfangs", "the-twins", "three-eyed-raven-cave",
+  "tower-of-joy", "vaes-dothrak", "water-gardens", "winter-town", "winterfell", "yunkai",
+]);
+
+export const PLACE_COORDINATE_AUDIT = Object.freeze(Object.fromEntries(
+  [...AUDITED_RUNTIME_PLACE_IDS].map((placeId) => {
+    const place = PLACES[placeId];
+    if (!place) throw new Error(`Audited coordinate references unknown place ${placeId}`);
+    return [placeId, Object.freeze({
+      source: "Immutable illustrated world map overlay audit",
+      sourceUrl: JOURNEY_MAP.image,
+      sourceMap: Object.freeze({ width: JOURNEY_MAP.width, height: JOURNEY_MAP.height }),
+      normalizedPosition: Object.freeze({
+        x: Number((place.x / JOURNEY_MAP.width).toFixed(6)),
+        y: Number((place.y / JOURNEY_MAP.height).toFixed(6)),
+      }),
+      reviewer: "ASOIAF map audit",
+      auditDate: "2026-07-18",
+      status: "accepted",
+    })];
+  }),
+));
+
+export const MAJOR_CITY_PLACE_IDS = Object.freeze([
+  "kings-landing",
+  "oldtown",
+  "pentos",
+  "astapor",
+  "yunkai",
+  "meereen",
+  "qarth",
+  "vaes-dothrak",
+]);
+
+export const MAJOR_CITIES = Object.freeze(MAJOR_CITY_PLACE_IDS.map((placeId) => Object.freeze({
+  id: placeId,
+  ...PLACES[placeId],
+  coordinateAudit: PLACE_COORDINATE_AUDIT[placeId],
+})));
+
 // Ordered like the nine-realm tour. The Crownlands artwork marks both seats.
 export const REALM_SEAT_PLACE_IDS = Object.freeze([
   "winterfell",

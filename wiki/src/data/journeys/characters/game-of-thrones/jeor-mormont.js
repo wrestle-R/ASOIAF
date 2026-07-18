@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 1,
-      "title": "Season 1: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 1",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -80,14 +80,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 2,
-      "title": "Season 2: 1 mapped moves",
-      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "title": "Season 2",
+      "summary": "",
       "stops": [
         {
           "placeId": "crasters-keep",
@@ -116,7 +121,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "the-fist",
@@ -133,14 +143,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 3,
-      "title": "Season 3: 2 mapped moves",
-      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
         {
           "placeId": "the-fist",
@@ -157,24 +172,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S3E2",
-              "scene": "North of the Wall — Nightswatch March South; scene begins 0:27:37.",
-              "source": {
-                "title": "Game of Thrones S3E2: “Dark Wings, Dark Words” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/2-dark-wings-dark-words"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "crasters-keep",
@@ -203,7 +206,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 1,
-      "title": "Season 1: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 1",
+      "summary": "",
       "stops": [
         {
           "placeId": "kings-landing",
@@ -44,56 +44,20 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 2,
-      "title": "Season 2: 1 mapped moves",
-      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "title": "Season 2",
+      "summary": "",
       "stops": [
-        {
-          "placeId": "kingsroad",
-          "appearances": [
-            {
-              "episode": "S2E1",
-              "scene": "The Riverlands — The Kingsroad; scene begins 0:51:23.",
-              "source": {
-                "title": "Game of Thrones S2E1: “The North Remembers” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-2/1-the-north-remembers"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S2E1",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S2E2",
-              "scene": "The Riverlands — The Kingsroad; scene begins 0:02:08.",
-              "source": {
-                "title": "Game of Thrones S2E2: “The Night Lands” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-2/2-the-night-lands"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S2E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S2E3",
-              "scene": "The Riverlands — The Kingsroad; scene begins 0:42:11.",
-              "source": {
-                "title": "Game of Thrones S2E3: “What Is Dead May Never Die” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-2/3-what-is-dead-may-never-die"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S2E3",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
         {
           "placeId": "harrenhal",
           "appearances": [
@@ -145,61 +109,20 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 3,
-      "title": "Season 3: 4 mapped moves",
-      "summary": "The screen record contains 5 ordered, source-backed location stops for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
-        {
-          "placeId": "red-fork",
-          "appearances": [
-            {
-              "episode": "S3E2",
-              "scene": "The Riverlands — North to the Red Fork; scene begins 0:32:00.",
-              "source": {
-                "title": "Game of Thrones S3E2: “Dark Wings, Dark Words” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/2-dark-wings-dark-words"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "crossroads-inn",
-          "appearances": [
-            {
-              "episode": "S3E2",
-              "scene": "The Riverlands — Crossroads Inn; scene begins 0:48:46.",
-              "source": {
-                "title": "Game of Thrones S3E2: “Dark Wings, Dark Words” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/2-dark-wings-dark-words"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S3E3",
-              "scene": "The Riverlands — Crossroads Inn; scene begins 0:12:22.",
-              "source": {
-                "title": "Game of Thrones S3E3: “Walk of Punishment” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/3-walk-of-punishment"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E3",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
         {
           "placeId": "hollow-hill",
           "appearances": [
@@ -239,7 +162,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "blackwater-bay",
@@ -256,7 +184,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -285,14 +218,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 7,
-      "title": "Season 7: 5 mapped moves",
-      "summary": "The screen record contains 6 ordered, source-backed location stops for this season.",
+      "title": "Season 7",
+      "summary": "",
       "stops": [
         {
           "placeId": "kings-landing",
@@ -309,7 +247,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -326,7 +269,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "eastwatch",
@@ -343,65 +291,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S7E5",
-              "scene": "North of the Wall — The Wall; scene begins 0:58:53.",
-              "source": {
-                "title": "Game of Thrones S7E5: “Eastwatch” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/5-eastwatch"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E5",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S7E6",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 0:04:17.",
-              "source": {
-                "title": "Game of Thrones S7E6: “Beyond the Wall” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/6-beyond-the-wall"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S7E6",
-              "scene": "North of the Wall — The Wall; scene begins 0:38:05.",
-              "source": {
-                "title": "Game of Thrones S7E6: “Beyond the Wall” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/6-beyond-the-wall"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 8,
-      "title": "Season 8: 2 mapped moves",
-      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "title": "Season 8",
+      "summary": "",
       "stops": [
         {
           "placeId": "winter-town",
@@ -418,7 +320,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "winterfell",
@@ -471,24 +378,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-kings-landing",
-          "appearances": [
-            {
-              "episode": "S8E6",
-              "scene": "The Crownlands — Outside King's Landing; scene begins 0:45:58.",
-              "source": {
-                "title": "Game of Thrones S8E6: “The Iron Throne” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-8/6-the-iron-throne"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S8E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

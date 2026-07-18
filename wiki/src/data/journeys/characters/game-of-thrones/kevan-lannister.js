@@ -13,57 +13,9 @@ export default createJourney({
   },
   "seasons": [
     {
-      "season": 1,
-      "title": "Season 1: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
-      "stops": [
-        {
-          "placeId": "lannister-camp",
-          "appearances": [
-            {
-              "episode": "S1E8",
-              "scene": "The Westerlands — Lannister Camp; scene begins 0:44:34.",
-              "source": {
-                "title": "Game of Thrones S1E8: “The Pointy End” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/8-the-pointy-end"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E8",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S1E9",
-              "scene": "The Riverlands — Lannister Camp; scene begins 0:23:19.",
-              "source": {
-                "title": "Game of Thrones S1E9: “Baelor” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/9-baelor"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S1E10",
-              "scene": "The Riverlands — Lannister Camp; scene begins 0:19:23.",
-              "source": {
-                "title": "Game of Thrones S1E10: “Fire and Blood” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/10-fire-and-blood"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "season": 2,
-      "title": "Season 2: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 2",
+      "summary": "",
       "stops": [
         {
           "placeId": "harrenhal",
@@ -80,14 +32,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 5,
-      "title": "Season 5: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 5",
+      "summary": "",
       "stops": [
         {
           "placeId": "kings-landing",
@@ -128,14 +85,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 6,
-      "title": "Season 6: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 6",
+      "summary": "",
       "stops": [
         {
           "placeId": "kings-landing",
@@ -200,7 +162,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 1,
-      "title": "Season 1: 5 mapped moves",
-      "summary": "The screen record contains 6 ordered, source-backed location stops for this season.",
+      "title": "Season 1",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -31,29 +31,7 @@ export default createJourney({
                 "title": "Scene-level location index for S1E1",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "outside-winterfell",
-          "appearances": [
-            {
-              "episode": "S1E1",
-              "scene": "The North — Outside Winterfell; scene begins 0:12:38.",
-              "source": {
-                "title": "Game of Thrones S1E1: “Winter Is Coming” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/1-winter-is-coming"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E1",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "winterfell",
-          "appearances": [
+            },
             {
               "episode": "S1E1",
               "scene": "The North — Winterfell; scene begins 0:20:45.",
@@ -78,41 +56,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "north-road",
-          "appearances": [
-            {
-              "episode": "S1E2",
-              "scene": "The North — The Kingsroad South to King's Landing; scene begins 0:21:51.",
-              "source": {
-                "title": "Game of Thrones S1E2: “The Kingsroad” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/2-the-kingsroad"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "crossroads-inn",
-          "appearances": [
-            {
-              "episode": "S1E2",
-              "scene": "The Riverlands — Crossroads Inn; scene begins 0:48:12.",
-              "source": {
-                "title": "Game of Thrones S1E2: “The Kingsroad” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/2-the-kingsroad"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "kings-landing",
@@ -213,55 +162,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        }
-      ]
-    },
-    {
-      "season": 4,
-      "title": "Season 4: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
-      "stops": [
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S4E2",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 0:27:30.",
-              "source": {
-                "title": "Game of Thrones S4E2: “The Lion and the Rose” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/2-the-lion-and-the-rose"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "season": 6,
-      "title": "Season 6: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
-      "stops": [
-        {
-          "placeId": "three-eyed-raven-cave",
-          "appearances": [
-            {
-              "episode": "S6E6",
-              "scene": "North of the Wall — Outside the Three-Eyed Raven; scene begins 0:05:23.",
-              "source": {
-                "title": "Game of Thrones S6E6: “Blood of My Blood” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/6-blood-of-my-blood"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 3,
-      "title": "Season 3: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
         {
           "placeId": "dragonstone",
@@ -44,14 +44,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 4,
-      "title": "Season 4: 1 mapped moves",
-      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "title": "Season 4",
+      "summary": "",
       "stops": [
         {
           "placeId": "dragonstone",
@@ -80,7 +85,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -97,14 +107,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 5,
-      "title": "Season 5: 1 mapped moves",
-      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "title": "Season 5",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -157,24 +172,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-winterfell",
-          "appearances": [
-            {
-              "episode": "S5E9",
-              "scene": "The North — Stannis Baratheon's Camp; scene begins 0:11:43.",
-              "source": {
-                "title": "Game of Thrones S5E9: “The Dance of Dragons” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/9-the-dance-of-dragons"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

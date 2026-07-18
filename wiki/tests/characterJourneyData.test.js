@@ -5,6 +5,7 @@ import {
   JOURNEY_MAP,
   loadAllPublishedJourneys,
   loadJourney,
+  PLACE_COORDINATE_AUDIT,
   PLACES,
 } from "../src/data/journeys/publishedJourneys.js";
 
@@ -15,10 +16,10 @@ beforeAll(async () => {
 });
 
 describe("shared character journey data", () => {
-  it("drives all 126 Stage 1 characters through the shared contract", () => {
-    expect(journeys).toHaveLength(126);
-    expect(journeys.filter((journey) => journey.seriesSlug === "game-of-thrones")).toHaveLength(100);
-    expect(journeys.filter((journey) => journey.seriesSlug === "a-knight-of-the-seven-kingdoms")).toHaveLength(26);
+  it("drives only audited characters through the shared contract", () => {
+    expect(journeys).toHaveLength(101);
+    expect(journeys.filter((journey) => journey.seriesSlug === "game-of-thrones")).toHaveLength(99);
+    expect(journeys.filter((journey) => journey.seriesSlug === "a-knight-of-the-seven-kingdoms")).toHaveLength(2);
 
     for (const journey of journeys) {
       expect(journey.key).toBe(`${journey.seriesSlug}/${journey.characterSlug}`);
@@ -47,14 +48,14 @@ describe("shared character journey data", () => {
     }
   });
 
-  it("keeps Arya's Braavos stops on the audited Great Lagoon anchor", async () => {
+  it("does not publish the old guessed Braavos overlay", async () => {
     const journey = await loadJourney("game-of-thrones", "arya-stark");
     const braavosStops = journey.seasons
       .flatMap((season) => season.stops)
       .filter((stop) => stop.placeId === "braavos");
 
-    expect(braavosStops.length).toBeGreaterThan(0);
-    expect(PLACES.braavos).toEqual({ name: "Braavos", x: 720, y: 280 });
+    expect(braavosStops).toHaveLength(0);
+    expect(PLACE_COORDINATE_AUDIT.braavos).toBeUndefined();
   });
 
   it("applies the manually reviewed Jon S1 and Theon S2 routes", async () => {

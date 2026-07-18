@@ -13,6 +13,9 @@ export {
 
 export {
   JOURNEY_MAP,
+  MAJOR_CITIES,
+  MAJOR_CITY_PLACE_IDS,
+  PLACE_COORDINATE_AUDIT,
   PLACES,
   REALM_SEAT_PLACE_IDS,
   getSeasonOrigin,

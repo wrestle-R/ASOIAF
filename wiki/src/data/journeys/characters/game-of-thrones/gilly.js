@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 2,
-      "title": "Season 2: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 2",
+      "summary": "",
       "stops": [
         {
           "placeId": "crasters-keep",
@@ -56,14 +56,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 3,
-      "title": "Season 3: 4 mapped moves",
-      "summary": "The screen record contains 5 ordered, source-backed location stops for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
         {
           "placeId": "crasters-keep",
@@ -92,41 +97,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S3E6",
-              "scene": "North of the Wall — South to the Wall; scene begins 0:01:54.",
-              "source": {
-                "title": "Game of Thrones S3E6: “The Climb” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/6-the-climb"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S3E8",
-              "scene": "North of the Wall — Destroyed Cabin; scene begins 0:47:55.",
-              "source": {
-                "title": "Game of Thrones S3E8: “Second Sons” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/8-second-sons"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E8",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "nightfort",
@@ -155,7 +131,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -172,14 +153,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 4,
-      "title": "Season 4: 3 mapped moves",
-      "summary": "The screen record contains 4 ordered, source-backed location stops for this season.",
+      "title": "Season 4",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -196,7 +182,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "moles-town",
@@ -225,24 +216,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-castle-black",
-          "appearances": [
-            {
-              "episode": "S4E9",
-              "scene": "The Wall — Outside Castle Black; scene begins 0:08:34.",
-              "source": {
-                "title": "Game of Thrones S4E9: “The Watchers on the Wall” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/9-the-watchers-on-the-wall"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -259,14 +238,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 5,
-      "title": "Season 5: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 5",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -343,44 +327,20 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 6,
-      "title": "Season 6: 1 mapped moves",
-      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "title": "Season 6",
+      "summary": "",
       "stops": [
-        {
-          "placeId": "horn-hill",
-          "appearances": [
-            {
-              "episode": "S6E3",
-              "scene": "The Reach — To Horn Hill; scene begins 0:11:15.",
-              "source": {
-                "title": "Game of Thrones S6E3: “Oathbreaker” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/3-oathbreaker"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E3",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S6E6",
-              "scene": "The Reach — Horn Hill; scene begins 0:09:00.",
-              "source": {
-                "title": "Game of Thrones S6E6: “Blood of My Blood” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/6-blood-of-my-blood"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
         {
           "placeId": "oldtown",
           "appearances": [
@@ -396,14 +356,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 7,
-      "title": "Season 7: 1 mapped moves",
-      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "title": "Season 7",
+      "summary": "",
       "stops": [
         {
           "placeId": "oldtown",
@@ -432,7 +397,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "winterfell",
@@ -449,14 +419,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 8,
-      "title": "Season 8: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 8",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -497,7 +472,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

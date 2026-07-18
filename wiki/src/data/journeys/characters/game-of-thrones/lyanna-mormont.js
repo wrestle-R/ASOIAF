@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 6,
-      "title": "Season 6: 2 mapped moves",
-      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "title": "Season 6",
+      "summary": "",
       "stops": [
         {
           "placeId": "bear-island",
@@ -32,36 +32,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-winterfell",
-          "appearances": [
-            {
-              "episode": "S6E7",
-              "scene": "The North — Stannis Baratheon's Camp; scene begins 0:42:16.",
-              "source": {
-                "title": "Game of Thrones S6E7: “The Broken Man” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/7-the-broken-man"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S6E9",
-              "scene": "The North — Outside Winterfell; scene begins 0:14:21.",
-              "source": {
-                "title": "Game of Thrones S6E9: “Battle of the Bastards” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/9-battle-of-the-bastards"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "winterfell",
@@ -78,14 +54,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 7,
-      "title": "Season 7: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 7",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -114,14 +95,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 8,
-      "title": "Season 8: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 8",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -174,7 +160,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

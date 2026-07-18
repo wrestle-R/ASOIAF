@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 3,
-      "title": "Season 3: 2 mapped moves",
-      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
         {
           "placeId": "riverrun",
@@ -56,24 +56,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "riverlands",
-          "appearances": [
-            {
-              "episode": "S3E7",
-              "scene": "The Riverlands — Camp of the North; scene begins 0:04:14.",
-              "source": {
-                "title": "Game of Thrones S3E7: “The Bear and the Maiden Fair” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/7-the-bear-and-the-maiden-fair"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "the-twins",
@@ -90,14 +78,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 6,
-      "title": "Season 6: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 6",
+      "summary": "",
       "stops": [
         {
           "placeId": "riverrun",
@@ -126,7 +119,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

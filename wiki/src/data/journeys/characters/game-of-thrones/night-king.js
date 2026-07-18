@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 4,
-      "title": "Season 4: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 4",
+      "summary": "",
       "stops": [
         {
           "placeId": "lands-of-always-winter",
@@ -32,14 +32,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 5,
-      "title": "Season 5: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 5",
+      "summary": "",
       "stops": [
         {
           "placeId": "hardhome",
@@ -56,14 +61,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 6,
-      "title": "Season 6: 1 mapped moves",
-      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "title": "Season 6",
+      "summary": "",
       "stops": [
         {
           "placeId": "lands-of-always-winter",
@@ -80,7 +90,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "three-eyed-raven-cave",
@@ -109,78 +124,20 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 7,
-      "title": "Season 7: 3 mapped moves",
-      "summary": "The screen record contains 4 ordered, source-backed location stops for this season.",
+      "title": "Season 7",
+      "summary": "",
       "stops": [
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S7E1",
-              "scene": "North of the Wall — South to the Wall; scene begins 0:09:33.",
-              "source": {
-                "title": "Game of Thrones S7E1: “Dragonstone” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/1-dragonstone"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E1",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S7E5",
-              "scene": "North of the Wall — South to the Wall; scene begins 0:20:08.",
-              "source": {
-                "title": "Game of Thrones S7E5: “Eastwatch” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/5-eastwatch"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E5",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S7E6",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 0:42:00.",
-              "source": {
-                "title": "Game of Thrones S7E6: “Beyond the Wall” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/6-beyond-the-wall"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S7E7",
-              "scene": "North of the Wall — The Wall; scene begins 1:18:05.",
-              "source": {
-                "title": "Game of Thrones S7E7: “The Dragon and the Wolf” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/7-the-dragon-and-the-wolf"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
         {
           "placeId": "eastwatch",
           "appearances": [
@@ -196,14 +153,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 8,
-      "title": "Season 8: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 8",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -220,7 +182,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

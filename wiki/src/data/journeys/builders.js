@@ -1,5 +1,4 @@
-import { applyAccuracyOverride } from "./accuracyOverrides.js";
-import { JOURNEY_MAP, PLACES } from "./places.js";
+import { JOURNEY_MAP, PLACE_COORDINATE_AUDIT, PLACES } from "./places.js";
 
 const VALID_COMPLETION_REASONS = new Set([
   "series-complete",
@@ -48,6 +47,9 @@ function freezeStop(stop, context) {
   if (!PLACES[stop.placeId]) {
     throw new Error(`${context} uses unknown place ${stop.placeId}`);
   }
+  if (PLACE_COORDINATE_AUDIT[stop.placeId]?.status !== "accepted") {
+    throw new Error(`${context} uses an unresolved coordinate ${stop.placeId}`);
+  }
 
   const rawAppearances = stop.appearances?.length
     ? stop.appearances
@@ -62,11 +64,26 @@ function freezeStop(stop, context) {
     `${context} appearance ${index + 1}`,
   ));
 
+  const depiction = stop.depiction ?? "depicted";
+  if (!["depicted", "officially_inferred"].includes(depiction)) {
+    throw new Error(`${context} has an invalid depiction`);
+  }
+  if (stop.reviewStatus !== "accepted" || !/^\d{4}-\d{2}-\d{2}$/.test(stop.auditDate ?? "")) {
+    throw new Error(`${context} is not an accepted audited record`);
+  }
+  if (!stop.evidenceType || !stop.reviewer) {
+    throw new Error(`${context} requires evidence type and reviewer metadata`);
+  }
+
   return Object.freeze({
     placeId: stop.placeId,
     episode: appearances[0].episode,
     scene: appearances[0].scene,
-    depiction: "depicted",
+    depiction,
+    reviewStatus: stop.reviewStatus,
+    auditDate: stop.auditDate,
+    evidenceType: stop.evidenceType,
+    reviewer: stop.reviewer,
     source: appearances[0].source,
     evidence: appearances[0].evidence,
     appearances: Object.freeze(appearances),
@@ -155,8 +172,7 @@ function buildSeason(item, journeyKey) {
   }
 
   const context = `${journeyKey} Season ${item.season}`;
-  const correctedStops = applyAccuracyOverride(journeyKey, item.season, item.stops);
-  const stops = correctedStops.map((stop, index) => freezeStop(
+  const stops = item.stops.map((stop, index) => freezeStop(
     stop,
     `${context} stop ${index + 1}`,
   ));
@@ -167,7 +183,9 @@ function buildSeason(item, journeyKey) {
     routeSegments.push(makeSegment(
       stops[index - 1].placeId,
       stops[index].placeId,
-      "depicted-route",
+      stops[index].depiction === "officially_inferred"
+        ? "officially-inferred-route"
+        : "depicted-route",
     ));
   }
 

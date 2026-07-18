@@ -13,117 +13,9 @@ export default createJourney({
   },
   "seasons": [
     {
-      "season": 3,
-      "title": "Season 3: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
-      "stops": [
-        {
-          "placeId": "yunkai",
-          "appearances": [
-            {
-              "episode": "S3E8",
-              "scene": "Yunkai — Outside Yunkai; scene begins 0:05:56.",
-              "source": {
-                "title": "Game of Thrones S3E8: “Second Sons” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/8-second-sons"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E8",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S3E9",
-              "scene": "Yunkai — Outside Yunkai; scene begins 0:09:28.",
-              "source": {
-                "title": "Game of Thrones S3E9: “The Rains of Castamere” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/9-the-rains-of-castamere"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S3E10",
-              "scene": "Yunkai; scene begins 0:56:40.",
-              "source": {
-                "title": "Game of Thrones S3E10: “Mhysa” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/10-mhysa"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "season": 4,
-      "title": "Season 4: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
-      "stops": [
-        {
-          "placeId": "meereen",
-          "appearances": [
-            {
-              "episode": "S4E1",
-              "scene": "Meereen — Outside Meereen; scene begins 0:19:28.",
-              "source": {
-                "title": "Game of Thrones S4E1: “Two Swords” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/1-two-swords"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E1",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S4E3",
-              "scene": "Meereen; scene begins 0:49:33.",
-              "source": {
-                "title": "Game of Thrones S4E3: “Breaker of Chains” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/3-breaker-of-chains"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E3",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S4E5",
-              "scene": "Meereen; scene begins 0:06:40.",
-              "source": {
-                "title": "Game of Thrones S4E5: “First of His Name” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/5-first-of-his-name"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E5",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S4E7",
-              "scene": "Meereen; scene begins 0:18:07.",
-              "source": {
-                "title": "Game of Thrones S4E7: “Mockingbird” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/7-mockingbird"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "season": 5,
-      "title": "Season 5: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 5",
+      "summary": "",
       "stops": [
         {
           "placeId": "meereen",
@@ -212,32 +104,20 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 6,
-      "title": "Season 6: 3 mapped moves",
-      "summary": "The screen record contains 4 ordered, source-backed location stops for this season.",
+      "title": "Season 6",
+      "summary": "",
       "stops": [
-        {
-          "placeId": "dothraki-sea",
-          "appearances": [
-            {
-              "episode": "S6E1",
-              "scene": "The Dothraki Sea; scene begins 0:37:48.",
-              "source": {
-                "title": "Game of Thrones S6E1: “The Red Woman” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/1-the-red-woman"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E1",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
         {
           "placeId": "vaes-dothrak",
           "appearances": [
@@ -265,24 +145,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "dothraki-sea",
-          "appearances": [
-            {
-              "episode": "S6E6",
-              "scene": "The Dothraki Sea; scene begins 0:49:01.",
-              "source": {
-                "title": "Game of Thrones S6E6: “Blood of My Blood” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/6-blood-of-my-blood"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "meereen",
@@ -311,7 +179,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

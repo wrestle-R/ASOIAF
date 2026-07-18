@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 1,
-      "title": "Season 1: 9 mapped moves",
-      "summary": "The screen record contains 10 ordered, source-backed location stops for this season.",
+      "title": "Season 1",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -31,29 +31,7 @@ export default createJourney({
                 "title": "Scene-level location index for S1E1",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "outside-winterfell",
-          "appearances": [
-            {
-              "episode": "S1E1",
-              "scene": "The North — Outside Winterfell; scene begins 0:12:38.",
-              "source": {
-                "title": "Game of Thrones S1E1: “Winter Is Coming” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/1-winter-is-coming"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E1",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "winterfell",
-          "appearances": [
+            },
             {
               "episode": "S1E1",
               "scene": "The North — Winterfell; scene begins 0:23:09.",
@@ -78,41 +56,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "north-road",
-          "appearances": [
-            {
-              "episode": "S1E2",
-              "scene": "The North — North to the Wall; scene begins 0:25:56.",
-              "source": {
-                "title": "Game of Thrones S1E2: “The Kingsroad” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/2-the-kingsroad"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "the-gift",
-          "appearances": [
-            {
-              "episode": "S1E2",
-              "scene": "The Wall — The Gift; scene begins 0:34:21.",
-              "source": {
-                "title": "Game of Thrones S1E2: “The Kingsroad” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/2-the-kingsroad"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -152,29 +101,7 @@ export default createJourney({
                 "title": "Scene-level location index for S1E7",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S1E7",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 0:46:27.",
-              "source": {
-                "title": "Game of Thrones S1E7: “You Win or You Die” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/7-you-win-or-you-die"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "castle-black",
-          "appearances": [
+            },
             {
               "episode": "S1E8",
               "scene": "The Wall — Castle Black; scene begins 0:10:14.",
@@ -210,29 +137,7 @@ export default createJourney({
                 "title": "Scene-level location index for S1E10",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "the-gift",
-          "appearances": [
-            {
-              "episode": "S1E10",
-              "scene": "The North — The Gift; scene begins 0:29:52.",
-              "source": {
-                "title": "Game of Thrones S1E10: “Fire and Blood” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/10-fire-and-blood"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "castle-black",
-          "appearances": [
+            },
             {
               "episode": "S1E10",
               "scene": "The Wall — Castle Black; scene begins 0:43:03.",
@@ -245,14 +150,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 2,
-      "title": "Season 2: 2 mapped moves",
-      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "title": "Season 2",
+      "summary": "",
       "stops": [
         {
           "placeId": "crasters-keep",
@@ -293,7 +203,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "the-fist",
@@ -310,7 +225,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "the-frostfangs",
@@ -363,14 +283,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 3,
-      "title": "Season 3: 8 mapped moves",
-      "summary": "The screen record contains 9 ordered, source-backed location stops for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
         {
           "placeId": "the-frostfangs",
@@ -387,41 +312,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-winterfell",
-          "appearances": [
-            {
-              "episode": "S3E2",
-              "scene": "The North — Outside Winterfell; scene begins 0:02:42.",
-              "source": {
-                "title": "Game of Thrones S3E2: “Dark Wings, Dark Words” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/2-dark-wings-dark-words"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "wildling-camp",
-          "appearances": [
-            {
-              "episode": "S3E2",
-              "scene": "North of the Wall — Wildlings March South; scene begins 0:24:23.",
-              "source": {
-                "title": "Game of Thrones S3E2: “Dark Wings, Dark Words” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/2-dark-wings-dark-words"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "the-fist",
@@ -438,41 +334,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "wildling-camp",
-          "appearances": [
-            {
-              "episode": "S3E5",
-              "scene": "North of the Wall — Wildling Camp; scene begins 0:05:31.",
-              "source": {
-                "title": "Game of Thrones S3E5: “Kissed by Fire” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/5-kissed-by-fire"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E5",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S3E6",
-              "scene": "North of the Wall — The Wall; scene begins 0:08:14.",
-              "source": {
-                "title": "Game of Thrones S3E6: “The Climb” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/6-the-climb"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -488,53 +355,7 @@ export default createJourney({
                 "title": "Scene-level location index for S3E6",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "the-gift",
-          "appearances": [
-            {
-              "episode": "S3E7",
-              "scene": "The Wall — The Gift; scene begins 0:02:06.",
-              "source": {
-                "title": "Game of Thrones S3E7: “The Bear and the Maiden Fair” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/7-the-bear-and-the-maiden-fair"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
             },
-            {
-              "episode": "S3E9",
-              "scene": "The North — The Gift; scene begins 0:15:52.",
-              "source": {
-                "title": "Game of Thrones S3E9: “The Rains of Castamere” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/9-the-rains-of-castamere"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S3E10",
-              "scene": "The North — The Gift; scene begins 0:40:55.",
-              "source": {
-                "title": "Game of Thrones S3E10: “Mhysa” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/10-mhysa"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "castle-black",
-          "appearances": [
             {
               "episode": "S3E10",
               "scene": "The Wall — Castle Black; scene begins 0:51:25.",
@@ -547,14 +368,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 4,
-      "title": "Season 4: 8 mapped moves",
-      "summary": "The screen record contains 9 ordered, source-backed location stops for this season.",
+      "title": "Season 4",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -595,7 +421,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "crasters-keep",
@@ -612,7 +443,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -652,63 +488,7 @@ export default createJourney({
                 "title": "Scene-level location index for S4E9",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S4E10",
-              "scene": "North of the Wall — The Wall; scene begins 0:02:50.",
-              "source": {
-                "title": "Game of Thrones S4E10: “The Children” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/10-the-children"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S4E10",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 0:03:33.",
-              "source": {
-                "title": "Game of Thrones S4E10: “The Children” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/10-the-children"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S4E10",
-              "scene": "North of the Wall — The Wall; scene begins 0:09:18.",
-              "source": {
-                "title": "Game of Thrones S4E10: “The Children” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/10-the-children"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "castle-black",
-          "appearances": [
+            },
             {
               "episode": "S4E10",
               "scene": "The Wall — Castle Black; scene begins 0:28:06.",
@@ -721,48 +501,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S4E10",
-              "scene": "North of the Wall — The Wall; scene begins 0:31:31.",
-              "source": {
-                "title": "Game of Thrones S4E10: “The Children” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/10-the-children"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S4E10",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 0:31:36.",
-              "source": {
-                "title": "Game of Thrones S4E10: “The Children” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/10-the-children"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 5,
-      "title": "Season 5: 3 mapped moves",
-      "summary": "The screen record contains 4 ordered, source-backed location stops for this season.",
+      "title": "Season 5",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -839,7 +590,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "hardhome",
@@ -856,24 +612,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S5E9",
-              "scene": "North of the Wall — The Wall; scene begins 0:06:38.",
-              "source": {
-                "title": "Game of Thrones S5E9: “The Dance of Dragons” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/9-the-dance-of-dragons"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -902,14 +646,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 6,
-      "title": "Season 6: 5 mapped moves",
-      "summary": "The screen record contains 6 ordered, source-backed location stops for this season.",
+      "title": "Season 6",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -974,24 +723,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-winterfell",
-          "appearances": [
-            {
-              "episode": "S6E7",
-              "scene": "The North — Stannis Baratheon's Camp; scene begins 0:15:10.",
-              "source": {
-                "title": "Game of Thrones S6E7: “The Broken Man” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/7-the-broken-man"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "bear-island",
@@ -1008,7 +745,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "deepwood-motte",
@@ -1025,36 +767,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-winterfell",
-          "appearances": [
-            {
-              "episode": "S6E7",
-              "scene": "The North — Stannis Baratheon's Camp; scene begins 0:40:38.",
-              "source": {
-                "title": "Game of Thrones S6E7: “The Broken Man” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/7-the-broken-man"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S6E9",
-              "scene": "The North — Outside Winterfell; scene begins 0:14:21.",
-              "source": {
-                "title": "Game of Thrones S6E9: “Battle of the Bastards” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/9-battle-of-the-bastards"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "winterfell",
@@ -1083,14 +801,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 7,
-      "title": "Season 7: 11 mapped moves",
-      "summary": "The screen record contains 12 ordered, source-backed location stops for this season.",
+      "title": "Season 7",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -1119,7 +842,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -1160,7 +888,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "eastwatch",
@@ -1176,63 +909,7 @@ export default createJourney({
                 "title": "Scene-level location index for S7E5",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S7E5",
-              "scene": "North of the Wall — The Wall; scene begins 0:58:53.",
-              "source": {
-                "title": "Game of Thrones S7E5: “Eastwatch” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/5-eastwatch"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E5",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S7E6",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 0:04:17.",
-              "source": {
-                "title": "Game of Thrones S7E6: “Beyond the Wall” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/6-beyond-the-wall"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S7E6",
-              "scene": "North of the Wall — The Wall; scene begins 1:01:06.",
-              "source": {
-                "title": "Game of Thrones S7E6: “Beyond the Wall” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/6-beyond-the-wall"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "eastwatch",
-          "appearances": [
+            },
             {
               "episode": "S7E6",
               "scene": "The Wall — Eastwatch; scene begins 1:01:18.",
@@ -1245,24 +922,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "shivering-sea",
-          "appearances": [
-            {
-              "episode": "S7E6",
-              "scene": "The Shivering Sea; scene begins 1:05:52.",
-              "source": {
-                "title": "Game of Thrones S7E6: “Beyond the Wall” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/6-beyond-the-wall"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "blackwater-bay",
@@ -1279,24 +944,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-kings-landing",
-          "appearances": [
-            {
-              "episode": "S7E7",
-              "scene": "The Crownlands — Outside King's Landing; scene begins 0:09:23.",
-              "source": {
-                "title": "Game of Thrones S7E7: “The Dragon and the Wolf” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/7-the-dragon-and-the-wolf"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -1313,31 +966,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "narrow-sea",
-          "appearances": [
-            {
-              "episode": "S7E7",
-              "scene": "The Narrow Sea; scene begins 1:11:27.",
-              "source": {
-                "title": "Game of Thrones S7E7: “The Dragon and the Wolf” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/7-the-dragon-and-the-wolf"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 8,
-      "title": "Season 8: 9 mapped moves",
-      "summary": "The screen record contains 10 ordered, source-backed location stops for this season.",
+      "title": "Season 8",
+      "summary": "",
       "stops": [
         {
           "placeId": "winter-town",
@@ -1354,7 +995,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "winterfell",
@@ -1370,29 +1016,7 @@ export default createJourney({
                 "title": "Scene-level location index for S8E1",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "outside-winterfell",
-          "appearances": [
-            {
-              "episode": "S8E1",
-              "scene": "The North — Outside Winterfell; scene begins 0:35:03.",
-              "source": {
-                "title": "Game of Thrones S8E1: “Winterfell” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-8/1-winterfell"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S8E1",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "winterfell",
-          "appearances": [
+            },
             {
               "episode": "S8E1",
               "scene": "The North — Winterfell; scene begins 0:40:05.",
@@ -1441,7 +1065,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -1458,7 +1087,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "blackwater-bay",
@@ -1475,7 +1109,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "kings-landing",
@@ -1504,7 +1143,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -1521,41 +1165,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S8E6",
-              "scene": "North of the Wall — The Wall; scene begins 1:18:20.",
-              "source": {
-                "title": "Game of Thrones S8E6: “The Iron Throne” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-8/6-the-iron-throne"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S8E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S8E6",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 1:19:40.",
-              "source": {
-                "title": "Game of Thrones S8E6: “The Iron Throne” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-8/6-the-iron-throne"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S8E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

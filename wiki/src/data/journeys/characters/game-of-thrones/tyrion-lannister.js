@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 1,
-      "title": "Season 1: 11 mapped moves",
-      "summary": "The screen record contains 12 ordered, source-backed location stops for this season.",
+      "title": "Season 1",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -44,41 +44,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "north-road",
-          "appearances": [
-            {
-              "episode": "S1E2",
-              "scene": "The North — North to the Wall; scene begins 0:25:56.",
-              "source": {
-                "title": "Game of Thrones S1E2: “The Kingsroad” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/2-the-kingsroad"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "the-gift",
-          "appearances": [
-            {
-              "episode": "S1E2",
-              "scene": "The Wall — The Gift; scene begins 0:34:21.",
-              "source": {
-                "title": "Game of Thrones S1E2: “The Kingsroad” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/2-the-kingsroad"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -95,7 +66,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "winterfell",
@@ -112,41 +88,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "crossroads-inn",
-          "appearances": [
-            {
-              "episode": "S1E4",
-              "scene": "The Riverlands — Crossroads Inn; scene begins 0:51:27.",
-              "source": {
-                "title": "Game of Thrones S1E4: “Cripples, Bastards, and Broken Things” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/4-cripples-bastards-and-broken-things"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E4",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "vale-road",
-          "appearances": [
-            {
-              "episode": "S1E5",
-              "scene": "The Vale — Eastern Road; scene begins 0:10:22.",
-              "source": {
-                "title": "Game of Thrones S1E5: “The Wolf and the Lion” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/5-the-wolf-and-the-lion"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E5",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "eyrie",
@@ -175,94 +122,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "westerlands-road",
-          "appearances": [
-            {
-              "episode": "S1E8",
-              "scene": "The Vale — To the Westerlands; scene begins 0:18:31.",
-              "source": {
-                "title": "Game of Thrones S1E8: “The Pointy End” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/8-the-pointy-end"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E8",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "lannister-camp",
-          "appearances": [
-            {
-              "episode": "S1E8",
-              "scene": "The Westerlands — Lannister Camp; scene begins 0:43:21.",
-              "source": {
-                "title": "Game of Thrones S1E8: “The Pointy End” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/8-the-pointy-end"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E8",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S1E9",
-              "scene": "The Riverlands — Lannister Camp; scene begins 0:23:19.",
-              "source": {
-                "title": "Game of Thrones S1E9: “Baelor” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/9-baelor"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "riverlands",
-          "appearances": [
-            {
-              "episode": "S1E9",
-              "scene": "The Riverlands — Battlefield; scene begins 0:44:52.",
-              "source": {
-                "title": "Game of Thrones S1E9: “Baelor” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/9-baelor"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "lannister-camp",
-          "appearances": [
-            {
-              "episode": "S1E10",
-              "scene": "The Riverlands — Lannister Camp; scene begins 0:19:23.",
-              "source": {
-                "title": "Game of Thrones S1E10: “Fire and Blood” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/10-fire-and-blood"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 2,
-      "title": "Season 2: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 2",
+      "summary": "",
       "stops": [
         {
           "placeId": "kings-landing",
@@ -387,14 +259,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 3,
-      "title": "Season 3: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
         {
           "placeId": "kings-landing",
@@ -507,14 +384,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 4,
-      "title": "Season 4: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 4",
+      "summary": "",
       "stops": [
         {
           "placeId": "kings-landing",
@@ -615,14 +497,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 5,
-      "title": "Season 5: 3 mapped moves",
-      "summary": "The screen record contains 4 ordered, source-backed location stops for this season.",
+      "title": "Season 5",
+      "summary": "",
       "stops": [
         {
           "placeId": "pentos",
@@ -651,125 +538,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "volantis",
-          "appearances": [
-            {
-              "episode": "S5E3",
-              "scene": "Volantis; scene begins 0:52:42.",
-              "source": {
-                "title": "Game of Thrones S5E3: “High Sparrow” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/3-high-sparrow"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E3",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S5E4",
-              "scene": "Volantis; scene begins 0:03:27.",
-              "source": {
-                "title": "Game of Thrones S5E4: “Sons of the Harpy” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/4-sons-of-the-harpy"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E4",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "valyria",
-          "appearances": [
-            {
-              "episode": "S5E5",
-              "scene": "Valyria; scene begins 0:48:50.",
-              "source": {
-                "title": "Game of Thrones S5E5: “Kill the Boy” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/5-kill-the-boy"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E5",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S5E6",
-              "scene": "Valyria — Slaver's Bay; scene begins 0:09:41.",
-              "source": {
-                "title": "Game of Thrones S5E6: “Unbowed, Unbent, Unbroken” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/6-unbowed-unbent-unbroken"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "meereen",
-          "appearances": [
-            {
-              "episode": "S5E7",
-              "scene": "Meereen — Outside Meereen; scene begins 0:26:40.",
-              "source": {
-                "title": "Game of Thrones S5E7: “The Gift” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/7-the-gift"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S5E8",
-              "scene": "Meereen; scene begins 0:03:34.",
-              "source": {
-                "title": "Game of Thrones S5E8: “Hardhome” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/8-hardhome"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E8",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S5E9",
-              "scene": "Meereen; scene begins 0:37:02.",
-              "source": {
-                "title": "Game of Thrones S5E9: “The Dance of Dragons” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/9-the-dance-of-dragons"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S5E10",
-              "scene": "Meereen; scene begins 0:34:03.",
-              "source": {
-                "title": "Game of Thrones S5E10: “Mother's Mercy” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-5/10-mothers-mercy"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S5E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 6,
-      "title": "Season 6: 1 mapped moves",
-      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "title": "Season 6",
+      "summary": "",
       "stops": [
         {
           "placeId": "meereen",
@@ -870,31 +651,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "summer-sea",
-          "appearances": [
-            {
-              "episode": "S6E10",
-              "scene": "The Summer Sea; scene begins 1:09:36.",
-              "source": {
-                "title": "Game of Thrones S6E10: “The Winds of Winter” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-6/10-the-winds-of-winter"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S6E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 7,
-      "title": "Season 7: 10 mapped moves",
-      "summary": "The screen record contains 11 ordered, source-backed location stops for this season.",
+      "title": "Season 7",
+      "summary": "",
       "stops": [
         {
           "placeId": "dragonstone",
@@ -947,7 +716,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "blackwater-rush",
@@ -976,7 +750,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -993,7 +772,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "kings-landing",
@@ -1010,7 +794,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -1039,7 +828,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "blackwater-bay",
@@ -1056,24 +850,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-kings-landing",
-          "appearances": [
-            {
-              "episode": "S7E7",
-              "scene": "The Crownlands — Outside King's Landing; scene begins 0:09:23.",
-              "source": {
-                "title": "Game of Thrones S7E7: “The Dragon and the Wolf” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/7-the-dragon-and-the-wolf"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "kings-landing",
@@ -1090,24 +872,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-kings-landing",
-          "appearances": [
-            {
-              "episode": "S7E7",
-              "scene": "The Crownlands — Outside King's Landing; scene begins 0:41:02.",
-              "source": {
-                "title": "Game of Thrones S7E7: “The Dragon and the Wolf” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/7-the-dragon-and-the-wolf"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -1124,31 +894,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "narrow-sea",
-          "appearances": [
-            {
-              "episode": "S7E7",
-              "scene": "The Narrow Sea; scene begins 1:12:01.",
-              "source": {
-                "title": "Game of Thrones S7E7: “The Dragon and the Wolf” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-7/7-the-dragon-and-the-wolf"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S7E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 8,
-      "title": "Season 8: 10 mapped moves",
-      "summary": "The screen record contains 11 ordered, source-backed location stops for this season.",
+      "title": "Season 8",
+      "summary": "",
       "stops": [
         {
           "placeId": "winter-town",
@@ -1165,7 +923,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "winterfell",
@@ -1218,7 +981,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "winter-town",
@@ -1235,7 +1003,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "winterfell",
@@ -1252,7 +1025,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -1269,7 +1047,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "kings-landing",
@@ -1286,7 +1069,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "dragonstone",
@@ -1303,7 +1091,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "blackwater-bay",
@@ -1320,7 +1113,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "kings-landing",
@@ -1348,29 +1146,7 @@ export default createJourney({
                 "title": "Scene-level location index for S8E6",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "outside-kings-landing",
-          "appearances": [
-            {
-              "episode": "S8E6",
-              "scene": "The Crownlands — Outside King's Landing; scene begins 0:44:56.",
-              "source": {
-                "title": "Game of Thrones S8E6: “The Iron Throne” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-8/6-the-iron-throne"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S8E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "kings-landing",
-          "appearances": [
+            },
             {
               "episode": "S8E6",
               "scene": "The Crownlands — King's Landing; scene begins 0:58:29.",
@@ -1383,7 +1159,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

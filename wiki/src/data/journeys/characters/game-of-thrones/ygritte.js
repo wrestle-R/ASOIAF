@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 2,
-      "title": "Season 2: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 2",
+      "summary": "",
       "stops": [
         {
           "placeId": "the-frostfangs",
@@ -68,14 +68,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 3,
-      "title": "Season 3: 6 mapped moves",
-      "summary": "The screen record contains 7 ordered, source-backed location stops for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
         {
           "placeId": "the-frostfangs",
@@ -92,24 +97,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "wildling-camp",
-          "appearances": [
-            {
-              "episode": "S3E2",
-              "scene": "North of the Wall — Wildlings March South; scene begins 0:25:29.",
-              "source": {
-                "title": "Game of Thrones S3E2: “Dark Wings, Dark Words” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/2-dark-wings-dark-words"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "the-fist",
@@ -126,41 +119,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "wildling-camp",
-          "appearances": [
-            {
-              "episode": "S3E5",
-              "scene": "North of the Wall — Wildling Camp; scene begins 0:05:31.",
-              "source": {
-                "title": "Game of Thrones S3E5: “Kissed by Fire” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/5-kissed-by-fire"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E5",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "beyond-the-wall",
-          "appearances": [
-            {
-              "episode": "S3E6",
-              "scene": "North of the Wall — The Wall; scene begins 0:08:14.",
-              "source": {
-                "title": "Game of Thrones S3E6: “The Climb” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/6-the-climb"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -177,85 +141,20 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "the-gift",
-          "appearances": [
-            {
-              "episode": "S3E7",
-              "scene": "The Wall — The Gift; scene begins 0:02:06.",
-              "source": {
-                "title": "Game of Thrones S3E7: “The Bear and the Maiden Fair” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/7-the-bear-and-the-maiden-fair"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S3E9",
-              "scene": "The North — The Gift; scene begins 0:15:52.",
-              "source": {
-                "title": "Game of Thrones S3E9: “The Rains of Castamere” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/9-the-rains-of-castamere"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S3E10",
-              "scene": "The North — The Gift; scene begins 0:40:55.",
-              "source": {
-                "title": "Game of Thrones S3E10: “Mhysa” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/10-mhysa"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 4,
-      "title": "Season 4: 4 mapped moves",
-      "summary": "The screen record contains 5 ordered, source-backed location stops for this season.",
+      "title": "Season 4",
+      "summary": "",
       "stops": [
-        {
-          "placeId": "the-gift",
-          "appearances": [
-            {
-              "episode": "S4E1",
-              "scene": "The Wall — The Gift; scene begins 0:28:28.",
-              "source": {
-                "title": "Game of Thrones S4E1: “Two Swords” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/1-two-swords"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E1",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S4E3",
-              "scene": "The Wall — The Gift; scene begins 0:43:42.",
-              "source": {
-                "title": "Game of Thrones S4E3: “Breaker of Chains” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/3-breaker-of-chains"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E3",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
         {
           "placeId": "moles-town",
           "appearances": [
@@ -271,24 +170,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "outside-castle-black",
-          "appearances": [
-            {
-              "episode": "S4E9",
-              "scene": "The Wall — Outside Castle Black; scene begins 0:06:14.",
-              "source": {
-                "title": "Game of Thrones S4E9: “The Watchers on the Wall” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/9-the-watchers-on-the-wall"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         },
         {
           "placeId": "castle-black",
@@ -305,24 +192,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S4E10",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 0:31:36.",
-              "source": {
-                "title": "Game of Thrones S4E10: “The Children” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/10-the-children"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

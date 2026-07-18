@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 1,
-      "title": "Season 1: 1 mapped moves",
-      "summary": "The screen record contains 2 ordered, source-backed location stops for this season.",
+      "title": "Season 1",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -80,31 +80,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "the-gift",
-          "appearances": [
-            {
-              "episode": "S1E10",
-              "scene": "The North — The Gift; scene begins 0:29:52.",
-              "source": {
-                "title": "Game of Thrones S1E10: “Fire and Blood” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-1/10-fire-and-blood"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S1E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 3,
-      "title": "Season 3: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -121,14 +109,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 4,
-      "title": "Season 4: 2 mapped moves",
-      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "title": "Season 4",
+      "summary": "",
       "stops": [
         {
           "placeId": "castle-black",
@@ -192,29 +185,7 @@ export default createJourney({
                 "title": "Scene-level location index for S4E9",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "outside-castle-black",
-          "appearances": [
-            {
-              "episode": "S4E9",
-              "scene": "The Wall — Outside Castle Black; scene begins 0:19:59.",
-              "source": {
-                "title": "Game of Thrones S4E9: “The Watchers on the Wall” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/9-the-watchers-on-the-wall"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "castle-black",
-          "appearances": [
+            },
             {
               "episode": "S4E9",
               "scene": "The Wall — Castle Black; scene begins 0:23:49.",
@@ -239,7 +210,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

@@ -1266,7 +1266,7 @@ const entries = [
     "seriesName": "Game of Thrones",
     "characterSlug": "the-waif",
     "characterName": "The Waif",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S8E6",
       "throughDate": "2019-05-19",
@@ -2332,7 +2332,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "prince-baelor-targaryen",
     "characterName": "Prince Baelor Targaryen",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2345,7 +2345,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "prince-maekar-targaryen",
     "characterName": "Prince Maekar Targaryen",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2358,7 +2358,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "prince-aerion-targaryen",
     "characterName": "Prince Aerion Targaryen",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2371,7 +2371,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "prince-daeron-targaryen",
     "characterName": "Prince Daeron Targaryen",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2384,7 +2384,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "prince-valarr-targaryen",
     "characterName": "Prince Valarr Targaryen",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2397,7 +2397,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-lyonel-baratheon",
     "characterName": "Ser Lyonel Baratheon",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2410,7 +2410,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-steffon-fossoway",
     "characterName": "Ser Steffon Fossoway",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2423,7 +2423,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-raymun-fossoway",
     "characterName": "Ser Raymun Fossoway",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2436,7 +2436,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "tanselle",
     "characterName": "Tanselle",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2449,7 +2449,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "steely-pate",
     "characterName": "Steely Pate",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2462,7 +2462,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "plummer",
     "characterName": "Plummer",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2475,7 +2475,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "beony",
     "characterName": "Beony",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2488,7 +2488,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "rowan-fossoway",
     "characterName": "Rowan Fossoway",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2501,7 +2501,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "gwin-ashford",
     "characterName": "Gwin Ashford",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2514,7 +2514,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-arlan-of-pennytree",
     "characterName": "Ser Arlan of Pennytree",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2527,7 +2527,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-manfred-dondarrion",
     "characterName": "Ser Manfred Dondarrion",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2540,7 +2540,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-humfrey-hardyng",
     "characterName": "Ser Humfrey Hardyng",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2553,7 +2553,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "lord-ashford",
     "characterName": "Lord Ashford",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2566,7 +2566,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-roland-crakehall",
     "characterName": "Ser Roland Crakehall",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2579,7 +2579,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-humfrey-beesbury",
     "characterName": "Ser Humfrey Beesbury",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2592,7 +2592,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-robyn-rhysling",
     "characterName": "Ser Robyn Rhysling",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2605,7 +2605,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "lord-medgar-tully",
     "characterName": "Lord Medgar Tully",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2618,7 +2618,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "leo-tyrell",
     "characterName": "Leo Tyrell",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",
@@ -2631,7 +2631,7 @@ const entries = [
     "seriesName": "A Knight of the Seven Kingdoms",
     "characterSlug": "ser-donnel-of-duskendale",
     "characterName": "Ser Donnel of Duskendale",
-    "journeyStatus": "published",
+    "journeyStatus": "deferred",
     "journeyCoverage": {
       "throughEpisode": "S1E6",
       "throughDate": "2026-02-22",

@@ -14,99 +14,27 @@ export default createJourney({
   "seasons": [
     {
       "season": 1,
-      "title": "The road to Ashford",
-      "summary": "The depicted route reaches Ashford Meadow and remains centered on the tourney.",
+      "title": "Season 1 at Ashford",
+      "summary": "",
       "stops": [
         {
-          "placeId": "road-to-ashford",
-          "appearances": [
-            {
-              "episode": "S1E1",
-              "scene": "Dunk buries Ser Arlan and continues toward Ashford.",
-              "source": {
-                "title": "A Knight of the Seven Kingdoms S1E1: “The Hedge Knight” — HBO",
-                "url": "https://press.wbd.com/na/property/knight-seven-kingdoms/synopses"
-              },
-              "evidence": {
-                "title": "Ser Duncan the Tall — television biography",
-                "url": "https://gameofthrones.fandom.com/wiki/Duncan_the_Tall"
-              }
-            }
-          ]
-        },
-        {
           "placeId": "ashford-meadow",
+          "depiction": "officially_inferred",
+          "reviewStatus": "accepted",
+          "evidenceType": "official synopsis endpoint",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18",
           "appearances": [
             {
               "episode": "S1E1",
-              "scene": "Ser Duncan the Tall is depicted at the tourney at Ashford Meadow.",
+              "scene": "The official synopsis states that Dunk travels to Ashford for a tournament.",
               "source": {
                 "title": "A Knight of the Seven Kingdoms S1E1: “The Hedge Knight” — HBO",
                 "url": "https://press.wbd.com/na/property/knight-seven-kingdoms/synopses"
               },
               "evidence": {
-                "title": "Ser Duncan the Tall — television appearances",
-                "url": "https://gameofthrones.fandom.com/wiki/Duncan_the_Tall"
-              }
-            },
-            {
-              "episode": "S1E2",
-              "scene": "Ser Duncan the Tall is depicted at the tourney at Ashford Meadow.",
-              "source": {
-                "title": "A Knight of the Seven Kingdoms S1E2: “Hard Salt Beef” — HBO",
+                "title": "A Knight of the Seven Kingdoms S1E1: “The Hedge Knight” — HBO",
                 "url": "https://press.wbd.com/na/property/knight-seven-kingdoms/synopses"
-              },
-              "evidence": {
-                "title": "Ser Duncan the Tall — television appearances",
-                "url": "https://gameofthrones.fandom.com/wiki/Duncan_the_Tall"
-              }
-            },
-            {
-              "episode": "S1E3",
-              "scene": "Ser Duncan the Tall is depicted at the tourney at Ashford Meadow.",
-              "source": {
-                "title": "A Knight of the Seven Kingdoms S1E3: “The Squire” — HBO",
-                "url": "https://press.wbd.com/na/property/knight-seven-kingdoms/synopses"
-              },
-              "evidence": {
-                "title": "Ser Duncan the Tall — television appearances",
-                "url": "https://gameofthrones.fandom.com/wiki/Duncan_the_Tall"
-              }
-            },
-            {
-              "episode": "S1E4",
-              "scene": "Ser Duncan the Tall is depicted at the tourney at Ashford Meadow.",
-              "source": {
-                "title": "A Knight of the Seven Kingdoms S1E4: “Seven” — HBO",
-                "url": "https://press.wbd.com/na/property/knight-seven-kingdoms/synopses"
-              },
-              "evidence": {
-                "title": "Ser Duncan the Tall — television appearances",
-                "url": "https://gameofthrones.fandom.com/wiki/Duncan_the_Tall"
-              }
-            },
-            {
-              "episode": "S1E5",
-              "scene": "Ser Duncan the Tall is depicted at the tourney at Ashford Meadow.",
-              "source": {
-                "title": "A Knight of the Seven Kingdoms S1E5: “In the Name of the Mother” — HBO",
-                "url": "https://press.wbd.com/na/property/knight-seven-kingdoms/synopses"
-              },
-              "evidence": {
-                "title": "Ser Duncan the Tall — television appearances",
-                "url": "https://gameofthrones.fandom.com/wiki/Duncan_the_Tall"
-              }
-            },
-            {
-              "episode": "S1E6",
-              "scene": "Ser Duncan the Tall is depicted at the tourney at Ashford Meadow.",
-              "source": {
-                "title": "A Knight of the Seven Kingdoms S1E6: “The Morrow” — HBO",
-                "url": "https://press.wbd.com/na/property/knight-seven-kingdoms/synopses"
-              },
-              "evidence": {
-                "title": "Ser Duncan the Tall — television appearances",
-                "url": "https://gameofthrones.fandom.com/wiki/Duncan_the_Tall"
               }
             }
           ]

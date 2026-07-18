@@ -9,6 +9,9 @@ import {
   JOURNEY_MAP,
   loadAllPublishedJourneys,
   loadJourney,
+  MAJOR_CITIES,
+  MAJOR_CITY_PLACE_IDS,
+  PLACE_COORDINATE_AUDIT,
   PLACES,
   PUBLISHED_JOURNEY_KEYS,
   REALM_SEAT_PLACE_IDS,
@@ -28,11 +31,8 @@ const REALM_SEAT_ANCHORS = Object.freeze({
   highgarden: { name: "Highgarden", x: 123, y: 832 },
   sunspear: { name: "Sunspear", x: 470, y: 919 },
 });
-const VISIBLE_GEOGRAPHIC_ANCHORS = Object.freeze({
-  braavos: { name: "Braavos", x: 720, y: 280 },
+const REVIEWED_GEOGRAPHIC_ANCHORS = Object.freeze({
   hardhome: { name: "Hardhome", x: 465, y: 84 },
-  valyria: { name: "Valyria", x: 1015, y: 975 },
-  volantis: { name: "Volantis", x: 910, y: 825 },
 });
 
 let journeys;
@@ -54,11 +54,11 @@ describe("published character journeys", () => {
     const catalog = Object.values(JOURNEY_CATALOG);
     expect(JOURNEY_CATALOG_KEYS).toHaveLength(203);
     expect(new Set(JOURNEY_CATALOG_KEYS).size).toBe(203);
-    expect(catalog.filter((entry) => entry.journeyStatus === "published")).toHaveLength(126);
-    expect(catalog.filter((entry) => entry.journeyStatus === "deferred")).toHaveLength(77);
+    expect(catalog.filter((entry) => entry.journeyStatus === "published")).toHaveLength(101);
+    expect(catalog.filter((entry) => entry.journeyStatus === "deferred")).toHaveLength(102);
     expect(catalog.filter((entry) => entry.journeyStatus === "pending")).toHaveLength(0);
-    expect(PUBLISHED_JOURNEY_KEYS).toHaveLength(126);
-    expect(new Set(PUBLISHED_JOURNEY_KEYS).size).toBe(126);
+    expect(PUBLISHED_JOURNEY_KEYS).toHaveLength(101);
+    expect(new Set(PUBLISHED_JOURNEY_KEYS).size).toBe(101);
     expect(PUBLISHED_JOURNEY_KEYS.every((key) => JOURNEY_CATALOG[key]?.journeyStatus === "published")).toBe(true);
   });
 
@@ -95,7 +95,12 @@ describe("published character journeys", () => {
       for (const season of journey.seasons) {
         expect(season.stops.length).toBeGreaterThan(0);
         for (const stop of season.stops) {
-          expect(stop.depiction).toBe("depicted");
+          expect(["depicted", "officially_inferred"]).toContain(stop.depiction);
+          expect(stop.reviewStatus).toBe("accepted");
+          expect(stop.auditDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+          expect(stop.evidenceType.length).toBeGreaterThan(5);
+          expect(stop.reviewer.length).toBeGreaterThan(3);
+          expect(PLACE_COORDINATE_AUDIT[stop.placeId]?.status).toBe("accepted");
           expect(stop.episode.startsWith(`S${season.season}E`)).toBe(true);
           expect(stop.scene.length).toBeGreaterThan(10);
           expect(stop.source.title).toContain(stop.episode);
@@ -133,7 +138,7 @@ describe("published character journeys", () => {
       for (const season of journey.seasons) {
         expect(getSeasonWaypoints(season).every(Boolean)).toBe(true);
         for (const segment of season.routeSegments) {
-          expect(["depicted-route", "continuity", "stationary"]).toContain(segment.kind);
+          expect(["depicted-route", "officially-inferred-route", "stationary"]).toContain(segment.kind);
           expect(PLACES[segment.fromPlaceId]).toBeTruthy();
           expect(PLACES[segment.toPlaceId]).toBeTruthy();
           for (const point of pathCoordinates(segment.path)) {
@@ -147,12 +152,27 @@ describe("published character journeys", () => {
     }
   });
 
+  it("keeps the fail-closed major-city layer audited and in bounds", () => {
+    expect(MAJOR_CITY_PLACE_IDS).toHaveLength(8);
+    expect(MAJOR_CITIES.map((city) => city.id)).toEqual(MAJOR_CITY_PLACE_IDS);
+    for (const city of MAJOR_CITIES) {
+      expect(city.x).toBeGreaterThanOrEqual(STOP_RADIUS);
+      expect(city.x).toBeLessThanOrEqual(JOURNEY_MAP.width - STOP_RADIUS);
+      expect(city.y).toBeGreaterThanOrEqual(STOP_RADIUS);
+      expect(city.y).toBeLessThanOrEqual(JOURNEY_MAP.height - STOP_RADIUS);
+      expect(city.coordinateAudit.normalizedPosition.x).toBeCloseTo(city.x / JOURNEY_MAP.width, 5);
+      expect(city.coordinateAudit.normalizedPosition.y).toBeCloseTo(city.y / JOURNEY_MAP.height, 5);
+    }
+    expect(PLACE_COORDINATE_AUDIT.braavos).toBeUndefined();
+    expect(PLACE_COORDINATE_AUDIT.volantis).toBeUndefined();
+  });
+
   it("locks printed seats and formerly water-bound anchors", () => {
     expect(REALM_SEAT_PLACE_IDS).toEqual(Object.keys(REALM_SEAT_ANCHORS));
     for (const [placeId, anchor] of Object.entries(REALM_SEAT_ANCHORS)) {
       expect(PLACES[placeId], placeId).toEqual(anchor);
     }
-    for (const [placeId, anchor] of Object.entries(VISIBLE_GEOGRAPHIC_ANCHORS)) {
+    for (const [placeId, anchor] of Object.entries(REVIEWED_GEOGRAPHIC_ANCHORS)) {
       expect(PLACES[placeId], placeId).toEqual(anchor);
     }
   });
@@ -165,6 +185,35 @@ describe("published character journeys", () => {
         expect(season.continuity).toBeNull();
         expect(season.path.match(/\bM\b/g)).toHaveLength(1);
         expect(season.stops.every((stop) => stop.episode.startsWith(`S${season.season}E`))).toBe(true);
+      }
+    }
+  });
+
+  it("keeps broad regions and transit candidates out of runtime", () => {
+    const forbiddenPlaceIds = new Set([
+      "beyond-the-wall", "dorne", "dothraki-sea", "dothraki-sea-camp", "haunted-forest",
+      "kingsroad", "lannister-camp", "narrow-sea", "north-road", "outside-castle-black",
+      "outside-kings-landing", "red-fork", "riverlands", "shivering-sea", "stormlands",
+      "summer-sea", "sunset-sea", "the-gift", "the-neck", "vale", "vale-road",
+      "westerlands-road", "wildling-camp", "wolfswood",
+    ]);
+    const stops = journeys.flatMap((journey) => journey.seasons).flatMap((season) => season.stops);
+    expect(stops.every((stop) => !forbiddenPlaceIds.has(stop.placeId))).toBe(true);
+    expect(stops.every((stop) => !/^(The North|The Wall);/.test(stop.scene))).toBe(true);
+    expect(stops.every((stop) => stop.reviewStatus === "accepted")).toBe(true);
+  });
+
+  it("uses one ordered consecutive path with no adjacent duplicate destinations", () => {
+    for (const journey of journeys) {
+      for (const season of journey.seasons) {
+        expect(season.path.match(/\bM\b/g)).toHaveLength(1);
+        for (let index = 1; index < season.stops.length; index += 1) {
+          expect(season.stops[index].placeId).not.toBe(season.stops[index - 1].placeId);
+          expect(season.routeSegments[index - 1]).toMatchObject({
+            fromPlaceId: season.stops[index - 1].placeId,
+            toPlaceId: season.stops[index].placeId,
+          });
+        }
       }
     }
   });

@@ -14,8 +14,8 @@ export default createJourney({
   "seasons": [
     {
       "season": 1,
-      "title": "Season 1: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 1",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -80,14 +80,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 2,
-      "title": "Season 2: 2 mapped moves",
-      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "title": "Season 2",
+      "summary": "",
       "stops": [
         {
           "placeId": "winterfell",
@@ -139,29 +144,7 @@ export default createJourney({
                 "title": "Scene-level location index for S2E6",
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
-            }
-          ]
-        },
-        {
-          "placeId": "outside-winterfell",
-          "appearances": [
-            {
-              "episode": "S2E7",
-              "scene": "The North — Outside Winterfell; scene begins 0:04:29.",
-              "source": {
-                "title": "Game of Thrones S2E7: “A Man Without Honor” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-2/7-a-man-without-honor"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S2E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "winterfell",
-          "appearances": [
+            },
             {
               "episode": "S2E8",
               "scene": "The North — Winterfell; scene begins 0:51:04.",
@@ -186,73 +169,20 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 3,
-      "title": "Season 3: 2 mapped moves",
-      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "title": "Season 3",
+      "summary": "",
       "stops": [
-        {
-          "placeId": "north-road",
-          "appearances": [
-            {
-              "episode": "S3E2",
-              "scene": "The North — North to the Wall; scene begins 0:03:20.",
-              "source": {
-                "title": "Game of Thrones S3E2: “Dark Wings, Dark Words” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/2-dark-wings-dark-words"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S3E6",
-              "scene": "The North — North to the Wall; scene begins 0:05:13.",
-              "source": {
-                "title": "Game of Thrones S3E6: “The Climb” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/6-the-climb"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E6",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            },
-            {
-              "episode": "S3E7",
-              "scene": "The North — North to the Wall; scene begins 0:44:21.",
-              "source": {
-                "title": "Game of Thrones S3E7: “The Bear and the Maiden Fair” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/7-the-bear-and-the-maiden-fair"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E7",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
-        {
-          "placeId": "the-gift",
-          "appearances": [
-            {
-              "episode": "S3E9",
-              "scene": "The North — The Gift; scene begins 0:14:44.",
-              "source": {
-                "title": "Game of Thrones S3E9: “The Rains of Castamere” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-3/9-the-rains-of-castamere"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S3E9",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
         {
           "placeId": "nightfort",
           "appearances": [
@@ -268,32 +198,20 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 4,
-      "title": "Season 4: 2 mapped moves",
-      "summary": "The screen record contains 3 ordered, source-backed location stops for this season.",
+      "title": "Season 4",
+      "summary": "",
       "stops": [
-        {
-          "placeId": "haunted-forest",
-          "appearances": [
-            {
-              "episode": "S4E2",
-              "scene": "North of the Wall — The Haunted Forest; scene begins 0:25:16.",
-              "source": {
-                "title": "Game of Thrones S4E2: “The Lion and the Rose” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/2-the-lion-and-the-rose"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E2",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
-        },
         {
           "placeId": "crasters-keep",
           "appearances": [
@@ -321,31 +239,19 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
-        },
-        {
-          "placeId": "three-eyed-raven-cave",
-          "appearances": [
-            {
-              "episode": "S4E10",
-              "scene": "North of the Wall — Outside the Three-Eyed Raven; scene begins 0:32:49.",
-              "source": {
-                "title": "Game of Thrones S4E10: “The Children” — HBO",
-                "url": "https://www.hbo.com/game-of-thrones/season-4/10-the-children"
-              },
-              "evidence": {
-                "title": "Scene-level location index for S4E10",
-                "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
-              }
-            }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     },
     {
       "season": 6,
-      "title": "Season 6: one verified place",
-      "summary": "The screen record remains at one verified map location for this season.",
+      "title": "Season 6",
+      "summary": "",
       "stops": [
         {
           "placeId": "three-eyed-raven-cave",
@@ -374,7 +280,12 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ]
+          ],
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "scene-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-07-18"
         }
       ]
     }

@@ -309,6 +309,12 @@ button {
   stroke-width: 4.5;
 }
 
+.journey-route-inferred {
+  stroke: #315c73;
+  stroke-dasharray: 14 9;
+  stroke-width: 6;
+}
+
 .journey-route-reveal {
   stroke: #fff;
   stroke-width: 15;
@@ -322,10 +328,68 @@ button {
   stroke-linecap: round;
 }
 
+.journey-stop-inferred {
+  stroke: #315c73;
+  stroke-dasharray: 8 5;
+  stroke-width: 5;
+}
+
 .journey-marker circle {
   fill: #0d0b09;
   stroke: rgba(245, 231, 203, 0.92);
   stroke-width: 2;
+}
+
+.journey-city-layer {
+  pointer-events: none;
+}
+
+.journey-city {
+  color: #f3dfb7;
+  pointer-events: auto;
+}
+
+.journey-city circle {
+  fill: #261d16;
+  stroke: currentColor;
+  stroke-width: 2.5;
+}
+
+.journey-city text {
+  fill: currentColor;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(20, 15, 11, 0.92);
+  stroke-linejoin: round;
+  stroke-width: 5px;
+}
+
+.journey-city:focus {
+  outline: none;
+}
+
+.journey-city:focus circle {
+  fill: var(--ice);
+  stroke-width: 4;
+}
+
+@media (max-width: 880px) {
+  .journey-city text {
+    display: none;
+  }
+
+  .journey-city:hover text,
+  .journey-city:focus text,
+  .journey-city:focus-within text {
+    display: block;
+    font-size: 22px;
+  }
+
+  .journey-city circle {
+    r: 7px;
+  }
 }
 
 
