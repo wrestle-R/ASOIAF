@@ -27,7 +27,7 @@ describe("shared character journey data", () => {
       for (const item of journey.seasons) {
         expect(item.title).not.toMatch(/mapped|mapping/i);
         expect(item.path).toMatch(/^M\s/);
-        expect(item.summary.length).toBeGreaterThan(30);
+        expect(item.summary).toBe("");
         expect(item.routeSegments.length).toBeGreaterThan(0);
         expect(getSeasonWaypoints(item)).toHaveLength(item.stops.length);
       }
@@ -55,5 +55,15 @@ describe("shared character journey data", () => {
 
     expect(braavosStops.length).toBeGreaterThan(0);
     expect(PLACES.braavos).toEqual({ name: "Braavos", x: 720, y: 280 });
+  });
+
+  it("applies the manually reviewed Jon S1 and Theon S2 routes", async () => {
+    const jon = await loadJourney("game-of-thrones", "jon-snow");
+    const theon = await loadJourney("game-of-thrones", "theon-greyjoy");
+
+    expect(jon.seasons.find((season) => season.season === 1).stops.map((stop) => stop.placeId))
+      .toEqual(["winterfell", "castle-black"]);
+    expect(theon.seasons.find((season) => season.season === 2).stops.map((stop) => stop.placeId))
+      .toEqual(["pyke", "winterfell", "outside-winterfell", "winterfell"]);
   });
 });

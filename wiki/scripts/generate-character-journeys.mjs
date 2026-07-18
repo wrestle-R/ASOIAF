@@ -1,6 +1,7 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import Database from "better-sqlite3";
+import { applyAccuracyOverride } from "../src/data/journeys/accuracyOverrides.js";
 
 const GOT_SCENE_SOURCE = "https://raw.githubusercontent.com/jeffreylancaster/game-of-thrones/master/data/episodes.json";
 const GOT_SCENE_EVIDENCE = "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json";
@@ -249,33 +250,6 @@ function secondarySceneEvidence(episode) {
   };
 }
 
-function annotateKnownDragonFlights(characterName, seasonNumber, stops) {
-  if (characterName !== "Daenerys Targaryen" || seasonNumber !== 5) return stops;
-
-  for (let index = 1; index < stops.length; index += 1) {
-    const from = stops[index - 1].placeId;
-    const to = stops[index].placeId;
-    if (from !== "meereen" || !["dothraki-sea", "dothraki-sea-camp"].includes(to)) {
-      continue;
-    }
-
-    stops[index].travelFromPrevious = {
-      mode: "dragon",
-      dragonId: "drogon",
-      dragonName: "Drogon",
-      episode: "S5E9",
-      scene: "Drogon carries Daenerys away from Daznak's Pit toward the Dothraki Sea.",
-      source: {
-        title: "Game of Thrones S5E9: “The Dance of Dragons” — HBO",
-        url: "https://www.hbo.com/game-of-thrones/season-5/9-the-dance-of-dragons",
-      },
-    };
-    break;
-  }
-
-  return stops;
-}
-
 function buildGotJourney(character, episodes) {
   const sceneName = GOT_CHARACTER_ALIASES[character.name] ?? character.name;
   const seasons = new Map();
@@ -317,15 +291,16 @@ function buildGotJourney(character, episodes) {
     totalSeasons: character.totalSeasons,
     coverage: character.journeyCoverage,
     seasons: [...seasons.entries()].map(([season, stops]) => {
-      annotateKnownDragonFlights(character.name, season, stops);
-      const movementCount = Math.max(0, stops.length - 1);
+      const correctedStops = applyAccuracyOverride(
+        `${character.seriesSlug}/${character.characterSlug}`,
+        season,
+        stops,
+      );
       return {
         season,
-        title: movementCount ? `Season ${season}: ${movementCount} mapped moves` : `Season ${season}: one verified place`,
-        summary: movementCount
-          ? `The screen record contains ${stops.length} ordered, source-backed location stops for this season.`
-          : "The screen record remains at one verified map location for this season.",
-        stops,
+        title: `Season ${season}`,
+        summary: "",
+        stops: correctedStops,
       };
     }),
   };

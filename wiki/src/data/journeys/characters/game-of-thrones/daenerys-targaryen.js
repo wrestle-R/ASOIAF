@@ -663,18 +663,7 @@ export default createJourney({
                 "url": "https://github.com/jeffreylancaster/game-of-thrones/blob/master/data/episodes.json"
               }
             }
-          ],
-          "travelFromPrevious": {
-            "mode": "dragon",
-            "dragonId": "drogon",
-            "dragonName": "Drogon",
-            "episode": "S5E9",
-            "scene": "Drogon carries Daenerys away from Daznak's Pit toward the Dothraki Sea.",
-            "source": {
-              "title": "Game of Thrones S5E9: “The Dance of Dragons” — HBO",
-              "url": "https://www.hbo.com/game-of-thrones/season-5/9-the-dance-of-dragons"
-            }
-          }
+          ]
         }
       ]
     },

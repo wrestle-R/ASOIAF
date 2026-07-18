@@ -1,6 +1,5 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import blobAssets from "../src/data/blobAssets.json";
-import { DRAGONS } from "../src/data/journeys/dragons.js";
 import {
   getJourneyCatalogEntry,
   getSeasonOrigin,
@@ -158,16 +157,14 @@ describe("published character journeys", () => {
     }
   });
 
-  it("preserves season continuity without adding inherited origins as evidence", () => {
+  it("starts each season at its first depicted stop without fabricating an inherited route", () => {
     for (const journey of journeys) {
       expect(getSeasonOrigin(journey.seasons[0])).toBe(PLACES[journey.seasons[0].stops[0].placeId]);
-      for (let index = 1; index < journey.seasons.length; index += 1) {
-        const previous = journey.seasons[index - 1];
-        const current = journey.seasons[index];
-        const originId = previous.stops.at(-1).placeId;
-        expect(getSeasonOrigin(current)).toBe(PLACES[originId]);
-        expect(current.continuity.originPlaceId).toBe(originId);
-        expect(current.stops.every((stop) => stop.episode.startsWith(`S${current.season}E`))).toBe(true);
+      for (const season of journey.seasons) {
+        expect(getSeasonOrigin(season)).toBe(PLACES[season.stops[0].placeId]);
+        expect(season.continuity).toBeNull();
+        expect(season.path.match(/\bM\b/g)).toHaveLength(1);
+        expect(season.stops.every((stop) => stop.episode.startsWith(`S${season.season}E`))).toBe(true);
       }
     }
   });
@@ -181,18 +178,10 @@ describe("published character journeys", () => {
     expect(stationary.every((segment) => /^M\s+\d+(?:\.\d+)?\s+\d+(?:\.\d+)?$/.test(segment.path))).toBe(true);
   });
 
-  it("requires independent evidence for every named dragon flight", () => {
+  it("keeps dragon-flight presentation unpublished while the route audit is open", () => {
     const dragonSegments = journeys.flatMap((journey) => journey.seasons)
       .flatMap((season) => season.routeSegments)
       .filter((segment) => segment.travel?.mode === "dragon");
-    expect(dragonSegments.length).toBeGreaterThan(0);
-    for (const segment of dragonSegments) {
-      expect(DRAGONS[segment.travel.dragonId]?.name).toBe(segment.travel.dragonName);
-      expect(segment.kind).toBe("depicted-route");
-      expect(segment.travel.episode).toMatch(/^S\d+E\d+$/);
-      expect(segment.travel.scene.length).toBeGreaterThan(20);
-      expect(segment.travel.source.url).toMatch(/^https:\/\//);
-    }
-    expect(JOURNEY_CATALOG["house-of-the-dragon/viserys-i-targaryen"]).not.toHaveProperty("dragonId");
+    expect(dragonSegments).toHaveLength(0);
   });
 });

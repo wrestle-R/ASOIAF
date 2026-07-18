@@ -113,7 +113,7 @@ async function readSeasonGeometry(page) {
   });
 }
 
-async function assertSeasonBoundaryContinuity(page, label, previousEnd, transition) {
+async function assertSeasonStartsAtRouteOrigin(page, label, transition) {
   await page.waitForFunction((tolerance) => {
     const path = document.querySelector(".journey-route:not(.journey-route-dragon)");
     const marker = document.querySelector(".journey-marker");
@@ -129,14 +129,6 @@ async function assertSeasonBoundaryContinuity(page, label, previousEnd, transiti
   if (!geometry?.marker) {
     fail(label, `${transition} did not render measurable path and marker geometry`);
     return;
-  }
-
-  const pathGap = pointDistance(previousEnd, geometry.start);
-  if (pathGap > SEASON_CONTINUITY_TOLERANCE) {
-    fail(
-      label,
-      `${transition} teleports ${pathGap.toFixed(2)} map units between seasons`,
-    );
   }
 
   const markerGap = pointDistance(geometry.start, geometry.marker);
@@ -552,12 +544,16 @@ async function verifyPublishedDesktop(browser) {
     if (await page.locator(".journey-route:not(.journey-route-dragon)").count() !== 1) {
       fail(label, "current season does not render exactly one primary route");
     }
+    if (await page.locator(".journey-route-guide").count() !== 1) {
+      fail(label, "current season does not show its complete guide before tracing");
+    }
     const dash = await page.locator(".journey-route:not(.journey-route-dragon)").evaluate((element) => getComputedStyle(element).strokeDasharray);
     if (dash === "none") fail(label, "route is not dotted");
     if (await page.locator(".pending-journey-stage").count()) fail(label, "published journey opened a pending state");
 
     await page.waitForTimeout(180);
-    await page.getByRole("button", { name: "Pause", exact: true }).click();
+    await page.keyboard.press("Space");
+    await page.getByRole("button", { name: "Continue", exact: true }).waitFor();
     const reveal = page.locator(".journey-route-reveal");
     const pausedOffset = Number.parseFloat(await reveal.evaluate((element) => element.style.strokeDashoffset));
     await page.waitForTimeout(450);
@@ -571,8 +567,7 @@ async function verifyPublishedDesktop(browser) {
     let lastKicker = firstKicker;
     for (let index = 1; index < seasonCount; index += 1) {
       const previousKicker = await page.locator(".journey-kicker").textContent();
-      const previousGeometry = await readSeasonGeometry(page);
-      if (!previousGeometry) {
+      if (!await readSeasonGeometry(page)) {
         fail(label, `${previousKicker} did not expose measurable route geometry`);
         break;
       }
@@ -584,10 +579,9 @@ async function verifyPublishedDesktop(browser) {
         document.querySelector(".journey-kicker")?.textContent !== previous
       ), previousKicker);
       lastKicker = await page.locator(".journey-kicker").textContent();
-      await assertSeasonBoundaryContinuity(
+      await assertSeasonStartsAtRouteOrigin(
         page,
         label,
-        previousGeometry.end,
         `${previousKicker} to ${lastKicker}`,
       );
       await assertOriginMarker(page, `${label}-${lastKicker}`, {
@@ -887,33 +881,14 @@ async function verifyDragonPresentation(browser) {
     reducedMotion: "reduce",
   });
   const page = await context.newPage();
-  let label = "dragon-presentation";
+  let label = "dragon-presentation-disabled";
   const reportErrors = collectBrowserErrors(page, () => label);
 
   const daenerys = journeys.find((journey) => journey.characterSlug === "daenerys-targaryen");
-  const jon = journeys.find((journey) => journey.characterSlug === "jon-snow");
   await openJourney(page, daenerys);
   await page.getByRole("button", { name: "Season 5", exact: true }).click();
-  if (await page.locator(".journey-route-dragon[data-dragon-id='drogon']").count() !== 1) {
-    fail(label, "Daenerys Season 5 does not show the sourced Drogon flight leg");
-  }
-  await page.getByText("Drogon", { exact: true }).waitFor();
-  await page.getByRole("button", { name: "Show complete journey", exact: true }).click();
-  await page.getByText("Drogon", { exact: true }).waitFor();
-
-  label = "non-dragon-presentation";
-  await openJourney(page, jon);
-  if (await page.locator(".journey-route-dragon").count()) {
-    fail(label, "a journey without sourced dragon travel renders a dragon leg");
-  }
-
-  label = "deferred-rider-presentation";
-  await gotoWithRetry(page, new URL("/journeys/house-of-the-dragon/viserys-i-targaryen", baseUrl).href, {
-    waitUntil: "networkidle",
-  });
-  await page.getByText("Ongoing Story", { exact: true }).waitFor();
-  if (await page.locator(".journey-route-dragon, .journey-dragon-marker").count()) {
-    fail(label, "Viserys renders Balerion without a sourced flight segment");
+  if (await page.locator(".journey-route-dragon, .journey-dragon-marker, .journey-dragon-legend").count()) {
+    fail(label, "dragon-flight presentation is still visible while its audit is open");
   }
 
   reportErrors();

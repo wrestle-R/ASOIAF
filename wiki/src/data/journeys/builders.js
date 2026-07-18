@@ -1,4 +1,4 @@
-import { getDragon } from "./dragons.js";
+import { applyAccuracyOverride } from "./accuracyOverrides.js";
 import { JOURNEY_MAP, PLACES } from "./places.js";
 
 const VALID_COMPLETION_REASONS = new Set([
@@ -15,14 +15,7 @@ function round(value) {
 }
 
 function seasonTitle(item) {
-  const fallback = `Season ${item.season}`;
-  if (!item.title) return fallback;
-
-  const generatedTitle = item.title.match(/^Season (\d+): (\d+) mapped moves$/i);
-  if (!generatedTitle) return item.title;
-
-  const locationCount = Number(generatedTitle[2]);
-  return `Season ${generatedTitle[1]} · ${locationCount} ${locationCount === 1 ? "location" : "locations"}`;
+  return `Season ${item.season}`;
 }
 
 function freezeSource(source, context) {
@@ -77,9 +70,6 @@ function freezeStop(stop, context) {
     source: appearances[0].source,
     evidence: appearances[0].evidence,
     appearances: Object.freeze(appearances),
-    travelFromPrevious: stop.travelFromPrevious
-      ? Object.freeze({ ...stop.travelFromPrevious })
-      : null,
   });
 }
 
@@ -138,31 +128,7 @@ function cameraFor(placeIds) {
   });
 }
 
-function freezeTravel(travel, context) {
-  if (!travel) return null;
-  if (travel.mode !== "dragon") {
-    throw new Error(`${context} uses unsupported travel mode ${travel.mode}`);
-  }
-
-  const dragon = getDragon(travel.dragonId);
-  if (!dragon || dragon.name !== travel.dragonName) {
-    throw new Error(`${context} references an unknown or mismatched dragon`);
-  }
-  if (!/^S\d+E\d+$/.test(travel.episode ?? "") || !travel.scene?.trim()) {
-    throw new Error(`${context} requires episode-specific dragon evidence`);
-  }
-
-  return Object.freeze({
-    mode: "dragon",
-    dragonId: dragon.id,
-    dragonName: dragon.name,
-    episode: travel.episode,
-    scene: travel.scene.trim(),
-    source: freezeSource(travel.source, `${context} dragon evidence`),
-  });
-}
-
-function makeSegment(fromPlaceId, toPlaceId, kind, travel, context) {
+function makeSegment(fromPlaceId, toPlaceId, kind) {
   const stationary = fromPlaceId === toPlaceId;
   const path = schematicPath(stationary ? [fromPlaceId] : [fromPlaceId, toPlaceId]);
 
@@ -171,7 +137,6 @@ function makeSegment(fromPlaceId, toPlaceId, kind, travel, context) {
     toPlaceId,
     path,
     kind: stationary ? "stationary" : kind,
-    travel: freezeTravel(travel, context),
     weight: stationary
       ? 1
       : Math.max(1, Math.hypot(
@@ -181,7 +146,7 @@ function makeSegment(fromPlaceId, toPlaceId, kind, travel, context) {
   });
 }
 
-function buildSeason(item, previousSeason, journeyKey) {
+function buildSeason(item, journeyKey) {
   if (!Number.isInteger(item.season) || item.season < 1) {
     throw new Error(`${journeyKey} has an invalid season`);
   }
@@ -190,36 +155,24 @@ function buildSeason(item, previousSeason, journeyKey) {
   }
 
   const context = `${journeyKey} Season ${item.season}`;
-  const stops = item.stops.map((stop, index) => freezeStop(
+  const correctedStops = applyAccuracyOverride(journeyKey, item.season, item.stops);
+  const stops = correctedStops.map((stop, index) => freezeStop(
     stop,
     `${context} stop ${index + 1}`,
   ));
-  const previousPlaceId = previousSeason?.stops.at(-1)?.placeId ?? null;
   const firstPlaceId = stops[0].placeId;
   const routeSegments = [];
-
-  if (previousPlaceId && previousPlaceId !== firstPlaceId) {
-    routeSegments.push(makeSegment(
-      previousPlaceId,
-      firstPlaceId,
-      "continuity",
-      stops[0].travelFromPrevious,
-      `${context} inherited segment`,
-    ));
-  }
 
   for (let index = 1; index < stops.length; index += 1) {
     routeSegments.push(makeSegment(
       stops[index - 1].placeId,
       stops[index].placeId,
-      stops[index].travelFromPrevious ? "depicted-route" : "continuity",
-      stops[index].travelFromPrevious,
-      `${context} segment ${index}`,
+      "depicted-route",
     ));
   }
 
   if (!routeSegments.length) {
-    routeSegments.push(makeSegment(firstPlaceId, firstPlaceId, "stationary", null, context));
+    routeSegments.push(makeSegment(firstPlaceId, firstPlaceId, "stationary"));
   }
 
   const cameraPlaceIds = routeSegments.flatMap((segment) => [
@@ -230,21 +183,14 @@ function buildSeason(item, previousSeason, journeyKey) {
   return Object.freeze({
     season: item.season,
     title: seasonTitle(item),
-    summary: item.summary || `Verified screen locations for Season ${item.season}.`,
+    summary: "",
     stops: Object.freeze(stops),
     routeSegments: Object.freeze(routeSegments),
-    path: routeSegments.map((segment) => segment.path).join(" "),
+    path: schematicPath(stops.map((stop) => stop.placeId)),
     camera: item.camera ? Object.freeze(item.camera) : cameraFor(cameraPlaceIds),
     duration: item.duration
       ?? Math.min(3800, 2100 + Math.max(0, routeSegments.length - 1) * 240),
-    continuity: previousPlaceId
-      ? Object.freeze({
-          originPlaceId: previousPlaceId,
-          inheritedFromSeason: previousSeason.season,
-          joinsFirstDepictedPlaceId: firstPlaceId,
-          kind: previousPlaceId === firstPlaceId ? "same-place" : "schematic-bridge",
-        })
-      : null,
+    continuity: null,
   });
 }
 
@@ -259,7 +205,7 @@ export function createJourney(config) {
 
   const seasons = [];
   for (const item of config.seasons) {
-    seasons.push(buildSeason(item, seasons.at(-1), key));
+    seasons.push(buildSeason(item, key));
   }
 
   return Object.freeze({

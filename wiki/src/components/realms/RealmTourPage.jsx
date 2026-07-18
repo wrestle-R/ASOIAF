@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { PauseIcon, PlayIcon, RotateCcwIcon, UsersIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SigilIcon } from "../intro/SigilIcon.jsx";
 import { Button, buttonVariants } from "../ui/button.jsx";
 import { useCinematicViewport } from "../../hooks/useCinematicViewport.js";
@@ -12,6 +12,7 @@ import { cn } from "../../lib/utils.js";
 const REALM_HOLD_MS = 420;
 
 export function RealmTourPage() {
+  const navigate = useNavigate();
   const phone = useMediaQuery("(max-width: 880px)");
   const [realmIndex, setRealmIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -79,8 +80,6 @@ export function RealmTourPage() {
   }, []);
 
   useEffect(() => {
-    if (phone) return undefined;
-
     const handleArrowNavigation = (event) => {
       const target = event.target;
       if (
@@ -97,20 +96,31 @@ export function RealmTourPage() {
         return;
       }
 
-      if (event.key === "ArrowRight" && !complete) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        navigate("/home");
+        return;
+      }
+
+      if ((event.key === "ArrowRight" || event.key === "ArrowDown") && !complete) {
         event.preventDefault();
         goToNext();
       }
 
-      if (event.key === "ArrowLeft" && (complete || realmIndex > 0)) {
+      if ((event.key === "ArrowLeft" || event.key === "ArrowUp") && (complete || realmIndex > 0)) {
         event.preventDefault();
         goToPrevious();
+      }
+
+      if ((event.key === " " || event.code === "Space") && !complete) {
+        event.preventDefault();
+        setPaused((value) => !value);
       }
     };
 
     window.addEventListener("keydown", handleArrowNavigation);
     return () => window.removeEventListener("keydown", handleArrowNavigation);
-  }, [complete, goToNext, goToPrevious, phone, realmIndex]);
+  }, [complete, goToNext, goToPrevious, navigate, realmIndex]);
 
   useEffect(() => {
     if (!autoplayReady || complete) return undefined;

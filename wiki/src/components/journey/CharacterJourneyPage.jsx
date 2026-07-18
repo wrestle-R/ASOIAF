@@ -14,7 +14,7 @@ import {
   PlusIcon,
   RotateCcwIcon,
 } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { fetchCharacter } from "../../data/characterApi.js";
@@ -31,9 +31,6 @@ import { useCinematicLoadReady } from "../../hooks/usePageLoadReady.js";
 import { useReducedMotion } from "../../hooks/useReducedMotion.js";
 
 const SEASON_HOLD_MS = 650;
-const SEASON_CARRY_MIN_MS = 420;
-const SEASON_CARRY_MAX_MS = 1500;
-const SEASON_CARRY_PX_PER_MS = 0.72;
 const MOBILE_CAMERA_QUERY = "(max-width: 880px)";
 const MOBILE_CAMERA_EASING_MS = 140;
 const MOBILE_OVERVIEW_BASE_SCALE = 0.96;
@@ -47,40 +44,8 @@ function clamp(value, minimum, maximum) {
   return Math.min(Math.max(value, minimum), maximum);
 }
 
-function easeInOutCubic(value) {
-  return value < 0.5
-    ? 4 * value * value * value
-    : 1 - ((-2 * value + 2) ** 3) / 2;
-}
-
-function interpolatePoint(from, to, progress) {
-  return {
-    x: from.x + (to.x - from.x) * progress,
-    y: from.y + (to.y - from.y) * progress,
-  };
-}
-
-function pointDistance(from, to) {
-  return Math.hypot(to.x - from.x, to.y - from.y);
-}
-
 function pointTransform(point) {
   return point ? `translate(${point.x} ${point.y})` : undefined;
-}
-
-function segmentAtProgress(season, progress) {
-  const totalWeight = season.routeSegments.reduce(
-    (total, segment) => total + segment.weight,
-    0,
-  );
-  let remaining = totalWeight * Math.min(Math.max(progress, 0), 0.999999);
-
-  for (const segment of season.routeSegments) {
-    if (remaining <= segment.weight) return segment;
-    remaining -= segment.weight;
-  }
-
-  return season.routeSegments.at(-1) ?? null;
 }
 
 function completionCopy(journey) {
@@ -240,7 +205,6 @@ function JourneyExperience({ journey }) {
   const [seasonIndex, setSeasonIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [complete, setComplete] = useState(false);
-  const [activeTravel, setActiveTravel] = useState(null);
   const [mapFailed, setMapFailed] = useState(false);
   const [run, setRun] = useState(0);
   const [overviewView, setOverviewView] = useState(DEFAULT_OVERVIEW_VIEW);
@@ -249,8 +213,6 @@ function JourneyExperience({ journey }) {
   const cameraRef = useRef(null);
   const pathRef = useRef(null);
   const markerRef = useRef(null);
-  const markerPositionRef = useRef(null);
-  const renderedSeasonRef = useRef(null);
   const overviewViewRef = useRef(DEFAULT_OVERVIEW_VIEW);
   const overviewPointersRef = useRef(new Map());
   const overviewGestureRef = useRef(null);
@@ -275,17 +237,6 @@ function JourneyExperience({ journey }) {
       .flatMap((item) => getUniqueSeasonWaypoints(item))
       .map((place) => [place.id, place]),
   ).values()];
-  const journeyDragonFlights = [...new Map(
-    journey.seasons
-      .flatMap((item) => item.routeSegments)
-      .filter((segment) => segment.travel?.mode === "dragon")
-      .map((segment) => [segment.travel.dragonId, segment.travel]),
-  ).values()];
-  const seasonDragonFlights = [...new Map(
-    season.routeSegments
-      .filter((segment) => segment.travel?.mode === "dragon")
-      .map((segment) => [segment.travel.dragonId, segment.travel]),
-  ).values()];
   const originSeason = complete ? journey.seasons[0] : season;
   const originPlace = getSeasonOrigin(originSeason);
   const originPlaceId = originSeason.continuity?.originPlaceId
@@ -298,10 +249,6 @@ function JourneyExperience({ journey }) {
   useEffect(() => {
     pausedRef.current = paused;
   }, [paused]);
-
-  useEffect(() => {
-    setActiveTravel(null);
-  }, [complete, seasonIndex]);
 
   const constrainOverviewView = useCallback((candidate) => {
     const scale = clamp(
@@ -515,17 +462,21 @@ function JourneyExperience({ journey }) {
       case "0":
         resetOverviewView();
         break;
-      case "ArrowLeft":
-        commitOverviewView({ ...current, x: current.x - OVERVIEW_KEYBOARD_PAN_PX });
-        break;
-      case "ArrowRight":
-        commitOverviewView({ ...current, x: current.x + OVERVIEW_KEYBOARD_PAN_PX });
-        break;
-      case "ArrowUp":
+      case "w":
+      case "W":
         commitOverviewView({ ...current, y: current.y - OVERVIEW_KEYBOARD_PAN_PX });
         break;
-      case "ArrowDown":
+      case "s":
+      case "S":
         commitOverviewView({ ...current, y: current.y + OVERVIEW_KEYBOARD_PAN_PX });
+        break;
+      case "a":
+      case "A":
+        commitOverviewView({ ...current, x: current.x - OVERVIEW_KEYBOARD_PAN_PX });
+        break;
+      case "d":
+      case "D":
+        commitOverviewView({ ...current, x: current.x + OVERVIEW_KEYBOARD_PAN_PX });
         break;
       default:
         handled = false;
@@ -667,34 +618,36 @@ function JourneyExperience({ journey }) {
     const handleArrowNavigation = (event) => {
       const target = event.target;
       if (
-        window.matchMedia(MOBILE_CAMERA_QUERY).matches
-        || event.defaultPrevented
+        event.defaultPrevented
         || event.altKey
         || event.ctrlKey
         || event.metaKey
         || event.shiftKey
-        || target instanceof HTMLAnchorElement
-        || target instanceof HTMLButtonElement
         || target instanceof HTMLInputElement
         || target instanceof HTMLTextAreaElement
         || target instanceof HTMLSelectElement
         || target?.isContentEditable
       ) return;
 
-      if (event.key === "ArrowRight" && !complete) {
+      if ((event.key === "ArrowRight" || event.key === "ArrowDown") && !complete) {
         event.preventDefault();
         goToNext();
       }
 
-      if (event.key === "ArrowLeft" && (complete || seasonIndex > 0)) {
+      if ((event.key === "ArrowLeft" || event.key === "ArrowUp") && (complete || seasonIndex > 0)) {
         event.preventDefault();
         goToPrevious();
+      }
+
+      if ((event.key === " " || event.code === "Space") && !complete && !reducedMotion) {
+        event.preventDefault();
+        setPaused((value) => !value);
       }
     };
 
     window.addEventListener("keydown", handleArrowNavigation);
     return () => window.removeEventListener("keydown", handleArrowNavigation);
-  }, [complete, goToNext, goToPrevious, seasonIndex]);
+  }, [complete, goToNext, goToPrevious, reducedMotion, seasonIndex]);
 
   useEffect(() => {
     if (!autoplayReady || reducedMotion || complete) return undefined;
@@ -705,27 +658,11 @@ function JourneyExperience({ journey }) {
     if (!path || !marker || !camera) return undefined;
 
     const pathLength = Math.max(path.getTotalLength(), 0.01);
-    const pathStart = path.getPointAtLength(0);
-    const seasonKey = `${journey.key}:${season.season}`;
-    const changedSeason = renderedSeasonRef.current !== null
-      && renderedSeasonRef.current !== seasonKey;
-    const carryFrom = changedSeason ? markerPositionRef.current : null;
-    const carryDistance = carryFrom ? pointDistance(carryFrom, pathStart) : 0;
-    const carryDuration = carryDistance > 1
-      ? clamp(
-        carryDistance / SEASON_CARRY_PX_PER_MS,
-        SEASON_CARRY_MIN_MS,
-        SEASON_CARRY_MAX_MS,
-      )
-      : 0;
-
-    renderedSeasonRef.current = seasonKey;
     path.style.strokeDasharray = `${pathLength}`;
     path.style.strokeDashoffset = `${pathLength}`;
 
     let animationFrame;
     let previousTime;
-    let carryElapsed = 0;
     let elapsed = 0;
     let cancelled = false;
 
@@ -734,38 +671,12 @@ function JourneyExperience({ journey }) {
       if (previousTime === undefined) previousTime = time;
       const delta = time - previousTime;
       previousTime = time;
-      let carryDelta = 0;
+      if (!pausedRef.current) elapsed += delta;
 
-      if (carryElapsed < carryDuration) {
-        // A deliberate season change still completes its visual hand-off while
-        // route playback is paused; the new route itself remains frozen.
-        carryDelta = Math.min(delta, carryDuration - carryElapsed);
-        carryElapsed += carryDelta;
-      }
-      if (!pausedRef.current) elapsed += Math.max(0, delta - carryDelta);
-
-      const carrying = carryElapsed < carryDuration;
       const progress = Math.min(elapsed / season.duration, 1);
-      const activeSegment = carrying ? null : segmentAtProgress(season, progress);
-      const nextTravel = activeSegment?.travel ?? null;
-      setActiveTravel((current) => (
-        current?.dragonId === nextTravel?.dragonId
-        && current?.episode === nextTravel?.episode
-          ? current
-          : nextTravel
-      ));
-      const point = carrying
-        ? interpolatePoint(
-          carryFrom,
-          pathStart,
-          easeInOutCubic(carryElapsed / carryDuration),
-        )
-        : path.getPointAtLength(pathLength * progress);
-      path.style.strokeDashoffset = carrying
-        ? `${pathLength}`
-        : `${pathLength * (1 - progress)}`;
+      const point = path.getPointAtLength(pathLength * progress);
+      path.style.strokeDashoffset = `${pathLength * (1 - progress)}`;
       marker.setAttribute("transform", `translate(${point.x} ${point.y})`);
-      markerPositionRef.current = point;
 
       const mobileCamera = mobileCameraRef.current;
       if (mobileCamera.isMobile && (!pausedRef.current || mobileCamera.needsPosition)) {
@@ -814,8 +725,6 @@ function JourneyExperience({ journey }) {
     setComplete(false);
     setSeasonIndex(0);
     resetOverviewView();
-    markerPositionRef.current = null;
-    renderedSeasonRef.current = null;
     mobileCameraRef.current.initialized = false;
     mobileCameraRef.current.needsPosition = true;
     setRun((value) => value + 1);
@@ -842,7 +751,7 @@ function JourneyExperience({ journey }) {
   };
   const markerTransform = reducedMotion
     ? pointTransform(lastWaypoint)
-    : pointTransform(markerPositionRef.current ?? waypoints[0]);
+    : pointTransform(waypoints[0]);
 
   return (
     <main className="journey-page">
@@ -913,28 +822,15 @@ function JourneyExperience({ journey }) {
                 key={`complete-${item.season}`}
               />
             )) : (
-              <path
-                className="journey-route"
-                d={season.path}
-                mask={reducedMotion ? undefined : `url(#${maskId}-season-${season.season})`}
-              />
+              <>
+                {!reducedMotion && <path className="journey-route-guide" d={season.path} />}
+                <path
+                  className="journey-route journey-route-trace"
+                  d={season.path}
+                  mask={reducedMotion ? undefined : `url(#${maskId}-season-${season.season})`}
+                />
+              </>
             )}
-
-            {(complete ? journey.seasons : [season]).flatMap((item) => (
-              item.routeSegments
-                .filter((segment) => segment.travel?.mode === "dragon")
-                .map((segment, index) => (
-                  <path
-                    className="journey-route journey-route-dragon"
-                    d={segment.path}
-                    data-dragon-id={segment.travel.dragonId}
-                    key={`${item.season}-${segment.travel.dragonId}-${index}`}
-                    mask={complete || reducedMotion
-                      ? undefined
-                      : `url(#${maskId}-season-${season.season})`}
-                  />
-                ))
-            ))}
 
             {(complete ? overviewStops : visibleSeasonStops).map((place, index) => (
               <circle
@@ -961,15 +857,6 @@ function JourneyExperience({ journey }) {
             {!complete && (
               <g ref={markerRef} className="journey-marker" transform={markerTransform}>
                 <circle r="8" />
-                {activeTravel && (
-                  <g className="journey-dragon-marker" transform="translate(14 -22)">
-                    <circle r="11" />
-                    <path
-                      d="M5 18c3-1 4-4 3-7l3 1-1-5 4 3 4-2-1 5 3 2-5 1-2 4-3-3-5 1Z"
-                      transform="translate(-12 -12)"
-                    />
-                  </g>
-                )}
               </g>
             )}
           </svg>
@@ -989,11 +876,11 @@ function JourneyExperience({ journey }) {
         <div className={cn("journey-copy", complete && "journey-complete-copy")} key={`copy-${complete ? "complete" : season.season}`}>
           <p className="journey-kicker">
             {complete
-              ? `${journey.seasons.length} ${journey.seasons.length === 1 ? "season" : "seasons"} · verified through ${journey.coverage.throughEpisode}`
+              ? `Complete journey · verified through ${journey.coverage.throughEpisode}`
               : `Season ${season.season} of ${journey.totalSeasons}`}
           </p>
           <h1 id="journey-title">{complete ? journey.characterName : season.title}</h1>
-          <p>{complete ? completionCopy(journey) : season.summary}</p>
+          {complete && <p>{completionCopy(journey)}</p>}
           {!complete && (
             <ol aria-label={`Season ${season.season} route`}>
               {waypoints.map((place, index) => (
@@ -1001,21 +888,7 @@ function JourneyExperience({ journey }) {
               ))}
             </ol>
           )}
-          {(complete ? journeyDragonFlights : reducedMotion ? seasonDragonFlights : []).length > 0 && (
-            <div className="journey-dragon-legend" aria-label="Verified dragon flights">
-              <span>Verified Dragon Flight</span>
-              {(complete ? journeyDragonFlights : seasonDragonFlights).map((travel) => (
-                <strong key={travel.dragonId}>{travel.dragonName}</strong>
-              ))}
-            </div>
-          )}
         </div>
-
-        {!complete && activeTravel && (
-          <p className="journey-travel-status" role="status" aria-live="polite">
-            Traveling with <strong>{activeTravel.dragonName}</strong>
-          </p>
-        )}
 
         <div className={cn("journey-controls", complete && "journey-complete-controls")}>
           {complete ? (
@@ -1119,12 +992,12 @@ function JourneyExperience({ journey }) {
         <p className="sr-only" aria-live="polite">
           {complete
             ? `${journey.characterName}'s complete journey is displayed. Map zoom ${Math.round(overviewView.scale * 100)} percent.`
-            : `Season ${season.season}: ${season.summary}`}
+            : `Season ${season.season}`}
         </p>
         {complete && (
           <p id={mapInstructionsId} className="sr-only">
             Zoom with the controls, plus and minus keys, a mouse wheel, or a pinch.
-            Drag the map or use the arrow keys to pan. Press zero to reset the map view.
+            Drag the map or use W, A, S, and D to pan. Press zero to reset the map view.
           </p>
         )}
       </section>
@@ -1133,11 +1006,23 @@ function JourneyExperience({ journey }) {
 }
 
 export function CharacterJourneyPage() {
+  const navigate = useNavigate();
   const { characterSlug = "", seriesSlug = "" } = useParams();
   const catalogEntry = getJourneyCatalogEntry(seriesSlug, characterSlug);
   const [journey, setJourney] = useState(null);
   const [loading, setLoading] = useState(catalogEntry?.journeyStatus === "published");
   const [loadError, setLoadError] = useState(null);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      navigate("/home");
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [navigate]);
   const [loadAttempt, setLoadAttempt] = useState(0);
 
   useEffect(() => {
