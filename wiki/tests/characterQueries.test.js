@@ -49,8 +49,8 @@ describe("character catalogue queries", () => {
   it("publishes the exact Stage 1 split and orders available characters by prominence", () => {
     const result = getCharacters(database, { limit: 60 });
 
-    expect(result.published).toBe(101);
-    expect(result.deferred).toBe(102);
+    expect(result.published).toBe(167);
+    expect(result.deferred).toBe(36);
     expect(result.pending).toBe(0);
     expect(
       result.characters.slice(0, 6).map((character) => character.name),
@@ -88,8 +88,8 @@ describe("character catalogue queries", () => {
     expect(gameOfThrones.published).toBe(99);
     expect(gameOfThrones.pending).toBe(0);
     expect(houseOfTheDragon.total).toBe(77);
-    expect(houseOfTheDragon.published).toBe(0);
-    expect(houseOfTheDragon.deferred).toBe(77);
+    expect(houseOfTheDragon.published).toBe(66);
+    expect(houseOfTheDragon.deferred).toBe(11);
     expect(knight.total).toBe(26);
     expect(knight.published).toBe(2);
     expect(stark.total).toBeGreaterThan(2);

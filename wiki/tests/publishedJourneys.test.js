@@ -54,28 +54,44 @@ describe("published character journeys", () => {
     const catalog = Object.values(JOURNEY_CATALOG);
     expect(JOURNEY_CATALOG_KEYS).toHaveLength(203);
     expect(new Set(JOURNEY_CATALOG_KEYS).size).toBe(203);
-    expect(catalog.filter((entry) => entry.journeyStatus === "published")).toHaveLength(101);
-    expect(catalog.filter((entry) => entry.journeyStatus === "deferred")).toHaveLength(102);
+    expect(catalog.filter((entry) => entry.journeyStatus === "published")).toHaveLength(167);
+    expect(catalog.filter((entry) => entry.journeyStatus === "deferred")).toHaveLength(36);
     expect(catalog.filter((entry) => entry.journeyStatus === "pending")).toHaveLength(0);
-    expect(PUBLISHED_JOURNEY_KEYS).toHaveLength(101);
-    expect(new Set(PUBLISHED_JOURNEY_KEYS).size).toBe(101);
+    expect(PUBLISHED_JOURNEY_KEYS).toHaveLength(167);
+    expect(new Set(PUBLISHED_JOURNEY_KEYS).size).toBe(167);
     expect(PUBLISHED_JOURNEY_KEYS.every((key) => JOURNEY_CATALOG[key]?.journeyStatus === "published")).toBe(true);
   });
 
-  it("loads every published key and no deferred HOTD key", async () => {
+  it("loads audited HOTD keys and keeps unresolved Season 2 records deferred", async () => {
     expect(journeys.every(Boolean)).toBe(true);
     for (const journey of journeys) {
       expect(journey.key).toBe(`${journey.seriesSlug}/${journey.characterSlug}`);
       expect(getJourneyCatalogEntry(journey.seriesSlug, journey.characterSlug)?.journeyStatus).toBe("published");
     }
-    expect(await loadJourney("house-of-the-dragon", "viserys-i-targaryen")).toBeNull();
+    expect(await loadJourney("house-of-the-dragon", "viserys-i-targaryen")).toMatchObject({
+      coverage: { throughEpisode: "S2E8", completionReason: "season-complete" },
+    });
+    expect(await loadJourney("house-of-the-dragon", "daeron-targaryen")).toBeNull();
     expect(getJourneyCatalogEntry("house-of-the-dragon", "viserys-i-targaryen")).toMatchObject({
-      journeyStatus: "deferred",
+      journeyStatus: "published",
       journeyCoverage: {
-        throughEpisode: "S3E4",
-        completionReason: "awaiting-season-finale",
+        throughEpisode: "S2E8",
+        completionReason: "season-complete",
       },
     });
+  });
+
+  it("accounts for all 77 HOTD characters strictly through the Season 2 finale", () => {
+    const hotdCatalog = Object.values(JOURNEY_CATALOG)
+      .filter((entry) => entry.seriesSlug === "house-of-the-dragon");
+    const hotdJourneys = journeys.filter((journey) => journey.seriesSlug === "house-of-the-dragon");
+    expect(hotdCatalog).toHaveLength(77);
+    expect(hotdJourneys).toHaveLength(66);
+    expect(hotdCatalog.filter((entry) => entry.journeyStatus === "deferred")).toHaveLength(11);
+    expect(hotdCatalog.every((entry) => entry.journeyCoverage.throughEpisode === "S2E8")).toBe(true);
+    expect(hotdJourneys.every((journey) => journey.seasons.every((season) => season.season <= 2))).toBe(true);
+    expect(hotdJourneys.every((journey) => journey.seasons
+      .every((season) => season.stops.every((stop) => /^S[12]E\d+$/.test(stop.episode))))).toBe(true);
   });
 
   it("uses ordered, non-duplicated television season numbers and coverage metadata", () => {

@@ -17,9 +17,10 @@ beforeAll(async () => {
 
 describe("shared character journey data", () => {
   it("drives only audited characters through the shared contract", () => {
-    expect(journeys).toHaveLength(101);
+    expect(journeys).toHaveLength(167);
     expect(journeys.filter((journey) => journey.seriesSlug === "game-of-thrones")).toHaveLength(99);
     expect(journeys.filter((journey) => journey.seriesSlug === "a-knight-of-the-seven-kingdoms")).toHaveLength(2);
+    expect(journeys.filter((journey) => journey.seriesSlug === "house-of-the-dragon")).toHaveLength(66);
 
     for (const journey of journeys) {
       expect(journey.key).toBe(`${journey.seriesSlug}/${journey.characterSlug}`);

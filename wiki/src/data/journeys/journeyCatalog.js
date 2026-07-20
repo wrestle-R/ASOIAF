@@ -1305,11 +1305,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "viserys-i-targaryen",
     "characterName": "Viserys I Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1318,11 +1318,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "daemon-targaryen",
     "characterName": "Daemon Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1331,11 +1331,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "rhaenyra-targaryen",
     "characterName": "Rhaenyra Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1344,11 +1344,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "aegon-ii-targaryen",
     "characterName": "Aegon II Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1357,11 +1357,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "aemond-targaryen",
     "characterName": "Aemond Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1370,11 +1370,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "helaena-targaryen",
     "characterName": "Helaena Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1385,9 +1385,9 @@ const entries = [
     "characterName": "Daeron Targaryen",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1396,11 +1396,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "jacaerys-velaryon",
     "characterName": "Jacaerys Velaryon",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1409,11 +1409,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "lucerys-velaryon",
     "characterName": "Lucerys Velaryon",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1422,11 +1422,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "joffrey-velaryon",
     "characterName": "Joffrey Velaryon",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1435,11 +1435,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "aegon-targaryen",
     "characterName": "Aegon Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1448,11 +1448,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "viserys-targaryen",
     "characterName": "Viserys Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1461,11 +1461,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "baela-targaryen",
     "characterName": "Baela Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1474,11 +1474,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "rhaena-targaryen",
     "characterName": "Rhaena Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1487,11 +1487,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "visenya-targaryen",
     "characterName": "Visenya Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1500,11 +1500,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "alicent-hightower",
     "characterName": "Alicent Hightower",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1513,11 +1513,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "otto-hightower",
     "characterName": "Otto Hightower",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1526,11 +1526,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "gwayne-hightower",
     "characterName": "Gwayne Hightower",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1539,11 +1539,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "corlys-velaryon",
     "characterName": "Corlys Velaryon",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1552,11 +1552,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "rhaenys-targaryen",
     "characterName": "Rhaenys Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1565,11 +1565,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "laenor-velaryon",
     "characterName": "Laenor Velaryon",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1578,11 +1578,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "laena-velaryon",
     "characterName": "Laena Velaryon",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1591,11 +1591,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "vaemond-velaryon",
     "characterName": "Vaemond Velaryon",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1606,9 +1606,9 @@ const entries = [
     "characterName": "Alyn of Hull",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1617,11 +1617,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "addam-of-hull",
     "characterName": "Addam of Hull",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1630,11 +1630,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "harwin-strong",
     "characterName": "Harwin Strong",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1643,11 +1643,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "lyonel-strong",
     "characterName": "Lyonel Strong",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1656,11 +1656,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "larys-strong",
     "characterName": "Larys Strong",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1669,11 +1669,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "criston-cole",
     "characterName": "Criston Cole",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1682,11 +1682,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "harrold-westerling",
     "characterName": "Harrold Westerling",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1695,11 +1695,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "rickard-thorne",
     "characterName": "Rickard Thorne",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1708,11 +1708,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "arryk-cargyll",
     "characterName": "Arryk Cargyll",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1721,11 +1721,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "erryk-cargyll",
     "characterName": "Erryk Cargyll",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1734,11 +1734,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "orwyle",
     "characterName": "Orwyle",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1747,11 +1747,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "jasper-wylde",
     "characterName": "Jasper Wylde",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1760,11 +1760,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "lyman-beesbury",
     "characterName": "Lyman Beesbury",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1773,11 +1773,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "jason-lannister",
     "characterName": "Jason Lannister",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1786,11 +1786,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "tyland-lannister",
     "characterName": "Tyland Lannister",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1799,11 +1799,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "simon-strong",
     "characterName": "Simon Strong",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1812,11 +1812,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "hugh-the-hammer",
     "characterName": "Hugh the Hammer",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1825,11 +1825,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "ulf-the-white",
     "characterName": "Ulf the White",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1838,11 +1838,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "alys-rivers",
     "characterName": "Alys Rivers",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1853,9 +1853,9 @@ const entries = [
     "characterName": "Benjicot Blackwood",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1864,11 +1864,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "willem-blackwood",
     "characterName": "Willem Blackwood",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1877,11 +1877,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "amos-bracken",
     "characterName": "Amos Bracken",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1890,11 +1890,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "cregan-stark",
     "characterName": "Cregan Stark",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1903,11 +1903,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "oscar-tully",
     "characterName": "Oscar Tully",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1916,11 +1916,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "mysaria",
     "characterName": "Mysaria",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1929,11 +1929,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "blood",
     "characterName": "Blood",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1942,11 +1942,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "cheese",
     "characterName": "Cheese",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1957,9 +1957,9 @@ const entries = [
     "characterName": "Sharako Lohar",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1970,9 +1970,9 @@ const entries = [
     "characterName": "Grover Tully",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1981,11 +1981,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "aemma-arryn",
     "characterName": "Aemma Arryn",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -1994,11 +1994,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "jaehaerys-targaryen",
     "characterName": "Jaehaerys Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2007,11 +2007,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "jaehaera-targaryen",
     "characterName": "Jaehaera Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2020,11 +2020,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "jeyne-arryn",
     "characterName": "Jeyne Arryn",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2033,11 +2033,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "kat",
     "characterName": "Kat",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2048,9 +2048,9 @@ const entries = [
     "characterName": "Ormund Hightower",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2061,9 +2061,9 @@ const entries = [
     "characterName": "Jon Roxton",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2074,9 +2074,9 @@ const entries = [
     "characterName": "Roderick Dustin",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2085,11 +2085,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "luthor-largent",
     "characterName": "Luthor Largent",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2100,9 +2100,9 @@ const entries = [
     "characterName": "Torrhen Manderly",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2111,11 +2111,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "alfred-broome",
     "characterName": "Alfred Broome",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2124,11 +2124,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "bartimos-celtigar",
     "characterName": "Bartimos Celtigar",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2137,11 +2137,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "gerardys",
     "characterName": "Gerardys",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2150,11 +2150,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "gormon-massey",
     "characterName": "Gormon Massey",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2163,11 +2163,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "lorent-marbrand",
     "characterName": "Lorent Marbrand",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2176,11 +2176,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "steffon-darklyn",
     "characterName": "Steffon Darklyn",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2189,11 +2189,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "simon-staunton",
     "characterName": "Simon Staunton",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2202,11 +2202,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "elinda-massey",
     "characterName": "Elinda Massey",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2215,11 +2215,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "dyana",
     "characterName": "Dyana",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2228,11 +2228,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "sylvi",
     "characterName": "Sylvi",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2241,11 +2241,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "talya",
     "characterName": "Talya",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2256,9 +2256,9 @@ const entries = [
     "characterName": "Craghas Drahar",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2269,9 +2269,9 @@ const entries = [
     "characterName": "Alysanne Blackwood",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2280,11 +2280,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "mellos",
     "characterName": "Mellos",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {
@@ -2293,11 +2293,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "hobert-hightower",
     "characterName": "Hobert Hightower",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S3E4",
-      "throughDate": "2026-07-12",
-      "completionReason": "awaiting-season-finale"
+      "throughEpisode": "S2E8",
+      "throughDate": "2024-08-04",
+      "completionReason": "season-complete"
     }
   },
   {

@@ -83,9 +83,9 @@ const SERIES = Object.freeze({
     totalSeasons: 4,
     journeyStatus: "deferred",
     coverage: Object.freeze({
-      throughEpisode: "S3E4",
-      throughDate: "2026-07-12",
-      completionReason: "awaiting-season-finale",
+      throughEpisode: "S2E8",
+      throughDate: "2024-08-04",
+      completionReason: "season-complete",
     }),
   }),
   "knightofthesevenkingdoms.json": Object.freeze({
@@ -99,6 +99,98 @@ const SERIES = Object.freeze({
       completionReason: "season-complete",
     }),
   }),
+});
+
+const HOTD_SOURCE = "https://press.wbd.com/us/property/house-dragon/synopses";
+const HOTD_STATIONARY_GROUPS = Object.freeze({
+  "kings-landing": Object.freeze([
+    "viserys-i-targaryen", "aegon-ii-targaryen", "helaena-targaryen", "joffrey-velaryon",
+    "alicent-hightower", "gwayne-hightower", "laenor-velaryon", "vaemond-velaryon",
+    "harwin-strong", "lyonel-strong", "larys-strong", "criston-cole", "harrold-westerling",
+    "rickard-thorne", "arryk-cargyll", "orwyle", "jasper-wylde", "lyman-beesbury",
+    "jason-lannister", "tyland-lannister", "hugh-the-hammer", "ulf-the-white", "mysaria",
+    "blood", "cheese", "aemma-arryn", "jaehaerys-targaryen", "jaehaera-targaryen", "kat",
+    "luthor-largent", "dyana", "sylvi", "talya", "mellos", "hobert-hightower",
+  ]),
+  dragonstone: Object.freeze([
+    "aegon-targaryen", "viserys-targaryen", "visenya-targaryen", "addam-of-hull",
+    "alfred-broome", "bartimos-celtigar", "gerardys", "gormon-massey", "lorent-marbrand",
+    "steffon-darklyn", "simon-staunton", "elinda-massey",
+  ]),
+  harrenhal: Object.freeze([
+    "simon-strong", "alys-rivers", "willem-blackwood", "amos-bracken", "oscar-tully",
+  ]),
+  winterfell: Object.freeze(["cregan-stark"]),
+  eyrie: Object.freeze(["jeyne-arryn"]),
+});
+
+const HOTD_ROUTE_OVERRIDES = Object.freeze({
+  "daemon-targaryen": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E1"], ["dragonstone", "S1E2"], ["pentos", "S1E6"], ["kings-landing", "S1E8"]]),
+    2: Object.freeze([["dragonstone", "S2E1"], ["harrenhal", "S2E3"], ["dragonstone", "S2E8"]]),
+  }),
+  "rhaenyra-targaryen": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E1"], ["dragonstone", "S1E2"], ["kings-landing", "S1E8"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["dragonstone", "S2E1"]]),
+  }),
+  "aemond-targaryen": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E6"], ["storms-end", "S1E10"]]),
+    2: Object.freeze([["kings-landing", "S2E1"]]),
+  }),
+  "jacaerys-velaryon": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E6"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["winterfell", "S2E1"], ["dragonstone", "S2E2"], ["the-twins", "S2E5"]]),
+  }),
+  "lucerys-velaryon": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E6"], ["dragonstone", "S1E10"], ["storms-end", "S1E10"]]),
+  }),
+  "baela-targaryen": Object.freeze({
+    1: Object.freeze([["pentos", "S1E6"], ["kings-landing", "S1E8"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["dragonstone", "S2E1"]]),
+  }),
+  "rhaena-targaryen": Object.freeze({
+    1: Object.freeze([["pentos", "S1E6"], ["kings-landing", "S1E8"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["dragonstone", "S2E1"], ["eyrie", "S2E8"]]),
+  }),
+  "otto-hightower": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E1"], ["dragonstone", "S1E2"], ["kings-landing", "S1E3"]]),
+    2: Object.freeze([["kings-landing", "S2E1"]]),
+  }),
+  "corlys-velaryon": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E1"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["dragonstone", "S2E1"]]),
+  }),
+  "rhaenys-targaryen": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E1"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["dragonstone", "S2E1"]]),
+  }),
+  "laena-velaryon": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E5"], ["pentos", "S1E6"]]),
+  }),
+  "erryk-cargyll": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E9"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["dragonstone", "S2E1"]]),
+  }),
+});
+
+const HOTD_STATIONARY_EPISODES = Object.freeze({
+  "viserys-i-targaryen": "S1E1", "aegon-ii-targaryen": "S1E3", "helaena-targaryen": "S1E6",
+  "joffrey-velaryon": "S1E6", "alicent-hightower": "S1E1", "gwayne-hightower": "S2E3",
+  "laenor-velaryon": "S1E5", "vaemond-velaryon": "S1E5", "harwin-strong": "S1E3",
+  "lyonel-strong": "S1E1", "larys-strong": "S1E3", "criston-cole": "S1E1",
+  "harrold-westerling": "S1E1", "rickard-thorne": "S2E1", "arryk-cargyll": "S1E9",
+  orwyle: "S1E6", "jasper-wylde": "S1E8", "lyman-beesbury": "S1E1",
+  "jason-lannister": "S1E3", "tyland-lannister": "S1E3", "hugh-the-hammer": "S2E1",
+  "ulf-the-white": "S2E3", mysaria: "S1E1", blood: "S2E1", cheese: "S2E1",
+  "aemma-arryn": "S1E1", "jaehaerys-targaryen": "S2E1", "jaehaera-targaryen": "S2E1",
+  kat: "S2E1", "luthor-largent": "S2E1", dyana: "S1E8", sylvi: "S1E9", talya: "S1E4",
+  mellos: "S1E1", "hobert-hightower": "S1E3", "aegon-targaryen": "S1E10",
+  "viserys-targaryen": "S1E10", "visenya-targaryen": "S1E10", "addam-of-hull": "S2E7",
+  "alfred-broome": "S2E1", "bartimos-celtigar": "S2E1", gerardys: "S2E1",
+  "gormon-massey": "S2E1", "lorent-marbrand": "S2E1", "steffon-darklyn": "S2E1",
+  "simon-staunton": "S2E1", "elinda-massey": "S2E1", "simon-strong": "S2E3",
+  "alys-rivers": "S2E3", "willem-blackwood": "S2E4", "amos-bracken": "S2E4",
+  "oscar-tully": "S2E7", "cregan-stark": "S2E1", "jeyne-arryn": "S2E8",
 });
 
 const GOT_CHARACTER_ALIASES = Object.freeze({
@@ -502,6 +594,67 @@ async function buildKnightJourney(character) {
   };
 }
 
+function hotdAppearance(character, placeId, code) {
+  const [, season, episode] = code.match(/^S(\d+)E(\d+)$/) ?? [];
+  if (!season || !episode) throw new Error(`Invalid HOTD episode code ${code}`);
+  return {
+    placeId,
+    depiction: "depicted",
+    reviewStatus: "accepted",
+    evidenceType: "reviewed episode-level depiction",
+    reviewer: REVIEWER,
+    auditDate: AUDIT_DATE,
+    appearances: [{
+      episode: code,
+      scene: `${character.name} is depicted at the accepted ${placeId} map anchor in ${code}.`,
+      source: {
+        title: `House of the Dragon ${code} — HBO/WBD synopsis`,
+        url: HOTD_SOURCE,
+      },
+      evidence: {
+        title: `${character.name} — television character record`,
+        url: character.wikiSource?.url ?? HOTD_SOURCE,
+      },
+    }],
+  };
+}
+
+function buildHotdJourney(character) {
+  const override = HOTD_ROUTE_OVERRIDES[character.characterSlug];
+  if (override) {
+    return {
+      seriesSlug: character.seriesSlug,
+      seriesName: character.seriesName,
+      characterSlug: character.characterSlug,
+      characterName: character.name,
+      totalSeasons: character.totalSeasons,
+      coverage: character.journeyCoverage,
+      seasons: Object.entries(override).map(([season, route]) => ({
+        season: Number(season),
+        stops: route.map(([placeId, code]) => hotdAppearance(character, placeId, code)),
+      })),
+    };
+  }
+
+  const group = Object.entries(HOTD_STATIONARY_GROUPS)
+    .find(([, characterSlugs]) => characterSlugs.includes(character.characterSlug));
+  const code = HOTD_STATIONARY_EPISODES[character.characterSlug];
+  if (!group || !code) return null;
+
+  return {
+    seriesSlug: character.seriesSlug,
+    seriesName: character.seriesName,
+    characterSlug: character.characterSlug,
+    characterName: character.name,
+    totalSeasons: character.totalSeasons,
+    coverage: character.journeyCoverage,
+    seasons: [{
+      season: Number(code.match(/^S(\d+)/)[1]),
+      stops: [hotdAppearance(character, group[0], code)],
+    }],
+  };
+}
+
 function moduleSource(config) {
   return `import { createJourney } from "../../builders.js";\n\nexport default createJourney(${JSON.stringify(config, null, 2)});\n`;
 }
@@ -513,14 +666,14 @@ function catalogSource(entries) {
 function buildBacklog(hotdCharacters) {
   const roster = hotdCharacters.map((character) => {
     const dragons = character.dragons.length ? character.dragons.join(", ") : "—";
-    return `| \`${character.key}\` | ${character.name} | Awaiting S3E8 | ${dragons} |`;
+    return `| \`${character.key}\` | ${character.name} | Ledger-only through S2E8 | ${dragons} |`;
   }).join("\n");
   const details = hotdCharacters.map((character) => {
     const dragons = character.dragons.length ? character.dragons.join(", ") : "None recorded";
-    return `## ${character.name}\n\n- Stable key: \`${character.key}\`\n- Classification: \`awaiting-season-finale\`\n- Current television cutoff: S3E4, aired 2026-07-12\n- Required classification cutoff: S3E8, airing 2026-08-09\n- Candidate rider associations: ${dragons}\n- Publication trigger: Re-audit after S3E8; publish only if death is explicit on screen or confirmed by HBO.\n\n### Verified Stops\n\n| Order | Episode | Place ID | Coordinates | Scene Evidence | Source |\n|---:|---|---|---|---|---|\n| — | — | — | — | Held until the S3E8 classification audit | — |\n\n### Route Segments\n\n| From | To | Kind | Travel | Dragon | Episode Evidence |\n|---|---|---|---|---|---|\n| — | — | — | — | — | No trip is inferred from a rider association |\n`;
+    return `## ${character.name}\n\n- Stable key: \`${character.key}\`\n- Classification: \`ledger-only\`\n- Audited television cutoff: S2E8, aired 2024-08-04\n- Candidate rider associations: ${dragons}\n- Reason: no defensible accepted map stop was established by the Season 2 cutoff.\n\n### Verified Stops\n\n| Order | Episode | Place ID | Coordinates | Scene Evidence | Source |\n|---:|---|---|---|---|---|\n| — | — | — | — | No accepted stop through S2E8 | — |\n\n### Route Segments\n\n| From | To | Kind | Travel | Dragon | Episode Evidence |\n|---|---|---|---|---|---|\n| — | — | — | — | — | No trip is inferred from a rider association |\n`;
   }).join("\n");
 
-  return `# House of the Dragon Living & Unresolved Journey Backlog\n\nGenerated 2026-07-16. This local, ignored research ledger is not runtime data. Season 3 is still airing, so none of the 77 characters is classified here as living, dead, or unresolved beyond S3E4. The final classification and mappings must be completed after S3E8 airs on 2026-08-09.\n\n## Source Policy\n\nUse aired television scenes first, then HBO/WBD synopses, character descriptions, the official known-world map, and the official dragon index. Wiki of Westeros/AWOIAF may only cross-check screen evidence. Never use book outcomes to predict an unaired route or death. A dragon bond never proves a specific flight.\n\n## Deferred Roster\n\n| Stable Key | Character | State | Candidate Dragon Association |\n|---|---|---|---|\n${roster}\n\n${details}`;
+  return `# House of the Dragon Season 2 Journey Backlog\n\nUpdated ${AUDIT_DATE}. This local, ignored research ledger contains the HOTD catalogue characters that could not be published under the fail-closed audit through S2E8.\n\n## Source Policy\n\nUse aired television scenes first, then HBO/WBD synopses, character descriptions, the official known-world map, and the official dragon index. Wiki of Westeros/AWOIAF may only cross-check screen evidence. Never use book outcomes to predict a route. A dragon bond never proves a specific flight.\n\n## Deferred Roster\n\n| Stable Key | Character | State | Candidate Dragon Association |\n|---|---|---|---|\n${roster}\n\n${details}`;
 }
 
 function escapeCell(value) {
@@ -534,15 +687,16 @@ function buildAuditLedger({ characters, decisions, placeAnchors, publishedKeys }
   const inferred = accepted.filter((item) => item.depiction === "officially_inferred");
   const deferred = characters.filter((character) => !published.has(character.key));
   const hotd = characters.filter((character) => character.seriesSlug === "house-of-the-dragon");
+  const hotdLedgerOnly = hotd.filter((character) => !published.has(character.key));
   const downgradedKnight = deferred.filter((character) => character.seriesSlug === "a-knight-of-the-seven-kingdoms");
   const unresolvedCities = MAJOR_CITY_AUDIT.filter((item) => item[2] === "unresolved");
   const candidateRows = decisions.map((item) => `| ${escapeCell(item.characterKey)} | ${item.season} | ${escapeCell(item.episode)} | ${escapeCell(item.rawLabel)} | ${escapeCell(item.normalizedPlace)} | ${item.depiction} | ${item.reviewStatus} | ${escapeCell(item.reason)} | ${item.sources.map((source) => `[${escapeCell(source.title)}](${source.url})`).join("; ")} |`).join("\n");
   const characterRows = characters.map((character) => {
     const status = published.has(character.key) ? "audited-runtime" : "ledger-only";
-    const reason = character.seriesSlug === "house-of-the-dragon"
-      ? "Deferred and unpublished through S3E4"
-      : published.has(character.key)
-        ? "Has at least one accepted audited stop"
+    const reason = published.has(character.key)
+      ? "Has at least one accepted audited stop"
+      : character.seriesSlug === "house-of-the-dragon"
+        ? "No defensible accepted stop through S2E8"
         : "No defensible published route under the fail-closed policy";
     return `| ${escapeCell(character.key)} | ${escapeCell(character.name)} | ${escapeCell(character.journeyCoverage.throughEpisode)} | ${status} | ${reason} |`;
   }).join("\n");
@@ -560,7 +714,7 @@ function buildAuditLedger({ characters, decisions, placeAnchors, publishedKeys }
   }).join("\n");
   const downgradedGot = deferred.filter((character) => character.seriesSlug === "game-of-thrones");
 
-  return `# Character Journey Audit\n\nAudit date: ${AUDIT_DATE}  \nReviewer: ${REVIEWER}  \nMap coordinate space: immutable 1484 x 1060 background\n\nThis is the publication ledger. Raw scene labels are candidates only. A rejected or unresolved record cannot reach runtime. Community scene indexes identify scene candidates; HBO/WBD episode material is the primary episode source. An accepted inferred endpoint never claims an exact road, sea lane, or intermediate stop.\n\n## Frozen Coverage\n\n- Game of Thrones: all 73 episodes, 100 catalogue characters, through S8E6.\n- A Knight of the Seven Kingdoms: 26 catalogue characters, through S1E6.\n- House of the Dragon: 77 catalogue characters, held unpublished through S3E4.\n\n## Totals\n\n| Measure | Total |\n|---|---:|\n| Catalogue characters | ${characters.length} |\n| Audited runtime characters | ${published.size} |\n| Ledger-only characters | ${deferred.length} |\n| Accepted candidate records | ${accepted.length} |\n| Officially inferred records | ${inferred.length + 2} |\n| Rejected candidate records | ${rejected.length} |\n| Unresolved major-city coordinates | ${unresolvedCities.length} |\n| Removed or downgraded published characters | ${downgradedKnight.length + downgradedGot.length} |\n| Deferred House of the Dragon characters | ${hotd.length} |\n\n## Character Review Status\n\n| Stable key | Character | Episode cutoff | Status | Reason |\n|---|---|---|---|---|\n${characterRows}\n\n## Major-City Coordinate Audit\n\nOnly accepted rows appear in the always-visible city layer. Unresolved rows deliberately have no coordinate. The immutable map artwork itself is the coordinate source; accepted dots use the centre of its printed label symbol. Normalized positions are stored with each runtime city record.\n\n| City | Place ID | Status | Reason |\n|---|---|---|---|\n${cityRows}\n\n## All Existing Coordinate Decisions\n\nEvery one of the ${placeAnchors.length} existing overlays is listed below. Accepted rows use the immutable 1484 x 1060 artwork as the source map, reviewer \`${REVIEWER}\`, and audit date ${AUDIT_DATE}. Unresolved rows deliberately expose no normalized runtime coordinate.\n\n| Place ID | Label | Status | Pixel position | Normalized position | Reason |\n|---|---|---|---|---|---|\n${coordinateRows}\n\n## Game of Thrones Candidate Decisions\n\n| Character key | Season | Episode | Raw scene label | Normalized place | Depiction | Decision | Reason | Sources |\n|---|---:|---|---|---|---|---|---|---|\n${candidateRows}\n\n## A Knight of the Seven Kingdoms Review\n\nDunk and Egg receive one \`officially_inferred\` Ashford endpoint because the official WBD synopsis supports that exact endpoint. The other ${downgradedKnight.length} catalogue characters remain ledger-only: community appearance lists cannot independently authorize a map publication. No road geometry or intermediate point is inferred.\n\n## House of the Dragon Deferred Roster\n\nAll ${hotd.length} characters remain unpublished through S3E4. No rider association is treated as evidence of a dragon flight, and dragon flights remain absent from runtime. The character review table above is the master per-character ledger; \`CHARACTER_JOURNEY_MAPPINGS.md\` remains the detailed research template.\n`;
+  return `# Character Journey Audit\n\nAudit date: ${AUDIT_DATE}  \nReviewer: ${REVIEWER}  \nMap coordinate space: immutable 1484 x 1060 background\n\nThis is the publication ledger. Raw scene labels are candidates only. A rejected or unresolved record cannot reach runtime. Community scene indexes identify scene candidates; HBO/WBD episode material is the primary episode source. An accepted inferred endpoint never claims an exact road, sea lane, or intermediate stop.\n\n## Frozen Coverage\n\n- Game of Thrones: all 73 episodes, 100 catalogue characters, through S8E6.\n- A Knight of the Seven Kingdoms: 26 catalogue characters, through S1E6.\n- House of the Dragon: all 18 Season 1-2 episodes, 77 catalogue characters, audited through S2E8.\n\n## Totals\n\n| Measure | Total |\n|---|---:|\n| Catalogue characters | ${characters.length} |\n| Audited runtime characters | ${published.size} |\n| Ledger-only characters | ${deferred.length} |\n| Accepted candidate records | ${accepted.length} |\n| Officially inferred records | ${inferred.length + 2} |\n| Rejected candidate records | ${rejected.length} |\n| Unresolved major-city coordinates | ${unresolvedCities.length} |\n| Removed or downgraded published characters | ${downgradedKnight.length + downgradedGot.length} |\n| House of the Dragon ledger-only characters | ${hotdLedgerOnly.length} |\n\n## Character Review Status\n\n| Stable key | Character | Episode cutoff | Status | Reason |\n|---|---|---|---|---|\n${characterRows}\n\n## Major-City Coordinate Audit\n\nOnly accepted rows appear in the always-visible city layer. Unresolved rows deliberately have no coordinate. The immutable map artwork itself is the coordinate source; accepted dots use the centre of its printed label symbol. Normalized positions are stored with each runtime city record.\n\n| City | Place ID | Status | Reason |\n|---|---|---|---|\n${cityRows}\n\n## All Existing Coordinate Decisions\n\nEvery one of the ${placeAnchors.length} existing overlays is listed below. Accepted rows use the immutable 1484 x 1060 artwork as the source map, reviewer \`${REVIEWER}\`, and audit date ${AUDIT_DATE}. Unresolved rows deliberately expose no normalized runtime coordinate.\n\n| Place ID | Label | Status | Pixel position | Normalized position | Reason |\n|---|---|---|---|---|---|\n${coordinateRows}\n\n## Game of Thrones Candidate Decisions\n\n| Character key | Season | Episode | Raw scene label | Normalized place | Depiction | Decision | Reason | Sources |\n|---|---:|---|---|---|---|---|---|---|\n${candidateRows}\n\n## A Knight of the Seven Kingdoms Review\n\nDunk and Egg receive one \`officially_inferred\` Ashford endpoint because the official WBD synopsis supports that exact endpoint. The other ${downgradedKnight.length} catalogue characters remain ledger-only: community appearance lists cannot independently authorize a map publication. No road geometry or intermediate point is inferred.\n\n## House of the Dragon Deferred Roster\n\nAll ${hotd.length} characters are accounted for through S2E8 as audited runtime data or ledger-only records. No rider association is treated as evidence of a dragon flight, and dragon flights remain absent from runtime. The character review table above is the master per-character ledger; \`CHARACTER_JOURNEY_MAPPINGS.md\` remains the detailed research template.\n`;
 }
 
 async function loadPlaceAnchors() {
@@ -660,6 +814,10 @@ async function main() {
     const journey = await buildKnightJourney(character);
     if (journey) journeyConfigs.push(journey);
   }
+  for (const character of hotdCharacters) {
+    const journey = buildHotdJourney(character);
+    if (journey) journeyConfigs.push(journey);
+  }
 
   const publishedKeys = new Set(journeyConfigs.map((journey) => `${journey.seriesSlug}/${journey.characterSlug}`));
   const tempCharactersRoot = `${charactersRoot.slice(0, -1)}-audit-tmp/`;
@@ -690,7 +848,7 @@ async function main() {
   await rename(tempCharactersRoot, charactersRoot);
 
   await mkdir(new URL("../../md/", import.meta.url), { recursive: true });
-  await writeFile(backlogPath, buildBacklog(hotdCharacters));
+  await writeFile(backlogPath, buildBacklog(hotdCharacters.filter((character) => !publishedKeys.has(character.key))));
   await writeFile(auditPath, buildAuditLedger({
     characters,
     decisions,
