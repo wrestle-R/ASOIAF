@@ -9,6 +9,11 @@ const VALID_COMPLETION_REASONS = new Set([
   "unresolved-status",
 ]);
 
+// All moving routes use the same map-space velocity. A long season therefore
+// takes longer to play than a short one instead of racing through extra stops.
+export const JOURNEY_ROUTE_SPEED = 260;
+export const STATIONARY_SEASON_DURATION = 1800;
+
 function round(value) {
   return Math.round(value * 10) / 10;
 }
@@ -33,13 +38,17 @@ function freezeAppearance(appearance, context) {
     throw new Error(`${context} requires a scene note`);
   }
 
+  const source = freezeSource(appearance.source, context);
+  const evidence = freezeSource(appearance.evidence, `${context} secondary evidence`);
+  if (source.url === evidence.url) {
+    throw new Error(`${context} requires two independent source URLs`);
+  }
+
   return Object.freeze({
     episode: appearance.episode,
     scene: appearance.scene.trim(),
-    source: freezeSource(appearance.source, context),
-    evidence: appearance.evidence
-      ? freezeSource(appearance.evidence, `${context} secondary evidence`)
-      : null,
+    source,
+    evidence,
   });
 }
 
@@ -155,7 +164,7 @@ function makeSegment(fromPlaceId, toPlaceId, kind) {
     path,
     kind: stationary ? "stationary" : kind,
     weight: stationary
-      ? 1
+      ? 0
       : Math.max(1, Math.hypot(
           PLACES[toPlaceId].x - PLACES[fromPlaceId].x,
           PLACES[toPlaceId].y - PLACES[fromPlaceId].y,
@@ -163,7 +172,7 @@ function makeSegment(fromPlaceId, toPlaceId, kind) {
   });
 }
 
-function buildSeason(item, journeyKey) {
+function buildSeason(item, journeyKey, previousSeason = null) {
   if (!Number.isInteger(item.season) || item.season < 1) {
     throw new Error(`${journeyKey} has an invalid season`);
   }
@@ -177,7 +186,23 @@ function buildSeason(item, journeyKey) {
     `${context} stop ${index + 1}`,
   ));
   const firstPlaceId = stops[0].placeId;
+  const previousPlaceId = previousSeason?.stops.at(-1)?.placeId ?? null;
+  const continuity = previousSeason
+    ? Object.freeze({
+        originPlaceId: previousPlaceId,
+        fromSeason: previousSeason.season,
+        toSeason: item.season,
+      })
+    : null;
   const routeSegments = [];
+
+  if (previousPlaceId && previousPlaceId !== firstPlaceId) {
+    routeSegments.push(makeSegment(
+      previousPlaceId,
+      firstPlaceId,
+      "interseason-continuity-route",
+    ));
+  }
 
   for (let index = 1; index < stops.length; index += 1) {
     routeSegments.push(makeSegment(
@@ -193,6 +218,9 @@ function buildSeason(item, journeyKey) {
     routeSegments.push(makeSegment(firstPlaceId, firstPlaceId, "stationary"));
   }
 
+  const pathPlaceIds = previousPlaceId && previousPlaceId !== firstPlaceId
+    ? [previousPlaceId, ...stops.map((stop) => stop.placeId)]
+    : stops.map((stop) => stop.placeId);
   const cameraPlaceIds = routeSegments.flatMap((segment) => [
     segment.fromPlaceId,
     segment.toPlaceId,
@@ -204,11 +232,16 @@ function buildSeason(item, journeyKey) {
     summary: "",
     stops: Object.freeze(stops),
     routeSegments: Object.freeze(routeSegments),
-    path: schematicPath(stops.map((stop) => stop.placeId)),
+    path: schematicPath(pathPlaceIds),
     camera: item.camera ? Object.freeze(item.camera) : cameraFor(cameraPlaceIds),
-    duration: item.duration
-      ?? Math.min(3800, 2100 + Math.max(0, routeSegments.length - 1) * 240),
-    continuity: null,
+    distance: round(routeSegments.reduce((total, segment) => total + segment.weight, 0)),
+    duration: routeSegments.some((segment) => segment.weight > 0)
+      ? Math.round(
+          (routeSegments.reduce((total, segment) => total + segment.weight, 0)
+            / JOURNEY_ROUTE_SPEED) * 1000,
+        )
+      : STATIONARY_SEASON_DURATION,
+    continuity,
   });
 }
 
@@ -223,7 +256,7 @@ export function createJourney(config) {
 
   const seasons = [];
   for (const item of config.seasons) {
-    seasons.push(buildSeason(item, key));
+    seasons.push(buildSeason(item, key, seasons.at(-1) ?? null));
   }
 
   return Object.freeze({

@@ -33,8 +33,8 @@ export default createJourney({
                 "url": "https://press.wbd.com/na/property/knight-seven-kingdoms/synopses"
               },
               "evidence": {
-                "title": "A Knight of the Seven Kingdoms S1E1: “The Hedge Knight” — HBO",
-                "url": "https://press.wbd.com/na/property/knight-seven-kingdoms/synopses"
+                "title": "Ser Duncan the Tall — television character record",
+                "url": "https://gameofthrones.fandom.com/wiki/Duncan_the_Tall"
               }
             }
           ]

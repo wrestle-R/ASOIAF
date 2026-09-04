@@ -18,4 +18,17 @@ describe("published journey path continuity", () => {
       }
     }
   });
+
+  it("carries every season endpoint into the next season origin", () => {
+    for (const journey of journeys) {
+      for (let index = 1; index < journey.seasons.length; index += 1) {
+        const previous = journey.seasons[index - 1];
+        const current = journey.seasons[index];
+        expect.soft(
+          current.continuity?.originPlaceId,
+          `${journey.characterName}: seasons ${previous.season}-${current.season}`,
+        ).toBe(previous.stops.at(-1).placeId);
+      }
+    }
+  });
 });

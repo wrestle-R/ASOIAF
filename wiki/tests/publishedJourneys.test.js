@@ -7,6 +7,7 @@ import {
   JOURNEY_CATALOG,
   JOURNEY_CATALOG_KEYS,
   JOURNEY_MAP,
+  JOURNEY_ROUTE_SPEED,
   loadAllPublishedJourneys,
   loadJourney,
   MAJOR_CITIES,
@@ -126,8 +127,9 @@ describe("published character journeys", () => {
           for (const appearance of stop.appearances) {
             expect(appearance.episode.startsWith(`S${season.season}E`)).toBe(true);
             expect(appearance.scene.length).toBeGreaterThan(10);
-            expect(appearance.source.url).toMatch(/^https:\/\//);
-            expect(appearance.evidence.url).toMatch(/^https:\/\//);
+          expect(appearance.source.url).toMatch(/^https:\/\//);
+          expect(appearance.evidence.url).toMatch(/^https:\/\//);
+          expect(appearance.source.url).not.toBe(appearance.evidence.url);
           }
         }
       }
@@ -154,7 +156,12 @@ describe("published character journeys", () => {
       for (const season of journey.seasons) {
         expect(getSeasonWaypoints(season).every(Boolean)).toBe(true);
         for (const segment of season.routeSegments) {
-          expect(["depicted-route", "officially-inferred-route", "stationary"]).toContain(segment.kind);
+          expect([
+            "depicted-route",
+            "officially-inferred-route",
+            "interseason-continuity-route",
+            "stationary",
+          ]).toContain(segment.kind);
           expect(PLACES[segment.fromPlaceId]).toBeTruthy();
           expect(PLACES[segment.toPlaceId]).toBeTruthy();
           for (const point of pathCoordinates(segment.path)) {
@@ -193,12 +200,24 @@ describe("published character journeys", () => {
     }
   });
 
-  it("starts each season at its first depicted stop without fabricating an inherited route", () => {
+  it("starts every later season at the preceding season's final mapped place", () => {
     for (const journey of journeys) {
       expect(getSeasonOrigin(journey.seasons[0])).toBe(PLACES[journey.seasons[0].stops[0].placeId]);
-      for (const season of journey.seasons) {
-        expect(getSeasonOrigin(season)).toBe(PLACES[season.stops[0].placeId]);
-        expect(season.continuity).toBeNull();
+      expect(journey.seasons[0].continuity).toBeNull();
+      for (let index = 1; index < journey.seasons.length; index += 1) {
+        const season = journey.seasons[index];
+        const previousSeason = journey.seasons[index - 1];
+        const previousPlaceId = previousSeason.stops.at(-1).placeId;
+        expect(getSeasonOrigin(season)).toBe(PLACES[previousPlaceId]);
+        expect(season.continuity).toEqual({
+          originPlaceId: previousPlaceId,
+          fromSeason: previousSeason.season,
+          toSeason: season.season,
+        });
+        expect(pathCoordinates(season.path)[0]).toEqual({
+          x: PLACES[previousPlaceId].x,
+          y: PLACES[previousPlaceId].y,
+        });
         expect(season.path.match(/\bM\b/g)).toHaveLength(1);
         expect(season.stops.every((stop) => stop.episode.startsWith(`S${season.season}E`))).toBe(true);
       }
@@ -223,9 +242,12 @@ describe("published character journeys", () => {
     for (const journey of journeys) {
       for (const season of journey.seasons) {
         expect(season.path.match(/\bM\b/g)).toHaveLength(1);
+        const stopSegments = season.routeSegments.filter(
+          (segment) => segment.kind !== "interseason-continuity-route",
+        );
         for (let index = 1; index < season.stops.length; index += 1) {
           expect(season.stops[index].placeId).not.toBe(season.stops[index - 1].placeId);
-          expect(season.routeSegments[index - 1]).toMatchObject({
+          expect(stopSegments[index - 1]).toMatchObject({
             fromPlaceId: season.stops[index - 1].placeId,
             toPlaceId: season.stops[index].placeId,
           });
@@ -241,6 +263,18 @@ describe("published character journeys", () => {
     expect(stationary.length).toBeGreaterThan(0);
     expect(stationary.every((segment) => segment.fromPlaceId === segment.toPlaceId)).toBe(true);
     expect(stationary.every((segment) => /^M\s+\d+(?:\.\d+)?\s+\d+(?:\.\d+)?$/.test(segment.path))).toBe(true);
+  });
+
+  it("uses one constant map-space animation speed for every moving season", () => {
+    for (const journey of journeys) {
+      for (const season of journey.seasons) {
+        if (season.distance === 0) continue;
+        expect((season.distance / season.duration) * 1000).toBeCloseTo(
+          JOURNEY_ROUTE_SPEED,
+          0,
+        );
+      }
+    }
   });
 
   it("keeps dragon-flight presentation unpublished while the route audit is open", () => {

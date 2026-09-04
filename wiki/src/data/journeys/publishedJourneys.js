@@ -21,3 +21,5 @@ export {
   getSeasonOrigin,
   getSeasonWaypoints,
 } from "./places.js";
+
+export { JOURNEY_ROUTE_SPEED, STATIONARY_SEASON_DURATION } from "./builders.js";

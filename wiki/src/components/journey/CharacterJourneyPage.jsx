@@ -23,6 +23,7 @@ import {
   getSeasonOrigin,
   getSeasonWaypoints,
   JOURNEY_MAP,
+  JOURNEY_ROUTE_SPEED,
   MAJOR_CITIES,
   loadJourney,
 } from "../../data/journeys/publishedJourneys.js";
@@ -663,6 +664,9 @@ function JourneyExperience({ journey }) {
     if (!path || !marker || !camera) return undefined;
 
     const pathLength = Math.max(path.getTotalLength(), 0.01);
+    const animationDuration = season.distance > 0
+      ? (pathLength / JOURNEY_ROUTE_SPEED) * 1000
+      : season.duration;
     path.style.strokeDasharray = `${pathLength}`;
     path.style.strokeDashoffset = `${pathLength}`;
 
@@ -678,7 +682,7 @@ function JourneyExperience({ journey }) {
       previousTime = time;
       if (!pausedRef.current) elapsed += delta;
 
-      const progress = Math.min(elapsed / season.duration, 1);
+      const progress = Math.min(elapsed / animationDuration, 1);
       const point = path.getPointAtLength(pathLength * progress);
       path.style.strokeDashoffset = `${pathLength * (1 - progress)}`;
       marker.setAttribute("transform", `translate(${point.x} ${point.y})`);
@@ -709,7 +713,7 @@ function JourneyExperience({ journey }) {
         camera.style.setProperty("--mobile-camera-y", `${mobileCamera.y}px`);
       }
 
-      if (elapsed >= season.duration + SEASON_HOLD_MS) {
+      if (elapsed >= animationDuration + SEASON_HOLD_MS) {
         if (seasonIndex === journey.seasons.length - 1) setComplete(true);
         else setSeasonIndex((current) => current + 1);
         return;
@@ -756,7 +760,7 @@ function JourneyExperience({ journey }) {
   };
   const markerTransform = reducedMotion
     ? pointTransform(lastWaypoint)
-    : pointTransform(waypoints[0]);
+    : pointTransform(originPlace);
 
   return (
     <main className="journey-page">

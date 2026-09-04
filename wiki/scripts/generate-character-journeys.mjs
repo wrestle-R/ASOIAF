@@ -11,7 +11,7 @@ const catalogPath = fileURLToPath(new URL("../src/data/journeys/journeyCatalog.j
 const placesPath = fileURLToPath(new URL("../src/data/journeys/places.js", import.meta.url));
 const backlogPath = fileURLToPath(new URL("../../md/CHARACTER_JOURNEY_MAPPINGS.md", import.meta.url));
 const auditPath = fileURLToPath(new URL("../../md/CHARACTER_JOURNEY_AUDIT.md", import.meta.url));
-const AUDIT_DATE = "2026-07-18";
+const AUDIT_DATE = "2026-09-05";
 const REVIEWER = "ASOIAF map audit";
 
 // Publication is deliberately narrower than the raw scene index. These are
@@ -20,13 +20,13 @@ const REVIEWER = "ASOIAF map audit";
 const ACCEPTED_PLACE_IDS = new Set([
   "ashford-meadow", "astapor", "bear-island", "blackwater-bay", "blackwater-rush",
   "castle-black", "castle-stokeworth", "casterly-rock", "crasters-keep",
-  "crossroads-inn", "deepwood-motte", "dragonstone", "eastwatch", "eyrie", "hardhome",
-  "harrenhal", "highgarden", "hollow-hill", "horn-hill", "kings-landing", "kingswood",
+  "crossroads-inn", "deepwood-motte", "dragonstone", "driftmark", "eastwatch", "eyrie",
+  "gullet", "hardhome", "harrenhal", "highgarden", "hollow-hill", "horn-hill", "kings-landing", "kingswood",
   "lands-of-always-winter", "last-hearth", "lhazar", "meereen", "moat-cailin",
   "moles-town", "nightfort", "oldtown", "oxcross", "pentos", "pyke", "qarth",
-  "red-waste", "riverrun", "runestone", "storms-end", "tarth", "the-dreadfort",
+  "red-waste", "riverrun", "rooks-rest", "runestone", "storms-end", "tarth", "the-dreadfort",
   "the-fist", "the-frostfangs", "the-twins", "three-eyed-raven-cave", "tower-of-joy",
-  "vaes-dothrak", "water-gardens", "winter-town", "winterfell",
+  "tumbleton", "vaes-dothrak", "water-gardens", "winter-town", "winterfell",
   "yunkai",
 ]);
 
@@ -83,9 +83,23 @@ const SERIES = Object.freeze({
     totalSeasons: 4,
     journeyStatus: "deferred",
     coverage: Object.freeze({
-      throughEpisode: "S2E8",
-      throughDate: "2024-08-04",
+      throughEpisode: "S3E8",
+      throughDate: "2026-08-09",
       completionReason: "season-complete",
+      nextSeason: Object.freeze({
+        season: 4,
+        status: "confirmed-unaired",
+        sources: Object.freeze([
+          Object.freeze({
+            title: "HBO renews House of the Dragon for Season 4",
+            url: "https://press.wbd.com/us/ca/media-release/hbo-0/house-dragon/hbo-announces-season-renewals-two-game-thrones-franchise-series-setting-new-seasons",
+          }),
+          Object.freeze({
+            title: "House of the Dragon Season 4 production status",
+            url: "https://www.gamesradar.com/entertainment/fantasy-shows/house-of-the-dragon-showrunner-says-theyve-started-showing-scripts-to-hbo-for-season-4/",
+          }),
+        ]),
+      }),
     }),
   }),
   "knightofthesevenkingdoms.json": Object.freeze({
@@ -127,19 +141,19 @@ const HOTD_STATIONARY_GROUPS = Object.freeze({
 const HOTD_ROUTE_OVERRIDES = Object.freeze({
   "daemon-targaryen": Object.freeze({
     1: Object.freeze([["kings-landing", "S1E1"], ["dragonstone", "S1E2"], ["pentos", "S1E6"], ["kings-landing", "S1E8"]]),
-    2: Object.freeze([["dragonstone", "S2E1"], ["harrenhal", "S2E3"], ["dragonstone", "S2E8"]]),
+    2: Object.freeze([["dragonstone", "S2E1"], ["harrenhal", "S2E3"]]),
   }),
   "rhaenyra-targaryen": Object.freeze({
     1: Object.freeze([["kings-landing", "S1E1"], ["dragonstone", "S1E2"], ["kings-landing", "S1E8"], ["dragonstone", "S1E10"]]),
-    2: Object.freeze([["dragonstone", "S2E1"]]),
+    2: Object.freeze([["dragonstone", "S2E1"], ["kings-landing", "S2E3"], ["dragonstone", "S2E4"], ["harrenhal", "S2E8"]]),
   }),
   "aemond-targaryen": Object.freeze({
     1: Object.freeze([["kings-landing", "S1E6"], ["storms-end", "S1E10"]]),
-    2: Object.freeze([["kings-landing", "S2E1"]]),
+    2: Object.freeze([["kings-landing", "S2E1"], ["rooks-rest", "S2E4"], ["kings-landing", "S2E5"]]),
   }),
   "jacaerys-velaryon": Object.freeze({
     1: Object.freeze([["kings-landing", "S1E6"], ["dragonstone", "S1E10"]]),
-    2: Object.freeze([["winterfell", "S2E1"], ["dragonstone", "S2E2"], ["the-twins", "S2E5"]]),
+    2: Object.freeze([["winterfell", "S2E1"], ["dragonstone", "S2E2"], ["the-twins", "S2E5"], ["dragonstone", "S2E8"]]),
   }),
   "lucerys-velaryon": Object.freeze({
     1: Object.freeze([["kings-landing", "S1E6"], ["dragonstone", "S1E10"], ["storms-end", "S1E10"]]),
@@ -157,12 +171,12 @@ const HOTD_ROUTE_OVERRIDES = Object.freeze({
     2: Object.freeze([["kings-landing", "S2E1"]]),
   }),
   "corlys-velaryon": Object.freeze({
-    1: Object.freeze([["kings-landing", "S1E1"], ["dragonstone", "S1E10"]]),
-    2: Object.freeze([["dragonstone", "S2E1"]]),
+    1: Object.freeze([["kings-landing", "S1E1"], ["driftmark", "S1E7"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["driftmark", "S2E1"]]),
   }),
   "rhaenys-targaryen": Object.freeze({
-    1: Object.freeze([["kings-landing", "S1E1"], ["dragonstone", "S1E10"]]),
-    2: Object.freeze([["dragonstone", "S2E1"]]),
+    1: Object.freeze([["kings-landing", "S1E1"], ["driftmark", "S1E7"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["dragonstone", "S2E1"], ["rooks-rest", "S2E4"]]),
   }),
   "laena-velaryon": Object.freeze({
     1: Object.freeze([["kings-landing", "S1E5"], ["pentos", "S1E6"]]),
@@ -171,6 +185,83 @@ const HOTD_ROUTE_OVERRIDES = Object.freeze({
     1: Object.freeze([["kings-landing", "S1E9"], ["dragonstone", "S1E10"]]),
     2: Object.freeze([["dragonstone", "S2E1"]]),
   }),
+  "aegon-ii-targaryen": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E3"]]),
+    2: Object.freeze([["kings-landing", "S2E1"], ["rooks-rest", "S2E4"]]),
+  }),
+  "alicent-hightower": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E1"]]),
+    2: Object.freeze([["kings-landing", "S2E1"], ["dragonstone", "S2E8"]]),
+  }),
+  "joffrey-velaryon": Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E6"], ["dragonstone", "S1E10"]]),
+    2: Object.freeze([["dragonstone", "S2E1"]]),
+  }),
+  "addam-of-hull": Object.freeze({
+    2: Object.freeze([["driftmark", "S2E6"], ["dragonstone", "S2E7"]]),
+  }),
+  "hugh-the-hammer": Object.freeze({
+    2: Object.freeze([["kings-landing", "S2E1"], ["dragonstone", "S2E7"]]),
+  }),
+  "ulf-the-white": Object.freeze({
+    2: Object.freeze([["kings-landing", "S2E3"], ["dragonstone", "S2E7"]]),
+  }),
+  mysaria: Object.freeze({
+    1: Object.freeze([["kings-landing", "S1E1"]]),
+    2: Object.freeze([["dragonstone", "S2E1"], ["kings-landing", "S2E6"], ["dragonstone", "S2E7"]]),
+  }),
+});
+
+// Conservative, TV-only endpoints from the eight aired Season 3 episodes.
+// Book-only outcomes and unaired Season 4 material are intentionally absent.
+const HOTD_SEASON_THREE_ROUTES = Object.freeze({
+  "daemon-targaryen": Object.freeze([["harrenhal", "S3E1"], ["eyrie", "S3E4"], ["kings-landing", "S3E5"], ["tumbleton", "S3E8"]]),
+  "rhaenyra-targaryen": Object.freeze([["dragonstone", "S3E1"], ["kings-landing", "S3E2"]]),
+  "aegon-ii-targaryen": Object.freeze([["rooks-rest", "S3E4"], ["harrenhal", "S3E7"]]),
+  "aemond-targaryen": Object.freeze([["kings-landing", "S3E1"], ["harrenhal", "S3E5"]]),
+  "helaena-targaryen": Object.freeze([["kings-landing", "S3E1"]]),
+  "daeron-targaryen": Object.freeze([["tumbleton", "S3E4"]]),
+  "jacaerys-velaryon": Object.freeze([["dragonstone", "S3E1"], ["gullet", "S3E1"]]),
+  "joffrey-velaryon": Object.freeze([["dragonstone", "S3E1"], ["kings-landing", "S3E3"]]),
+  "aegon-targaryen": Object.freeze([["eyrie", "S3E2"]]),
+  "baela-targaryen": Object.freeze([["dragonstone", "S3E1"], ["gullet", "S3E1"], ["kings-landing", "S3E3"], ["eyrie", "S3E6"]]),
+  "rhaena-targaryen": Object.freeze([["eyrie", "S3E1"]]),
+  "alicent-hightower": Object.freeze([["kings-landing", "S3E1"], ["harrenhal", "S3E7"]]),
+  "gwayne-hightower": Object.freeze([["tumbleton", "S3E4"]]),
+  "corlys-velaryon": Object.freeze([["gullet", "S3E1"], ["kings-landing", "S3E3"], ["tumbleton", "S3E8"]]),
+  "alyn-of-hull": Object.freeze([["gullet", "S3E1"], ["kings-landing", "S3E3"]]),
+  "addam-of-hull": Object.freeze([["dragonstone", "S3E1"], ["kings-landing", "S3E3"], ["eyrie", "S3E6"]]),
+  "larys-strong": Object.freeze([["rooks-rest", "S3E4"]]),
+  orwyle: Object.freeze([["kings-landing", "S3E1"]]),
+  "jasper-wylde": Object.freeze([["kings-landing", "S3E1"]]),
+  "tyland-lannister": Object.freeze([["gullet", "S3E1"], ["rooks-rest", "S3E5"]]),
+  "simon-strong": Object.freeze([["harrenhal", "S3E1"]]),
+  "hugh-the-hammer": Object.freeze([["dragonstone", "S3E1"], ["kings-landing", "S3E3"], ["tumbleton", "S3E6"]]),
+  "ulf-the-white": Object.freeze([["dragonstone", "S3E1"], ["kings-landing", "S3E3"], ["tumbleton", "S3E6"]]),
+  "alys-rivers": Object.freeze([["harrenhal", "S3E1"]]),
+  "oscar-tully": Object.freeze([["harrenhal", "S3E1"], ["tumbleton", "S3E8"]]),
+  mysaria: Object.freeze([["dragonstone", "S3E1"], ["kings-landing", "S3E3"]]),
+  "sharako-lohar": Object.freeze([["gullet", "S3E1"]]),
+  "jeyne-arryn": Object.freeze([["eyrie", "S3E2"]]),
+  kat: Object.freeze([["tumbleton", "S3E4"]]),
+  "ormund-hightower": Object.freeze([["tumbleton", "S3E3"]]),
+  "jon-roxton": Object.freeze([["tumbleton", "S3E6"]]),
+  "roderick-dustin": Object.freeze([["harrenhal", "S3E1"], ["tumbleton", "S3E8"]]),
+  "torrhen-manderly": Object.freeze([["kings-landing", "S3E3"]]),
+  "elinda-massey": Object.freeze([["kings-landing", "S3E8"]]),
+  sylvi: Object.freeze([["kings-landing", "S3E7"]]),
+  "alysanne-blackwood": Object.freeze([["tumbleton", "S3E8"]]),
+});
+
+const HOTD_SEASON_THREE_EPISODES = Object.freeze({
+  S3E1: "Salt and Sea, Fire and Blood",
+  S3E2: "Queen's Landing",
+  S3E3: "Rhaenyra Triumphant",
+  S3E4: "Tumbleton (episode)",
+  S3E5: "Unbowed and Unbent",
+  S3E6: "Faceless Men (episode)",
+  S3E7: "The Dragon in Winter",
+  S3E8: "The Treasons at Tumbleton",
 });
 
 const HOTD_STATIONARY_EPISODES = Object.freeze({
@@ -574,7 +665,10 @@ async function buildKnightJourney(character) {
         ? "The official synopsis places Egg's meeting with Dunk at Ashford."
         : "The official synopsis states that Dunk travels to Ashford for a tournament.",
       source,
-      evidence: source,
+      evidence: {
+        title: `${character.name} — television character record`,
+        url: character.wikiSource.url,
+      },
     }],
   }];
 
@@ -611,35 +705,32 @@ function hotdAppearance(character, placeId, code) {
         title: `House of the Dragon ${code} — HBO/WBD synopsis`,
         url: HOTD_SOURCE,
       },
-      evidence: {
-        title: `${character.name} — television character record`,
-        url: character.wikiSource?.url ?? HOTD_SOURCE,
-      },
+      evidence: HOTD_SEASON_THREE_EPISODES[code]
+        ? {
+            title: `House of the Dragon ${code}: “${HOTD_SEASON_THREE_EPISODES[code].replace(" (episode)", "")}" — televised episode record`,
+            url: `https://gameofthrones.fandom.com/wiki/${encodeURIComponent(HOTD_SEASON_THREE_EPISODES[code].replaceAll(" ", "_"))}`,
+          }
+        : {
+            title: `${character.name} — television character record`,
+            url: character.wikiSource?.url ?? "https://gameofthrones.fandom.com/wiki/House_of_the_Dragon",
+          },
     }],
   };
 }
 
 function buildHotdJourney(character) {
   const override = HOTD_ROUTE_OVERRIDES[character.characterSlug];
-  if (override) {
-    return {
-      seriesSlug: character.seriesSlug,
-      seriesName: character.seriesName,
-      characterSlug: character.characterSlug,
-      characterName: character.name,
-      totalSeasons: character.totalSeasons,
-      coverage: character.journeyCoverage,
-      seasons: Object.entries(override).map(([season, route]) => ({
-        season: Number(season),
-        stops: route.map(([placeId, code]) => hotdAppearance(character, placeId, code)),
-      })),
-    };
-  }
-
   const group = Object.entries(HOTD_STATIONARY_GROUPS)
     .find(([, characterSlugs]) => characterSlugs.includes(character.characterSlug));
   const code = HOTD_STATIONARY_EPISODES[character.characterSlug];
-  if (!group || !code) return null;
+  const seasonThreeRoute = HOTD_SEASON_THREE_ROUTES[character.characterSlug];
+  const routes = Object.fromEntries(Object.entries(override ?? {}));
+
+  if (!Object.keys(routes).length && group && code) {
+    routes[Number(code.match(/^S(\d+)/)[1])] = [[group[0], code]];
+  }
+  if (seasonThreeRoute) routes[3] = seasonThreeRoute;
+  if (!Object.keys(routes).length) return null;
 
   return {
     seriesSlug: character.seriesSlug,
@@ -648,10 +739,16 @@ function buildHotdJourney(character) {
     characterName: character.name,
     totalSeasons: character.totalSeasons,
     coverage: character.journeyCoverage,
-    seasons: [{
-      season: Number(code.match(/^S(\d+)/)[1]),
-      stops: [hotdAppearance(character, group[0], code)],
-    }],
+    seasons: Object.entries(routes)
+      .sort(([left], [right]) => Number(left) - Number(right))
+      .map(([season, route]) => ({
+        season: Number(season),
+        stops: route.map(([placeId, episodeCode]) => hotdAppearance(
+          character,
+          placeId,
+          episodeCode,
+        )),
+      })),
   };
 }
 
@@ -666,7 +763,7 @@ function catalogSource(entries) {
 function buildBacklog(hotdCharacters) {
   const roster = hotdCharacters.map((character) => {
     const dragons = character.dragons.length ? character.dragons.join(", ") : "—";
-    return `| \`${character.key}\` | ${character.name} | Ledger-only through S2E8 | ${dragons} |`;
+    return `| \`${character.key}\` | ${character.name} | Ledger-only through S3E8 | ${dragons} |`;
   }).join("\n");
   const details = hotdCharacters.map((character) => {
     const dragons = character.dragons.length ? character.dragons.join(", ") : "None recorded";
@@ -696,7 +793,7 @@ function buildAuditLedger({ characters, decisions, placeAnchors, publishedKeys }
     const reason = published.has(character.key)
       ? "Has at least one accepted audited stop"
       : character.seriesSlug === "house-of-the-dragon"
-        ? "No defensible accepted stop through S2E8"
+        ? "No defensible accepted stop through S3E8"
         : "No defensible published route under the fail-closed policy";
     return `| ${escapeCell(character.key)} | ${escapeCell(character.name)} | ${escapeCell(character.journeyCoverage.throughEpisode)} | ${status} | ${reason} |`;
   }).join("\n");
@@ -727,7 +824,7 @@ async function loadPlaceAnchors() {
     x: Number(match[4]),
     y: Number(match[5]),
   }));
-  if (places.length !== 83) throw new Error(`Expected 83 place anchors, found ${places.length}`);
+  if (places.length !== 87) throw new Error(`Expected 87 place anchors, found ${places.length}`);
   return places;
 }
 

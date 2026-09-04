@@ -29,6 +29,7 @@ export const PLACES = Object.freeze({
   "crossroads-inn": Object.freeze({ name: "The Crossroads Inn", x: 315, y: 520 }),
   "deepwood-motte": Object.freeze({ name: "Deepwood Motte", x: 180, y: 270 }),
   dorne: Object.freeze({ name: "Dorne", x: 365, y: 900 }),
+  driftmark: Object.freeze({ name: "Driftmark", x: 552, y: 624 }),
   "the-dreadfort": Object.freeze({ name: "The Dreadfort", x: 405, y: 230 }),
   "dothraki-sea": Object.freeze({ name: "Dothraki Sea", x: 975, y: 430 }),
   "dothraki-sea-camp": Object.freeze({ name: "Dothraki Sea camp", x: 1110, y: 575 }),
@@ -38,6 +39,7 @@ export const PLACES = Object.freeze({
   // Hardhome is on the eastern Shivering Sea peninsula, not the water north of it.
   hardhome: Object.freeze({ name: "Hardhome", x: 465, y: 84 }),
   harrenhal: Object.freeze({ name: "Harrenhal", x: 335, y: 555 }),
+  gullet: Object.freeze({ name: "The Gullet", x: 535, y: 665 }),
   "haunted-forest": Object.freeze({ name: "The Haunted Forest", x: 330, y: 55 }),
   highgarden: Object.freeze({ name: "Highgarden", x: 123, y: 832 }),
   "hollow-hill": Object.freeze({ name: "Hollow Hill", x: 345, y: 590 }),
@@ -69,6 +71,7 @@ export const PLACES = Object.freeze({
   riverlands: Object.freeze({ name: "The Riverlands", x: 278, y: 515 }),
   riverrun: Object.freeze({ name: "Riverrun", x: 265, y: 504 }),
   roseroad: Object.freeze({ name: "The Roseroad", x: 330, y: 735 }),
+  "rooks-rest": Object.freeze({ name: "Rook's Rest", x: 375, y: 656 }),
   runestone: Object.freeze({ name: "Runestone", x: 405, y: 430 }),
   saltpans: Object.freeze({ name: "Saltpans", x: 392, y: 555 }),
   "storms-end": Object.freeze({ name: "Storm's End", x: 454, y: 759 }),
@@ -85,6 +88,7 @@ export const PLACES = Object.freeze({
   "the-twins": Object.freeze({ name: "The Twins", x: 282, y: 430 }),
   "three-eyed-raven-cave": Object.freeze({ name: "The Three-Eyed Raven's Cave", x: 215, y: 50 }),
   "tower-of-joy": Object.freeze({ name: "The Tower of Joy", x: 340, y: 842 }),
+  tumbleton: Object.freeze({ name: "Tumbleton", x: 298, y: 775 }),
   vale: Object.freeze({ name: "The Vale", x: 340, y: 405 }),
   "vale-road": Object.freeze({ name: "Road through the Vale", x: 360, y: 458 }),
   "vaes-dothrak": Object.freeze({ name: "Vaes Dothrak", x: 1090, y: 468 }),
@@ -104,13 +108,13 @@ export const PLACES = Object.freeze({
 const AUDITED_RUNTIME_PLACE_IDS = new Set([
   "ashford-meadow", "astapor", "bear-island", "blackwater-bay", "blackwater-rush",
   "castle-black", "castle-stokeworth", "casterly-rock", "crasters-keep", "crossroads-inn",
-  "deepwood-motte", "dragonstone", "eastwatch", "eyrie", "hardhome", "harrenhal",
+  "deepwood-motte", "dragonstone", "driftmark", "eastwatch", "eyrie", "gullet", "hardhome", "harrenhal",
   "highgarden", "hollow-hill", "horn-hill", "kings-landing", "kingswood",
   "lands-of-always-winter", "last-hearth", "lhazar", "meereen", "moat-cailin",
   "moles-town", "nightfort", "oldtown", "outside-winterfell", "oxcross", "pentos",
-  "pyke", "qarth", "red-waste", "riverrun", "runestone", "storms-end", "tarth",
+  "pyke", "qarth", "red-waste", "riverrun", "rooks-rest", "runestone", "storms-end", "tarth",
   "the-dreadfort", "the-fist", "the-frostfangs", "the-twins", "three-eyed-raven-cave",
-  "tower-of-joy", "vaes-dothrak", "water-gardens", "winter-town", "winterfell", "yunkai",
+  "tower-of-joy", "tumbleton", "vaes-dothrak", "water-gardens", "winter-town", "winterfell", "yunkai",
 ]);
 
 export const PLACE_COORDINATE_AUDIT = Object.freeze(Object.fromEntries(
@@ -118,8 +122,18 @@ export const PLACE_COORDINATE_AUDIT = Object.freeze(Object.fromEntries(
     const place = PLACES[placeId];
     if (!place) throw new Error(`Audited coordinate references unknown place ${placeId}`);
     return [placeId, Object.freeze({
-      source: "Immutable illustrated world map overlay audit",
+      source: "Two-source illustrated world map overlay audit",
       sourceUrl: JOURNEY_MAP.image,
+      sources: Object.freeze([
+        Object.freeze({
+          title: "Immutable illustrated world map used by this project",
+          url: JOURNEY_MAP.image,
+        }),
+        Object.freeze({
+          title: "HBO House of the Dragon official map of Westeros",
+          url: "https://www.hbo.com/house-of-the-dragon/map-of-westeros",
+        }),
+      ]),
       sourceMap: Object.freeze({ width: JOURNEY_MAP.width, height: JOURNEY_MAP.height }),
       normalizedPosition: Object.freeze({
         x: Number((place.x / JOURNEY_MAP.width).toFixed(6)),
