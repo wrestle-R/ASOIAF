@@ -37,7 +37,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "vaes-dothrak",
@@ -83,7 +83,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "lhazar",
@@ -105,7 +105,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "red-waste",
@@ -139,7 +139,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -192,7 +192,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "qarth",
@@ -262,7 +262,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -315,7 +315,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -356,7 +356,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -409,7 +409,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "dragonstone",
@@ -431,7 +431,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "eastwatch",
@@ -465,7 +465,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "blackwater-bay",
@@ -487,7 +487,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "dragonstone",
@@ -509,7 +509,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -574,7 +574,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     }

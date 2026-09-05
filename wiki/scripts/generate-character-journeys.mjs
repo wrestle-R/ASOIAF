@@ -80,26 +80,12 @@ const SERIES = Object.freeze({
   "houseofthedragon.json": Object.freeze({
     slug: "house-of-the-dragon",
     name: "House of the Dragon",
-    totalSeasons: 4,
+    totalSeasons: 3,
     journeyStatus: "deferred",
     coverage: Object.freeze({
       throughEpisode: "S3E8",
       throughDate: "2026-08-09",
-      completionReason: "season-complete",
-      nextSeason: Object.freeze({
-        season: 4,
-        status: "confirmed-unaired",
-        sources: Object.freeze([
-          Object.freeze({
-            title: "HBO renews House of the Dragon for Season 4",
-            url: "https://press.wbd.com/us/ca/media-release/hbo-0/house-dragon/hbo-announces-season-renewals-two-game-thrones-franchise-series-setting-new-seasons",
-          }),
-          Object.freeze({
-            title: "House of the Dragon Season 4 production status",
-            url: "https://www.gamesradar.com/entertainment/fantasy-shows/house-of-the-dragon-showrunner-says-theyve-started-showing-scripts-to-hbo-for-season-4/",
-          }),
-        ]),
-      }),
+      completionReason: "series-complete",
     }),
   }),
   "knightofthesevenkingdoms.json": Object.freeze({
@@ -213,7 +199,7 @@ const HOTD_ROUTE_OVERRIDES = Object.freeze({
 });
 
 // Conservative, TV-only endpoints from the eight aired Season 3 episodes.
-// Book-only outcomes and unaired Season 4 material are intentionally absent.
+// Book-only outcomes and material beyond the Season 3 project cutoff are intentionally absent.
 const HOTD_SEASON_THREE_ROUTES = Object.freeze({
   "daemon-targaryen": Object.freeze([["harrenhal", "S3E1"], ["eyrie", "S3E4"], ["kings-landing", "S3E5"], ["tumbleton", "S3E8"]]),
   "rhaenyra-targaryen": Object.freeze([["dragonstone", "S3E1"], ["kings-landing", "S3E2"]]),
@@ -767,10 +753,10 @@ function buildBacklog(hotdCharacters) {
   }).join("\n");
   const details = hotdCharacters.map((character) => {
     const dragons = character.dragons.length ? character.dragons.join(", ") : "None recorded";
-    return `## ${character.name}\n\n- Stable key: \`${character.key}\`\n- Classification: \`ledger-only\`\n- Audited television cutoff: S2E8, aired 2024-08-04\n- Candidate rider associations: ${dragons}\n- Reason: no defensible accepted map stop was established by the Season 2 cutoff.\n\n### Verified Stops\n\n| Order | Episode | Place ID | Coordinates | Scene Evidence | Source |\n|---:|---|---|---|---|---|\n| — | — | — | — | No accepted stop through S2E8 | — |\n\n### Route Segments\n\n| From | To | Kind | Travel | Dragon | Episode Evidence |\n|---|---|---|---|---|---|\n| — | — | — | — | — | No trip is inferred from a rider association |\n`;
+    return `## ${character.name}\n\n- Stable key: \`${character.key}\`\n- Classification: \`ledger-only\`\n- Audited television cutoff: S3E8, aired 2026-08-09\n- Candidate rider associations: ${dragons}\n- Reason: no defensible accepted map stop was established by the Season 3 cutoff.\n\n### Verified Stops\n\n| Order | Episode | Place ID | Coordinates | Scene Evidence | Source |\n|---:|---|---|---|---|---|\n| — | — | — | — | No accepted stop through S3E8 | — |\n\n### Route Segments\n\n| From | To | Kind | Travel | Dragon | Episode Evidence |\n|---|---|---|---|---|---|\n| — | — | — | — | — | No trip is inferred from a rider association |\n`;
   }).join("\n");
 
-  return `# House of the Dragon Season 2 Journey Backlog\n\nUpdated ${AUDIT_DATE}. This local, ignored research ledger contains the HOTD catalogue characters that could not be published under the fail-closed audit through S2E8.\n\n## Source Policy\n\nUse aired television scenes first, then HBO/WBD synopses, character descriptions, the official known-world map, and the official dragon index. Wiki of Westeros/AWOIAF may only cross-check screen evidence. Never use book outcomes to predict a route. A dragon bond never proves a specific flight.\n\n## Deferred Roster\n\n| Stable Key | Character | State | Candidate Dragon Association |\n|---|---|---|---|\n${roster}\n\n${details}`;
+  return `# House of the Dragon Season 3 Journey Backlog\n\nUpdated ${AUDIT_DATE}. This local, ignored research ledger contains the HOTD catalogue characters that could not be published under the fail-closed television audit through the final project cutoff, S3E8.\n\n## Source Policy\n\nUse aired television scenes first, then HBO/WBD synopses, character descriptions, the official known-world map, and the official dragon index. Wiki of Westeros/AWOIAF may only cross-check screen evidence. Never use book outcomes to predict a route. A dragon bond never proves a specific flight.\n\n## Deferred Roster\n\n| Stable Key | Character | State | Candidate Dragon Association |\n|---|---|---|---|\n${roster}\n\n${details}`;
 }
 
 function escapeCell(value) {
@@ -811,7 +797,7 @@ function buildAuditLedger({ characters, decisions, placeAnchors, publishedKeys }
   }).join("\n");
   const downgradedGot = deferred.filter((character) => character.seriesSlug === "game-of-thrones");
 
-  return `# Character Journey Audit\n\nAudit date: ${AUDIT_DATE}  \nReviewer: ${REVIEWER}  \nMap coordinate space: immutable 1484 x 1060 background\n\nThis is the publication ledger. Raw scene labels are candidates only. A rejected or unresolved record cannot reach runtime. Community scene indexes identify scene candidates; HBO/WBD episode material is the primary episode source. An accepted inferred endpoint never claims an exact road, sea lane, or intermediate stop.\n\n## Frozen Coverage\n\n- Game of Thrones: all 73 episodes, 100 catalogue characters, through S8E6.\n- A Knight of the Seven Kingdoms: 26 catalogue characters, through S1E6.\n- House of the Dragon: all 18 Season 1-2 episodes, 77 catalogue characters, audited through S2E8.\n\n## Totals\n\n| Measure | Total |\n|---|---:|\n| Catalogue characters | ${characters.length} |\n| Audited runtime characters | ${published.size} |\n| Ledger-only characters | ${deferred.length} |\n| Accepted candidate records | ${accepted.length} |\n| Officially inferred records | ${inferred.length + 2} |\n| Rejected candidate records | ${rejected.length} |\n| Unresolved major-city coordinates | ${unresolvedCities.length} |\n| Removed or downgraded published characters | ${downgradedKnight.length + downgradedGot.length} |\n| House of the Dragon ledger-only characters | ${hotdLedgerOnly.length} |\n\n## Character Review Status\n\n| Stable key | Character | Episode cutoff | Status | Reason |\n|---|---|---|---|---|\n${characterRows}\n\n## Major-City Coordinate Audit\n\nOnly accepted rows appear in the always-visible city layer. Unresolved rows deliberately have no coordinate. The immutable map artwork itself is the coordinate source; accepted dots use the centre of its printed label symbol. Normalized positions are stored with each runtime city record.\n\n| City | Place ID | Status | Reason |\n|---|---|---|---|\n${cityRows}\n\n## All Existing Coordinate Decisions\n\nEvery one of the ${placeAnchors.length} existing overlays is listed below. Accepted rows use the immutable 1484 x 1060 artwork as the source map, reviewer \`${REVIEWER}\`, and audit date ${AUDIT_DATE}. Unresolved rows deliberately expose no normalized runtime coordinate.\n\n| Place ID | Label | Status | Pixel position | Normalized position | Reason |\n|---|---|---|---|---|---|\n${coordinateRows}\n\n## Game of Thrones Candidate Decisions\n\n| Character key | Season | Episode | Raw scene label | Normalized place | Depiction | Decision | Reason | Sources |\n|---|---:|---|---|---|---|---|---|---|\n${candidateRows}\n\n## A Knight of the Seven Kingdoms Review\n\nDunk and Egg receive one \`officially_inferred\` Ashford endpoint because the official WBD synopsis supports that exact endpoint. The other ${downgradedKnight.length} catalogue characters remain ledger-only: community appearance lists cannot independently authorize a map publication. No road geometry or intermediate point is inferred.\n\n## House of the Dragon Deferred Roster\n\nAll ${hotd.length} characters are accounted for through S2E8 as audited runtime data or ledger-only records. No rider association is treated as evidence of a dragon flight, and dragon flights remain absent from runtime. The character review table above is the master per-character ledger; \`CHARACTER_JOURNEY_MAPPINGS.md\` remains the detailed research template.\n`;
+  return `# Character Journey Audit\n\nAudit date: ${AUDIT_DATE}  \nReviewer: ${REVIEWER}  \nMap coordinate space: immutable 1484 x 1060 background\n\nThis is the publication ledger. Raw scene labels are candidates only. A rejected or unresolved record cannot reach runtime. Community scene indexes identify scene candidates; HBO/WBD episode material is the primary episode source. An accepted inferred endpoint never claims an exact road, sea lane, or intermediate stop.\n\n## Frozen Coverage\n\n- Game of Thrones: all 73 episodes, 100 catalogue characters, through S8E6.\n- A Knight of the Seven Kingdoms: 26 catalogue characters, through S1E6.\n- House of the Dragon: all 26 Season 1-3 episodes, 77 catalogue characters, through the final project cutoff S3E8.\n\n## Totals\n\n| Measure | Total |\n|---|---:|\n| Catalogue characters | ${characters.length} |\n| Audited runtime characters | ${published.size} |\n| Ledger-only characters | ${deferred.length} |\n| Accepted candidate records | ${accepted.length} |\n| Officially inferred records | ${inferred.length + 2} |\n| Rejected candidate records | ${rejected.length} |\n| Unresolved major-city coordinates | ${unresolvedCities.length} |\n| Removed or downgraded published characters | ${downgradedKnight.length + downgradedGot.length} |\n| House of the Dragon ledger-only characters | ${hotdLedgerOnly.length} |\n\n## Character Review Status\n\n| Stable key | Character | Episode cutoff | Status | Reason |\n|---|---|---|---|---|\n${characterRows}\n\n## Major-City Coordinate Audit\n\nOnly accepted rows appear in the always-visible city layer. Unresolved rows deliberately have no coordinate. The immutable map artwork itself is the coordinate source; accepted dots use the centre of its printed label symbol. Normalized positions are stored with each runtime city record.\n\n| City | Place ID | Status | Reason |\n|---|---|---|---|\n${cityRows}\n\n## All Existing Coordinate Decisions\n\nEvery one of the ${placeAnchors.length} existing overlays is listed below. Accepted rows use the immutable 1484 x 1060 artwork as the source map, reviewer \`${REVIEWER}\`, and audit date ${AUDIT_DATE}. Unresolved rows deliberately expose no normalized runtime coordinate.\n\n| Place ID | Label | Status | Pixel position | Normalized position | Reason |\n|---|---|---|---|---|---|\n${coordinateRows}\n\n## Game of Thrones Candidate Decisions\n\n| Character key | Season | Episode | Raw scene label | Normalized place | Depiction | Decision | Reason | Sources |\n|---|---:|---|---|---|---|---|---|---|\n${candidateRows}\n\n## A Knight of the Seven Kingdoms Review\n\nDunk and Egg receive one \`officially_inferred\` Ashford endpoint because the official WBD synopsis supports that exact endpoint. The other ${downgradedKnight.length} catalogue characters remain ledger-only: community appearance lists cannot independently authorize a map publication. No road geometry or intermediate point is inferred.\n\n## House of the Dragon Deferred Roster\n\nAll ${hotd.length} characters are accounted for through the final project cutoff S3E8 as audited runtime data or ledger-only records. No rider association is treated as evidence of a dragon flight, and no book-only outcome is treated as television canon. The character review table above is the master per-character ledger; \`CHARACTER_JOURNEY_MAPPINGS.md\` remains the detailed research template.\n`;
 }
 
 async function loadPlaceAnchors() {

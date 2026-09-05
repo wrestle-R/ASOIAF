@@ -23,7 +23,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "official synopsis endpoint",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18",
+          "auditDate": "2026-09-05",
           "appearances": [
             {
               "episode": "S1E1",

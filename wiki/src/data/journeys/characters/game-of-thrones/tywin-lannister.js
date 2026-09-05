@@ -85,7 +85,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "kings-landing",
@@ -119,7 +119,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -232,7 +232,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -333,7 +333,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -362,7 +362,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     }

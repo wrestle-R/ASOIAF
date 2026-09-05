@@ -126,7 +126,7 @@ export function HomePage() {
             <span>characters</span>
             {!loading && (
               <small>
-                {published} ready{deferred ? ` · ${deferred} ongoing` : ""}
+                {published} ready{deferred ? ` · ${deferred} deferred` : ""}
               </small>
             )}
           </div>

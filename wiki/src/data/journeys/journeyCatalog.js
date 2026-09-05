@@ -1307,9 +1307,9 @@ const entries = [
     "characterName": "Viserys I Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1320,9 +1320,9 @@ const entries = [
     "characterName": "Daemon Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1333,9 +1333,9 @@ const entries = [
     "characterName": "Rhaenyra Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1346,9 +1346,9 @@ const entries = [
     "characterName": "Aegon II Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1359,9 +1359,9 @@ const entries = [
     "characterName": "Aemond Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1372,9 +1372,9 @@ const entries = [
     "characterName": "Helaena Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1383,11 +1383,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "daeron-targaryen",
     "characterName": "Daeron Targaryen",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1398,9 +1398,9 @@ const entries = [
     "characterName": "Jacaerys Velaryon",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1411,9 +1411,9 @@ const entries = [
     "characterName": "Lucerys Velaryon",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1424,9 +1424,9 @@ const entries = [
     "characterName": "Joffrey Velaryon",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1437,9 +1437,9 @@ const entries = [
     "characterName": "Aegon Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1450,9 +1450,9 @@ const entries = [
     "characterName": "Viserys Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1463,9 +1463,9 @@ const entries = [
     "characterName": "Baela Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1476,9 +1476,9 @@ const entries = [
     "characterName": "Rhaena Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1489,9 +1489,9 @@ const entries = [
     "characterName": "Visenya Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1502,9 +1502,9 @@ const entries = [
     "characterName": "Alicent Hightower",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1515,9 +1515,9 @@ const entries = [
     "characterName": "Otto Hightower",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1528,9 +1528,9 @@ const entries = [
     "characterName": "Gwayne Hightower",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1541,9 +1541,9 @@ const entries = [
     "characterName": "Corlys Velaryon",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1554,9 +1554,9 @@ const entries = [
     "characterName": "Rhaenys Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1567,9 +1567,9 @@ const entries = [
     "characterName": "Laenor Velaryon",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1580,9 +1580,9 @@ const entries = [
     "characterName": "Laena Velaryon",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1593,9 +1593,9 @@ const entries = [
     "characterName": "Vaemond Velaryon",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1604,11 +1604,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "alyn-of-hull",
     "characterName": "Alyn of Hull",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1619,9 +1619,9 @@ const entries = [
     "characterName": "Addam of Hull",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1632,9 +1632,9 @@ const entries = [
     "characterName": "Harwin Strong",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1645,9 +1645,9 @@ const entries = [
     "characterName": "Lyonel Strong",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1658,9 +1658,9 @@ const entries = [
     "characterName": "Larys Strong",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1671,9 +1671,9 @@ const entries = [
     "characterName": "Criston Cole",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1684,9 +1684,9 @@ const entries = [
     "characterName": "Harrold Westerling",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1697,9 +1697,9 @@ const entries = [
     "characterName": "Rickard Thorne",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1710,9 +1710,9 @@ const entries = [
     "characterName": "Arryk Cargyll",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1723,9 +1723,9 @@ const entries = [
     "characterName": "Erryk Cargyll",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1736,9 +1736,9 @@ const entries = [
     "characterName": "Orwyle",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1749,9 +1749,9 @@ const entries = [
     "characterName": "Jasper Wylde",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1762,9 +1762,9 @@ const entries = [
     "characterName": "Lyman Beesbury",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1775,9 +1775,9 @@ const entries = [
     "characterName": "Jason Lannister",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1788,9 +1788,9 @@ const entries = [
     "characterName": "Tyland Lannister",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1801,9 +1801,9 @@ const entries = [
     "characterName": "Simon Strong",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1814,9 +1814,9 @@ const entries = [
     "characterName": "Hugh the Hammer",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1827,9 +1827,9 @@ const entries = [
     "characterName": "Ulf the White",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1840,9 +1840,9 @@ const entries = [
     "characterName": "Alys Rivers",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1853,9 +1853,9 @@ const entries = [
     "characterName": "Benjicot Blackwood",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1866,9 +1866,9 @@ const entries = [
     "characterName": "Willem Blackwood",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1879,9 +1879,9 @@ const entries = [
     "characterName": "Amos Bracken",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1892,9 +1892,9 @@ const entries = [
     "characterName": "Cregan Stark",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1905,9 +1905,9 @@ const entries = [
     "characterName": "Oscar Tully",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1918,9 +1918,9 @@ const entries = [
     "characterName": "Mysaria",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1931,9 +1931,9 @@ const entries = [
     "characterName": "Blood",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1944,9 +1944,9 @@ const entries = [
     "characterName": "Cheese",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1955,11 +1955,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "sharako-lohar",
     "characterName": "Sharako Lohar",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1970,9 +1970,9 @@ const entries = [
     "characterName": "Grover Tully",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1983,9 +1983,9 @@ const entries = [
     "characterName": "Aemma Arryn",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -1996,9 +1996,9 @@ const entries = [
     "characterName": "Jaehaerys Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2009,9 +2009,9 @@ const entries = [
     "characterName": "Jaehaera Targaryen",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2022,9 +2022,9 @@ const entries = [
     "characterName": "Jeyne Arryn",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2035,9 +2035,9 @@ const entries = [
     "characterName": "Kat",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2046,11 +2046,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "ormund-hightower",
     "characterName": "Ormund Hightower",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2059,11 +2059,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "jon-roxton",
     "characterName": "Jon Roxton",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2072,11 +2072,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "roderick-dustin",
     "characterName": "Roderick Dustin",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2087,9 +2087,9 @@ const entries = [
     "characterName": "Luthor Largent",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2098,11 +2098,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "torrhen-manderly",
     "characterName": "Torrhen Manderly",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2113,9 +2113,9 @@ const entries = [
     "characterName": "Alfred Broome",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2126,9 +2126,9 @@ const entries = [
     "characterName": "Bartimos Celtigar",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2139,9 +2139,9 @@ const entries = [
     "characterName": "Gerardys",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2152,9 +2152,9 @@ const entries = [
     "characterName": "Gormon Massey",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2165,9 +2165,9 @@ const entries = [
     "characterName": "Lorent Marbrand",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2178,9 +2178,9 @@ const entries = [
     "characterName": "Steffon Darklyn",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2191,9 +2191,9 @@ const entries = [
     "characterName": "Simon Staunton",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2204,9 +2204,9 @@ const entries = [
     "characterName": "Elinda Massey",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2217,9 +2217,9 @@ const entries = [
     "characterName": "Dyana",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2230,9 +2230,9 @@ const entries = [
     "characterName": "Sylvi",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2243,9 +2243,9 @@ const entries = [
     "characterName": "Talya",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2256,9 +2256,9 @@ const entries = [
     "characterName": "Craghas Drahar",
     "journeyStatus": "deferred",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2267,11 +2267,11 @@ const entries = [
     "seriesName": "House of the Dragon",
     "characterSlug": "alysanne-blackwood",
     "characterName": "Alysanne Blackwood",
-    "journeyStatus": "deferred",
+    "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2282,9 +2282,9 @@ const entries = [
     "characterName": "Mellos",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {
@@ -2295,9 +2295,9 @@ const entries = [
     "characterName": "Hobert Hightower",
     "journeyStatus": "published",
     "journeyCoverage": {
-      "throughEpisode": "S2E8",
-      "throughDate": "2024-08-04",
-      "completionReason": "season-complete"
+      "throughEpisode": "S3E8",
+      "throughDate": "2026-08-09",
+      "completionReason": "series-complete"
     }
   },
   {

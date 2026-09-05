@@ -55,44 +55,46 @@ describe("published character journeys", () => {
     const catalog = Object.values(JOURNEY_CATALOG);
     expect(JOURNEY_CATALOG_KEYS).toHaveLength(203);
     expect(new Set(JOURNEY_CATALOG_KEYS).size).toBe(203);
-    expect(catalog.filter((entry) => entry.journeyStatus === "published")).toHaveLength(167);
-    expect(catalog.filter((entry) => entry.journeyStatus === "deferred")).toHaveLength(36);
+    expect(catalog.filter((entry) => entry.journeyStatus === "published")).toHaveLength(175);
+    expect(catalog.filter((entry) => entry.journeyStatus === "deferred")).toHaveLength(28);
     expect(catalog.filter((entry) => entry.journeyStatus === "pending")).toHaveLength(0);
-    expect(PUBLISHED_JOURNEY_KEYS).toHaveLength(167);
-    expect(new Set(PUBLISHED_JOURNEY_KEYS).size).toBe(167);
+    expect(PUBLISHED_JOURNEY_KEYS).toHaveLength(175);
+    expect(new Set(PUBLISHED_JOURNEY_KEYS).size).toBe(175);
     expect(PUBLISHED_JOURNEY_KEYS.every((key) => JOURNEY_CATALOG[key]?.journeyStatus === "published")).toBe(true);
   });
 
-  it("loads audited HOTD keys and keeps unresolved Season 2 records deferred", async () => {
+  it("loads aired HOTD routes and keeps unresolved television records deferred", async () => {
     expect(journeys.every(Boolean)).toBe(true);
     for (const journey of journeys) {
       expect(journey.key).toBe(`${journey.seriesSlug}/${journey.characterSlug}`);
       expect(getJourneyCatalogEntry(journey.seriesSlug, journey.characterSlug)?.journeyStatus).toBe("published");
     }
     expect(await loadJourney("house-of-the-dragon", "viserys-i-targaryen")).toMatchObject({
-      coverage: { throughEpisode: "S2E8", completionReason: "season-complete" },
+      coverage: { throughEpisode: "S3E8", completionReason: "series-complete" },
     });
-    expect(await loadJourney("house-of-the-dragon", "daeron-targaryen")).toBeNull();
+    expect(await loadJourney("house-of-the-dragon", "daeron-targaryen")).toBeTruthy();
+    expect(await loadJourney("house-of-the-dragon", "benjicot-blackwood")).toBeNull();
     expect(getJourneyCatalogEntry("house-of-the-dragon", "viserys-i-targaryen")).toMatchObject({
       journeyStatus: "published",
       journeyCoverage: {
-        throughEpisode: "S2E8",
-        completionReason: "season-complete",
+        throughEpisode: "S3E8",
+        completionReason: "series-complete",
       },
     });
   });
 
-  it("accounts for all 77 HOTD characters strictly through the Season 2 finale", () => {
+  it("accounts for all 77 HOTD characters strictly through the Season 3 finale", () => {
     const hotdCatalog = Object.values(JOURNEY_CATALOG)
       .filter((entry) => entry.seriesSlug === "house-of-the-dragon");
     const hotdJourneys = journeys.filter((journey) => journey.seriesSlug === "house-of-the-dragon");
     expect(hotdCatalog).toHaveLength(77);
-    expect(hotdJourneys).toHaveLength(66);
-    expect(hotdCatalog.filter((entry) => entry.journeyStatus === "deferred")).toHaveLength(11);
-    expect(hotdCatalog.every((entry) => entry.journeyCoverage.throughEpisode === "S2E8")).toBe(true);
-    expect(hotdJourneys.every((journey) => journey.seasons.every((season) => season.season <= 2))).toBe(true);
+    expect(hotdJourneys).toHaveLength(74);
+    expect(hotdCatalog.filter((entry) => entry.journeyStatus === "deferred")).toHaveLength(3);
+    expect(hotdCatalog.every((entry) => entry.journeyCoverage.throughEpisode === "S3E8")).toBe(true);
+    expect(hotdCatalog.every((entry) => entry.journeyCoverage.nextSeason === undefined)).toBe(true);
+    expect(hotdJourneys.every((journey) => journey.seasons.every((season) => season.season <= 3))).toBe(true);
     expect(hotdJourneys.every((journey) => journey.seasons
-      .every((season) => season.stops.every((stop) => /^S[12]E\d+$/.test(stop.episode))))).toBe(true);
+      .every((season) => season.stops.every((stop) => /^S[123]E\d+$/.test(stop.episode))))).toBe(true);
   });
 
   it("uses ordered, non-duplicated television season numbers and coverage metadata", () => {
@@ -152,6 +154,12 @@ describe("published character journeys", () => {
       expect(place.y).toBeLessThanOrEqual(JOURNEY_MAP.height - STOP_RADIUS);
     }
 
+    for (const audit of Object.values(PLACE_COORDINATE_AUDIT)) {
+      expect(audit.sources).toHaveLength(2);
+      expect(new Set(audit.sources.map((source) => source.url)).size).toBe(2);
+      expect(audit.sources.every((source) => source.title && /^https:\/\//.test(source.url))).toBe(true);
+    }
+
     for (const journey of journeys) {
       for (const season of journey.seasons) {
         expect(getSeasonWaypoints(season).every(Boolean)).toBe(true);
@@ -185,6 +193,8 @@ describe("published character journeys", () => {
       expect(city.y).toBeLessThanOrEqual(JOURNEY_MAP.height - STOP_RADIUS);
       expect(city.coordinateAudit.normalizedPosition.x).toBeCloseTo(city.x / JOURNEY_MAP.width, 5);
       expect(city.coordinateAudit.normalizedPosition.y).toBeCloseTo(city.y / JOURNEY_MAP.height, 5);
+      expect(city.coordinateAudit.sources).toHaveLength(2);
+      expect(new Set(city.coordinateAudit.sources.map((source) => source.url)).size).toBe(2);
     }
     expect(PLACE_COORDINATE_AUDIT.braavos).toBeUndefined();
     expect(PLACE_COORDINATE_AUDIT.volantis).toBeUndefined();

@@ -776,7 +776,7 @@ async function verifyEveryCharacterRoute(browser, characters) {
     } else {
       await page.locator(".pending-journey-stage").waitFor();
       await page.getByRole("heading", { name: character.name, exact: true }).waitFor();
-      await page.getByText("After HOTD Season 4", { exact: true }).waitFor();
+      await page.getByText("TV-canon route pending", { exact: true }).waitFor();
     }
 
     const backLinks = page.locator("a.journey-back-control[href='/home']");
@@ -809,7 +809,7 @@ async function verifyDeferredPhone(browser, deferredCharacter) {
   await assertViewportLocked(page, label, { requireClasses: false });
   await assertPersistentBackLink(page, label);
   await assertResponsiveOverlayLayout(page, label);
-  await page.getByText("After HOTD Season 4", { exact: true }).waitFor();
+  await page.getByText("TV-canon route pending", { exact: true }).waitFor();
   if (await page.locator(".journey-map-image").count() !== 1) fail(label, "deferred view does not show the shared map");
   await page.screenshot({ path: new URL("deferred-character-phone.png", outputDir).pathname });
   reportErrors();
@@ -909,8 +909,8 @@ journeys = mappedCharacters.map((character) => ({
 
 if (characters.length !== 203) fail("catalogue-contract", `expected 203 characters, found ${characters.length}`);
 if (new Set(characterRoutes).size !== 203) fail("catalogue-contract", "character routes are not unique");
-if (mappedCharacters.length !== 126) fail("catalogue-contract", `expected 126 mapped characters, found ${mappedCharacters.length}`);
-if (deferredCharacters.length !== 77) fail("catalogue-contract", `expected 77 deferred characters, found ${deferredCharacters.length}`);
+if (mappedCharacters.length !== 175) fail("catalogue-contract", `expected 175 mapped characters, found ${mappedCharacters.length}`);
+if (deferredCharacters.length !== 28) fail("catalogue-contract", `expected 28 deferred characters, found ${deferredCharacters.length}`);
 if (pendingCharacters.length !== 0) fail("catalogue-contract", `expected 0 pending characters, found ${pendingCharacters.length}`);
 
 const browser = await chromium.launch({ headless: true });
@@ -935,6 +935,6 @@ if (failures.length) {
   if (process.env.JOURNEY_VERIFY_PHASES) {
     console.log(`Selected character journey verification passed: ${[...requestedPhases].join(", ")}.`);
   } else {
-    console.log("Character journey verification passed: load-gated autoplay, all 203 routes, 126 mapped journeys, 77 deferred HOTD states, persistent back links and origins, season continuity, dragon evidence, seven responsive viewports, bounded completion zoom/pan, mobile edge navigation, replay, and reduced-motion states.");
+    console.log("Character journey verification passed: load-gated autoplay, all 203 routes, 175 mapped journeys, 28 deferred states, persistent back links and origins, season continuity, dragon evidence, seven responsive viewports, bounded completion zoom/pan, mobile edge navigation, replay, and reduced-motion states.");
   }
 }

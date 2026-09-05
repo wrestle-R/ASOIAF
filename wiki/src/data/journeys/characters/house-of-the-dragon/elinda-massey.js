@@ -5,11 +5,11 @@ export default createJourney({
   "seriesName": "House of the Dragon",
   "characterSlug": "elinda-massey",
   "characterName": "Elinda Massey",
-  "totalSeasons": 4,
+  "totalSeasons": 3,
   "coverage": {
-    "throughEpisode": "S2E8",
-    "throughDate": "2024-08-04",
-    "completionReason": "season-complete"
+    "throughEpisode": "S3E8",
+    "throughDate": "2026-08-09",
+    "completionReason": "series-complete"
   },
   "seasons": [
     {
@@ -21,7 +21,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "reviewed episode-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18",
+          "auditDate": "2026-09-05",
           "appearances": [
             {
               "episode": "S2E1",
@@ -33,6 +33,33 @@ export default createJourney({
               "evidence": {
                 "title": "Elinda Massey — television character record",
                 "url": "https://gameofthrones.fandom.com/wiki/Elinda_Massey"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "season": 3,
+      "stops": [
+        {
+          "placeId": "kings-landing",
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "reviewed episode-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-09-05",
+          "appearances": [
+            {
+              "episode": "S3E8",
+              "scene": "Elinda Massey is depicted at the accepted kings-landing map anchor in S3E8.",
+              "source": {
+                "title": "House of the Dragon S3E8 — HBO/WBD synopsis",
+                "url": "https://press.wbd.com/us/property/house-dragon/synopses"
+              },
+              "evidence": {
+                "title": "House of the Dragon S3E8: “The Treasons at Tumbleton\" — televised episode record",
+                "url": "https://gameofthrones.fandom.com/wiki/The_Treasons_at_Tumbleton"
               }
             }
           ]

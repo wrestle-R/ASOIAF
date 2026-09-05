@@ -52,12 +52,12 @@ function pointTransform(point) {
 
 function completionCopy(journey) {
   if (journey.coverage.completionReason === "season-complete") {
-    return `Season 1 is verified through ${journey.coverage.throughEpisode}. The series is ongoing.`;
+    return `The television journey is verified through ${journey.coverage.throughEpisode}. The series is ongoing.`;
   }
   if (journey.coverage.completionReason === "character-death") {
     return `Their television journey is complete and verified through ${journey.coverage.throughEpisode}.`;
   }
-  return "Explore their complete television journey across the known world.";
+  return `Their complete television journey is verified through ${journey.coverage.throughEpisode}.`;
 }
 
 function getUniqueSeasonWaypoints(season) {
@@ -137,12 +137,12 @@ function PendingJourneyPage({ catalogEntry, characterSlug, loadError, loading, o
   const name = character?.name ?? titleFromSlug(characterSlug);
   const unavailable = catalogEntry?.journeyStatus === "deferred";
   const statusCopy = unavailable
-    ? "This journey will be available after House of the Dragon Season 4."
+    ? "No defensible on-screen map stop is available through the final Season 3 cutoff."
     : loading
       ? "The verified journey data is loading before the map can begin."
       : "This season-by-season journey is being prepared from verified appearances.";
   const statusLabel = unavailable
-    ? "After HOTD Season 4"
+    ? "TV-canon route pending"
     : loading
       ? "Opening the map room…"
       : "Journey coming soon";

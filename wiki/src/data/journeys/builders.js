@@ -30,6 +30,23 @@ function freezeSource(source, context) {
   return Object.freeze({ title: source.title, url: source.url });
 }
 
+function freezeCoverage(coverage, context) {
+  const frozenCoverage = { ...coverage };
+  if (coverage.nextSeason) {
+    const sources = (coverage.nextSeason.sources ?? []).map((source, index) => (
+      freezeSource(source, `${context} next-season source ${index + 1}`)
+    ));
+    if (sources.length < 2 || new Set(sources.map((source) => source.url)).size < 2) {
+      throw new Error(`${context} next-season status requires two independent source URLs`);
+    }
+    frozenCoverage.nextSeason = Object.freeze({
+      ...coverage.nextSeason,
+      sources: Object.freeze(sources),
+    });
+  }
+  return Object.freeze(frozenCoverage);
+}
+
 function freezeAppearance(appearance, context) {
   if (!/^S\d+E\d+$/.test(appearance?.episode ?? "")) {
     throw new Error(`${context} has an invalid episode identifier`);
@@ -236,10 +253,8 @@ function buildSeason(item, journeyKey, previousSeason = null) {
     camera: item.camera ? Object.freeze(item.camera) : cameraFor(cameraPlaceIds),
     distance: round(routeSegments.reduce((total, segment) => total + segment.weight, 0)),
     duration: routeSegments.some((segment) => segment.weight > 0)
-      ? Math.round(
-          (routeSegments.reduce((total, segment) => total + segment.weight, 0)
-            / JOURNEY_ROUTE_SPEED) * 1000,
-        )
+      ? (round(routeSegments.reduce((total, segment) => total + segment.weight, 0))
+          / JOURNEY_ROUTE_SPEED) * 1000
       : STATIONARY_SEASON_DURATION,
     continuity,
   });
@@ -266,7 +281,7 @@ export function createJourney(config) {
     characterSlug: config.characterSlug,
     characterName: config.characterName,
     totalSeasons: config.totalSeasons,
-    coverage: Object.freeze({ ...config.coverage }),
+    coverage: freezeCoverage(config.coverage, key),
     seasons: Object.freeze(seasons),
   });
 }

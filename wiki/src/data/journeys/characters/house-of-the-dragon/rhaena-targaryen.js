@@ -5,11 +5,11 @@ export default createJourney({
   "seriesName": "House of the Dragon",
   "characterSlug": "rhaena-targaryen",
   "characterName": "Rhaena Targaryen",
-  "totalSeasons": 4,
+  "totalSeasons": 3,
   "coverage": {
-    "throughEpisode": "S2E8",
-    "throughDate": "2024-08-04",
-    "completionReason": "season-complete"
+    "throughEpisode": "S3E8",
+    "throughDate": "2026-08-09",
+    "completionReason": "series-complete"
   },
   "seasons": [
     {
@@ -21,7 +21,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "reviewed episode-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18",
+          "auditDate": "2026-09-05",
           "appearances": [
             {
               "episode": "S1E6",
@@ -43,7 +43,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "reviewed episode-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18",
+          "auditDate": "2026-09-05",
           "appearances": [
             {
               "episode": "S1E8",
@@ -65,7 +65,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "reviewed episode-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18",
+          "auditDate": "2026-09-05",
           "appearances": [
             {
               "episode": "S1E10",
@@ -92,7 +92,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "reviewed episode-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18",
+          "auditDate": "2026-09-05",
           "appearances": [
             {
               "episode": "S2E1",
@@ -114,7 +114,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "reviewed episode-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18",
+          "auditDate": "2026-09-05",
           "appearances": [
             {
               "episode": "S2E8",
@@ -126,6 +126,33 @@ export default createJourney({
               "evidence": {
                 "title": "Rhaena Targaryen — television character record",
                 "url": "https://gameofthrones.fandom.com/wiki/Rhaena_Targaryen"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "season": 3,
+      "stops": [
+        {
+          "placeId": "eyrie",
+          "depiction": "depicted",
+          "reviewStatus": "accepted",
+          "evidenceType": "reviewed episode-level depiction",
+          "reviewer": "ASOIAF map audit",
+          "auditDate": "2026-09-05",
+          "appearances": [
+            {
+              "episode": "S3E1",
+              "scene": "Rhaena Targaryen is depicted at the accepted eyrie map anchor in S3E1.",
+              "source": {
+                "title": "House of the Dragon S3E1 — HBO/WBD synopsis",
+                "url": "https://press.wbd.com/us/property/house-dragon/synopses"
+              },
+              "evidence": {
+                "title": "House of the Dragon S3E1: “Salt and Sea, Fire and Blood\" — televised episode record",
+                "url": "https://gameofthrones.fandom.com/wiki/Salt_and_Sea%2C_Fire_and_Blood"
               }
             }
           ]

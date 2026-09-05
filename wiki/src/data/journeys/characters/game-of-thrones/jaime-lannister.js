@@ -37,7 +37,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "winterfell",
@@ -71,7 +71,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "kings-landing",
@@ -117,7 +117,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "riverrun",
@@ -139,7 +139,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -168,7 +168,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "kings-landing",
@@ -190,7 +190,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -315,7 +315,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -356,7 +356,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "castle-stokeworth",
@@ -378,7 +378,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "tarth",
@@ -400,7 +400,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "water-gardens",
@@ -446,7 +446,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -523,7 +523,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "riverrun",
@@ -557,7 +557,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "the-twins",
@@ -579,7 +579,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "kings-landing",
@@ -601,7 +601,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -654,7 +654,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "highgarden",
@@ -688,7 +688,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "blackwater-rush",
@@ -722,7 +722,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "kings-landing",
@@ -780,7 +780,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     },
@@ -809,7 +809,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "winterfell",
@@ -867,7 +867,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "winter-town",
@@ -889,7 +889,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "winterfell",
@@ -911,7 +911,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         },
         {
           "placeId": "kings-landing",
@@ -945,7 +945,7 @@ export default createJourney({
           "reviewStatus": "accepted",
           "evidenceType": "scene-level depiction",
           "reviewer": "ASOIAF map audit",
-          "auditDate": "2026-07-18"
+          "auditDate": "2026-09-05"
         }
       ]
     }
