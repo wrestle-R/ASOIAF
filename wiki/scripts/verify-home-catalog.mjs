@@ -149,6 +149,11 @@ async function assertCardDestinations(page, label) {
 
   await page.goto(new URL("/home?series=house-of-the-dragon", baseUrl).href, { waitUntil: "networkidle" });
   await waitForCatalogue(page);
+  while (!await page.locator('[data-journey-status="deferred"]').count()) {
+    const loadMore = page.getByRole("button", { name: /Show more characters|Charting more characters/ });
+    if (!await loadMore.count()) break;
+    await runAfterCharacterRequest(page, () => loadMore.click());
+  }
   const pendingCard = page.locator('[data-journey-status="deferred"]').first();
   const pendingHref = await pendingCard.locator(":scope > a").getAttribute("href");
   await pendingCard.locator(":scope > a").click();
