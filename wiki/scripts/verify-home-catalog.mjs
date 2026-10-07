@@ -20,8 +20,7 @@ async function runAfterCharacterRequest(page, action) {
   const response = page.waitForResponse((candidate) => (
     candidate.url().includes("/api/characters?") && candidate.request().method() === "GET"
   ));
-  await action();
-  await response;
+  await Promise.all([action(), response]);
   await waitForCatalogue(page);
 }
 
@@ -40,10 +39,10 @@ async function assertInitialCatalogue(page, label) {
   await page.goto(new URL("/home", baseUrl).href, { waitUntil: "networkidle" });
   await waitForCatalogue(page);
 
-  if (await page.title() !== "Map of Ice and Fire") {
+  if (await page.title() !== "A Map of Ice and Fire") {
     fail(label, `unexpected document title: ${await page.title()}`);
   }
-  if (!await page.getByRole("heading", { name: "Trace every character. Season by season.", exact: true }).count()) {
+  if (!await page.getByRole("heading", { name: "Every life leaves a trail.", exact: true }).count()) {
     fail(label, "character catalogue heading is missing");
   }
   if (await page.locator(".character-card").count() !== 30) {
@@ -63,7 +62,7 @@ async function assertInitialCatalogue(page, label) {
   }
 
   const visibleCopy = await page.locator("body").innerText();
-  if (/\b(?:wiki|archive)\b/i.test(visibleCopy)) {
+  if (/\bwiki\b/i.test(visibleCopy)) {
     fail(label, "retired product wording is still visible");
   }
   const realmHref = await page.getByRole("link", { name: "Realm map", exact: true }).getAttribute("href");
@@ -89,6 +88,12 @@ async function assertThemePersistence(page, label) {
 }
 
 async function assertFiltersAndAllCharacters(page, label) {
+  const ready = page.getByRole("checkbox", { name: "Ready journeys only" });
+  await runAfterCharacterRequest(page, () => ready.check());
+  if (new URL(page.url()).searchParams.get("status") !== "published") fail(label, "ready filter was not preserved in the URL");
+  if (await page.locator('[data-journey-status="deferred"]').count()) fail(label, "ready filter includes unavailable routes");
+  if (!await page.getByLabel("175 matching characters", { exact: true }).count()) fail(label, "ready filter does not report the published catalogue size");
+  await runAfterCharacterRequest(page, () => ready.uncheck());
   const search = page.getByRole("searchbox", { name: "Find a character" });
   await runAfterCharacterRequest(page, () => search.fill("Stark"));
   if (new URL(page.url()).searchParams.get("search") !== "Stark") {

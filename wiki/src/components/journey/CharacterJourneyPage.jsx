@@ -148,7 +148,7 @@ function PendingJourneyPage({ catalogEntry, characterSlug, loadError, loading, o
       : "Journey coming soon";
 
   useEffect(() => {
-    document.title = `${name} | Map of Ice and Fire`;
+    document.title = `${name} | A Map of Ice and Fire`;
   }, [name]);
 
   return (
@@ -249,7 +249,7 @@ function JourneyExperience({ journey }) {
     ?? originSeason.stops[0]?.placeId;
 
   useEffect(() => {
-    document.title = `${journey.characterName}'s Journey | Map of Ice and Fire`;
+    document.title = `${journey.characterName}'s Journey | A Map of Ice and Fire`;
   }, [journey.characterName]);
 
   useEffect(() => {

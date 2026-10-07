@@ -121,6 +121,28 @@ describe("character catalogue queries", () => {
     );
   });
 
+  it("filters ready routes before pagination and rejects invalid statuses", () => {
+    const ready = getCharacters(database, { status: "published", limit: 60, offset: 60 });
+    expect(ready.total).toBe(175);
+    expect(ready.characters).toHaveLength(60);
+    expect(ready.characters.every((character) => character.journeyStatus === "published")).toBe(true);
+    const deferred = getCharacters(database, { status: "deferred", series: "house-of-the-dragon" });
+    expect(deferred.total).toBe(3);
+    expect(deferred.characters.every((character) => character.seriesSlug === "house-of-the-dragon" && character.journeyStatus === "deferred")).toBe(true);
+    expect(() => getCharacters(database, { status: "ready" })).toThrow(CharacterQueryError);
+    expect(() => getCharacters(database, { status: ["published"] })).toThrow(CharacterQueryError);
+  });
+
+  it("protects the cached catalogue from mutation by a caller", () => {
+    const character = getCharacter(database, "game-of-thrones", "jon-snow");
+    expect(() => { character.name = "Changed"; }).toThrow(TypeError);
+    expect(() => { character.aliases.push("Changed"); }).toThrow(TypeError);
+    expect(() => { character.portrait.url = "Changed"; }).toThrow(TypeError);
+    const page = getCharacters(database, { search: "Jon Snow" });
+    page.characters.length = 0;
+    expect(getCharacters(database, { search: "Jon Snow" }).characters[0].name).toBe("Jon Snow");
+  });
+
   it("creates unique series-scoped routes including both Viserys records", () => {
     const characters = getEveryCharacter();
     const routeKeys = characters.map(
@@ -239,6 +261,7 @@ describe("character catalogue API", () => {
     const retiredMediaResponse = await fetch(`${origin}/api/media/1`);
 
     expect(listResponse.status).toBe(200);
+    expect(listResponse.headers.get("cache-control")).toBe("public, max-age=60, s-maxage=300, stale-while-revalidate=600");
     expect(list.total).toBeGreaterThan(0);
     expect(list.characters.some((entry) => entry.name === "Jon Snow")).toBe(true);
     expect(characterResponse.status).toBe(200);
@@ -259,5 +282,7 @@ describe("character catalogue API", () => {
     expect(invalidBody).toEqual({ error: "invalid-series" });
     expect(missing.status).toBe(404);
     expect(missingBody).toEqual({ error: "character-not-found" });
+    expect(invalid.headers.get("cache-control")).toBeNull();
+    expect(missing.headers.get("cache-control")).toBeNull();
   });
 });

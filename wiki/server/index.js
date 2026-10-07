@@ -4,7 +4,7 @@ import { closeDatabase } from "./db.js";
 const port = Number(process.env.PORT) || 4174;
 const server = app.listen(port, "127.0.0.1", () => {
   console.log(
-    `Map of Ice and Fire character service listening on http://127.0.0.1:${port}`,
+    `A Map of Ice and Fire character service listening on http://127.0.0.1:${port}`,
   );
 });
 

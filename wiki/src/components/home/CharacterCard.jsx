@@ -24,7 +24,8 @@ export function CharacterCard({ character, index }) {
             <img
               src={character.portrait.url}
               alt=""
-              loading="lazy"
+              loading={index < 4 ? "eager" : "lazy"}
+              decoding="async"
               width={character.portrait.width || 800}
               height={character.portrait.height || 1000}
               onError={() => setImageFailed(true)}
@@ -35,17 +36,26 @@ export function CharacterCard({ character, index }) {
             </span>
           )}
           <figcaption>{character.seriesName}</figcaption>
-          <span className="journey-status" data-status={character.journeyStatus}>
-            {available ? "Explore journey" : "TV-canon route pending"}
-          </span>
         </figure>
         <div className="character-card-copy">
           <div>
             <h2>{character.name}</h2>
             <p>{character.title || character.family || "Season journey"}</p>
+            <span
+              className="journey-status"
+              data-status={character.journeyStatus}
+            >
+              {available
+                ? `Ready · ${character.journeyCoverage?.throughEpisode || "Verified route"}`
+                : "TV-canon route pending"}
+            </span>
           </div>
           <span className="character-card-arrow" aria-hidden="true">
-            {available ? "Explore ↗" : deferred ? "View status ↗" : "Preview ↗"}
+            {available
+              ? "Explore ↗"
+              : deferred
+                ? "View status ↗"
+                : "Preview ↗"}
           </span>
         </div>
       </Link>

@@ -17,6 +17,7 @@ export async function fetchCharacters(options = {}, signal) {
   if (options.series && options.series !== "all") {
     parameters.set("series", options.series);
   }
+  if (options.status) parameters.set("status", options.status);
   parameters.set("limit", String(options.limit ?? 30));
   parameters.set("offset", String(options.offset ?? 0));
 

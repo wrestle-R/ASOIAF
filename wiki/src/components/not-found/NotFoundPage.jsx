@@ -9,7 +9,7 @@ export function NotFoundPage() {
   const { theme } = useSiteTheme();
 
   useEffect(() => {
-    document.title = "Page Not Found | Map of Ice and Fire";
+    document.title = "Page Not Found | A Map of Ice and Fire";
   }, []);
 
   return (

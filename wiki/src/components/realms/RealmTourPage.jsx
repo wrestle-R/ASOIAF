@@ -38,7 +38,7 @@ export function RealmTourPage() {
   } = useCinematicLoadReady(mapSource, { fallbackSource: map.image });
 
   useEffect(() => {
-    document.title = "Map of Ice and Fire";
+    document.title = "A Map of Ice and Fire";
   }, []);
 
   useEffect(() => {

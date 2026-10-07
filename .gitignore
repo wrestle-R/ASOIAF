@@ -16,3 +16,6 @@ coverage/
 .env.*
 !.env.example
 !.env.*.example
+
+# Generated design references (the interface uses existing source assets)
+artifacts/design/*.png

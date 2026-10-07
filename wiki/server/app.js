@@ -25,14 +25,15 @@ app.get("/api/health", (_request, response) => {
 
 app.get("/api/characters", (request, response) => {
   try {
-    response.json(
-      getCharacters(getDatabase(), {
-        search: request.query.search,
-        series: request.query.series,
-        limit: request.query.limit,
-        offset: request.query.offset,
-      }),
-    );
+    const result = getCharacters(getDatabase(), {
+      search: request.query.search,
+      series: request.query.series,
+      limit: request.query.limit,
+      offset: request.query.offset,
+      status: request.query.status,
+    });
+    response.set("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=600");
+    response.json(result);
   } catch (error) {
     if (error instanceof CharacterQueryError) {
       response.status(400).json({ error: error.code });
@@ -55,6 +56,7 @@ app.get("/api/characters/:seriesSlug/:characterSlug", (request, response) => {
       return;
     }
 
+    response.set("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=600");
     response.json({ character });
   } catch {
     response.status(503).json({ error: "database-unavailable" });

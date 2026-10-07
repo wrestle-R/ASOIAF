@@ -102,7 +102,18 @@ async function assertHighlight(page, label, expectedSigilSize) {
 }
 
 async function assertCompleteMap(page, label) {
-  await page.getByRole("button", { name: "Replay", exact: true }).waitFor({ timeout: 40000 });
+  try {
+    await page.getByRole("button", { name: "Replay", exact: true }).waitFor({ timeout: 40000 });
+  } catch (error) {
+    console.error(label, await page.evaluate(() => ({
+      heading: document.querySelector("h1")?.textContent,
+      controls: [...document.querySelectorAll("button")].map((button) => button.textContent),
+      imageReady: document.querySelector(".realm-map-image")?.complete,
+      imageWidth: document.querySelector(".realm-map-image")?.naturalWidth,
+      documentReady: document.readyState,
+    })));
+    throw error;
+  }
   await page.waitForTimeout(1300);
   if (await page.locator(".realm-copy, .realm-capital-link, .realm-spotlight, .realm-vignette, .realm-progress").count()) {
     failures.push(`${label}: realm overlays remain over the complete map`);
@@ -283,23 +294,22 @@ try {
       failures.push(`${viewport.name}: wrong portrait map source ${source}`);
     }
     await assertHighlight(page, viewport.name, 59);
-    await page.keyboard.press("ArrowRight");
-    await page.waitForTimeout(200);
-    if (!await page.getByRole("heading", { name: "The North", exact: true }).count()) {
-      failures.push(`${viewport.name}: desktop arrow binding changed the phone realm`);
-    }
     await page.getByRole("button", { name: "Pause", exact: true }).click();
     if (!await page.getByRole("heading", { name: "The North", exact: true }).count()) {
       failures.push(`${viewport.name}: pause control advanced the realm`);
     }
+    await page.keyboard.press("ArrowRight");
+    await page.getByRole("heading", { name: "The Vale", exact: true }).waitFor();
+    await page.keyboard.press("ArrowLeft");
+    await page.getByRole("heading", { name: "The North", exact: true }).waitFor();
     await tapRealmEdge(page, viewport, "next", "The Vale", viewport.name);
     await tapRealmEdge(page, viewport, "previous", "The North", viewport.name);
-    await page.getByRole("button", { name: "Continue", exact: true }).click();
     const geometry = await mapGeometry(page);
     if (geometry.left > 0 || geometry.right < geometry.width || geometry.top > 0 || geometry.bottom < geometry.height) {
       failures.push(`${viewport.name}: camera exposes an empty map edge`);
     }
     await page.screenshot({ path: new URL(`${viewport.name}-north.png`, outputDir).pathname });
+    await page.getByRole("button", { name: "Continue", exact: true }).click();
     if (viewport.verifyComplete) {
       for (const [index, realmName] of REALM_NAMES.entries()) {
         await page.getByRole("heading", { name: realmName, exact: true }).waitFor({ timeout: 5500 });

@@ -52,6 +52,10 @@ const nameCollator = new Intl.Collator("en", {
   sensitivity: "base",
 });
 
+// The database is read-only. Cache by connection so replacing it cannot reuse
+// another dataset's records, and freeze records to protect shared responses.
+const catalogues = new WeakMap();
+
 export class CharacterQueryError extends Error {
   constructor(code) {
     super(code);
@@ -192,13 +196,25 @@ function sortCharacters(characters) {
 }
 
 function loadCharacters(database) {
+  const cached = catalogues.get(database);
+  if (cached) return cached;
   const characters = database
     .prepare(CHARACTER_SELECT)
     .all()
     .map(mapCharacterRow)
     .filter(Boolean);
 
-  return sortCharacters(assignCollisionSafeUrls(characters).map(applyJourneyCatalog));
+  const catalogue = Object.freeze(
+    sortCharacters(assignCollisionSafeUrls(characters).map(applyJourneyCatalog))
+      .map((character) => Object.freeze({
+        ...character,
+        aliases: Object.freeze(character.aliases),
+        portrait: character.portrait ? Object.freeze(character.portrait) : null,
+        journeyCoverage: character.journeyCoverage ? Object.freeze(character.journeyCoverage) : null,
+      })),
+  );
+  catalogues.set(database, catalogue);
+  return catalogue;
 }
 
 function parseTextFilter(value, name, maxLength) {
@@ -237,6 +253,11 @@ function parseOptions(options) {
   const search = parseTextFilter(options.search, "search", 80);
   const requestedSeries = parseTextFilter(options.series, "series", 64);
   const series = requestedSeries === "all" ? null : requestedSeries;
+  const status = parseTextFilter(options.status, "status", 24);
+
+  if (status && !["published", "deferred", "pending"].includes(status)) {
+    throw new CharacterQueryError("invalid-status");
+  }
 
   if (series && !SERIES_BY_SLUG.has(series)) {
     throw new CharacterQueryError("invalid-series");
@@ -245,6 +266,7 @@ function parseOptions(options) {
   return {
     search: search?.toLocaleLowerCase("en") ?? null,
     series,
+    status,
     limit: parseIntegerFilter(options.limit, "limit", 24, 1, 60),
     offset: parseIntegerFilter(options.offset, "offset", 0, 0),
   };
@@ -266,6 +288,7 @@ export function getCharacters(database, options = {}) {
   const characters = loadCharacters(database).filter(
     (character) =>
       (!filters.series || character.seriesSlug === filters.series) &&
+      (!filters.status || character.journeyStatus === filters.status) &&
       matchesSearch(character, filters.search),
   );
   const published = characters.filter(

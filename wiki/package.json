@@ -19,7 +19,8 @@
     "verify:catalog": "node scripts/verify-home-catalog.mjs",
     "verify:journeys": "node scripts/verify-character-journeys.mjs",
     "verify:map": "node scripts/verify-map-visuals.mjs",
-    "check": "npm run test && npm run build"
+    "check": "npm run test && npm run build",
+    "verify:docs": "node scripts/verify-docs.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
