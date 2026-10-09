@@ -11,6 +11,7 @@ import {
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "../ui/button.jsx";
 import { SiteHeader } from "../brand/SiteHeader.jsx";
+import { SiteFooter } from "../brand/SiteFooter.jsx";
 import { useSiteTheme } from "../../hooks/useSiteTheme.js";
 import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import { DOC_ARTICLES, DOC_GROUPS, searchArticles } from "../../data/docs.js";
@@ -169,7 +170,12 @@ export function DocsPage() {
       <a className="skip-link" href="#archive-article">
         Skip to article
       </a>
-      <SiteHeader theme={theme} toggleTheme={toggleTheme} section="docs" />
+      <SiteHeader theme={theme} toggleTheme={toggleTheme} />
+      <section className="docs-masthead" aria-label="The archives introduction">
+        <div><p className="eyebrow">Notes from the map room</p><h2>The archives.</h2></div>
+        <p>A companion to the known world.<br />Find your bearings, read the routes, and explore further.</p>
+        <span className="docs-guide-count"><strong>{String(DOC_ARTICLES.length).padStart(2, "0")}</strong> field guides</span>
+      </section>
       <div className="docs-layout">
         <aside className="docs-sidebar" aria-label="Archive navigation">
           <div className="docs-sidebar-title">
@@ -230,6 +236,7 @@ export function DocsPage() {
                       candidate.slug === articleSlug ? "page" : undefined
                     }
                   >
+                    <span className="docs-nav-number" aria-hidden="true">{String(DOC_ARTICLES.indexOf(candidate) + 1).padStart(2, "0")}</span>
                     {candidate.label}
                   </Link>
                 ))}
@@ -281,6 +288,7 @@ export function DocsPage() {
               </nav>
               <h1>{article.title}</h1>
               <p className="docs-lead">{article.description}</p>
+              <div className="docs-article-meta"><span>Field guide {String(articleIndex + 1).padStart(2, "0")}</span><span>{article.sections.length} sections</span></div>
               <div className="docs-article-rule" />
               {article.sections.map((section) => (
                 <section
@@ -388,8 +396,9 @@ export function DocsPage() {
           <aside className="docs-outline">
             <nav aria-label="On this page">
               <p className="eyebrow">On this page</p>
-              {article.sections.map((section) => (
+              {article.sections.map((section, index) => (
                 <a key={section.id} href={`#${section.id}`}>
+                  <span className="docs-nav-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                   {section.title}
                 </a>
               ))}
@@ -401,6 +410,7 @@ export function DocsPage() {
           </aside>
         )}
       </div>
+      <SiteFooter />
     </div>
   );
 }

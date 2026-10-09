@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { PauseIcon, PlayIcon, RotateCcwIcon, UsersIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, PauseIcon, PlayIcon, RotateCcwIcon, UsersIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { SigilIcon } from "../intro/SigilIcon.jsx";
 import { Button, buttonVariants } from "../ui/button.jsx";
@@ -8,6 +8,7 @@ import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import { useCinematicLoadReady } from "../../hooks/usePageLoadReady.js";
 import { getRealmCameraFrame, REALM_MAPS, REALM_TOUR } from "../../data/realmTour.js";
 import { cn } from "../../lib/utils.js";
+import { CinematicHeader } from "../brand/CinematicHeader.jsx";
 
 const REALM_HOLD_MS = 420;
 
@@ -208,6 +209,7 @@ export function RealmTourPage() {
         aria-label={complete ? "Complete map of the known world" : undefined}
         {...stagePointerHandlers}
       >
+        <CinematicHeader />
         <div className="realm-map-frame" style={frameStyle}>
           <img
             ref={mapImageRef}
@@ -236,10 +238,9 @@ export function RealmTourPage() {
         {!complete && <div className="realm-vignette" aria-hidden="true" />}
         {!complete && (
           <div className="realm-copy" key={`copy-${realm.id}`}>
-            <p>Realm {realm.order} of 9</p>
+            <p><span className="realm-index-number">{String(realm.order).padStart(2, "0")}</span> Realm {realm.order} of 9</p>
             <h1 id="realm-title">{realm.name}</h1>
-            <strong>{realm.house}</strong>
-            <span>{realm.seat}</span>
+            <div className="realm-details"><strong>{realm.house}</strong><span>{realm.seat}</span></div>
           </div>
         )}
 
@@ -265,18 +266,41 @@ export function RealmTourPage() {
               </Link>
             </>
           ) : (
-            <Button
-              type="button"
-              variant="outline"
-              size="lg"
-              className="realm-control"
-              onClick={() => setPaused((value) => !value)}
-            >
-              {paused
-                ? <PlayIcon data-icon="inline-start" aria-hidden="true" />
-                : <PauseIcon data-icon="inline-start" aria-hidden="true" />}
-              {paused ? "Continue" : "Pause"}
-            </Button>
+            <>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="realm-step-control"
+                aria-label="Previous realm"
+                disabled={realmIndex === 0}
+                onClick={goToPrevious}
+              >
+                <ArrowLeftIcon data-icon="inline-start" aria-hidden="true" />
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="lg"
+                className="realm-control"
+                onClick={() => setPaused((value) => !value)}
+              >
+                {paused
+                  ? <PlayIcon data-icon="inline-start" aria-hidden="true" />
+                  : <PauseIcon data-icon="inline-start" aria-hidden="true" />}
+                {paused ? "Continue" : "Pause"}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="realm-step-control"
+                aria-label="Next realm"
+                onClick={goToNext}
+              >
+                <ArrowRightIcon data-icon="inline-start" aria-hidden="true" />
+              </Button>
+            </>
           )}
         </div>
 

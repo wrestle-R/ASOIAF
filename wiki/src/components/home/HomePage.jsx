@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { fetchCharacters } from "../../data/characterApi.js";
 import { useSiteTheme } from "../../hooks/useSiteTheme.js";
 import { SiteHeader } from "../brand/SiteHeader.jsx";
+import { SiteFooter } from "../brand/SiteFooter.jsx";
 import blobAssets from "../../data/blobAssets.json";
 import { CharacterCard } from "./CharacterCard.jsx";
 
@@ -18,6 +19,12 @@ const SERIES = Object.freeze([
     label: "A Knight of the Seven Kingdoms",
   },
 ]);
+
+const FEATURED_CHARACTERS = [
+  { slug: "jon-snow", name: "Jon Snow", house: "House Stark" },
+  { slug: "daenerys-targaryen", name: "Daenerys", house: "House Targaryen" },
+  { slug: "arya-stark", name: "Arya Stark", house: "House Stark" },
+];
 
 export function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -77,6 +84,14 @@ export function HomePage() {
       return next;
     });
   }
+
+  function clearFilters() {
+    setSearchInput("");
+    setReadyOnly(false);
+    setSearchParams({});
+  }
+
+  const hasFilters = Boolean(search || series !== "all" || readyOnly);
 
   const loadCharacters = useCallback(
     async ({ append = false, offset = 0, signal } = {}) => {
@@ -143,11 +158,7 @@ export function HomePage() {
       <a className="skip-link" href="#character-catalogue">
         Skip to characters
       </a>
-      <SiteHeader
-        theme={theme}
-        toggleTheme={toggleTheme}
-        section="characters"
-      />
+      <SiteHeader theme={theme} toggleTheme={toggleTheme} />
 
       <section className="catalog-index" id="character-catalogue">
         <div className="catalog-heading">
@@ -162,30 +173,47 @@ export function HomePage() {
             height="1060"
           />
           <div className="catalog-heading-copy">
-            <p className="eyebrow">The known world</p>
+            <p className="eyebrow">
+              The known world <span /> The character catalogue
+            </p>
             <h1>
               Every life <br />
               leaves a trail.
             </h1>
             <p>
-              Follow the characters of Westeros and Essos, season by season.
-              Their stories unfold. The map remembers.
+              From Winterfell to Dragonstone, follow the people who shaped
+              the realm. Discover their stories, season by season.
             </p>
             <Link className="atlas-text-link" to="/">
               Step inside the realm map <ArrowRightIcon aria-hidden="true" />
             </Link>
           </div>
-          <div
-            className="catalog-count"
-            aria-label={`${total} matching characters`}
-          >
-            <strong>{loading ? "—" : total}</strong>
-            <span>matching characters</span>
-            {!loading && (
-              <small>
-                {published} ready{deferred ? ` · ${deferred} deferred` : ""}
-              </small>
-            )}
+          <div className="catalog-featured">
+            <p className="eyebrow">A few familiar faces</p>
+            <div className="catalog-featured-portraits">
+              {FEATURED_CHARACTERS.map((character) => (
+                <Link
+                  key={character.slug}
+                  to={`/journeys/game-of-thrones/${character.slug}`}
+                  className="catalog-featured-character"
+                  aria-label={`Explore ${character.name}'s journey`}
+                >
+                  <img
+                    src={
+                      blobAssets.characters[`game-of-thrones/${character.slug}`].url
+                    }
+                    width="200"
+                    height="240"
+                    alt=""
+                    decoding="async"
+                  />
+                  <span>
+                    {character.name} <ArrowRightIcon aria-hidden="true" />
+                  </span>
+                  <small>{character.house}</small>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -214,12 +242,24 @@ export function HomePage() {
             </div>
           </label>
 
+          <label className="ready-filter">
+            <input
+              type="checkbox"
+              checked={readyOnly}
+              onChange={(event) => {
+                setReadyOnly(event.target.checked);
+                updateFilter("status", event.target.checked ? "published" : null);
+              }}
+            />
+            Ready journeys only
+          </label>
+
           <div
             className="series-tabs"
             role="group"
             aria-label="Filter by television series"
           >
-            {SERIES.map((item) => (
+            {SERIES.map((item, index) => (
               <button
                 type="button"
                 key={item.id}
@@ -229,39 +269,47 @@ export function HomePage() {
                   updateFilter("series", item.id === "all" ? null : item.id)
                 }
               >
-                {item.label}
+                <span className="series-tab-number" aria-hidden="true">
+                  0{index + 1}
+                </span>
+                <span>{item.label}</span>
               </button>
             ))}
           </div>
         </div>
 
         <div className="catalog-result-heading" aria-live="polite">
-          <p>
-            {search ? (
-              <>
-                Results for <strong>“{search}”</strong>
-              </>
-            ) : (
-              "The character index"
-            )}{" "}
-            <span className="catalog-result-count">
-              {loading ? "…" : total}
+          <div className="catalog-result-copy">
+            <h2>
+              {search ? (
+                <>Results for <strong>“{search}”</strong></>
+              ) : series === "all" ? (
+                "The character index"
+              ) : (
+                SERIES.find((item) => item.id === series).label
+              )}
+              <span
+                className="catalog-result-count"
+                aria-label={`${total} matching characters`}
+              >
+                {loading ? "…" : total}
+              </span>
+            </h2>
+            <p>
+              {loading
+                ? "Opening the catalogue…"
+                : `${published} journeys to explore${deferred ? ` · ${deferred} routes in progress` : ""}`}
+            </p>
+          </div>
+          {hasFilters ? (
+            <button className="catalog-reset" type="button" onClick={clearFilters}>
+              <XIcon aria-hidden="true" /> Clear filters
+            </button>
+          ) : (
+            <span className="catalog-browse-hint">
+              Choose a character. Follow their story.
             </span>
-          </p>
-          <label className="ready-filter">
-            <input
-              type="checkbox"
-              checked={readyOnly}
-              onChange={(event) => {
-                setReadyOnly(event.target.checked);
-                updateFilter(
-                  "status",
-                  event.target.checked ? "published" : null,
-                );
-              }}
-            />
-            Ready journeys only
-          </label>
+          )}
         </div>
 
         {error ? (
@@ -302,36 +350,46 @@ export function HomePage() {
                 />
               ))}
             </div>
-            {characters.length < total && (
-              <Button
-                type="button"
-                variant="outline"
-                className="load-more"
-                disabled={loadingMore}
-                onClick={() =>
-                  loadCharacters({ append: true, offset: characters.length })
-                }
-              >
-                {loadingMore
-                  ? "Loading more characters…"
-                  : "Show more characters"}
-              </Button>
-            )}
+            <div className="catalog-pagination">
+              <p>
+                Showing <strong>{characters.length}</strong> of{" "}
+                <strong>{total}</strong> characters
+              </p>
+              <progress
+                value={characters.length}
+                max={total}
+                aria-label="Characters shown"
+              />
+              {characters.length < total && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="load-more"
+                  disabled={loadingMore}
+                  onClick={() =>
+                    loadCharacters({ append: true, offset: characters.length })
+                  }
+                >
+                  {loadingMore
+                    ? "Loading more characters…"
+                    : "Show more characters"}
+                </Button>
+              )}
+            </div>
           </>
         ) : (
           <div className="catalog-empty">
             <span aria-hidden="true">∅</span>
             <h2>No matching character was found.</h2>
             <p>Try a shorter name, another title, or a different series.</p>
+            <Button type="button" variant="outline" onClick={clearFilters}>
+              Clear filters
+            </Button>
           </div>
         )}
       </section>
 
-      <footer className="site-footer">
-        <span>A Map of Ice and Fire</span>
-        <p>Season-by-season journeys across the known world.</p>
-        <Link to="/docs">A guide to the known world ↗</Link>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

@@ -8,6 +8,7 @@ import {
 } from "react";
 import {
   ArrowLeftIcon,
+  ArrowRightIcon,
   MinusIcon,
   PauseIcon,
   PlayIcon,
@@ -31,6 +32,7 @@ import { useCinematicViewport } from "../../hooks/useCinematicViewport.js";
 import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import { useCinematicLoadReady } from "../../hooks/usePageLoadReady.js";
 import { useReducedMotion } from "../../hooks/useReducedMotion.js";
+import { CinematicHeader } from "../brand/CinematicHeader.jsx";
 
 const SEASON_HOLD_MS = 650;
 const MOBILE_CAMERA_QUERY = "(max-width: 880px)";
@@ -85,18 +87,20 @@ function titleFromSlug(slug) {
 
 function JourneyBackLink() {
   return (
-    <Link
-      to="/home"
-      aria-label="Back to Home"
-      title="Back to Home"
-      className={cn(
-        buttonVariants({ variant: "outline", size: "lg" }),
-        "journey-back-control",
-      )}
-    >
-      <ArrowLeftIcon data-icon="inline-start" aria-hidden="true" />
-      <span>Back to Home</span>
-    </Link>
+    <CinematicHeader>
+      <Link
+        to="/home"
+        aria-label="Back to Home"
+        title="Back to Home"
+        className={cn(
+          buttonVariants({ variant: "outline", size: "lg" }),
+          "journey-back-control",
+        )}
+      >
+        <ArrowLeftIcon data-icon="inline-start" aria-hidden="true" />
+        <span>Characters</span>
+      </Link>
+    </CinematicHeader>
   );
 }
 
@@ -470,18 +474,22 @@ function JourneyExperience({ journey }) {
         break;
       case "w":
       case "W":
+      case "ArrowUp":
         commitOverviewView({ ...current, y: current.y - OVERVIEW_KEYBOARD_PAN_PX });
         break;
       case "s":
       case "S":
+      case "ArrowDown":
         commitOverviewView({ ...current, y: current.y + OVERVIEW_KEYBOARD_PAN_PX });
         break;
       case "a":
       case "A":
+      case "ArrowLeft":
         commitOverviewView({ ...current, x: current.x - OVERVIEW_KEYBOARD_PAN_PX });
         break;
       case "d":
       case "D":
+      case "ArrowRight":
         commitOverviewView({ ...current, x: current.x + OVERVIEW_KEYBOARD_PAN_PX });
         break;
       default:
@@ -936,19 +944,42 @@ function JourneyExperience({ journey }) {
               Replay
             </Button>
           ) : (
-            <Button
-              type="button"
-              variant="outline"
-              size="lg"
-              className="journey-control"
-              onClick={() => setPaused((value) => !value)}
-              disabled={reducedMotion}
-            >
-              {paused
-                ? <PlayIcon data-icon="inline-start" aria-hidden="true" />
-                : <PauseIcon data-icon="inline-start" aria-hidden="true" />}
-              {reducedMotion ? "Route shown" : paused ? "Continue" : "Pause"}
-            </Button>
+            <>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="journey-control journey-step-control"
+                aria-label="Previous season"
+                disabled={seasonIndex === 0}
+                onClick={goToPrevious}
+              >
+                <ArrowLeftIcon data-icon="inline-start" aria-hidden="true" />
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="lg"
+                className="journey-control"
+                onClick={() => setPaused((value) => !value)}
+                disabled={reducedMotion}
+              >
+                {paused
+                  ? <PlayIcon data-icon="inline-start" aria-hidden="true" />
+                  : <PauseIcon data-icon="inline-start" aria-hidden="true" />}
+                {reducedMotion ? "Route shown" : paused ? "Continue" : "Pause"}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="journey-control journey-step-control"
+                aria-label="Next season"
+                onClick={goToNext}
+              >
+                <ArrowRightIcon data-icon="inline-start" aria-hidden="true" />
+              </Button>
+            </>
           )}
         </div>
 
@@ -1036,7 +1067,8 @@ function JourneyExperience({ journey }) {
         {complete && (
           <p id={mapInstructionsId} className="sr-only">
             Zoom with the controls, plus and minus keys, a mouse wheel, or a pinch.
-            Drag the map or use W, A, S, and D to pan. Press zero to reset the map view.
+            Drag the map or use the arrow keys or W, A, S, and D to pan.
+            Press zero to reset the map view.
           </p>
         )}
       </section>

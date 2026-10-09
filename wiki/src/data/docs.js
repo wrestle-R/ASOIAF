@@ -88,7 +88,7 @@ export const DOC_ARTICLES = [
           "Tab moves through links and controls; Enter activates the focused link or button.",
         ],
         paragraphs: [
-          "In the complete journey overview, focus the map and use W, A, S, and D to pan, plus and minus to zoom, and zero to reset. The left arrow returns to season playback. With reduced motion enabled, use the season controls instead of autoplay.",
+          "In the complete journey overview, focus the map and use the arrow keys or W, A, S, and D to pan, plus and minus to zoom, and zero to reset. Outside the focused map, the left arrow returns to season playback. With reduced motion enabled, use the season controls instead of autoplay.",
         ],
       },
       {

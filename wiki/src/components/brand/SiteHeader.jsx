@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "../ui/button.jsx";
 import { BrandMark } from "./BrandMark.jsx";
 
-export function SiteHeader({ theme, toggleTheme, section }) {
+export function SiteHeader({ theme, toggleTheme }) {
   return (
     <header className="site-header">
       <NavLink
@@ -18,15 +18,16 @@ export function SiteHeader({ theme, toggleTheme, section }) {
         aria-label="A Map of Ice and Fire home"
       >
         <BrandMark />
-        <strong>A Map of Ice and Fire</strong>
+        <span className="site-wordmark">
+          <strong>A Map of Ice and Fire</strong>
+          <small>An atlas of the known world</small>
+        </span>
       </NavLink>
       <nav aria-label="Primary navigation">
-        {section !== "characters" && (
-          <NavLink to="/home" aria-label="Characters">
-            <UsersIcon aria-hidden="true" />
-            <span>Characters</span>
-          </NavLink>
-        )}
+        <NavLink to="/home" aria-label="Characters">
+          <UsersIcon aria-hidden="true" />
+          <span>Characters</span>
+        </NavLink>
         <NavLink to="/" end aria-label="Realm map">
           <MapIcon aria-hidden="true" />
           <span>Realm map</span>

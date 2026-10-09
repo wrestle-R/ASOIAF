@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { buttonVariants } from "../ui/button.jsx";
 import { useSiteTheme } from "../../hooks/useSiteTheme.js";
 import { BrandMark } from "../brand/BrandMark.jsx";
+import { SiteHeader } from "../brand/SiteHeader.jsx";
+import { SiteFooter } from "../brand/SiteFooter.jsx";
 
 export function NotFoundPage() {
-  const { theme } = useSiteTheme();
+  const { theme, toggleTheme } = useSiteTheme();
 
   useEffect(() => {
     document.title = "Page Not Found | A Map of Ice and Fire";
@@ -14,6 +16,7 @@ export function NotFoundPage() {
 
   return (
     <main className={`not-found-page site-theme site-theme-${theme}`} data-theme={theme}>
+      <SiteHeader theme={theme} toggleTheme={toggleTheme} />
       <section className="not-found-card" aria-labelledby="not-found-title">
         <BrandMark className="not-found-mark" />
         <p className="eyebrow">No journey is charted here</p>
@@ -34,6 +37,7 @@ export function NotFoundPage() {
           </Link>
         </nav>
       </section>
+      <SiteFooter />
     </main>
   );
 }

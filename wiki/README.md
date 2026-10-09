@@ -62,6 +62,16 @@ The character index and archives share Newsreader headings, Geist body text,
 parchment/charcoal themes, restrained brass accents, and fine rules. The site name
 is **A Map of Ice and Fire** throughout the interface and sharing metadata.
 
+The catalogue includes featured journeys, responsive series filters, filter reset,
+and a progress indicator for loaded characters. Cinematic map screens share a
+persistent masthead and explicit previous/next controls alongside keyboard and
+touch navigation. The archives use numbered guides and section outlines.
+
+The compass emblem combines a frost branch and a flame. Its SVG source lives in
+`public/brand-mark.svg`. Run `npm run build:brand` to regenerate the favicon, app
+icons, and social card using the installed Playwright Chromium browser. Brand
+assets are committed, so production builds do not need a browser.
+
 Page components load on demand. Character journey data remains separately loaded
 per character. Only Latin font subsets are bundled; other characters use the
 configured system fallback. Above-the-fold character portraits load eagerly;

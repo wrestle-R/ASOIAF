@@ -35,28 +35,33 @@ export function CharacterCard({ character, index }) {
               {character.name.charAt(0)}
             </span>
           )}
+          <span className="character-portrait-action" aria-hidden="true">
+            ↗
+          </span>
           <figcaption>{character.seriesName}</figcaption>
         </figure>
         <div className="character-card-copy">
           <div>
             <h2>{character.name}</h2>
             <p>{character.title || character.family || "Season journey"}</p>
+          </div>
+          <div className="character-card-footer">
             <span
               className="journey-status"
               data-status={character.journeyStatus}
             >
               {available
-                ? `Ready · ${character.journeyCoverage?.throughEpisode || "Verified route"}`
-                : "TV-canon route pending"}
+                ? `Journey ready · ${character.journeyCoverage?.throughEpisode || "Verified route"}`
+                : "Route in progress"}
+            </span>
+            <span className="character-card-arrow" aria-hidden="true">
+              {available
+                ? "Explore ↗"
+                : deferred
+                  ? "View status ↗"
+                  : "Preview ↗"}
             </span>
           </div>
-          <span className="character-card-arrow" aria-hidden="true">
-            {available
-              ? "Explore ↗"
-              : deferred
-                ? "View status ↗"
-                : "Preview ↗"}
-          </span>
         </div>
       </Link>
     </article>
